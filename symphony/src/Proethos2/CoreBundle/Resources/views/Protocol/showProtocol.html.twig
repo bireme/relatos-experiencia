@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}See Best Practice{% endtrans %}{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">
+                    {% trans %}Show Best Practice{% endtrans %}
+                </h1>
+            </div>
+        </div>
+
+        {% include 'Proethos2CoreBundle:Protocol:meta.html.twig' %}
+
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            $(".toggle-block").trigger('click');
+        });
+    </script>
+{% endblock %}

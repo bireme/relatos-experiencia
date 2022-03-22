@@ -1,0 +1,84 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Best Practice options{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}Initial committee review{% endtrans %}</h1>
+            </div>
+        </div>
+        
+        {% include 'Proethos2CoreBundle:Protocol:meta.html.twig' %}
+
+        <!-- action -->
+        <form method="POST" id='form-action'>
+            
+            <input type="hidden" name="token" value="{{ csrf_token('initial-committee-review-revisor') }}"/>
+            <input type="hidden" id="input-is-final-revision" name="is-final-revision" value="false">
+
+            <div class='block action'>
+                <a name='action'></a>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <h2 class='sub-header'>{% trans %}Reviewer's evaluation{% endtrans %}:</h2>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group required">
+                            <label for="input-decision">{% trans %}Decision{% endtrans %}:</label> 
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 113} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class="form-control" id='input-decision' name="decision" value="{{ protocol_revision.decision }}" required {% if protocol_revision.isFinalRevision %}readonly{% endif %}>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="textarea-other-comments">{% trans %}Comments{% endtrans %}:</label> 
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 120} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class="form-control" id='textarea-other-comments' name="other-comments" rows="5" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.otherComments }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="textarea-suggestions">{% trans %}Suggestions{% endtrans %}:</label> 
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 121} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class="form-control" id='textarea-suggestions' name="suggestions" rows="5" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.suggestions }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class='row'>
+                <div class='submission-button-controls col-md-12'>
+                    <button type="submit" class='btn btn-primary' id='button-save' {% if protocol_revision.isFinalRevision %}disabled{% endif %}>{% trans %}Save{% endtrans %}</button>
+                    <button type="button" class='btn btn-primary' id='button-save-and-finish' {% if not protocol_revision.decision or protocol_revision.isFinalRevision %}disabled{% endif %}>
+                        {% trans %}Save and mark as final revision{% endtrans %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            $("body").on("click", "#button-save-and-finish", function(e){
+                $("#input-is-final-revision").val('true');
+                $("#form-action").submit();
+            });
+        });
+    </script>
+{% endblock %}
