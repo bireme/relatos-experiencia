@@ -46,18 +46,9 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
         $database_password = $this->getContainer()->getParameter('database_password');
 
         $tables = array(
-            'list_best_practice_entity',
-            'list_best_practice_role',
-            'list_best_practice_type',
             'list_institution',
-            'list_intervention',
+            'list_thematic_area',
             'list_population_group',
-            'list_stakeholder',
-            'list_subregion',
-            'list_target',
-            'list_technical_matter',
-            'list_outcomes',
-            'list_goals',
             'list_clinical_trial_name',
             'list_country',
             'list_gender',

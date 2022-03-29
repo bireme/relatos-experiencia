@@ -73,7 +73,7 @@ class SubmissionUpload extends Base
 
     /**
      * @Exclude
-     * @ORM\Column(type="string", length=1023)
+     * @ORM\Column(type="string", length=1024)
      */
     private $filepath;
 
