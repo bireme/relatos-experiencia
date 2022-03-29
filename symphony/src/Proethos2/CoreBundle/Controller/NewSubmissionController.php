@@ -37,6 +37,8 @@ use Proethos2\ModelBundle\Entity\Protocol;
 use Proethos2\ModelBundle\Entity\ProtocolHistory;
 use Proethos2\ModelBundle\Entity\SubmissionClinicalTrial;
 use Proethos2\ModelBundle\Entity\SubmissionClinicalStudy;
+use Proethos2\ModelBundle\Entity\SubmissionResponsible;
+use Proethos2\ModelBundle\Entity\SubmissionMember;
 
 
 class NewSubmissionController extends Controller
@@ -55,30 +57,23 @@ class NewSubmissionController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        // getting best practice type list
-        $best_practice_type_repository = $em->getRepository('Proethos2ModelBundle:BestPracticeType');
-        $best_practice_type = $best_practice_type_repository->findByStatus(true);
-        $output['best_practice_type'] = $best_practice_type;
+        // getting thematic area list
+        $thematic_area_repository = $em->getRepository('Proethos2ModelBundle:ThematicArea');
+        // $thematic_area = $thematic_area_repository->findByStatus(true);
+        $thematic_area = $thematic_area_repository->findBy(array('status' => true), array('name' => 'ASC'));
+        $output['thematic_area'] = $thematic_area;
 
-        // getting best practice role list
-        $best_practice_role_repository = $em->getRepository('Proethos2ModelBundle:BestPracticeRole');
-        $best_practice_role = $best_practice_role_repository->findByStatus(true);
-        $output['best_practice_role'] = $best_practice_role;
+        // status options
+        $status = array(
+            "A" => $translator->trans("The practice is in the initial stage of implementation"),
+            "B" => $translator->trans("The practice is fully implemented and continues to operate"),
+            "C" => $translator->trans("The practice was discontinued before it was fully implemented"),
+            "D" => $translator->trans("The practice was discontinued after a period of operation"),
+            "E" => $translator->trans("The practice has not been implemented"),
+            "F" => $translator->trans("Other")
+        );
 
-        // getting best practice entity list
-        $best_practice_entity_repository = $em->getRepository('Proethos2ModelBundle:BestPracticeEntity');
-        $best_practice_entity = $best_practice_entity_repository->findByStatus(true);
-        $output['best_practice_entity'] = $best_practice_entity;
-
-        // getting institution list
-        $institution_repository = $em->getRepository('Proethos2ModelBundle:Institution');
-        $institution = $institution_repository->findByStatus(true);
-        $output['institution'] = $institution;
-
-        // getting stakeholder list
-        $stakeholder_repository = $em->getRepository('Proethos2ModelBundle:Stakeholder');
-        $stakeholder = $stakeholder_repository->findByStatus(true);
-        $output['stakeholder'] = $stakeholder;
+        $output['status'] = $status;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -93,10 +88,10 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            foreach(array('title', 'best_practice_type', 'best_practice_role', 'institution', 'institution_name', 'stakeholder') as $field) {
+            foreach(array('title', 'thematic-area', 'status', 'start-date', 'notes', 'language') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-                    return $post_data;
+                    return $output;
                 }
             }
 
@@ -108,36 +103,32 @@ class NewSubmissionController extends Controller
 
             $submission = new Submission();
             $submission->setTitle($post_data['title']);
-            $submission->setOtherRole($post_data['other_best_practice_role']);
-            $submission->setOtherInstitution($post_data['other_institution']);
-            $submission->setInstitutionName($post_data['institution_name']);
-            $submission->setOtherStakeholder($post_data['other_stakeholder']);
-            $submission->setReferenceNumber($post_data['reference_number']);
+            $submission->setStatus($post_data['status']);
+            $submission->setOtherstatus($post_data['other_status']);
+            $submission->setStartDate(new \DateTime($post_data['start-date']));
+            if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
+            if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
+            $submission->setOtherDate($post_data['other_date']);
+            $submission->setNotes($post_data['notes']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
             $submission->setProtocol($protocol);
             $submission->setNumber(1);
 
             $submission->setOwner($user);
 
-            // best practice type
-            $selected_best_practice_type = $best_practice_type_repository->find($post_data['best_practice_type']);
-            $submission->setType($selected_best_practice_type);
-
-            // best practice role
-            $selected_best_practice_role = $best_practice_role_repository->find($post_data['best_practice_role']);
-            $submission->setRole($selected_best_practice_role);
-
-            // best practice entity
-            $selected_best_practice_entity = $best_practice_entity_repository->find($post_data['best_practice_entity']);
-            $submission->setEntity($selected_best_practice_entity);
-
-            // institution
-            $selected_institution = $institution_repository->find($post_data['institution']);
-            $submission->setInstitution($selected_institution);
-
-            // stakeholder
-            $selected_stakeholder = $stakeholder_repository->find($post_data['stakeholder']);
-            $submission->setStakeholder($selected_stakeholder);
+            // removing all thematic areas to re-add
+            if ($submission->getThematicArea()) {
+                foreach($submission->getThematicArea() as $ta) {
+                    $submission->removeIntervention($ta);
+                }
+            }
+            // re-add thematic areas
+            if(isset($post_data['thematic-area'])) {
+                foreach($post_data['thematic-area'] as $ta) {
+                    $ta = $thematic_area_repository->find($ta);
+                    $submission->addThematicArea($ta);
+                }
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
@@ -172,30 +163,23 @@ class NewSubmissionController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        // getting best practice type list
-        $best_practice_type_repository = $em->getRepository('Proethos2ModelBundle:BestPracticeType');
-        $best_practice_type = $best_practice_type_repository->findByStatus(true);
-        $output['best_practice_type'] = $best_practice_type;
+        // getting thematic area list
+        $thematic_area_repository = $em->getRepository('Proethos2ModelBundle:ThematicArea');
+        // $thematic_area = $thematic_area_repository->findByStatus(true);
+        $thematic_area = $thematic_area_repository->findBy(array('status' => true), array('name' => 'ASC'));
+        $output['thematic_area'] = $thematic_area;
 
-        // getting best practice role list
-        $best_practice_role_repository = $em->getRepository('Proethos2ModelBundle:BestPracticeRole');
-        $best_practice_role = $best_practice_role_repository->findByStatus(true);
-        $output['best_practice_role'] = $best_practice_role;
+        // status options
+        $status = array(
+            "A" => $translator->trans("The practice is in the initial stage of implementation"),
+            "B" => $translator->trans("The practice is fully implemented and continues to operate"),
+            "C" => $translator->trans("The practice was discontinued before it was fully implemented"),
+            "D" => $translator->trans("The practice was discontinued after a period of operation"),
+            "E" => $translator->trans("The practice has not been implemented"),
+            "F" => $translator->trans("Other")
+        );
 
-        // getting best practice entity list
-        $best_practice_entity_repository = $em->getRepository('Proethos2ModelBundle:BestPracticeEntity');
-        $best_practice_entity = $best_practice_entity_repository->findByStatus(true);
-        $output['best_practice_entity'] = $best_practice_entity;
-
-        // getting institution list
-        $institution_repository = $em->getRepository('Proethos2ModelBundle:Institution');
-        $institution = $institution_repository->findByStatus(true);
-        $output['institution'] = $institution;
-
-        // getting stakeholder list
-        $stakeholder_repository = $em->getRepository('Proethos2ModelBundle:Stakeholder');
-        $stakeholder = $stakeholder_repository->findByStatus(true);
-        $output['stakeholder'] = $stakeholder;
+        $output['status'] = $status;
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
@@ -204,9 +188,6 @@ class NewSubmissionController extends Controller
         if (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
-
-        $users = $user_repository->findAll();
-        $output['users'] = $users;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -221,7 +202,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            foreach(array('title', 'best_practice_type', 'best_practice_role', 'institution', 'institution_name', 'stakeholder') as $field) {
+            foreach(array('title', 'thematic-area', 'status', 'start-date', 'notes', 'language') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -229,32 +210,28 @@ class NewSubmissionController extends Controller
             }
 
             $submission->setTitle($post_data['title']);
-            $submission->setOtherRole($post_data['other_best_practice_role']);
-            $submission->setOtherInstitution($post_data['other_institution']);
-            $submission->setInstitutionName($post_data['institution_name']);
-            $submission->setOtherStakeholder($post_data['other_stakeholder']);
-            $submission->setReferenceNumber($post_data['reference_number']);
+            $submission->setStatus($post_data['status']);
+            $submission->setOtherstatus($post_data['other_status']);
+            $submission->setStartDate(new \DateTime($post_data['start-date']));
+            if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
+            if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
+            $submission->setOtherDate($post_data['other_date']);
+            $submission->setNotes($post_data['notes']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
 
-            // best practice type
-            $selected_best_practice_type = $best_practice_type_repository->find($post_data['best_practice_type']);
-            $submission->setType($selected_best_practice_type);
-
-            // best practice role
-            $selected_best_practice_role = $best_practice_role_repository->find($post_data['best_practice_role']);
-            $submission->setRole($selected_best_practice_role);
-
-            // best practice entity
-            $selected_best_practice_entity = $best_practice_entity_repository->find($post_data['best_practice_entity']);
-            $submission->setEntity($selected_best_practice_entity);
-
-            // institution
-            $selected_institution = $institution_repository->find($post_data['institution']);
-            $submission->setInstitution($selected_institution);
-
-            // stakeholder
-            $selected_stakeholder = $stakeholder_repository->find($post_data['stakeholder']);
-            $submission->setStakeholder($selected_stakeholder);
+            // removing all thematic areas to re-add
+            if ($submission->getThematicArea()) {
+                foreach($submission->getThematicArea() as $ta) {
+                    $submission->removeIntervention($ta);
+                }
+            }
+            // re-add thematic areas
+            if(isset($post_data['thematic-area'])) {
+                foreach($post_data['thematic-area'] as $ta) {
+                    $ta = $thematic_area_repository->find($ta);
+                    $submission->addThematicArea($ta);
+                }
+            }
 
             $em->persist($submission);
             $em->flush();
@@ -283,6 +260,18 @@ class NewSubmissionController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        // status options
+        $status = array(
+            "A" => $translator->trans("The practice is in the initial stage of implementation"),
+            "B" => $translator->trans("The practice is fully implemented and continues to operate"),
+            "C" => $translator->trans("The practice was discontinued before it was fully implemented"),
+            "D" => $translator->trans("The practice was discontinued after a period of operation"),
+            "E" => $translator->trans("The practice has not been implemented"),
+            "F" => $translator->trans("Other")
+        );
+
+        $output['status'] = $status;
+
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
@@ -290,9 +279,6 @@ class NewSubmissionController extends Controller
         if (!$submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
-
-        $users = $user_repository->findAll();
-        $output['users'] = $users;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -371,41 +357,11 @@ class NewSubmissionController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        // getting subregion list
-        $subregion_repository = $em->getRepository('Proethos2ModelBundle:SubRegion');
-        $subregion = $subregion_repository->findByStatus(true);
-        $output['subregion'] = $subregion;
-
         // getting population group list
         $population_group_repository = $em->getRepository('Proethos2ModelBundle:PopulationGroup');
         $population_group = $population_group_repository->findByStatus(true);
         // $population_group = $population_group_repository->findBy(array('status' => true), array('name' => 'ASC'));
         $output['population_group'] = $population_group;
-
-        // getting countries list
-        $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
-        $countries = $country_repository->findBy(array('status' => true), array('name' => 'asc'));
-        $output['countries'] = $countries;
-
-        // echo "<pre>"; print_r($countries[0]); echo "</pre>"; die();
-
-        // getting technical matter list
-        $technical_matter_repository = $em->getRepository('Proethos2ModelBundle:TechnicalMatter');
-        // $technical_matter = $technical_matter_repository->findByStatus(true);
-        $technical_matter = $technical_matter_repository->findBy(array('status' => true), array('name' => 'ASC'));
-        $output['technical_matter'] = $technical_matter;
-
-        // getting intervention list
-        $intervention_repository = $em->getRepository('Proethos2ModelBundle:Intervention');
-        // $intervention = $intervention_repository->findByStatus(true);
-        $intervention = $intervention_repository->findBy(array('status' => true), array('name' => 'ASC'));
-        $output['intervention'] = $intervention;
-
-        // getting target list
-        $target_repository = $em->getRepository('Proethos2ModelBundle:Target');
-        $target = $target_repository->findByStatus(true);
-        // $target = $target_repository->findBy(array('status' => true), array('name' => 'ASC'));
-        $output['target'] = $target;
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
@@ -416,9 +372,6 @@ class NewSubmissionController extends Controller
                 throw $this->createNotFoundException($translator->trans('No submission found'));
             }
         }
-
-        $users = $user_repository->findBy(array(), array('email' => 'ASC'));
-        $output['users'] = $users;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -436,16 +389,11 @@ class NewSubmissionController extends Controller
 
             // checking required files
             $required_fields = array(
-                'technical_matter',
-                'intervention',
-                'start-date',
-                'country',
-                'subregion',
-                'target',
+                'description',
                 'population_group',
-                'introduction',
                 'objectives',
-                'main_results'
+                'resources',
+                'context'
             );
 
             foreach($required_fields as $field) {
@@ -454,14 +402,6 @@ class NewSubmissionController extends Controller
                     return $output;
                 }
             }
-
-            // country
-            $selected_country = $country_repository->find($post_data['country']);
-            $submission->setCountry($selected_country);
-
-            // subregion
-            $selected_subregion = $subregion_repository->find($post_data['subregion']);
-            $submission->setSubregion($selected_subregion);
 
             // removing all population groups to re-add
             if ($submission->getPopulationGroup()) {
@@ -477,59 +417,12 @@ class NewSubmissionController extends Controller
                 }
             }
 
-            // removing all technical matters to re-add
-            if ($submission->getTechnicalMatter()) {
-                foreach($submission->getTechnicalMatter() as $technical_matter) {
-                    $submission->removeTechnicalMatter($technical_matter);
-                }
-            }
-            // re-add technical matters
-            if(isset($post_data['technical_matter'])) {
-                foreach($post_data['technical_matter'] as $technical_matter) {
-                    $technical_matter = $technical_matter_repository->find($technical_matter);
-                    $submission->addTechnicalMatter($technical_matter);
-                }
-            }
-
-            // removing all interventions to re-add
-            if ($submission->getIntervention()) {
-                foreach($submission->getIntervention() as $intervention) {
-                    $submission->removeIntervention($intervention);
-                }
-            }
-            // re-add interventions
-            if(isset($post_data['intervention'])) {
-                foreach($post_data['intervention'] as $intervention) {
-                    $intervention = $intervention_repository->find($intervention);
-                    $submission->addIntervention($intervention);
-                }
-            }
-
-            // removing all targets to re-add
-            if ($submission->getTarget()) {
-                foreach($submission->getTarget() as $target) {
-                    $submission->removeTarget($target);
-                }
-            }
-            // re-add targets
-            if(isset($post_data['target'])) {
-                foreach($post_data['target'] as $target) {
-                    $target = $target_repository->find($target);
-                    $submission->addTarget($target);
-                }
-            }
-
             // adding fields to model
-            $submission->setOtherPopulationGroup($post_data['other_population_group']);
-            $submission->setOtherIntervention($post_data['other_intervention']);
-            $submission->setIntroduction($post_data['introduction']);
+            $submission->setDescription($post_data['description']);
             $submission->setObjectives($post_data['objectives']);
-            $submission->setActivities($post_data['activities']);
-            $submission->setMainResults($post_data['main_results']);
-            $submission->setFactors($post_data['factors']);
-            $submission->setStartDate(new \DateTime($post_data['start-date']));
-            if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
-
+            $submission->setResources($post_data['resources']);
+            $submission->setContext($post_data['context']);
+            
             $em->persist($submission);
             $em->flush();
 
@@ -557,17 +450,6 @@ class NewSubmissionController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        // likert options
-        $likert = array(
-            "A" => $translator->trans("I fully agree"),
-            "B" => $translator->trans("I agree"),
-            "C" => $translator->trans("I can't say"),
-            "D" => $translator->trans("I disagree"),
-            "E" => $translator->trans("I totally disagree")
-        );
-
-        $output['likert'] = $likert;
-
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
@@ -591,7 +473,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            $required_fields = array('resources_assigned', 'scalability', 'adaptability_replicability', 'other_contexts_demo');
+            $required_fields = array('main_results', 'challenges_information', 'other_results', 'lessons_learned');
 
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -601,24 +483,17 @@ class NewSubmissionController extends Controller
             }
 
             // adding fields to model
-            $submission->setResourcesAssigned($post_data['resources_assigned']);
-            $submission->setOutcomeInformation($post_data['outcome_information']);
-            $submission->setScalability($post_data['scalability']);
-            $submission->setAdaptabilityReplicability($post_data['adaptability_replicability']);
-            $submission->setOtherContextsDemo($post_data['other_contexts_demo']);
-            $submission->setDescribeHow($post_data['describe_how']);
+            $submission->setMainResults($post_data['main_results']);
+            $submission->setChallengesInformation($post_data['challenges_information']);
+            $submission->setOtherResults($post_data['other_results']);
+            $submission->setLessonsLearned($post_data['lessons_learned']);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
             $em->flush();
 
-            $route = 'submission_new_fifth_step';
-            if ( 'paho-who-technical-cooperation' == $submission->getType()->getSlug() ) {
-                $route = 'submission_new_fourth_step';
-            }
-
             $session->getFlashBag()->add('success', $translator->trans("Third step saved with success."));
-            return $this->redirectToRoute($route, array('submission_id' => $submission->getId()), 301);
+            return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
         }
 
         return $output;
@@ -637,30 +512,11 @@ class NewSubmissionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $submission_responsible_repository = $em->getRepository('Proethos2ModelBundle:SubmissionResponsible');
+        $submission_member_repository = $em->getRepository('Proethos2ModelBundle:SubmissionMember');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
-
-        // getting outcomes list
-        $outcomes_repository = $em->getRepository('Proethos2ModelBundle:Outcomes');
-        $outcomes = $outcomes_repository->findByStatus(true);
-        $output['outcomes'] = $outcomes;
-
-        // getting goals list
-        $goals_repository = $em->getRepository('Proethos2ModelBundle:Goals');
-        $goals = $goals_repository->findByStatus(true);
-        $output['goals'] = $goals;
-
-        // likert options
-        $likert = array(
-            "A" => $translator->trans("I fully agree"),
-            "B" => $translator->trans("I agree"),
-            "C" => $translator->trans("I can't say"),
-            "D" => $translator->trans("I disagree"),
-            "E" => $translator->trans("I totally disagree")
-        );
-
-        $output['likert'] = $likert;
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
@@ -684,48 +540,96 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-            // checking required files
-            $required_fields = array(
-                'health_system_contribution',
-                'value_chain_organization',
-                'outcomes',
-                'goals',
-                // 'relevance_information',
-                'counterpart_recognized',
-                'catalytic_role',
-                'neutral_role',
-                'recognition_information',
-                'cross_cutting_approach',
-                'engagement_information'
-            );
+            if(isset($post_data['responsible-name'])) {
+                $post_data = array_map('trim', $post_data);
 
-            foreach($required_fields as $field) {
-                if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-                    return $output;
+                // check if exists
+                $submission_responsible = $submission_responsible_repository->findOneBy(array(
+                    'submission' => $submission,
+                    'email' => $post_data['responsible-email']
+                ));
+
+                // if not exists, create the new submission_responsible
+                if(!$submission_responsible) {
+                    $submission_responsible = new SubmissionResponsible();
+                    $submission_responsible->setSubmission($submission);
+                    $submission_responsible->setName($post_data['responsible-name']);
+                    $submission_responsible->setFiliation($post_data['responsible-filiation']);
+                    $submission_responsible->setEmail($post_data['responsible-email']);
+                    $submission_responsible->setPhone($post_data['responsible-phone']);
+                    $submission_responsible->setCurriculum($post_data['responsible-curriculum']);
+
+                    $file = $request->files->get('responsible-picture');
+
+                    $file_ext = '.'.$file->getClientOriginalExtension();
+                    $ext_formats = array('.jpg', '.jpeg', '.png');
+                    if ( !in_array($file_ext, $ext_formats) ) {
+                        $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                        return $output;
+                    }
+
+                    $submission_responsible->setFile($file);
+                }
+
+                $em->persist($submission_responsible);
+                $em->flush();
+
+                // add in submission
+                $submission->addResponsible($submission_responsible);
+
+                $session->getFlashBag()->add('success', $translator->trans("Responsible added with success."));
+                return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
+            }
+
+            if(isset($post_data['delete-responsible-id']) and !empty($post_data['delete-responsible-id'])) {
+                $submission_responsible = $submission_responsible_repository->find($post_data['delete-responsible-id']);
+                if($submission_responsible) {
+                    $em->remove($submission_responsible);
+                    $em->flush();
+                    $session->getFlashBag()->add('success', $translator->trans("Responsible removed with success."));
+                    return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
                 }
             }
 
-            // adding fields to model
-            $submission->setHealthSystemContribution($post_data['health_system_contribution']);
-            $submission->setValueChainOrganization($post_data['value_chain_organization']);
-            $submission->setPublicHealthIssue($post_data['public_health_issue']);
-            $submission->setPlanningInformation($post_data['planning_information']);
-            // $submission->setRelevanceInformation($post_data['relevance_information']);
-            $submission->setCounterpartRecognized($post_data['counterpart_recognized']);
-            $submission->setCatalyticRole($post_data['catalytic_role']);
-            $submission->setNeutralRole($post_data['neutral_role']);
-            $submission->setRecognitionInformation($post_data['recognition_information']);
-            $submission->setCrossCuttingApproach($post_data['cross_cutting_approach']);
-            $submission->setEngagementInformation($post_data['engagement_information']);
+            if(isset($post_data['member-name'])) {
+                $post_data = array_map('trim', $post_data);
 
-            // outcomes
-            $selected_outcomes = $outcomes_repository->find($post_data['outcomes']);
-            $submission->setOutcomes($selected_outcomes);
+                // check if exists
+                $submission_member = $submission_member_repository->findOneBy(array(
+                    'submission' => $submission,
+                    'name' => $post_data['member-name']
+                ));
 
-            // goals
-            $selected_goals = $goals_repository->find($post_data['goals']);
-            $submission->setGoals($selected_goals);
+                // if not exists, create the new submission_member
+                if(!$submission_member) {
+                    $submission_member = new SubmissionMember();
+                    $submission_member->setSubmission($submission);
+                    $submission_member->setName($post_data['member-name']);
+                    $submission_member->setAcademicFormation($post_data['member-academic-formation']);
+                    $submission_member->setProfessionalCategory($post_data['member-professional-category']);
+                    $submission_member->setInstitution($post_data['member-institution']);
+                    $submission_member->setResponsibility($post_data['member-responsibility']);
+                }
+
+                $em->persist($submission_member);
+                $em->flush();
+
+                // add in submission
+                $submission->addMember($submission_member);
+
+                $session->getFlashBag()->add('success', $translator->trans("Member added with success."));
+                return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
+            }
+
+            if(isset($post_data['delete-member-id']) and !empty($post_data['delete-member-id'])) {
+                $submission_member = $submission_member_repository->find($post_data['delete-member-id']);
+                if($submission_member) {
+                    $em->remove($submission_member);
+                    $em->flush();
+                    $session->getFlashBag()->add('success', $translator->trans("Member removed with success."));
+                    return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
+                }
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
@@ -755,6 +659,12 @@ class NewSubmissionController extends Controller
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
+
+        // getting tags list
+        $tags_repository = $em->getRepository('Proethos2ModelBundle:Tags');
+        // $tags = $tags_repository->findByStatus(true);
+        $tags = $tags_repository->findBy(array('status' => true), array('name' => 'ASC'));
+        $output['tags'] = $tags;
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
@@ -827,28 +737,37 @@ class NewSubmissionController extends Controller
             }
 
             // checking required fields
-            $required_fields = array('challenges_information', 'lessons_information');
-            foreach($required_fields as $field) {
-                if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-                    return $output;
-                }
-            }
+            // $required_fields = array('products_information', 'keywords', 'tags');
+            // foreach($required_fields as $field) {
+            //     if(!isset($post_data[$field]) or empty($post_data[$field])) {
+            //         $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+            //         return $output;
+            //     }
+            // }
 
              // adding fields to model
-            $submission->setChallengesInformation($post_data['challenges_information']);
-            $submission->setLessonsInformation($post_data['lessons_information']);
+            $submission->setProductsInformation($post_data['products_information']);
+            $submission->setKeywords($post_data['keywords']);
+
+            // removing all tags to re-add
+            if ($submission->getTags()) {
+                foreach($submission->getTags() as $tag) {
+                    $submission->removeTag($tag);
+                }
+            }
+            // re-add tags
+            if(isset($post_data['tags'])) {
+                foreach($post_data['tags'] as $tag) {
+                    $tag = $tags_repository->find($tag);
+                    $submission->addTag($tag);
+                }
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
             $em->flush();
 
-            $msg = $translator->trans("Fourth step saved with success.");
-            if ( 'paho-who-technical-cooperation' == $submission->getType()->getSlug() ) {
-                $msg = $translator->trans("Fifth step saved with success.");
-            }
-
-            $session->getFlashBag()->add('success', $msg);
+            $session->getFlashBag()->add('success', $translator->trans("Fifth step saved with success."));
             return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
         }
 
@@ -866,75 +785,6 @@ class NewSubmissionController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
-
-        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
-        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
-        $submission_country_repository = $em->getRepository('Proethos2ModelBundle:SubmissionCountry');
-
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
-        // getting the current submission
-        $submission = $submission_repository->find($submission_id);
-        $output['submission'] = $submission;
-
-        if (!$submission or $submission->getCanBeEdited() == false) {
-            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
-                throw $this->createNotFoundException($translator->trans('No submission found'));
-            }
-        }
-
-        // checking if was a post request
-        if($this->getRequest()->isMethod('POST')) {
-
-            $submittedToken = $request->request->get('token');
-
-            if (!$this->isCsrfTokenValid('submission-sixth-step', $submittedToken)) {
-                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
-            }
-
-            // getting post data
-            $post_data = $request->request->all();
-/*
-            // checking required files
-            $required_fields = array('products_information', 'other_sources_information');
-            foreach($required_fields as $field) {
-                if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-                    return $output;
-                }
-            }
-*/
-            $submission->setProductsInformation($post_data['products_information']);
-            $submission->setOtherSourcesInformation($post_data['other_sources_information']);
-            $submission->setPahoComments($post_data['paho_comments']);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($submission);
-            $em->flush();
-
-            $msg = $translator->trans("Fifth step saved with success.");
-            if ( 'paho-who-technical-cooperation' == $submission->getType()->getSlug() ) {
-                $msg = $translator->trans("Sixth step saved with success.");
-            }
-
-            $session->getFlashBag()->add('success', $msg);
-            return $this->redirectToRoute('submission_new_seventh_step', array('submission_id' => $submission->getId()), 301);
-        }
-
-        return $output;
-    }
-
-    /**
-     * @Route("/submission/new/{submission_id}/seventh", name="submission_new_seventh_step")
-     * @Template()
-     */
-    public function SeventhStepAction($submission_id)
-    {
-        $output = array();
-        $request = $this->getRequest();
-        $session = $request->getSession();
-        $translator = $this->get('translator');
-        $em = $this->getDoctrine()->getManager();
         $locale = $request->getSession()->get('_locale');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -944,6 +794,7 @@ class NewSubmissionController extends Controller
         $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $submission_responsible_repository = $em->getRepository('Proethos2ModelBundle:SubmissionResponsible');
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
@@ -979,117 +830,33 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Type');
+        $text = $translator->trans('Thematic Area');
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getType())) {
+        if(empty($submission->getThematicArea())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Role');
+        $text = $translator->trans('Status');
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getRole())) {
+        if(empty($submission->getStatus())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }
         $revisions[] = $item;
 
-        if ( 'other' == $submission->getRole()->getSlug() ) {
+        if ( 'F' == $submission->getStatus() ) {
 
-            $text = $translator->trans('Other Role');
+            $text = $translator->trans('Other Status');
             $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getOtherRole())) {
+            if(empty($submission->getOtherStatus())) {
                 $item = array('text' => $text, 'status' => false);
                 $final_status = false;
             }
             $revisions[] = $item;
 
         }
-
-        $text = $translator->trans('Type of institution reporting the Best Practice');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getInstitution())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        if ( 'other' == $submission->getInstitution()->getSlug() ) {
-
-            $text = $translator->trans('Other Institution');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getOtherInstitution())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-        }
-
-        $text = $translator->trans("Institution's Name");
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getInstitutionName())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        $text = $translator->trans('Counterparts and Partnerships');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getStakeholder())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        if ( 'other' == $submission->getStakeholder()->getSlug() ) {
-
-            $text = $translator->trans('Other Counterparts and Partnerships');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getOtherStakeholder())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-        }
-
-        if ( 'paho-who-technical-cooperation' == $submission->getType()->getSlug() ) {
-
-            $text = $translator->trans('Entity');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getEntity())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('Reference Number');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getReferenceNumber())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-        }
-
-        $text = $translator->trans('Technical Matters');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getTechnicalMatterList())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        $text = $translator->trans('Interventions');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getInterventionList())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
 
         $text = $translator->trans('Start Date');
         $item = array('text' => $text, 'status' => true);
@@ -1106,26 +873,27 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
+
+        $text = $translator->trans('Partial Date');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getPartialDate())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
 */
-        $text = $translator->trans('Country');
+
+        $text = $translator->trans('Notes');
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getCountry())) {
+        if(empty($submission->getNotes())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Subregion');
+        $text = $translator->trans("Description");
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getSubRegion())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        $text = $translator->trans('Target');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getTargetList())) {
+        if(empty($submission->getDescription())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }
@@ -1139,14 +907,6 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Introduction');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getIntroduction())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
         $text = $translator->trans('Objectives');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getObjectives())) {
@@ -1154,15 +914,23 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
-/*
-        $text = $translator->trans('Activities');
+
+        $text = $translator->trans('Resources');
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getActivities())) {
+        if(empty($submission->getResources())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }
         $revisions[] = $item;
-*/
+
+        $text = $translator->trans('Context');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getContext())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
         $text = $translator->trans('Main Results');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getMainResults())) {
@@ -1170,199 +938,8 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
-/*
-        $text = $translator->trans('Factors');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getFactors())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-*/
-        $text = $translator->trans('Resources Assigned');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getResourcesAssigned())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-/*
-        $text = $translator->trans('Outcome Information');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getOutcomeInformation())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-*/
-        $text = $translator->trans('Scalability');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getScalability())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
 
-        $text = $translator->trans('Adaptability and Replicability');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getAdaptabilityReplicability())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        $text = $translator->trans('Other Contexts');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getOtherContextsDemo())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-/*
-        $text = $translator->trans('Describe How');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getDescribeHow())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-*/
-        if ( 'paho-who-technical-cooperation' == $submission->getType()->getSlug() ) {
-
-            $text = $translator->trans('Health System Contribution');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getHealthSystemContribution())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('Outcomes');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getOutcomes())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('Goals');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getGoals())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans("Organization's Value Chain");
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getValueChainOrganization())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-/*
-            $text = $translator->trans('Public Health Issue');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getPublicHealthIssue())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('Planning Information');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getPlanningInformation())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('Relevance Information');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getRelevanceInformation())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-*/
-            $text = $translator->trans('Counterpart');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getCounterpartRecognized())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('Catalytic Role');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getCatalyticRole())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('Neutral Role');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getNeutralRole())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('Recognition Information');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getRecognitionInformation())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('Cross Cutting Approach');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getCrossCuttingApproach())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('Engagement Information');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getEngagementInformation())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-        }
-
-        $text = $translator->trans('Attachments');
-        $item = array('text' => $text, 'status' => true);
-        $upload_type = $upload_type_repository->findOneBy(array('slug' => 'image'));
-        $upload_type_id = $upload_type->getId();
-        $submission_data = $submission_upload_repository->findBy(array('submission' => $submission->getId(), 'upload_type' => $upload_type_id));
-        if( !$submission_data ) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-/*
-        $text = $translator->trans('Products Information');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getProductsInformation())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        $text = $translator->trans('Other Sources Information');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getOtherSourcesInformation())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-*/
-        $text = $translator->trans('Challenges Information');
+        $text = $translator->trans('Challenges');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getChallengesInformation())) {
             $item = array('text' => $text, 'status' => false);
@@ -1370,17 +947,37 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Lessons Information');
+        $text = $translator->trans('Other Results');
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getLessonsInformation())) {
+        if(empty($submission->getOtherResults())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Lessons');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getLessonsLearned())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $submission_responsible = $submission_responsible_repository->findOneBy(array('submission' => $submission));
+        $text = $translator->trans('Responsible');
+        $item = array('text' => $text, 'status' => true);
+        if(!$submission_responsible) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }
         $revisions[] = $item;
 /*
-        $text = $translator->trans('PAHO Comments');
+        $text = $translator->trans('Attachments');
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getPahoComments())) {
+        $upload_type = $upload_type_repository->findOneBy(array('slug' => 'image'));
+        $upload_type_id = $upload_type->getId();
+        $submission_data = $submission_upload_repository->findBy(array('submission' => $submission->getId(), 'upload_type' => $upload_type_id));
+        if( !$submission_data ) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }
@@ -1666,16 +1263,17 @@ class NewSubmissionController extends Controller
         $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
         $output['protocol_code'] = $protocol_code;
 
-        // likert options
-        $likert = array(
-            "A" => $translator->trans("I fully agree"),
-            "B" => $translator->trans("I agree"),
-            "C" => $translator->trans("I can't say"),
-            "D" => $translator->trans("I disagree"),
-            "E" => $translator->trans("I totally disagree")
+        // status options
+        $status = array(
+            "A" => $translator->trans("The practice is in the initial stage of implementation"),
+            "B" => $translator->trans("The practice is fully implemented and continues to operate"),
+            "C" => $translator->trans("The practice was discontinued before it was fully implemented"),
+            "D" => $translator->trans("The practice was discontinued after a period of operation"),
+            "E" => $translator->trans("The practice has not been implemented"),
+            "F" => $translator->trans("Other")
         );
 
-        $output['likert'] = $likert;
+        $output['status'] = $status;
 
         if (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
