@@ -14,12 +14,11 @@
         <div class='row'>
             <div class='col-md-12'>
                 <ul class="nav nav-tabs" id='new-submission-tab'>
-                    <li role="presentation" class='active'><a href="javascript:void(0)" title="{% trans %}Basic Information{% endtrans %}">{% trans %}Basic Information{% endtrans %}</a></li>
-                    <li role="presentation"><a href="javascript:void(0)" title="{% trans %}Type / Description{% endtrans %}">{% trans %}Type / Description{% endtrans %}</a></li>
-                    <li role="presentation"><a href="javascript:void(0)" title="{% trans %}Effectiveness / Efficiency / Adaptability / Replicability{% endtrans %}">{% trans %}Effectiveness / Efficiency / Adaptability / Replicability{% endtrans %}</a></li>
-                    <li role="presentation"><a href="javascript:void(0)" title="{% trans %}Relevance / Recognition / Engagement{% endtrans %}">{% trans %}Relevance / Recognition / Engagement{% endtrans %}</a></li>
-                    <li role="presentation"><a href="javascript:void(0)" title="{% trans %}Multimedia / Conclusion{% endtrans %}">{% trans %}Multimedia / Conclusion{% endtrans %}</a></li>
-                    <li role="presentation"><a href="javascript:void(0)" title="{% trans %}Sources / Comments{% endtrans %}">{% trans %}Sources / Comments{% endtrans %}</a></li>
+                    <li role="presentation" class='active'><a href="javascript:void(0)" title="{% trans %}Identification{% endtrans %}">{% trans %}Identification{% endtrans %}</a></li>
+                    <li role="presentation"><a href="javascript:void(0)" title="{% trans %}Description{% endtrans %}">{% trans %}Description{% endtrans %}</a></li>
+                    <li role="presentation"><a href="javascript:void(0)" title="{% trans %}Experience{% endtrans %}">{% trans %}Experience{% endtrans %}</a></li>
+                    <li role="presentation"><a href="javascript:void(0)" title="{% trans %}Team{% endtrans %}">{% trans %}Team{% endtrans %}</a></li>
+                    <li role="presentation"><a href="javascript:void(0)" title="{% trans %}Other Information{% endtrans %}">{% trans %}Other Information{% endtrans %}</a></li>
                     <li role="presentation"><a href="javascript:void(0)" title="{% trans %}Revision{% endtrans %}">{% trans %}Revision{% endtrans %}</a></li>
                 </ul>
             </div>
@@ -34,10 +33,10 @@
                 <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
-                            <h2 class='sub-header'>{% trans %}Basic Information{% endtrans %}</h2>
+                            <h2 class='sub-header'>{% trans %}Identification{% endtrans %}</h2>
                         </div>
                     </div>
-{#
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
@@ -53,11 +52,11 @@
                             </div>
                         </div>
                     </div>
-#}
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="input_title">{% trans %}Title of the Best Practice{% endtrans %}:</label>
+                                <label for="input_title">{% trans %}What is the title of the experience lived or to be reported?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='title' id='input_title' value='{% if post_data.title %}{{ post_data.title }}{% endif %}' required>
                             </div>
@@ -67,14 +66,15 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="select-best-practice-type">{% trans %}This Best Practice is related to{% endtrans %}:</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <select class='form-control selectpicker' id='select-best-practice-type' name='best_practice_type' data-size="5" data-live-search="true" required>
-                                    <option value="">-</option>
-                                    {% for bp_type in best_practice_type %}
-                                        <option value="{{ bp_type.id }}" data-slug="{{ bp_type.slug }}" {% if post_data.best_practice_type == bp_type.id %}selected{% endif %}>{{ bp_type.name }}</option>
-                                    {% endfor %}
-                                </select>
+                                <label for="select-thematic-area">{% trans %}Thematic Area{% endtrans %}:</label>
+                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <div>
+                                    <select class='form-control selectpicker' id='select-thematic-area' name='thematic-area[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Select one or more PICS{% endtrans %}" multiple required>
+                                        {% for ta in thematic_area %}
+                                            <option value="{{ ta.id }}" {% if ta in post_data.thematic-area %}selected{% endif %}>{{ ta.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -82,12 +82,12 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="select-best-practice-role">{% trans %}What's your role on this Best Practice{% endtrans %}?</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <select class='form-control selectpicker' id='select-best-practice-role' name='best_practice_role' data-size="5" data-live-search="true" required>
+                                <label for="select-status">{% trans %}What is the current status of the experience?{% endtrans %}</label>
+                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <select class='form-control selectpicker' id='select-status' name='status' data-size="5" data-live-search="true" required>
                                     <option value="">-</option>
-                                    {% for bp_role in best_practice_role %}
-                                        <option value="{{ bp_role.id }}" data-slug="{{ bp_role.slug }}" {% if post_data.best_practice_role == bp_role.id %}selected{% endif %}>{{ bp_role.name }}</option>
+                                    {% for key, value in status %}
+                                        <option value="{{ key }}" {% if post_data.status == key %}selected{% endif %}>{{ value }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -97,94 +97,68 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group hide required">
-                                <label for="input_other_best_practice_role">{% trans %}Other Role{% endtrans %}:</label>
+                                <label for="input_other_status">{% trans %}Other Status{% endtrans %}:</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class="form-control" name='other_best_practice_role' id='input_other_best_practice_role'>
+                                <input type="text" class="form-control" name='other_status' id='input_other_status' value="{% if post_data.other_status %}{{ post_data.other_status }}{% endif %}">
                             </div>
                         </div>
                     </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Period{% endtrans %}</h2>
+                            <h4>{% trans %}Indicate the period of implementation of the experience to be reported{% endtrans %}</h4>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-4">
+                            <div class="form-group required">
+                                <label for="input-start-date">{% trans %}Start Date{% endtrans %}:</label>
+                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class='form-control datepicker' id='input-start-date' name='start-date' value='{% if post_data.startDate %}{{ post_data.startDate|date("Y-m-d") }}{% endif %}' required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="input-end-date">{% trans %}If the practice was completed, please indicate the date{% endtrans %}:</label>
+                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class='form-control datepicker' id='input-end-date' name='end-date' value='{% if post_data.endDate %}{{ post_data.endDate|date("Y-m-d") }}{% endif %}'>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="input-partial-date">{% trans %}If the practice was discontinued, please indicate the date{% endtrans %}:</label>
+                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class='form-control datepicker' id='input-partial-date' name='partial-date' value='{% if post_data.partialDate %}{{ post_data.partialDate|date("Y-m-d") }}{% endif %}'>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="input_other_date">{% trans %}Other, please specify{% endtrans %}:</label>
+                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class="form-control" name='other_date' id='input_other_date' value="{% if post_data.other_date %}{{ post_data.other_date }}{% endif %}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
 
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="select-institution">{% trans %}Type of institution reporting the Best Practice{% endtrans %}:</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <select class='form-control selectpicker' id='select-institution' name='institution' data-size="5" data-live-search="true" required>
-                                    <option value="">-</option>
-                                    {% for inst in institution %}
-                                        <option value="{{ inst.id }}" data-slug="{{ inst.slug }}" {% if post_data.institution == inst.id %}selected{% endif %}>{{ inst.name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group hide required">
-                                <label for="input_other_institution">{% trans %}Other Institution{% endtrans %}:</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class="form-control" name='other_institution' id='input_other_institution'>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group required">
-                                <label for="input_institution_name">{% trans %}Institution's Name{% endtrans %}:</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class="form-control" name='institution_name' id='input_institution_name' required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group required">
-                                <label for="select-stakeholder">{% trans %}Counterparts and Partnerships{% endtrans %}:</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <select class='form-control selectpicker' id='select-stakeholder' name='stakeholder' data-size="5" data-live-search="true" required>
-                                    <option value="">-</option>
-                                    {% for sh in stakeholder %}
-                                        <option value="{{ sh.id }}" data-slug="{{ sh.slug }}" {% if post_data.stakeholder == sh.id %}selected{% endif %}>{{ sh.name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group hide required">
-                                <label for="input_other_stakeholder">{% trans %}Other Counterparts and Partnerships{% endtrans %}:</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class="form-control" name='other_stakeholder' id='input_other_stakeholder'>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group hide required">
-                                <label for="select-best-practice-entity">{% trans %}Entity (PAHO){% endtrans %}:</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <select class='form-control selectpicker' id='select-best-practice-entity' name='best_practice_entity' data-size="5" data-live-search="true">
-                                    <option value="">-</option>
-                                    {% for bp_entity in best_practice_entity %}
-                                        <option value="{{ bp_entity.id }}" {% if post_data.best_practice_entity == bp_entity.id %}selected{% endif %}>{{ bp_entity.name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group hide required">
-                                <label for="input_reference_number">{% trans %}Reference Number of the Technical Cooperation{% endtrans %} ({% trans %}example{% endtrans %}: TC80, Grant#OVI314, CUB-27, BRA-76):</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class="form-control" name='reference_number' id='input_reference_number' value='{% if post_data.reference_number %}{{ post_data.reference_number }}{% endif %}'>
+                                <label for="textarea-notes">{% trans %}Use this field to detail or justify your choice about the current situation of the reported experience and to specify the period of implementation of the practice{% endtrans %}:</label>
+                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="6" class="form-control" name='notes' id='textarea-notes' required>{% if post_data.notes %}{{ post_data.notes }}{% endif %}</textarea>
                             </div>
                         </div>
                     </div>
@@ -201,51 +175,14 @@
 {% block script %}
     <script>
         $(function(){
-            $( "#select-best-practice-type" ).on( "change", function() {
-                var slug = $(this).find(':selected').data('slug');
-                if ( 'paho-who-technical-cooperation' == slug ) {
-                    $("#select-best-practice-entity").parent().parent().removeClass("hide");
-                    $("#select-best-practice-entity").prop('required',true);
-                    $("#input_reference_number").parent().removeClass("hide");
-                    $("#input_reference_number").prop('required',true);
+            $( "#select-status" ).on( "change", function() {
+                var val = $(this).val();
+                if ( 'F' == val ) {
+                    $("#input_other_status").parent().removeClass("hide");
+                    $("#input_other_status").prop('required',true);
                 } else {
-                    $("#select-best-practice-entity").parent().parent().addClass("hide");
-                    $("#select-best-practice-entity").prop('required',false);
-                    $("#input_reference_number").parent().addClass("hide");
-                    $("#input_reference_number").prop('required',false);
-                }
-            });
-
-            $( "#select-best-practice-role" ).on( "change", function() {
-                var slug = $(this).find(':selected').data('slug');
-                if ( 'other' == slug ) {
-                    $("#input_other_best_practice_role").parent().removeClass("hide");
-                    $("#input_other_best_practice_role").prop('required',true);
-                } else {
-                    $("#input_other_best_practice_role").parent().addClass("hide");
-                    $("#input_other_best_practice_role").prop('required',false);
-                }
-            });
-
-            $( "#select-institution" ).on( "change", function() {
-                var slug = $(this).find(':selected').data('slug');
-                if ( 'other' == slug ) {
-                    $("#input_other_institution").parent().removeClass("hide");
-                    $("#input_other_institution").prop('required',true);
-                } else {
-                    $("#input_other_institution").parent().addClass("hide");
-                    $("#input_other_institution").prop('required',false);
-                }
-            });
-
-            $( "#select-stakeholder" ).on( "change", function() {
-                var slug = $(this).find(':selected').data('slug');
-                if ( 'other' == slug ) {
-                    $("#input_other_stakeholder").parent().removeClass("hide");
-                    $("#input_other_stakeholder").prop('required',true);
-                } else {
-                    $("#input_other_stakeholder").parent().addClass("hide");
-                    $("#input_other_stakeholder").prop('required',false);
+                    $("#input_other_status").parent().addClass("hide");
+                    $("#input_other_status").prop('required',false);
                 }
             });
         });

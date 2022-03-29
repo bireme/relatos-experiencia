@@ -99,7 +99,7 @@ class Submission extends Base
      */
     private $number;
 
-    /******************** BASIC INFORMATION ********************/
+    /******************** IDENTIFICAÇÃO DO RELATO ********************/
 
     /**
      * @var string
@@ -117,102 +117,27 @@ class Submission extends Base
     private $title;
 
     /**
-     * @var Type
+     * @var ThematicArea
      *
-     * @ORM\ManyToOne(targetEntity="BestPracticeType")
-     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $type;
-
-    /**
-     * @var Role
-     *
-     * @ORM\ManyToOne(targetEntity="BestPracticeRole")
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $role;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $other_role;
-
-    /**
-     * @var Institution
-     *
-     * @ORM\ManyToOne(targetEntity="Institution")
-     * @ORM\JoinColumn(name="institution_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $institution;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $other_institution;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $institution_name;
-
-    /**
-     * @var Stakeholder
-     *
-     * @ORM\ManyToOne(targetEntity="Stakeholder")
-     * @ORM\JoinColumn(name="stakeholder_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $stakeholder;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $other_stakeholder;
-
-    /**
-     * @var Entity
-     *
-     * @ORM\ManyToOne(targetEntity="BestPracticeEntity")
-     * @ORM\JoinColumn(name="entity_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $entity;
-
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
+     * @ORM\ManyToMany(targetEntity="ThematicArea", inversedBy="submissions")
+     * @ORM\JoinTable(name="submission_thematic_area")
      * @Assert\NotBlank
      */
-    private $reference_number;
-
-    /******************** TYPE OF BEST PRACTICE ********************/
+    private $thematic_area;
 
     /**
-     * @var TechnicalMatter
-     *
-     * @ORM\ManyToMany(targetEntity="TechnicalMatter", inversedBy="submissions")
-     * @ORM\JoinTable(name="submission_technical_matter")
+     * @ORM\Column(type="string", length=1)
      * @Assert\NotBlank
      */
-    private $technical_matter;
+    private $status;
 
     /**
-     * @var Intervention
+     * @var string
      *
-     * @ORM\ManyToMany(targetEntity="Intervention", inversedBy="submissions")
-     * @ORM\JoinTable(name="submission_intervention")
+     * @ORM\Column(name="other_status", type="string", length=510)
      * @Assert\NotBlank
      */
-    private $intervention;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $other_intervention;
-
-    /******************** IDENTIFYING THE BEST PRACTICE ********************/
+    private $other_status;
 
     /**
      * @var date
@@ -229,29 +154,35 @@ class Submission extends Base
     private $end_date;
 
     /**
-     * @var Country
+     * @var date
      *
-     * @ORM\ManyToOne(targetEntity="Country")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $country;
+    private $partial_date;
 
     /**
-     * @var SubRegion
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="SubRegion")
-     * @ORM\JoinColumn(name="subregion_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $subregion;
-
-    /**
-     * @var Target
-     *
-     * @ORM\ManyToMany(targetEntity="Target", inversedBy="submissions")
-     * @ORM\JoinTable(name="submission_target")
+     * @ORM\Column(name="other_date", type="string", length=510)
      * @Assert\NotBlank
      */
-    private $target;
+    private $other_date;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $notes;
+
+    /******************** DESCRIÇÃO DO RELATO ********************/
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @var PopulationGroup
@@ -261,19 +192,6 @@ class Submission extends Base
      * @Assert\NotBlank
      */
     private $population_group;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $other_population_group;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $introduction;
 
     /**
      * @var text
@@ -287,7 +205,32 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $activities;
+    private $resources;
+
+    /**
+     * @var Institution
+     *
+     * @ORM\ManyToOne(targetEntity="Institution")
+     * @ORM\JoinColumn(name="institution_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $institution;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $context;
+
+    /**
+     * @var Country
+     *
+     * @ORM\ManyToOne(targetEntity="Country")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $country;
+
+    /******************** EXPERIÊNCIA ********************/
 
     /**
      * @var text
@@ -301,144 +244,39 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $factors;
-
-    /******************** EFFECTIVENESS AND EFFICIENCY ********************/
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $resources_assigned;
+    private $challenges_information;
 
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $outcome_information;
-
-    /******************** ADAPTABILITY AND REPLICABILITY ********************/
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $scalability;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $adaptability_replicability;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $other_contexts_demo;
+    private $other_results;
 
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $describe_how;
+    private $lessons_learned;
 
-    /******************** RELEVANCE FOR PAHO'S TECHNICAL COOPERATION ********************/
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $health_system_contribution;
+    /******************** EQUIPE ********************/
 
     /**
-     * @var Outcomes
-     *
-     * @ORM\ManyToOne(targetEntity="Outcomes")
-     * @ORM\JoinColumn(name="outcomes_id", referencedColumnName="id", onDelete="SET NULL")
+     * @var SubmissionResponsible
+     * @ORM\OneToMany(targetEntity="SubmissionResponsible", mappedBy="submission", cascade={"persist"})
+     * @ORM\JoinTable(name="submission_responsible")
      */
-    private $outcomes;
+    private $responsible;
 
     /**
-     * @var Goals
-     *
-     * @ORM\ManyToOne(targetEntity="Goals")
-     * @ORM\JoinColumn(name="goals_id", referencedColumnName="id", onDelete="SET NULL")
+     * @var SubmissionMember
+     * @ORM\OneToMany(targetEntity="SubmissionMember", mappedBy="submission", cascade={"persist"})
+     * @ORM\JoinTable(name="submission_member")
      */
-    private $goals;
+    private $members;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $value_chain_organization;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $public_health_issue;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $planning_information;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $relevance_information;
-
-    /******************** RECOGNITION OF PAHO'S TC IMPORTANCE BY THE COUNTERPART ********************/
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $counterpart_recognized;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $catalytic_role;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $neutral_role;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $recognition_information;
-
-    /******************** ENGAGEMENT WITH THE CROSS-CUTTING PRIORITIES OF THE ORGANIZATION ********************/
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
-     */
-    private $cross_cutting_approach;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $engagement_information;
-
-    /******************** ILLUSTRATING THE BEST PRACTICE ********************/
+    /******************** INFORMAÇÃO ADICIONAL ********************/
 
     /**
      * @var SubmissionUpload
@@ -459,30 +297,16 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $other_sources_information;
-
-    /******************** CONCLUSION - FINAL COMMENTS ********************/
+    private $keywords;
 
     /**
-     * @var text
+     * @var Tags
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="submissions")
+     * @ORM\JoinTable(name="submission_tags")
+     * @Assert\NotBlank
      */
-    private $challenges_information;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $lessons_information;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $paho_comments;
+    private $tags;
 
 
     public function __construct() {
@@ -491,6 +315,7 @@ class Submission extends Base
 
         // call Grandpa's constructor
         parent::__construct();
+
     }
 
     public function __clone() {
@@ -502,6 +327,7 @@ class Submission extends Base
         foreach(array('attachments') as $attribute) {
 
             $mClone = new ArrayCollection();
+
             foreach ($this->$attribute as $item) {
                 $itemClone = clone $item;
                 $itemClone->setSubmission($this);
@@ -510,6 +336,7 @@ class Submission extends Base
 
             $this->$attribute = $mClone;
         }
+
     }
 
     /**
@@ -867,30 +694,6 @@ class Submission extends Base
     }
 
     /**
-     * Set otherRole
-     *
-     * @param string $otherRole
-     *
-     * @return Submission
-     */
-    public function setOtherRole($otherRole)
-    {
-        $this->other_role = $otherRole;
-
-        return $this;
-    }
-
-    /**
-     * Get otherRole
-     *
-     * @return string
-     */
-    public function getOtherRole()
-    {
-        return $this->other_role;
-    }
-
-    /**
      * Set otherInstitution
      *
      * @param string $otherInstitution
@@ -912,54 +715,6 @@ class Submission extends Base
     public function getOtherInstitution()
     {
         return $this->other_institution;
-    }
-
-    /**
-     * Set referenceNumber
-     *
-     * @param string $referenceNumber
-     *
-     * @return Submission
-     */
-    public function setReferenceNumber($referenceNumber)
-    {
-        $this->reference_number = $referenceNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get referenceNumber
-     *
-     * @return string
-     */
-    public function getReferenceNumber()
-    {
-        return $this->reference_number;
-    }
-
-    /**
-     * Set otherStakeholders
-     *
-     * @param string $otherStakeholders
-     *
-     * @return Submission
-     */
-    public function setOtherStakeholders($otherStakeholders)
-    {
-        $this->other_stakeholders = $otherStakeholders;
-
-        return $this;
-    }
-
-    /**
-     * Get otherStakeholders
-     *
-     * @return string
-     */
-    public function getOtherStakeholders()
-    {
-        return $this->other_stakeholders;
     }
 
     /**
@@ -1035,30 +790,6 @@ class Submission extends Base
     }
 
     /**
-     * Set activities
-     *
-     * @param string $activities
-     *
-     * @return Submission
-     */
-    public function setActivities($activities)
-    {
-        $this->activities = $activities;
-
-        return $this;
-    }
-
-    /**
-     * Get activities
-     *
-     * @return string
-     */
-    public function getActivities()
-    {
-        return $this->activities;
-    }
-
-    /**
      * Set mainResults
      *
      * @param string $mainResults
@@ -1080,524 +811,6 @@ class Submission extends Base
     public function getMainResults()
     {
         return $this->main_results;
-    }
-
-    /**
-     * Set factors
-     *
-     * @param string $factors
-     *
-     * @return Submission
-     */
-    public function setFactors($factors)
-    {
-        $this->factors = $factors;
-
-        return $this;
-    }
-
-    /**
-     * Get factors
-     *
-     * @return string
-     */
-    public function getFactors()
-    {
-        return $this->factors;
-    }
-
-    /**
-     * Set resourcesAssigned
-     *
-     * @param string $resourcesAssigned
-     *
-     * @return Submission
-     */
-    public function setResourcesAssigned($resourcesAssigned)
-    {
-        $this->resources_assigned = $resourcesAssigned;
-
-        return $this;
-    }
-
-    /**
-     * Get resourcesAssigned
-     *
-     * @return string
-     */
-    public function getResourcesAssigned()
-    {
-        return $this->resources_assigned;
-    }
-
-    /**
-     * Set outcomeInformation
-     *
-     * @param string $outcomeInformation
-     *
-     * @return Submission
-     */
-    public function setOutcomeInformation($outcomeInformation)
-    {
-        $this->outcome_information = $outcomeInformation;
-
-        return $this;
-    }
-
-    /**
-     * Get outcomeInformation
-     *
-     * @return string
-     */
-    public function getOutcomeInformation()
-    {
-        return $this->outcome_information;
-    }
-
-    /**
-     * Set scalability
-     *
-     * @param string $scalability
-     *
-     * @return Submission
-     */
-    public function setScalability($scalability)
-    {
-        $this->scalability = $scalability;
-
-        return $this;
-    }
-
-    /**
-     * Get scalability
-     *
-     * @return string
-     */
-    public function getScalability()
-    {
-        return $this->scalability;
-    }
-
-    /**
-     * Set adaptabilityReplicability
-     *
-     * @param string $adaptabilityReplicability
-     *
-     * @return Submission
-     */
-    public function setAdaptabilityReplicability($adaptabilityReplicability)
-    {
-        $this->adaptability_replicability = $adaptabilityReplicability;
-
-        return $this;
-    }
-
-    /**
-     * Get adaptabilityReplicability
-     *
-     * @return string
-     */
-    public function getAdaptabilityReplicability()
-    {
-        return $this->adaptability_replicability;
-    }
-
-    /**
-     * Set otherContextsDemo
-     *
-     * @param string $otherContextsDemo
-     *
-     * @return Submission
-     */
-    public function setOtherContextsDemo($otherContextsDemo)
-    {
-        $this->other_contexts_demo = $otherContextsDemo;
-
-        return $this;
-    }
-
-    /**
-     * Get otherContextsDemo
-     *
-     * @return string
-     */
-    public function getOtherContextsDemo()
-    {
-        return $this->other_contexts_demo;
-    }
-
-    /**
-     * Set describeHow
-     *
-     * @param string $describeHow
-     *
-     * @return Submission
-     */
-    public function setDescribeHow($describeHow)
-    {
-        $this->describe_how = $describeHow;
-
-        return $this;
-    }
-
-    /**
-     * Get describeHow
-     *
-     * @return string
-     */
-    public function getDescribeHow()
-    {
-        return $this->describe_how;
-    }
-
-    /**
-     * Set healthSystemContribution
-     *
-     * @param string $healthSystemContribution
-     *
-     * @return Submission
-     */
-    public function setHealthSystemContribution($healthSystemContribution)
-    {
-        $this->health_system_contribution = $healthSystemContribution;
-
-        return $this;
-    }
-
-    /**
-     * Get healthSystemContribution
-     *
-     * @return string
-     */
-    public function getHealthSystemContribution()
-    {
-        return $this->health_system_contribution;
-    }
-
-    /**
-     * Set valueChainOrganization
-     *
-     * @param string $valueChainOrganization
-     *
-     * @return Submission
-     */
-    public function setValueChainOrganization($valueChainOrganization)
-    {
-        $this->value_chain_organization = $valueChainOrganization;
-
-        return $this;
-    }
-
-    /**
-     * Get valueChainOrganization
-     *
-     * @return string
-     */
-    public function getValueChainOrganization()
-    {
-        return $this->value_chain_organization;
-    }
-
-    /**
-     * Set publicHealthIssue
-     *
-     * @param string $publicHealthIssue
-     *
-     * @return Submission
-     */
-    public function setPublicHealthIssue($publicHealthIssue)
-    {
-        $this->public_health_issue = $publicHealthIssue;
-
-        return $this;
-    }
-
-    /**
-     * Get publicHealthIssue
-     *
-     * @return string
-     */
-    public function getPublicHealthIssue()
-    {
-        return $this->public_health_issue;
-    }
-
-    /**
-     * Set planningInformation
-     *
-     * @param string $planningInformation
-     *
-     * @return Submission
-     */
-    public function setPlanningInformation($planningInformation)
-    {
-        $this->planning_information = $planningInformation;
-
-        return $this;
-    }
-
-    /**
-     * Get planningInformation
-     *
-     * @return string
-     */
-    public function getPlanningInformation()
-    {
-        return $this->planning_information;
-    }
-
-    /**
-     * Set relevanceInformation
-     *
-     * @param string $relevanceInformation
-     *
-     * @return Submission
-     */
-    public function setRelevanceInformation($relevanceInformation)
-    {
-        $this->relevance_information = $relevanceInformation;
-
-        return $this;
-    }
-
-    /**
-     * Get relevanceInformation
-     *
-     * @return string
-     */
-    public function getRelevanceInformation()
-    {
-        return $this->relevance_information;
-    }
-
-    /**
-     * Set counterpartRecognized
-     *
-     * @param string $counterpartRecognized
-     *
-     * @return Submission
-     */
-    public function setCounterpartRecognized($counterpartRecognized)
-    {
-        $this->counterpart_recognized = $counterpartRecognized;
-
-        return $this;
-    }
-
-    /**
-     * Get counterpartRecognized
-     *
-     * @return string
-     */
-    public function getCounterpartRecognized()
-    {
-        return $this->counterpart_recognized;
-    }
-
-    /**
-     * Set catalyticRole
-     *
-     * @param string $catalyticRole
-     *
-     * @return Submission
-     */
-    public function setCatalyticRole($catalyticRole)
-    {
-        $this->catalytic_role = $catalyticRole;
-
-        return $this;
-    }
-
-    /**
-     * Get catalyticRole
-     *
-     * @return string
-     */
-    public function getCatalyticRole()
-    {
-        return $this->catalytic_role;
-    }
-
-    /**
-     * Set neutralRole
-     *
-     * @param string $neutralRole
-     *
-     * @return Submission
-     */
-    public function setNeutralRole($neutralRole)
-    {
-        $this->neutral_role = $neutralRole;
-
-        return $this;
-    }
-
-    /**
-     * Get neutralRole
-     *
-     * @return string
-     */
-    public function getNeutralRole()
-    {
-        return $this->neutral_role;
-    }
-
-    /**
-     * Set recognitionInformation
-     *
-     * @param string $recognitionInformation
-     *
-     * @return Submission
-     */
-    public function setRecognitionInformation($recognitionInformation)
-    {
-        $this->recognition_information = $recognitionInformation;
-
-        return $this;
-    }
-
-    /**
-     * Get recognitionInformation
-     *
-     * @return string
-     */
-    public function getRecognitionInformation()
-    {
-        return $this->recognition_information;
-    }
-
-    /**
-     * Set crossCuttingApproach
-     *
-     * @param string $crossCuttingApproach
-     *
-     * @return Submission
-     */
-    public function setCrossCuttingApproach($crossCuttingApproach)
-    {
-        $this->cross_cutting_approach = $crossCuttingApproach;
-
-        return $this;
-    }
-
-    /**
-     * Get crossCuttingApproach
-     *
-     * @return string
-     */
-    public function getCrossCuttingApproach()
-    {
-        return $this->cross_cutting_approach;
-    }
-
-    /**
-     * Set engagementInformation
-     *
-     * @param string $engagementInformation
-     *
-     * @return Submission
-     */
-    public function setEngagementInformation($engagementInformation)
-    {
-        $this->engagement_information = $engagementInformation;
-
-        return $this;
-    }
-
-    /**
-     * Get engagementInformation
-     *
-     * @return string
-     */
-    public function getEngagementInformation()
-    {
-        return $this->engagement_information;
-    }
-
-    /**
-     * Set productsInformation
-     *
-     * @param string $productsInformation
-     *
-     * @return Submission
-     */
-    public function setProductsInformation($productsInformation)
-    {
-        $this->products_information = $productsInformation;
-
-        return $this;
-    }
-
-    /**
-     * Get productsInformation
-     *
-     * @return string
-     */
-    public function getProductsInformation()
-    {
-        return $this->products_information;
-    }
-
-    /**
-     * Get productsInformationLinks
-     *
-     * @return array
-     */
-    public function getProductsInformationLinks()
-    {
-        $links = array();
-        $_links = explode("\r\n", $this->products_information);
-
-        foreach ($_links as $link) {
-            if (filter_var($link, FILTER_VALIDATE_URL)) {
-                $links[] = $link;
-            }
-        }
-
-        return $links;
-    }
-
-    /**
-     * Set otherSourcesInformation
-     *
-     * @param string $otherSourcesInformation
-     *
-     * @return Submission
-     */
-    public function setOtherSourcesInformation($otherSourcesInformation)
-    {
-        $this->other_sources_information = $otherSourcesInformation;
-
-        return $this;
-    }
-
-    /**
-     * Get otherSourcesInformation
-     *
-     * @return string
-     */
-    public function getOtherSourcesInformation()
-    {
-        return $this->other_sources_information;
-    }
-
-    /**
-     * Get getOtherSourcesInformationLinks
-     *
-     * @return array
-     */
-    public function getOtherSourcesInformationLinks()
-    {
-        $links = array();
-        $_links = explode("\r\n", $this->other_sources_information);
-
-        foreach ($_links as $link) {
-            if (filter_var($link, FILTER_VALIDATE_URL)) {
-                $links[] = $link;
-            }
-        }
-
-        return $links;
     }
 
     /**
@@ -1625,102 +838,6 @@ class Submission extends Base
     }
 
     /**
-     * Set lessonsInformation
-     *
-     * @param string $lessonsInformation
-     *
-     * @return Submission
-     */
-    public function setLessonsInformation($lessonsInformation)
-    {
-        $this->lessons_information = $lessonsInformation;
-
-        return $this;
-    }
-
-    /**
-     * Get lessonsInformation
-     *
-     * @return string
-     */
-    public function getLessonsInformation()
-    {
-        return $this->lessons_information;
-    }
-
-    /**
-     * Set pahoComments
-     *
-     * @param string $pahoComments
-     *
-     * @return Submission
-     */
-    public function setPahoComments($pahoComments)
-    {
-        $this->paho_comments = $pahoComments;
-
-        return $this;
-    }
-
-    /**
-     * Get pahoComments
-     *
-     * @return string
-     */
-    public function getPahoComments()
-    {
-        return $this->paho_comments;
-    }
-
-    /**
-     * Set type
-     *
-     * @param \Proethos2\ModelBundle\Entity\BestPracticeType $type
-     *
-     * @return Submission
-     */
-    public function setType(\Proethos2\ModelBundle\Entity\BestPracticeType $type = null)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return \Proethos2\ModelBundle\Entity\BestPracticeType
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set role
-     *
-     * @param \Proethos2\ModelBundle\Entity\BestPracticeRole $role
-     *
-     * @return Submission
-     */
-    public function setRole(\Proethos2\ModelBundle\Entity\BestPracticeRole $role = null)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return \Proethos2\ModelBundle\Entity\BestPracticeRole
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
      * Set institution
      *
      * @param \Proethos2\ModelBundle\Entity\Institution $institution
@@ -1742,161 +859,6 @@ class Submission extends Base
     public function getInstitution()
     {
         return $this->institution;
-    }
-
-    /**
-     * Set stakeholder
-     *
-     * @param \Proethos2\ModelBundle\Entity\Stakeholder $stakeholder
-     *
-     * @return Submission
-     */
-    public function setStakeholder(\Proethos2\ModelBundle\Entity\Stakeholder $stakeholder = null)
-    {
-        $this->stakeholder = $stakeholder;
-
-        return $this;
-    }
-
-    /**
-     * Get stakeholder
-     *
-     * @return \Proethos2\ModelBundle\Entity\Stakeholder
-     */
-    public function getStakeholder()
-    {
-        return $this->stakeholder;
-    }
-
-
-    /**
-     * Set subregion
-     *
-     * @param \Proethos2\ModelBundle\Entity\SubRegion $subregion
-     *
-     * @return Submission
-     */
-    public function setSubregion(\Proethos2\ModelBundle\Entity\SubRegion $subregion = null)
-    {
-        $this->subregion = $subregion;
-
-        return $this;
-    }
-
-    /**
-     * Get subregion
-     *
-     * @return \Proethos2\ModelBundle\Entity\SubRegion
-     */
-    public function getSubregion()
-    {
-        return $this->subregion;
-    }
-
-    /**
-     * Set otherStakeholder
-     *
-     * @param string $otherStakeholder
-     *
-     * @return Submission
-     */
-    public function setOtherStakeholder($otherStakeholder)
-    {
-        $this->other_stakeholder = $otherStakeholder;
-
-        return $this;
-    }
-
-    /**
-     * Get otherStakeholder
-     *
-     * @return string
-     */
-    public function getOtherStakeholder()
-    {
-        return $this->other_stakeholder;
-    }
-
-    /**
-     * Add intervention
-     *
-     * @param \Proethos2\ModelBundle\Entity\Intervention $intervention
-     *
-     * @return Submission
-     */
-    public function addIntervention(\Proethos2\ModelBundle\Entity\Intervention $intervention)
-    {
-        $this->intervention[] = $intervention;
-
-        return $this;
-    }
-
-    /**
-     * Remove intervention
-     *
-     * @param \Proethos2\ModelBundle\Entity\Intervention $intervention
-     */
-    public function removeIntervention(\Proethos2\ModelBundle\Entity\Intervention $intervention)
-    {
-        $this->intervention->removeElement($intervention);
-    }
-
-    /**
-     * Get intervention
-     *
-     * @return \Proethos2\ModelBundle\Entity\Intervention
-     */
-    public function getIntervention()
-    {
-        return $this->intervention;
-    }
-
-    public function getInterventionList() {
-        $interventions = array();
-
-        if ( $this->intervention ) {
-            foreach($this->intervention as $intervention) {
-                $interventions[] = $intervention->getName();
-            }
-        }
-
-        return $interventions;
-    }
-
-    public function getInterventionSlugList() {
-        $interventions = array();
-
-        if ( $this->intervention ) {
-            foreach($this->intervention as $intervention) {
-                $interventions[] = $intervention->getSlug();
-            }
-        }
-
-        return $interventions;
-    }
-
-    /**
-     * Set entity
-     *
-     * @param \Proethos2\ModelBundle\Entity\BestPracticeEntity $entity
-     *
-     * @return Submission
-     */
-    public function setEntity(\Proethos2\ModelBundle\Entity\BestPracticeEntity $entity = null)
-    {
-        $this->entity = $entity;
-
-        return $this;
-    }
-
-    /**
-     * Get entity
-     *
-     * @return \Proethos2\ModelBundle\Entity\BestPracticeEntity
-     */
-    public function getEntity()
-    {
-        return $this->entity;
     }
 
     /**
@@ -1924,122 +886,6 @@ class Submission extends Base
     }
 
     /**
-     * Set introduction
-     *
-     * @param string $introduction
-     *
-     * @return Submission
-     */
-    public function setIntroduction($introduction)
-    {
-        $this->introduction = $introduction;
-
-        return $this;
-    }
-
-    /**
-     * Get introduction
-     *
-     * @return string
-     */
-    public function getIntroduction()
-    {
-        return $this->introduction;
-    }
-
-    /**
-     * Add technicalMatter
-     *
-     * @param \Proethos2\ModelBundle\Entity\TechnicalMatter $technicalMatter
-     *
-     * @return Submission
-     */
-    public function addTechnicalMatter(\Proethos2\ModelBundle\Entity\TechnicalMatter $technicalMatter)
-    {
-        $this->technical_matter[] = $technicalMatter;
-
-        return $this;
-    }
-
-    /**
-     * Remove technicalMatter
-     *
-     * @param \Proethos2\ModelBundle\Entity\TechnicalMatter $technicalMatter
-     */
-    public function removeTechnicalMatter(\Proethos2\ModelBundle\Entity\TechnicalMatter $technicalMatter)
-    {
-        $this->technical_matter->removeElement($technicalMatter);
-    }
-
-    /**
-     * Get technicalMatter
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTechnicalMatter()
-    {
-        return $this->technical_matter;
-    }
-
-    public function getTechnicalMatterList() {
-        $technical_matters = array();
-
-        if ( $this->technical_matter ) {
-            foreach($this->technical_matter as $technical_matter) {
-                $technical_matters[] = $technical_matter->getName();
-            }
-        }
-
-        return $technical_matters;
-    }
-
-    /**
-     * Add target
-     *
-     * @param \Proethos2\ModelBundle\Entity\Target $target
-     *
-     * @return Submission
-     */
-    public function addTarget(\Proethos2\ModelBundle\Entity\Target $target)
-    {
-        $this->target[] = $target;
-
-        return $this;
-    }
-
-    /**
-     * Remove target
-     *
-     * @param \Proethos2\ModelBundle\Entity\Target $target
-     */
-    public function removeTarget(\Proethos2\ModelBundle\Entity\Target $target)
-    {
-        $this->target->removeElement($target);
-    }
-
-    /**
-     * Get target
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTarget()
-    {
-        return $this->target;
-    }
-
-    public function getTargetList() {
-        $targets = array();
-
-        if ( $this->target ) {
-            foreach($this->target as $target) {
-                $targets[] = $target->getName();
-            }
-        }
-
-        return $targets;
-    }
-
-    /**
      * Set language
      *
      * @param string $language
@@ -2061,30 +907,6 @@ class Submission extends Base
     public function getLanguage()
     {
         return $this->language;
-    }
-
-    /**
-     * Set otherPopulationGroup
-     *
-     * @param string $otherPopulationGroup
-     *
-     * @return Submission
-     */
-    public function setOtherPopulationGroup($otherPopulationGroup)
-    {
-        $this->other_population_group = $otherPopulationGroup;
-
-        return $this;
-    }
-
-    /**
-     * Get otherPopulationGroup
-     *
-     * @return string
-     */
-    public function getOtherPopulationGroup()
-    {
-        return $this->other_population_group;
     }
 
     /**
@@ -2134,98 +956,496 @@ class Submission extends Base
     }
 
     /**
-     * Set institutionName
+     * Set status
      *
-     * @param string $institutionName
+     * @param string $status
      *
      * @return Submission
      */
-    public function setInstitutionName($institutionName)
+    public function setStatus($status)
     {
-        $this->institution_name = $institutionName;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get institutionName
+     * Get status
      *
      * @return string
      */
-    public function getInstitutionName()
+    public function getStatus()
     {
-        return $this->institution_name;
+        return $this->status;
     }
 
     /**
-     * Set outcomes
+     * Set otherStatus
      *
-     * @param \Proethos2\ModelBundle\Entity\Outcomes $outcomes
+     * @param string $otherStatus
      *
      * @return Submission
      */
-    public function setOutcomes(\Proethos2\ModelBundle\Entity\Outcomes $outcomes = null)
+    public function setOtherStatus($otherStatus)
     {
-        $this->outcomes = $outcomes;
+        $this->other_status = $otherStatus;
 
         return $this;
     }
 
     /**
-     * Get outcomes
-     *
-     * @return \Proethos2\ModelBundle\Entity\Outcomes
-     */
-    public function getOutcomes()
-    {
-        return $this->outcomes;
-    }
-
-    /**
-     * Set goals
-     *
-     * @param \Proethos2\ModelBundle\Entity\Goals $goals
-     *
-     * @return Submission
-     */
-    public function setGoals(\Proethos2\ModelBundle\Entity\Goals $goals = null)
-    {
-        $this->goals = $goals;
-
-        return $this;
-    }
-
-    /**
-     * Get goals
-     *
-     * @return \Proethos2\ModelBundle\Entity\Goals
-     */
-    public function getGoals()
-    {
-        return $this->goals;
-    }
-
-    /**
-     * Set otherIntervention
-     *
-     * @param string $otherIntervention
-     *
-     * @return Submission
-     */
-    public function setOtherIntervention($otherIntervention)
-    {
-        $this->other_intervention = $otherIntervention;
-
-        return $this;
-    }
-
-    /**
-     * Get otherIntervention
+     * Get otherStatus
      *
      * @return string
      */
-    public function getOtherIntervention()
+    public function getOtherStatus()
     {
-        return $this->other_intervention;
+        return $this->other_status;
     }
+
+    /**
+     * Set partialDate
+     *
+     * @param \DateTime $partialDate
+     *
+     * @return Submission
+     */
+    public function setPartialDate($partialDate)
+    {
+        $this->partial_date = $partialDate;
+
+        return $this;
+    }
+
+    /**
+     * Get partialDate
+     *
+     * @return \DateTime
+     */
+    public function getPartialDate()
+    {
+        return $this->partial_date;
+    }
+
+    /**
+     * Set otherDate
+     *
+     * @param string $otherDate
+     *
+     * @return Submission
+     */
+    public function setOtherDate($otherDate)
+    {
+        $this->other_date = $otherDate;
+
+        return $this;
+    }
+
+    /**
+     * Get otherDate
+     *
+     * @return string
+     */
+    public function getOtherDate()
+    {
+        return $this->other_date;
+    }
+
+    /**
+     * Set notes
+     *
+     * @param string $notes
+     *
+     * @return Submission
+     */
+    public function setNotes($notes)
+    {
+        $this->notes = $notes;
+
+        return $this;
+    }
+
+    /**
+     * Get notes
+     *
+     * @return string
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Submission
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set resources
+     *
+     * @param string $resources
+     *
+     * @return Submission
+     */
+    public function setResources($resources)
+    {
+        $this->resources = $resources;
+
+        return $this;
+    }
+
+    /**
+     * Get resources
+     *
+     * @return string
+     */
+    public function getResources()
+    {
+        return $this->resources;
+    }
+
+    /**
+     * Set context
+     *
+     * @param string $context
+     *
+     * @return Submission
+     */
+    public function setContext($context)
+    {
+        $this->context = $context;
+
+        return $this;
+    }
+
+    /**
+     * Get context
+     *
+     * @return string
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * Set otherResults
+     *
+     * @param string $otherResults
+     *
+     * @return Submission
+     */
+    public function setOtherResults($otherResults)
+    {
+        $this->other_results = $otherResults;
+
+        return $this;
+    }
+
+    /**
+     * Get otherResults
+     *
+     * @return string
+     */
+    public function getOtherResults()
+    {
+        return $this->other_results;
+    }
+
+    /**
+     * Set lessonsLearned
+     *
+     * @param string $lessonsLearned
+     *
+     * @return Submission
+     */
+    public function setLessonsLearned($lessonsLearned)
+    {
+        $this->lessons_learned = $lessonsLearned;
+
+        return $this;
+    }
+
+    /**
+     * Get lessonsLearned
+     *
+     * @return string
+     */
+    public function getLessonsLearned()
+    {
+        return $this->lessons_learned;
+    }
+
+    /**
+     * Set keywords
+     *
+     * @param string $keywords
+     *
+     * @return Submission
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+
+        return $this;
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return string
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    public function getKeywordsList() {
+        $keywords = array();
+
+        if ( $this->keywords ) {
+            $keywords_list = json_decode($this->keywords);
+            
+            foreach($keywords_list as $keyword) {
+                $keywords[] = $keyword->value;
+            }
+        }
+
+        return $keywords;
+    }
+
+    /**
+     * Set productsInformation
+     *
+     * @param string $productsInformation
+     *
+     * @return Submission
+     */
+    public function setProductsInformation($productsInformation)
+    {
+        $this->products_information = $productsInformation;
+
+        return $this;
+    }
+
+    /**
+     * Get productsInformation
+     *
+     * @return string
+     */
+    public function getProductsInformation()
+    {
+        return $this->products_information;
+    }
+
+    /**
+     * Get productsInformationLinks
+     *
+     * @return array
+     */
+    public function getProductsInformationLinks()
+    {
+        $links = array();
+        $_links = explode("\r\n", $this->products_information);
+
+        foreach ($_links as $link) {
+            if (filter_var($link, FILTER_VALIDATE_URL)) {
+                $links[] = $link;
+            }
+        }
+
+        return $links;
+    }
+
+    /**
+     * Add thematicArea
+     *
+     * @param \Proethos2\ModelBundle\Entity\ThematicArea $thematicArea
+     *
+     * @return Submission
+     */
+    public function addThematicArea(\Proethos2\ModelBundle\Entity\ThematicArea $thematicArea)
+    {
+        $this->thematic_area[] = $thematicArea;
+
+        return $this;
+    }
+
+    /**
+     * Remove thematicArea
+     *
+     * @param \Proethos2\ModelBundle\Entity\ThematicArea $thematicArea
+     */
+    public function removeThematicArea(\Proethos2\ModelBundle\Entity\ThematicArea $thematicArea)
+    {
+        $this->thematic_area->removeElement($thematicArea);
+    }
+
+    /**
+     * Get thematicArea
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getThematicArea()
+    {
+        return $this->thematic_area;
+    }
+
+    public function getThematicAreaList() {
+        $thematic_area = array();
+
+        if ( $this->thematic_area ) {
+            foreach($this->thematic_area as $ta) {
+                $thematic_area[] = $ta->getName();
+            }
+        }
+
+        return $thematic_area;
+    }
+
+    public function getThematicAreaSlugList() {
+        $thematic_area = array();
+
+        if ( $this->thematicArea ) {
+            foreach($this->thematicArea as $ta) {
+                $thematic_area[] = $ta->getSlug();
+            }
+        }
+
+        return $thematic_area;
+    }
+
+    /**
+     * Add responsible
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionResponsible $responsible
+     *
+     * @return Submission
+     */
+    public function addResponsible(\Proethos2\ModelBundle\Entity\SubmissionResponsible $responsible)
+    {
+        $this->responsible[] = $responsible;
+
+        return $this;
+    }
+
+    /**
+     * Remove responsible
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionResponsible $responsible
+     */
+    public function removeResponsible(\Proethos2\ModelBundle\Entity\SubmissionResponsible $responsible)
+    {
+        $this->responsible->removeElement($responsible);
+    }
+
+    /**
+     * Get responsible
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResponsible()
+    {
+        return $this->responsible;
+    }
+
+    /**
+     * Add member
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionMember $member
+     *
+     * @return Submission
+     */
+    public function addMember(\Proethos2\ModelBundle\Entity\SubmissionMember $member)
+    {
+        $this->members[] = $member;
+
+        return $this;
+    }
+
+    /**
+     * Remove member
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionMember $member
+     */
+    public function removeMember(\Proethos2\ModelBundle\Entity\SubmissionMember $member)
+    {
+        $this->members->removeElement($member);
+    }
+
+    /**
+     * Get members
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * Add tag
+     *
+     * @param \Proethos2\ModelBundle\Entity\Tags $tag
+     *
+     * @return Submission
+     */
+    public function addTag(\Proethos2\ModelBundle\Entity\Tags $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \Proethos2\ModelBundle\Entity\Tags $tag
+     */
+    public function removeTag(\Proethos2\ModelBundle\Entity\Tags $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    public function getTagsList() {
+        $tags = array();
+
+        if ( $this->tags ) {
+            foreach($this->tags as $tag) {
+                $tags[] = $tag->getName();
+            }
+        }
+
+        return $tags;
+    }
+
 }

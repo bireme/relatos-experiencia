@@ -37,171 +37,120 @@
         <h1>{{ submission.title }}</h1>
 
         {% if protocol_code %}
-            <h3>{% trans %}Best Practice Code{% endtrans %}</h3>
+            <h3>{% trans %}Code{% endtrans %}</h3>
             <p>{{ protocol_code }}</p>
         {% endif %}
 
-        <h3>{% trans %}This Best Practice is related to{% endtrans %}:</h3>
-        <p>{{ submission.type.name }}</p>
+        <h3>{% trans %}Thematic Area{% endtrans %}:</h3>
+        <p>{{ submission.thematicAreaList|join('; ') }}</p>
 
-        <h3>{% trans %}What's your role on this Best Practice{% endtrans %}?</h3>
-        <p>{{ submission.role.name }}</p>
+        <h3>{% trans %}What is the current status of the experience?{% endtrans %}</h3>
+        <p>{{ status[submission.status] }}</p>
 
-        {% if submission.role.slug == "other" %}
+        {% if submission.status == "F" %}
 
-            <h3>{% trans %}Other Role{% endtrans %}:</h3>
-            <p>{{ submission.otherRole }}</p>
-
-        {% endif %}
-
-        <h3>{% trans %}Type of institution reporting the Best Practice{% endtrans %}:</h3>
-        <p>{{ submission.institution.name }}</p>
-
-        {% if submission.institution.slug == "other-please-specify" %}
-
-            <h3>{% trans %}Other Institution{% endtrans %}:</h3>
-            <p>{{ submission.otherInstitution }}</p>
-
-        {% endif %}
-
-        <h3>{% trans %}Institution's Name{% endtrans %}:</h3>
-        <p>{{ submission.institutionName }}</p>
-
-        <h3>{% trans %}Counterparts and Partnerships{% endtrans %}:</h3>
-        <p>{{ submission.stakeholder.name }}</p>
-
-        {% if submission.stakeholder.slug == "other" %}
-
-            <h3>{% trans %}Other Counterparts and Partnerships{% endtrans %}:</h3>
-            <p>{{ submission.otherStakeholder }}</p>
-
-        {% endif %}
-
-        <h3>{% trans %}Entity (PAHO){% endtrans %}:</h3>
-        <p>{{ submission.entity.name }}</p>
-
-        <h3>{% trans %}Reference Number of the Technical Cooperation{% endtrans %}:</h3>
-        <p>{{ submission.referenceNumber }}</p>
-
-        <h3>{% trans %}Technical Matters{% endtrans %}:</h3>
-        <p>{{ submission.technicalMatter|join('; ') }}</p>
-
-        <h3>{% trans %}Interventions{% endtrans %}:</h3>
-        <p>{{ submission.intervention|join('; ') }}</p>
-
-        {% if "other-please-specify" in submission.interventionSlugList %}
-
-            <h3>{% trans %}Other Intervention{% endtrans %}:</h3>
-            <p>{{ submission.otherIntervention }}</p>
+            <h3>{% trans %}Other Status{% endtrans %}:</h3>
+            <p>{{ submission.otherStatus }}</p>
 
         {% endif %}
 
         <h3>{% trans %}Start Date{% endtrans %}:</h3>
         <p>{{ submission.startDate|date("Y-m-d") }}</p>
 
-        <h3>{% trans %}End Date{% endtrans %}:</h3>
-        <p>{{ submission.endDate|date("Y-m-d") }}</p>
+        {% if submission.endDate %}
 
-        <h3>{% trans %}Country/Territory receiving the cooperation{% endtrans %}:</h3>
-        <p>{{ submission.country.name }}</p>
+            <h3>{% trans %}If the practice was completed, please indicate the date{% endtrans %}:</h3>
+            <p>{{ submission.endDate|date("Y-m-d") }}</p>
 
-        <h3>{% trans %}Subregion{% endtrans %}:</h3>
-        <p>{{ submission.subregion.name }}</p>
+        {% endif %}
 
-        <h3>{% trans %}This is respective to the following Targets of the SDGs{% endtrans %}:</h3>
-        <p>{{ submission.target|join('; ') }}</p>
+        {% if submission.partialDate %}
 
-        <h3>{% trans %}Any specific population group{% endtrans %}?</h3>
+            <h3>{% trans %}If the practice was discontinued, please indicate the date{% endtrans %}:</h3>
+            <p>{{ submission.partialDate|date("Y-m-d") }}</p>
+
+        {% endif %}
+
+        <h3>{% trans %}Other, please specify{% endtrans %}:</h3>
+        <p>{{ submission.otherdate }}</p>
+
+        <h3>{% trans %}Use this field to detail or justify your choice about the current situation of the reported experience and to specify the period of implementation of the practice{% endtrans %}:</h3>
+        <p>{{ submission.notes }}</p>
+
+        <h3>{% trans %}What was the core problem or health situation that the experience sought to address and resolve?{% endtrans %}</h3>
+        <p>{{ submission.description }}</p>
+
+        <h3>{% trans %}Which population or target audience was involved and/or benefited from this experience?{% endtrans %}</h3>
         <p>{{ submission.populationGroup|join('; ') }}</p>
 
-        {% if submission.otherPopulationGroup %}
-
-            <h3>{% trans %}Other Population Group{% endtrans %}:</h3>
-            <p>{{ submission.otherPopulationGroup }}</p>
-
-        {% endif %}
-
-        <h3>{% trans %}Brief Introduction{% endtrans %}:</h3>
-        <p>{{ submission.introduction }}</p>
-
-        <h3>{% trans %}Objectives of the Best Practice{% endtrans %}:</h3>
+        <h3>{% trans %}What were the main expected or promised results when you planned to implement the experiment or when the experiment you are reporting was proposed?{% endtrans %}:</h3>
         <p>{{ submission.objectives }}</p>
 
-        <h3>{% trans %}Implementation/Activities{% endtrans %}:</h3>
-        <p>{{ submission.activities }}</p>
+        <h3>{% trans %}What resources were needed and used to implement the experience you are reporting? (Human resources, inputs, materials, equipment, infrastructure, money, etc.){% endtrans %}</h3>
+        <p>{{ submission.resources }}</p>
 
-        <h3>{% trans %}Main Results/Products and Impact{% endtrans %}:</h3>
+        <h3>{% trans %}In what setting or context was the experience implemented? Indicate the locations, cities and/or regions.{% endtrans %}</h3>
+        <p>{{ submission.context }}</p>
+
+        <h3>{% trans %}What were the main impacts generated by the experience in the community and/or in the health service?{% endtrans %}</h3>
         <p>{{ submission.mainResults }}</p>
 
-        <h3>{% trans %}Enabling Factors and Restrictions{% endtrans %}:</h3>
-        <p>{{ submission.factors }}</p>
+        <h3>{% trans %}What were the main difficulties and challenges faced in implementing the experience? Have these challenges been overcome? If yes, tell us how.{% endtrans %}</h3>
+        <p>{{ submission.challengesInformation }}</p>
 
-        <h3>{% trans %}In your opinion, the resources assigned to the accomplishment of this Best Practice (financial, technological and/or manpower) were implement in an efficient way{% endtrans %}?</h3>
-        <p>{{ likert[submission.resourcesAssigned] }}</p>
+        <h3>{% trans %}What unexpected or unplanned results were achieved from implementing the experience?{% endtrans %}</h3>
+        <p>{{ submission.otherResults }}</p>
 
-        <h3>{% trans %}Support information about the outcome and impact results{% endtrans %}:</h3>
-        <p>{{ submission.outcomeInformation }}</p>
+        <h3>{% trans %}What were the lessons learned from this experience? Or, what recommendations, tips or suggestions would you give to those interested in replicating this experience?{% endtrans %}</h3>
+        <p>{{ submission.lessonsLearned }}</p>
 
-        <h3>{% trans %}Was the BP able to transfer technologies, and/or to disseminate useful knowledge adaptable to other realities, and could it be scaled up{% endtrans %}?</h3>
-        <p>{{ likert[submission.scalability] }}</p>
+        <h3>{% trans %}Responsible{% endtrans %}</h3>
+        <table>
+            <tr>
+                <th width="30%">{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Filiation{% endtrans %}</th>
+                <th>{% trans %}Email{% endtrans %}</th>
+                <th>{% trans %}Phone{% endtrans %}</th>
+                <th>{% trans %}Curriculum{% endtrans %}</th>
+            </tr>
 
-        <h3>{% trans %}Does the development of this BP have adaptability and replicability potential{% endtrans %}?</h3>
-        <p>{{ likert[submission.adaptabilityReplicability] }}</p>
+            {% for resp in submission.responsible %}
+                <tr>
+                    <td>{{ resp.name }}</td>
+                    <td>{{ resp.filiation }}</td>
+                    <td>{{ resp.email }}</td>
+                    <td>{{ resp.phone }}</td>
+                    <td><a href="{{ resp.curriculum }}" target="_blank">{{ resp.curriculum }}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
 
-        <h3>{% trans %}Could these successful BP be demonstrated in other contexts{% endtrans %}?</h3>
-        <p>{{ likert[submission.otherContextsDemo] }}</p>
+        <h3>{% trans %}Members{% endtrans %}</h3>
+        <table>
+            <tr>
+                <th width="30%">{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Academic Formation{% endtrans %}</th>
+                <th>{% trans %}Professional Category{% endtrans %}</th>
+                <th>{% trans %}Institution{% endtrans %}</th>
+                <th>{% trans %}Responsibility{% endtrans %}</th>
+            </tr>
 
-        <h3>{% trans %}Please describe how{% endtrans %}:</h3>
-        <p>{{ submission.describeHow }}</p>
+            {% for member in submission.members %}
+                <tr>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.academicFormation }}</td>
+                    <td>{{ member.professionalCategory }}</td>
+                    <td>{{ member.institution }}</td>
+                    <td>{{ member.responsibility }}</td>
+                </tr>
+            {% endfor %}
+        </table>
 
-        {% if submission.type.slug == "paho-who-technical-cooperation" %}
-
-            <h3>{% trans %}Did it contribute to strengthen the health system, the achievement of PAHO SP 20-25 and SHAA 2030{% endtrans %}?</h3>
-            <p>{{ likert[submission.healthSystemContribution] }}</p>
-
-            <h3>{% trans %}Outcome{% endtrans %}:</h3>
-            <p>{{ submission.outcomes.name }}</p>
-
-            <h3>{% trans %}Goal{% endtrans %}:</h3>
-            <p>{{ submission.goals.name }}</p>
-
-            <h3>{% trans %}Is the BP aligned with the Organization’s value chain (mission, vision, mandates and strategies) and shows the importance of the project not for the particular entity, but for the Organization{% endtrans %}?</h3>
-            <p>{{ likert[submission.valueChainOrganization] }}</p>
-
-            <h3>{% trans %}What public health issue (or opportunity) led the Organization to participate/request this Technical Cooperation project/initiative{% endtrans %}?</h3>
-            <p>{{ submission.publicHealthIssue }}</p>
-
-            <h3>{% trans %}Was the Technical Cooperation planned considering the health situation of the target population{% endtrans %}?</h3>
-            <p>{{ submission.planningInformation }}</p>
-{#
-            <h3>{% trans %}Please provide additional information about the relevance{% endtrans %}:</h3>
-            <p>{{ submission.relevanceInformation }}</p>
-#}
-            <h3>{% trans %}In your opinion, the counterpart(s) recognized PAHO's Technical Cooperation{% endtrans %}?</h3>
-            <p>{{ likert[submission.counterpartRecognized] }}</p>
-
-            <h3>{% trans %}In your opinion, PAHO played a catalytic role on the added value of Technical Cooperation{% endtrans %}?</h3>
-            <p>{{ likert[submission.catalyticRole] }}</p>
-
-            <h3>{% trans %}In your opinion, PAHO played a neutral role in negotiations{% endtrans %}</h3>
-            <p>{{ likert[submission.neutralRole] }}</p>
-
-            <h3>{% trans %}Please provide support information about PAHO's Technical Cooperation recognition{% endtrans %}:</h3>
-            <p>{{ submission.recognitionInformation }}</p>
-
-            <h3>{% trans %}In your opinion, PAHO's Technical Cooperation was planned considering the cross-cutting approach (human rights, gender, ethnicity and race){% endtrans %}?</h3>
-            <p>{{ likert[submission.crossCuttingApproach] }}</p>
-
-            <h3>{% trans %}Please provide support information. For example, information on how PAHO's Technical Cooperation contributed to strengthen capacity and address health inequities and inequalities, and gender and culturally sensitive approaches to health within a human rights framework; to engage in an intersectoral action with an equity and rights focus{% endtrans %}:</h3>
-            <p>{{ submission.engagementInformation }}</p>
-
-        {% endif %}
-
-        <h3>{% trans %}Upload Files{% endtrans %}:</h3>
+        <h3>{% trans %}Medias{% endtrans %}:</h3>
         <table>
             <tr>
                 <th>{% trans %}File name{% endtrans %}</th>
-                <th>{% trans %}Date{% endtrans %}</th>
+                <th width="20%">{% trans %}Date{% endtrans %}</th>
             </tr>
 
             {% for file in submission.attachments %}
@@ -212,24 +161,19 @@
             {% endfor %}
         </table>
 
-        <h3>{% trans %}Please provide information about products (resources, documents of the initiative/project) generated/associated to this Best Practice{% endtrans %}:</h3>
+        <h3>{% trans %}Use this space to share documents, publications, materials or news related to your experience{% endtrans %}:</h3>
+        <p>{{ submission.productsInformation }}</p>
+{#
+        <h3>{% trans %}Use this space to share documents, publications, materials or news related to your experience{% endtrans %}:</h3>
         {% for url in submission.productsInformationLinks %}
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
+#}
+        <h3>{% trans %}Keywords that represent the themes or issues related to the reported experience. Select at least 3 DeCS descriptors - Health Sciences Descriptors{% endtrans %}:</h3>
+        <p>{{ submission.keywordsList|join('; ') }}</p>
 
-        <h3>{% trans %}Other information sources{% endtrans %}:</h3>
-        {% for url in submission.otherSourcesInformationLinks %}
-            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
-        {% endfor %}
-
-        <h3>{% trans %}What obstacles or challenges were faced during the implementation of this best practice/initiative{% endtrans %}?</h3>
-        <p>{{ submission.challengesInformation }}</p>
-
-        <h3>{% trans %}What are the lessons learned that will improve our expertise and add value to the Organization{% endtrans %}?</h3>
-        <p>{{ submission.lessonsInformation }}</p>
-
-        <h3>{% trans %}Any comment for the Secretariat of the Pan American Health Organization{% endtrans %}?</h3>
-        <p>{{ submission.pahoComments }}</p>
+        <h3>{% trans %}Tags{% endtrans %}:</h3>
+        <p>{{ submission.tagsList|join('; ') }}</p>
 
         <footer>{% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</footer>
     </body>

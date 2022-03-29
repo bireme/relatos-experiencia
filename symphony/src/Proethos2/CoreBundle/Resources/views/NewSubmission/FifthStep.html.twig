@@ -20,9 +20,9 @@
 
                 <div class='block'>
                     <div class='row'>
-                        <div class="col-md-12 help-block">
-                            <h2 class='sub-header'>{% trans %}Multimedia{% endtrans %}</h2>
-                            <a href="{{ path("crud_admin_help_show", {help_id: 224} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Medias{% endtrans %}</h2>
+                            <h4>{% trans %}Share photos, videos, websites, brochures and other materials that illustrate the practice or experience reported and lived{% endtrans %}</h4>
                         </div>
                     </div>
 
@@ -64,26 +64,39 @@
                 <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
-                            <h2 class='sub-header'>{% trans %}Conclusion{% endtrans %}</h2>
+                            <h2 class='sub-header'>{% trans %}Other Information{% endtrans %}</h2>
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group required">
-                                <label for="textarea-challenges-information">{% trans %}What obstacles or challenges were faced during the implementation of this best practice/initiative{% endtrans %}?</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='challenges_information' id='textarea-challenges-information' required>{{ submission.challengesInformation }}</textarea>
+                            <div class="form-group">
+                                <label for="textarea-products-information">{% trans %}Use this space to share documents, publications, materials or news related to your experience{% endtrans %}:</label>
+                                <textarea rows="6" class="form-control" name='products_information' id='textarea-products-information' placeholder="{% trans %}Please add one per line{% endtrans %}">{{ submission.productsInformation }}</textarea>
                             </div>
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group required">
-                                <label for="textarea-lessons-information">{% trans %}What were the lessons learned that will improve our expertise and add value to the Organization{% endtrans %}?</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='lessons_information' id='textarea-lessons-information' required>{{ submission.lessonsInformation }}</textarea>
+                            <div class="form-group">
+                                <label for="input_title">{% trans %}Keywords that represent the themes or issues related to the reported experience. Select at least 3 DeCS descriptors - Health Sciences Descriptors{% endtrans %}:</label>
+                                <input type="text" class="form-control" name='keywords' id='input_keywords' placeholder="{% trans %}insert keywords here{% endtrans %}"  value="{{ submission.keywords }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="select-thematic-area">{% trans %}Tags{% endtrans %}:</label>
+                                <div>
+                                    <select class='form-control selectpicker' id='select-tags' name='tags[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Select one or more tags{% endtrans %}" multiple>
+                                        {% for tag in tags %}
+                                            <option value="{{ tag.id }}" {% if tag in submission.tags %}selected{% endif %}>{{ tag.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -162,6 +175,10 @@
 {% block script %}
     <script>
         $(function(){
+            // $('[name=keywords]').tagify();
+            var element = document.querySelector('[name=keywords]');
+            new Tagify(element);
+
             $("#table-attachment").on("click", ".button-delete-attachment", function(e){
                 var id = $(this).data('id');
                 $("#hidden-delete-attachment").val(id);
