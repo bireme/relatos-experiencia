@@ -290,6 +290,13 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
+    private $other_medias;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
     private $products_information;
 
     /**
@@ -1234,6 +1241,49 @@ class Submission extends Base
     }
 
     /**
+     * Set otherMedias
+     *
+     * @param string $otherMedias
+     *
+     * @return Submission
+     */
+    public function setOtherMedias($otherMedias)
+    {
+        $this->other_medias = $otherMedias;
+
+        return $this;
+    }
+
+    /**
+     * Get otherMedias
+     *
+     * @return string
+     */
+    public function getOtherMedias()
+    {
+        return $this->other_medias;
+    }
+
+    /**
+     * Get getOtherMediasLinks
+     *
+     * @return array
+     */
+    public function getOtherMediasLinks()
+    {
+        $links = array();
+        $_links = explode("\r\n", $this->other_medias);
+
+        foreach ($_links as $link) {
+            if (filter_var($link, FILTER_VALIDATE_URL)) {
+                $links[] = $link;
+            }
+        }
+
+        return $links;
+    }
+
+    /**
      * Set productsInformation
      *
      * @param string $productsInformation
@@ -1447,5 +1497,4 @@ class Submission extends Base
 
         return $tags;
     }
-
 }
