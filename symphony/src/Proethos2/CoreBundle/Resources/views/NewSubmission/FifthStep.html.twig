@@ -22,7 +22,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <h2 class='sub-header'>{% trans %}Medias{% endtrans %}</h2>
-                            <h4>{% trans %}Share photos, videos, websites, brochures and other materials that illustrate the practice or experience reported and lived{% endtrans %}</h4>
+                            <h4>{% trans %}Share photos, brochures and other materials that illustrate the practice or experience reported and lived{% endtrans %}</h4>
                         </div>
                     </div>
 
@@ -57,9 +57,18 @@
                             <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-file">{% trans %}New Attachment{% endtrans %}</a>
                         </div>
                     </div>
-                </div>
 
-                <hr />
+                    <div class='row submission-meta'></div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-other-medias">{% trans %}For videos, websites and other medias, please insert in this field{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</label>
+                                <textarea rows="6" class="form-control" name='other_medias' id='textarea-other-medias' placeholder="{% trans %}Please add one hyperlink per line{% endtrans %}">{{ submission.otherMedias }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class='block'>
                     <div class='row'>

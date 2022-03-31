@@ -161,8 +161,13 @@
             {% endfor %}
         </table>
 
+        <h3>{% trans %}Other Medias{% endtrans %}:</h3>
+        {% for url in submission.otherMediasLinks %}
+            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
+        {% endfor %}
+
         <h3>{% trans %}Use this space to share documents, publications, materials or news related to your experience{% endtrans %}:</h3>
-        <p>{{ submission.productsInformation }}</p>
+        <p>{{ submission.productsInformation|nl2br }}</p>
 {#
         <h3>{% trans %}Use this space to share documents, publications, materials or news related to your experience{% endtrans %}:</h3>
         {% for url in submission.productsInformationLinks %}

@@ -746,6 +746,7 @@ class NewSubmissionController extends Controller
             // }
 
              // adding fields to model
+            $submission->setOtherMedias($post_data['other_medias']);
             $submission->setProductsInformation($post_data['products_information']);
             $submission->setKeywords($post_data['keywords']);
 
@@ -883,7 +884,7 @@ class NewSubmissionController extends Controller
         $revisions[] = $item;
 */
 
-        $text = $translator->trans('Notes');
+        $text = $translator->trans('Details');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getNotes())) {
             $item = array('text' => $text, 'status' => false);
