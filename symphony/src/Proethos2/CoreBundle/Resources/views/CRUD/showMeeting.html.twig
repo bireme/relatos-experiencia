@@ -31,7 +31,7 @@
                 <thead>
                     <tr>
                         <th width="15%">{% trans %}ID{% endtrans %}</th>
-                        <th width="80%">{% trans %}Protocol{% endtrans %}</th>
+                        <th width="80%">{% trans %}Experience{% endtrans %}</th>
                         <th>{% trans %}Actions{% endtrans %}</th>
                     </tr>
                 </thead>
@@ -41,7 +41,7 @@
                             <td>{{ protocol.code }}</td>
                             <td>{{ protocol.mainSubmission.publicTitle }}</td>
                             <td>
-                                <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See experience{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
                             </td>
                         </tr>
                     {% endfor %}

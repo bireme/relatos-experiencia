@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}{% trans %}Best Practices{% endtrans %}{% endblock %}
+{% block title %}{% trans %}Experiences{% endtrans %}{% endblock %}
 
 {% block content %}
 
@@ -9,7 +9,7 @@
         <div class="row">
             <div class='col-md-12'>
                 <h1 class="page-header">
-                    {% trans %}Submitted Best Practices{% endtrans %}
+                    {% trans %}Submitted Experiences{% endtrans %}
                 </h1>
             </div>
         </div>
@@ -21,9 +21,9 @@
                 <input type="hidden" name="output" id="input-output" value="html" />
 
                 <div class='row'>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="form-group">
-                            <label for="input-filter-q">{% trans %}Find best practices{% endtrans %}:</label>
+                            <label for="input-filter-q">{% trans %}Find experiences{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 82} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id='input-filter-q' name='q' value="{{ app.request.get('q') }}">
                         </div>
@@ -43,19 +43,6 @@
                                 <option value="T" {% if app.request.get('status') == "T" %}selected{% endif %}>{% trans %}Withdrawn{% endtrans %}</option>
                                 <option value="A" {% if app.request.get('status') == "A" %}selected{% endif %}>{% trans %}Approved{% endtrans %}</option>
                                 <option value="N" {% if app.request.get('status') == "N" %}selected{% endif %}>{% trans %}Not approved{% endtrans %}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="select-filter-type">{% trans %}Type{% endtrans %}:</label>
-                            <a href="{{ path("crud_admin_help_show", {help_id: 83} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <select class='form-control selectpicker submit-on-change' id="select-filter-type" name="type" data-live-search="true">
-                                <option value="">-</option>
-                                {% for bp_type in best_practice_type %}
-                                <option value="{{ bp_type.id }}" {% if app.request.get('type') == bp_type.id %}selected{% endif %}>{{ bp_type.name }}</option>
-                                {% endfor %}
                             </select>
                         </div>
                     </div>
@@ -106,18 +93,18 @@
                                     <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
                                     <td>{{ protocol.statusLabel|trans }}</td>
                                     <td>
-                                        {% if 'administrator' in app.user.getRolesSlug and protocol.isMigrated %}<a href='{{ path("submission_new_second_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-warning btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}This is a migrated best practice. You can edit some informations.{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
-                                        <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See best practice{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
-                                        {% if protocol.status == "S" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_analyze_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Analyze best practice{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
+                                        {% if 'administrator' in app.user.getRolesSlug and protocol.isMigrated %}<a href='{{ path("submission_new_second_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-warning btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}This is a migrated experience. You can edit some informations.{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
+                                        <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See experience{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                        {% if protocol.status == "S" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_analyze_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Analyze experience{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
                                         <!--
                                         {% if protocol.status == "I" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_initial_committee_screening", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Initial Committee Screening{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
                                         -->
                                         {% if protocol.status == "E" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_initial_committee_review", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Initial Committee Review{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
-                                        {% if protocol.status == "H" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_end_review", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}End best practice review{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
-                                        {% if 'administrator' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Delete this best practice{% endtrans %}"><a href='{{ path("protocol_delete", {protocol_id: protocol.id} ) }}' class='btn btn-danger btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-trash'></i></a></span>{% endif %}
-                                        {% if protocol.status in ["R","C"] and 'secretary' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Retrieve best practice{% endtrans %}"><a href='{{ path("protocol_retrieve", {protocol_id: protocol.id} ) }}' class='btn btn-default btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-transfer'></i></a></span>{% endif %}
-                                        {% if protocol.status in ["S","I","E","H"] and 'secretary' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Withdraw best practice{% endtrans %}"><a href='{{ path("protocol_withdraw", {protocol_id: protocol.id} ) }}' class='btn btn-default btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-stop'></i></a></span>{% endif %}
-                                        {% if protocol.status in ["E","H"] and app.user in protocol.revisionUsers %}<a href='{{ path("protocol_initial_committee_review_revisor", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Send best practice revision{% endtrans %}"><i class='glyphicon glyphicon-list-alt'></i></a>{% endif %}
+                                        {% if protocol.status == "H" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_end_review", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}End experience review{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
+                                        {% if 'administrator' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Delete this experience{% endtrans %}"><a href='{{ path("protocol_delete", {protocol_id: protocol.id} ) }}' class='btn btn-danger btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-trash'></i></a></span>{% endif %}
+                                        {% if protocol.status in ["R","C"] and 'secretary' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Retrieve experience{% endtrans %}"><a href='{{ path("protocol_retrieve", {protocol_id: protocol.id} ) }}' class='btn btn-default btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-transfer'></i></a></span>{% endif %}
+                                        {% if protocol.status in ["S","I","E","H"] and 'secretary' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Withdraw experience{% endtrans %}"><a href='{{ path("protocol_withdraw", {protocol_id: protocol.id} ) }}' class='btn btn-default btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-stop'></i></a></span>{% endif %}
+                                        {% if protocol.status in ["E","H"] and app.user in protocol.revisionUsers %}<a href='{{ path("protocol_initial_committee_review_revisor", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Send experience revision{% endtrans %}"><i class='glyphicon glyphicon-list-alt'></i></a>{% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}

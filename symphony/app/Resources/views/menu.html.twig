@@ -34,7 +34,7 @@
                 {% endif %}
 
                 {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
-                    <li class=""><a href="{{ path("crud_investigator_protocol_list") }}">{% trans %}Best Practices{% endtrans %}</a></li>
+                    <li class=""><a href="{{ path("crud_investigator_protocol_list") }}">{% trans %}Experiences{% endtrans %}</a></li>
                 {% endif %}
 
                 {% if is_granted("ROLE_USER") and ('secretary' in app.user.rolesSlug or 'member-of-committee' in app.user.rolesSlug)  %}
@@ -45,7 +45,7 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('crud_committee_protocol_list') }}">{% trans %}Best Practices{% endtrans %}</a></li>
+                            <li><a href="{{ path('crud_committee_protocol_list') }}">{% trans %}Experiences{% endtrans %}</a></li>
                             {% if 'secretary' in app.user.rolesSlug %}
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ path('crud_committee_faq_list') }}">{% trans %}FAQ{% endtrans %}</a></li>
@@ -64,7 +64,7 @@
                     <li class=""><a href="{{ path('crud_document_list') }}">{% trans %}Documents{% endtrans %}</a></li>
                 {% endif %}
 
-                <li class=""><a href="{{ path('crud_contact_list') }}">{% trans %}Contact{% endtrans %}</a></li>
+                <li class=""><a href="{{ path('crud_contact_list') }}" {% if is_granted("ROLE_USER") %}target="_blank"{% endif %}>{% trans %}Contact{% endtrans %}</a></li>
 
                 {% if is_granted("ROLE_USER") and 'administrator' in app.user.rolesSlug %}
                     <li class="dropdown">

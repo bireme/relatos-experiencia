@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-03-30T21:12:55Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2022-03-31T23:35:52Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -90,9 +90,9 @@
         <source>Analyze Best Practice</source>
         <target>Analyze Best Practice</target>
       </trans-unit>
-      <trans-unit id="a6d7558ae5ba27352d597f8e265f726fc9947ee0" resname="Analyze best practice">
-        <source>Analyze best practice</source>
-        <target>Analyze best practice</target>
+      <trans-unit id="9b4736c0ce70d7082c7aef99252d160e1d827280" resname="Analyze experience">
+        <source>Analyze experience</source>
+        <target>Analyze experience</target>
       </trans-unit>
       <trans-unit id="a16a4eda7cb2c8e91d7edd25e809ae9d392c7498" resname="Answer">
         <source>Answer</source>
@@ -186,10 +186,6 @@
         <source>Back to original to save and finish</source>
         <target>Back to original to save and finish</target>
       </trans-unit>
-      <trans-unit id="d8cb09e158212bf209b199530d94686ab9de6f8c" resname="Best Practice">
-        <source>Best Practice</source>
-        <target>Best Practice</target>
-      </trans-unit>
       <trans-unit id="8f69732ee2bfd66d19acfaef00f0c357582e802d" resname="Best Practice Entities">
         <source>Best Practice Entities</source>
         <target>Best Practice Entities</target>
@@ -198,10 +194,6 @@
         <source>Best Practice Roles</source>
         <target>Best Practice Roles</target>
       </trans-unit>
-      <trans-unit id="92b05230bc81530aad035ac715cd4ade281f6d73" resname="Best Practice Title">
-        <source>Best Practice Title</source>
-        <target>Best Practice Title</target>
-      </trans-unit>
       <trans-unit id="dc0926f675bdf52a0855c8622482476ea0358c1c" resname="Best Practice Types">
         <source>Best Practice Types</source>
         <target>Best Practice Types</target>
@@ -209,10 +201,6 @@
       <trans-unit id="aedf7a1635bb4e0367005e7d924e291b989b1e97" resname="Best Practice options">
         <source>Best Practice options</source>
         <target>Best Practice options</target>
-      </trans-unit>
-      <trans-unit id="36de90e22d47f94d755a4b1bb70aaddc1bb47593" resname="Best Practices">
-        <source>Best Practices</source>
-        <target>Best Practices</target>
       </trans-unit>
       <trans-unit id="1d0f623140067265033491d9a5de850affbd3159" resname="Best practice accepted for review by %user% and investigators notified.">
         <source>Best practice accepted for review by %user% and investigators notified.</source>
@@ -486,6 +474,10 @@
         <source>Delete this best practice</source>
         <target>Delete this best practice</target>
       </trans-unit>
+      <trans-unit id="941cc06a9c206c31f4c461a2ec5472227ace2164" resname="Delete this experience">
+        <source>Delete this experience</source>
+        <target>Delete this experience</target>
+      </trans-unit>
       <trans-unit id="55f8ebc805e65b5b71ddafdae390e3be2bcd69af" resname="Description">
         <source>Description</source>
         <target>Description</target>
@@ -578,9 +570,9 @@
         <source>End Review</source>
         <target>End Review</target>
       </trans-unit>
-      <trans-unit id="a8ed1bccc727585042055883b479665616c35d7a" resname="End best practice review">
-        <source>End best practice review</source>
-        <target>End best practice review</target>
+      <trans-unit id="bcbe56a358c1bad62d39582c845d4463da281275" resname="End experience review">
+        <source>End experience review</source>
+        <target>End experience review</target>
       </trans-unit>
       <trans-unit id="649df08a448ee3fa90f3746baaf6b0907df42c91" resname="English">
         <source>English</source>
@@ -609,6 +601,14 @@
       <trans-unit id="5b5aafe6b9e2094c341356cec8cab143fe29a38a" resname="Experience">
         <source>Experience</source>
         <target>Experience</target>
+      </trans-unit>
+      <trans-unit id="fbdde68c51743a90c068d51503d28db47bbe4fb1" resname="Experience Title">
+        <source>Experience Title</source>
+        <target>Experience Title</target>
+      </trans-unit>
+      <trans-unit id="522712582116fcc6e5a881399c84f72c4d5508a6" resname="Experiences">
+        <source>Experiences</source>
+        <target>Experiences</target>
       </trans-unit>
       <trans-unit id="1feee0e7447f87b9466b1b883869ba5eeba023b3" resname="Export to CSV">
         <source>Export to CSV</source>
@@ -682,9 +682,9 @@
         <source>Final Revision</source>
         <target>Final Revision</target>
       </trans-unit>
-      <trans-unit id="60487a353f0b064f6b068021a9b346a0031ca213" resname="Find best practices">
-        <source>Find best practices</source>
-        <target>Find best practices</target>
+      <trans-unit id="136d40d186f26bc729c77f09a7c3abd391a95c8d" resname="Find experiences">
+        <source>Find experiences</source>
+        <target>Find experiences</target>
       </trans-unit>
       <trans-unit id="0b2524216fdd23203c0429eb00e528a14e18fdfc" resname="First Author">
         <source>First Author</source>
@@ -878,13 +878,13 @@
         <source>Last Update</source>
         <target>Last Update</target>
       </trans-unit>
-      <trans-unit id="57a818852e3c66c583dc19666957a43085a4a074" resname="Last best practices in which you are part of the research team">
-        <source>Last best practices in which you are part of the research team</source>
-        <target>Last best practices in which you are part of the research team</target>
+      <trans-unit id="d27a994ddacc20468cacf3667f92f4772338fa7e" resname="Last experiences in which you are part of the research team">
+        <source>Last experiences in which you are part of the research team</source>
+        <target>Last experiences in which you are part of the research team</target>
       </trans-unit>
-      <trans-unit id="0b195394b8549f42280b07339af6a05fc3a795e8" resname="Last protocols that you reviewed">
-        <source>Last protocols that you reviewed</source>
-        <target>Last protocols that you reviewed</target>
+      <trans-unit id="4f70414a74ca9588660bcde656a88bf416b11a87" resname="Last experiences that you reviewed">
+        <source>Last experiences that you reviewed</source>
+        <target>Last experiences that you reviewed</target>
       </trans-unit>
       <trans-unit id="cb9ce97bfc9ad02c7aa89259d4659db3984e26b3" resname="Lessons">
         <source>Lessons</source>
@@ -1374,10 +1374,6 @@
         <source>Project Title</source>
         <target>Project Title</target>
       </trans-unit>
-      <trans-unit id="1ed77c3f7ffc41a33eadccef5727dc7c97079235" resname="Protocol">
-        <source>Protocol</source>
-        <target>Protocol</target>
-      </trans-unit>
       <trans-unit id="ae5a2f232ea1d568ed630dedbe448ace8256dd9d" resname="Protocol Checklist">
         <source>Protocol Checklist</source>
         <target>Protocol Checklist</target>
@@ -1434,9 +1430,9 @@
         <source>Question updated with success.</source>
         <target>Question updated with success.</target>
       </trans-unit>
-      <trans-unit id="8b1c7e97850b05bcba1cd6ef153c675442c63982" resname="Reason that this best practice was rejected">
-        <source>Reason that this best practice was rejected</source>
-        <target>Reason that this best practice was rejected</target>
+      <trans-unit id="2052351991fc7a61d505bd2445a42ddee6877f01" resname="Reason that this experience was rejected">
+        <source>Reason that this experience was rejected</source>
+        <target>Reason that this experience was rejected</target>
       </trans-unit>
       <trans-unit id="5405cefe81474c3ed7b2b319a6c073988bd214e8" resname="Recruitment Date">
         <source>Recruitment Date</source>
@@ -1506,9 +1502,9 @@
         <source>Responsible removed with success.</source>
         <target>Responsible removed with success.</target>
       </trans-unit>
-      <trans-unit id="bb0f7f63b8c330c08544ba908de82f6b1231a791" resname="Retrieve best practice">
-        <source>Retrieve best practice</source>
-        <target>Retrieve best practice</target>
+      <trans-unit id="ca3ca2612a9b15db6b06bdf28fc27124af835f0c" resname="Retrieve experience">
+        <source>Retrieve experience</source>
+        <target>Retrieve experience</target>
       </trans-unit>
       <trans-unit id="a5c6c50c2aa87d3ca138c44ec18716e67238d29e" resname="Return reason">
         <source>Return reason</source>
@@ -1598,21 +1594,17 @@
         <source>Second step saved with success.</source>
         <target>Second step saved with success.</target>
       </trans-unit>
-      <trans-unit id="05e6dd83d05e830cfb259529c8c999d795616aca" resname="See Best Practice">
-        <source>See Best Practice</source>
-        <target>See Best Practice</target>
+      <trans-unit id="40f21a434a37f41440189d1bf446a52384c6c1d3" resname="See Experience">
+        <source>See Experience</source>
+        <target>See Experience</target>
       </trans-unit>
-      <trans-unit id="84fb9069dc1498efd556809b929d9f36603248ee" resname="See best practice">
-        <source>See best practice</source>
-        <target>See best practice</target>
+      <trans-unit id="095da9d18a46d925e07277b040d7e56f53dc00fc" resname="See experience">
+        <source>See experience</source>
+        <target>See experience</target>
       </trans-unit>
       <trans-unit id="2fce269c0372ec6b495feaefdd72011592276c2f" resname="See original">
         <source>See original</source>
         <target>See original</target>
-      </trans-unit>
-      <trans-unit id="f4a5757a3cee255c8368db475f449f74e306828c" resname="See protocol">
-        <source>See protocol</source>
-        <target>See protocol</target>
       </trans-unit>
       <trans-unit id="c135ca2ba6ef7f544f8d9e2e09088dd911ead717" resname="Select Members Ad Hoc">
         <source>Select Members Ad Hoc</source>
@@ -1658,10 +1650,6 @@
         <source>Send back to investigator</source>
         <target>Send back to investigator</target>
       </trans-unit>
-      <trans-unit id="15813ff6c0a5d39159ffd2d7825e2107d26c27b2" resname="Send best practice revision">
-        <source>Send best practice revision</source>
-        <target>Send best practice revision</target>
-      </trans-unit>
       <trans-unit id="a43a4a64f63ed79cc6b820b73acf46db0b7c31e1" resname="Send decision">
         <source>Send decision</source>
         <target>Send decision</target>
@@ -1670,13 +1658,13 @@
         <source>Send draft opinion</source>
         <target>Send draft opinion</target>
       </trans-unit>
+      <trans-unit id="1df3f4928391777fd506da94b7dae8777c7715b8" resname="Send experience revision">
+        <source>Send experience revision</source>
+        <target>Send experience revision</target>
+      </trans-unit>
       <trans-unit id="8c86d73c34f67918b3131fa1eb594dbbeafac78e" resname="Send me instructions">
         <source>Send me instructions</source>
         <target>Send me instructions</target>
-      </trans-unit>
-      <trans-unit id="484ceee1920316eccd11f67ae2f6140ce196897a" resname="Send protocol revision">
-        <source>Send protocol revision</source>
-        <target>Send protocol revision</target>
       </trans-unit>
       <trans-unit id="f4150af6b13029b733c888779a3d9c66fd5853e8" resname="Send to Ethical Review">
         <source>Send to Ethical Review</source>
@@ -1706,9 +1694,9 @@
         <source>Share photos, brochures and other materials that illustrate the practice or experience reported and lived</source>
         <target>Share photos, brochures and other materials that illustrate the practice or experience reported and lived</target>
       </trans-unit>
-      <trans-unit id="e2331d9a6bf7b5cbf88547b1adf2cfa99eadbefd" resname="Show Best Practice">
-        <source>Show Best Practice</source>
-        <target>Show Best Practice</target>
+      <trans-unit id="2a9e7603ab040fbfcdb98b735f6e3c5ce5f5ff6f" resname="Show Experience">
+        <source>Show Experience</source>
+        <target>Show Experience</target>
       </trans-unit>
       <trans-unit id="56860002c2285b9bff80391678937a3f082e20e5" resname="Sincerely">
         <source>Sincerely</source>
@@ -1774,9 +1762,9 @@
         <source>Submitted</source>
         <target>Submitted</target>
       </trans-unit>
-      <trans-unit id="f009ec946bc9f7bc7d0226dca9925c94a6efea17" resname="Submitted Best Practices">
-        <source>Submitted Best Practices</source>
-        <target>Submitted Best Practices</target>
+      <trans-unit id="cd57f6a3e7666fa5a87d7a7fa00ed1b37f28825d" resname="Submitted Experiences">
+        <source>Submitted Experiences</source>
+        <target>Submitted Experiences</target>
       </trans-unit>
       <trans-unit id="046485aa309a8f023e2e4f75a5e5856f99c1dde8" resname="Submitted by">
         <source>Submitted by</source>
@@ -1870,9 +1858,9 @@
         <source>Third step saved with success.</source>
         <target>Third step saved with success.</target>
       </trans-unit>
-      <trans-unit id="d12a03c5f7b0be6ed9c31e492c9c58301030b592" resname="This is a migrated best practice. You can edit some informations.">
-        <source>This is a migrated best practice. You can edit some informations.</source>
-        <target>This is a migrated best practice. You can edit some informations.</target>
+      <trans-unit id="2278aae634b594b27375bfa2a2e5c3363755f31e" resname="This is a migrated experience. You can edit some informations.">
+        <source>This is a migrated experience. You can edit some informations.</source>
+        <target>This is a migrated experience. You can edit some informations.</target>
       </trans-unit>
       <trans-unit id="57482c5aaff1ec5281be4a8390934b2a15263f7a" resname="This is a translated version.">
         <source>This is a translated version.</source>
@@ -2088,9 +2076,9 @@
         <source>Who were the people directly involved with the implementation of the reported experience? And what was their level of involvement?</source>
         <target>Who were the people directly involved with the implementation of the reported experience? And what was their level of involvement?</target>
       </trans-unit>
-      <trans-unit id="e8882f03370bbcb5bad8d28d7e71e4ad9795e8a6" resname="Withdraw best practice">
-        <source>Withdraw best practice</source>
-        <target>Withdraw best practice</target>
+      <trans-unit id="e5bc762f403e35e13720314ca194403f24b07d4a" resname="Withdraw experience">
+        <source>Withdraw experience</source>
+        <target>Withdraw experience</target>
       </trans-unit>
       <trans-unit id="ab014c3271737b4543fd454e943e9e1066532f7a" resname="Withdrawn">
         <source>Withdrawn</source>
@@ -2124,9 +2112,9 @@
         <source>You were assigned to review a best practice</source>
         <target>You were assigned to review a best practice</target>
       </trans-unit>
-      <trans-unit id="f97ee1c0fb0835a8ea6a1fe728dfab1373a58dde" resname="Your Best Practices">
-        <source>Your Best Practices</source>
-        <target>Your Best Practices</target>
+      <trans-unit id="5066b72f14362144b768c328680ac75cf3ea67ff" resname="Your Experiences">
+        <source>Your Experiences</source>
+        <target>Your Experiences</target>
       </trans-unit>
       <trans-unit id="21c7fe92b8e2c31b06b3e871a2c2e9c168813a64" resname="Your Profile">
         <source>Your Profile</source>
