@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-03-31T23:45:22Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-04-04T15:14:28Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -498,10 +498,6 @@
         <source>Description in Spanish</source>
         <target>Descrição em espanhol</target>
       </trans-unit>
-      <trans-unit id="dc3decbb93847518f1a049dcf49d0d7c6560bcc6" resname="Details">
-        <source>Details</source>
-        <target>Detalhes</target>
-      </trans-unit>
       <trans-unit id="961f36de4c326fdd7cb4cc66ab04a5bd2188e0c3" resname="Do you confirm the exclusion of this attachment?">
         <source>Do you confirm the exclusion of this attachment?</source>
         <target>Confirma a exclusão desse anexo?</target>
@@ -565,6 +561,10 @@
       <trans-unit id="74b613213d25264324d85f0a3f84765ad3a37e4c" resname="Email not registered in platform.">
         <source>Email not registered in platform.</source>
         <target>Email não cadastrado na plataforma.</target>
+      </trans-unit>
+      <trans-unit id="84b1478125890bad1cc4b36d6d3781773b3fde5a" resname="End Date">
+        <source>End Date</source>
+        <target>End Date</target>
       </trans-unit>
       <trans-unit id="e55d313325bffb54c173c2b24b2c71a494954346" resname="End Review">
         <source>End Review</source>
@@ -851,6 +851,10 @@
         <source>Is this a confidential comment?</source>
         <target>Este é um comentário confidencial?</target>
       </trans-unit>
+      <trans-unit id="73781a127ec1294a42a6bd6b81266946ff4be5b3" resname="Issue">
+        <source>Issue</source>
+        <target>Problema</target>
+      </trans-unit>
       <trans-unit id="a0c82c52808e161cd5b44fc9a52ce3065f662a50" resname="Item created with success.">
         <source>Item created with success.</source>
         <target>Item criado com sucesso.</target>
@@ -862,6 +866,10 @@
       <trans-unit id="7d2a7bff0abb0d0de4946434ea191a1498465dec" resname="Justification">
         <source>Justification</source>
         <target>Justificativa</target>
+      </trans-unit>
+      <trans-unit id="f530db58b3e5088dc7412c6d2298ba3f8456bdeb" resname="Keywords">
+        <source>Keywords</source>
+        <target>Palavras-chave</target>
       </trans-unit>
       <trans-unit id="1f6a67e2f549d630dca1e5bc3d651ba6056499ca" resname="Keywords that represent the themes or issues related to the reported experience. Select at least 3 DeCS descriptors - Health Sciences Descriptors">
         <source>Keywords that represent the themes or issues related to the reported experience. Select at least 3 DeCS descriptors - Health Sciences Descriptors</source>
@@ -887,9 +895,9 @@
         <source>Last experiences that you reviewed</source>
         <target>Últimas experiências que você avaliou</target>
       </trans-unit>
-      <trans-unit id="cb9ce97bfc9ad02c7aa89259d4659db3984e26b3" resname="Lessons">
-        <source>Lessons</source>
-        <target>Lições</target>
+      <trans-unit id="e41df52dcff2d5fb3f135df9c40c44c902c43f73" resname="Lessons Learned">
+        <source>Lessons Learned</source>
+        <target>Lições Aprendidas</target>
       </trans-unit>
       <trans-unit id="e43d612e11f1568f2373e719d4c4b08dcecdc7cc" resname="Logout">
         <source>Logout</source>
@@ -1247,6 +1255,10 @@
         <source>Not approved</source>
         <target>Não aprovado</target>
       </trans-unit>
+      <trans-unit id="70440046a3dc2e079f23ee1c57dfa76669b732aa" resname="Notes">
+        <source>Notes</source>
+        <target>Observações</target>
+      </trans-unit>
       <trans-unit id="24d50592b70a997e82a3839de9c69ef0c75660a9" resname="Objectives">
         <source>Objectives</source>
         <target>Objetivos</target>
@@ -1339,9 +1351,9 @@
         <source>Please add one per line</source>
         <target>Favor adicionar um por linha</target>
       </trans-unit>
-      <trans-unit id="eb8f3ce2a98e81099989307e96c36e37ec881384" resname="Population Group">
-        <source>Population Group</source>
-        <target>Grupo populacional</target>
+      <trans-unit id="182d37ec74bf3c14babc4754e239e56a03a643c7" resname="Population">
+        <source>Population</source>
+        <target>População</target>
       </trans-unit>
       <trans-unit id="e744dd6b3c48af417bc6eb39dca6cfe62210fda8" resname="Population Groups">
         <source>Population Groups</source>
@@ -1362,6 +1374,10 @@
       <trans-unit id="d1c3f33e6d81e5377d770db5cabd2b4a8b5263bc" resname="Problems generating PDF. Please contact the administrator.">
         <source>Problems generating PDF. Please contact the administrator.</source>
         <target>Problemas ao gerar o PDF. Por favor, contate o administrador. </target>
+      </trans-unit>
+      <trans-unit id="fe0a091fdbfb3e9c31b7a1bd7975974938e702fa" resname="Products">
+        <source>Products</source>
+        <target>Produtos</target>
       </trans-unit>
       <trans-unit id="7cd20f264e9019fe3433cc7983b42977d5341a5e" resname="Proethos URL">
         <source>Proethos URL</source>
@@ -1774,6 +1790,10 @@
       <trans-unit id="861edba00547bc9ce7a08df78d4378766418179f" resname="Suggestions">
         <source>Suggestions</source>
         <target>Sugestões </target>
+      </trans-unit>
+      <trans-unit id="d4fb898842a27397bf9903470234992ad5e6aea3" resname="Suspension Date">
+        <source>Suspension Date</source>
+        <target>Suspension Date</target>
       </trans-unit>
       <trans-unit id="b6b05aacb4d07a138b2f32456e6da19b65529491" resname="System Management">
         <source>System Management</source>
