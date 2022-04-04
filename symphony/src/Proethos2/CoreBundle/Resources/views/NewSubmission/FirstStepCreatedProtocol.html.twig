@@ -142,10 +142,10 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group required">
+                            <div class="form-group">
                                 <label for="textarea-notes">{% trans %}Use this field to detail or justify your choice about the current situation of the reported experience and to specify the period of implementation of the practice{% endtrans %}:</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='notes' id='textarea-notes' required>{{ submission.notes }}</textarea>
+                                <textarea rows="6" class="form-control" name='notes' id='textarea-notes'>{{ submission.notes }}</textarea>
                             </div>
                         </div>
                     </div>

@@ -37,11 +37,11 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group required">
+                            <div class="form-group">
                                 <label for="select-population-group">{% trans %}Which population or target audience was involved and/or benefited from this experience?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <div>
-                                    <select class='form-control selectpicker' id='select-population-group' name='population_group[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Choose one of the following...{% endtrans %}" multiple required>
+                                    <select class='form-control selectpicker' id='select-population-group' name='population_group[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Choose one of the following...{% endtrans %}" multiple>
                                         {% for pg in population_group %}
                                             <option value="{{ pg.id }}" data-slug="{{ pg.slug }}" {% if pg in submission.populationGroup %}selected{% endif %}>{{ pg.name }}</option>
                                         {% endfor %}
@@ -63,10 +63,10 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group required">
+                            <div class="form-group">
                                 <label for="textarea-resources">{% trans %}What resources were needed and used to implement the experience you are reporting? (Human resources, inputs, materials, equipment, infrastructure, money, etc.){% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='resources' id='textarea-resources' required>{{ submission.resources }}</textarea>
+                                <textarea rows="6" class="form-control" name='resources' id='textarea-resources'>{{ submission.resources }}</textarea>
                             </div>
                         </div>
                     </div>

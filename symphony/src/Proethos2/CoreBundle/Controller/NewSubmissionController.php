@@ -88,7 +88,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            foreach(array('title', 'thematic-area', 'status', 'start-date', 'notes', 'language') as $field) {
+            foreach(array('title', 'thematic-area', 'status', 'start-date', 'language') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -202,7 +202,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            foreach(array('title', 'thematic-area', 'status', 'start-date', 'notes', 'language') as $field) {
+            foreach(array('title', 'thematic-area', 'status', 'start-date', 'language') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -390,9 +390,7 @@ class NewSubmissionController extends Controller
             // checking required files
             $required_fields = array(
                 'description',
-                'population_group',
                 'objectives',
-                'resources',
                 'context'
             );
 
@@ -796,6 +794,7 @@ class NewSubmissionController extends Controller
         $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $submission_responsible_repository = $em->getRepository('Proethos2ModelBundle:SubmissionResponsible');
+        $submission_member_repository = $em->getRepository('Proethos2ModelBundle:SubmissionMember');
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
@@ -866,43 +865,10 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
-/*
-        $text = $translator->trans('End Date');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getEndDate())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
 
-        $text = $translator->trans('Partial Date');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getPartialDate())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-*/
-
-        $text = $translator->trans('Details');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getNotes())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        $text = $translator->trans("Description");
+        $text = $translator->trans("Issue");
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getDescription())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        $text = $translator->trans('Population Group');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getPopulationGroupList())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }
@@ -911,14 +877,6 @@ class NewSubmissionController extends Controller
         $text = $translator->trans('Objectives');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getObjectives())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        $text = $translator->trans('Resources');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getResources())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }
@@ -956,7 +914,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Lessons');
+        $text = $translator->trans('Lessons Learned');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getLessonsLearned())) {
             $item = array('text' => $text, 'status' => false);
@@ -966,6 +924,15 @@ class NewSubmissionController extends Controller
 
         $submission_responsible = $submission_responsible_repository->findOneBy(array('submission' => $submission));
         $text = $translator->trans('Responsible');
+        $item = array('text' => $text, 'status' => true);
+        if(!$submission_responsible) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $submission_responsible = $submission_member_repository->findOneBy(array('submission' => $submission));
+        $text = $translator->trans('Members');
         $item = array('text' => $text, 'status' => true);
         if(!$submission_responsible) {
             $item = array('text' => $text, 'status' => false);
