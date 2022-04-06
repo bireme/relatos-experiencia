@@ -36,84 +36,37 @@ class Solr {
         $data = array();
         $data['id'] = $protocol->getId();
         $data['title'] = $submission->getTitle();
-        $data['introduction'] = $submission->getIntroduction();
+        $data['status'] = $submission->getStatus();
+        if ( 'F' == $submission->getStatus() ) $data['other_status'] = $submission->getOtherStatus();
+        $data['notes'] = $submission->getNotes();
+        $data['issue'] = $submission->getDescription();
         $data['objectives'] = $submission->getObjectives();
-        $data['activities'] = $submission->getActivities();
+        $data['resources'] = $submission->getResources();
+        $data['context'] = $submission->getContext();
         $data['main_results'] = $submission->getMainResults();
-        $data['factors'] = $submission->getFactors();
-        $data['outcome_information'] = $submission->getOutcomeInformation();
-        $data['describe_how'] = $submission->getDescribeHow();
         $data['challenges_information'] = $submission->getChallengesInformation();
-        $data['lessons_information'] = $submission->getLessonsInformation();
+        $data['other_results'] = $submission->getOtherResults();
+        $data['lessons_learned'] = $submission->getLessonsLearned();
+        $data['other_medias'] = $submission->getOtherMediasLinks();
+        $data['products_information'] = $submission->getProductsInformation();
+        $data['keywords'] = $submission->getKeywordsList();
         $data['start_date'] = $submission->getStartDate()->format('Y-m-d H:i:s');
         if ( $submission->getEndDate() ) $data['end_date'] = $submission->getEndDate()->format('Y-m-d H:i:s');
+        if ( $submission->getPartialDate() ) $data['partial_date'] = $submission->getPartialDate()->format('Y-m-d H:i:s');
+        if ( $submission->getOtherDate() ) $data['other_date'] = $submission->getOtherDate();
 
-        // type field
-        $type = $submission->getType();
-        $type->setTranslatableLocale('en');
-        $em->refresh($type);
+        // thematic area field
+        $thematic_area = $submission->getThematicArea();
+        $data['thematic_area'] = array();
 
-        // population group translations
-        $translations = $trans_repository->findTranslations($type);
-        $texts = array();
-        $texts['en'] = 'en^'.$type->getName();
-        foreach(array('pt_BR', 'es_ES', 'fr_FR') as $_locale) {
-            if ( array_key_exists($_locale, $translations) ) {
-                $text = $translations[$_locale];
-                $_locale = substr($_locale, 0, 2);
-                $texts[$_locale] = $_locale.'^'.$text['name'];
-            }
-        }
-        $data['type'] = implode('|', $texts);
+        foreach ($thematic_area as $ta) {
+            $ta->setTranslatableLocale('en');
+            $em->refresh($ta);
 
-        // country field
-        $country = $submission->getCountry();
-        $country->setTranslatableLocale('en');
-        $em->refresh($country);
-
-        // country translations
-        $translations = $trans_repository->findTranslations($country);
-        $texts = array();
-        $texts['en'] = 'en^'.$country->getName();
-        foreach(array('pt_BR', 'es_ES', 'fr_FR') as $_locale) {
-            if ( array_key_exists($_locale, $translations) ) {
-                $text = $translations[$_locale];
-                $_locale = substr($_locale, 0, 2);
-                $texts[$_locale] = $_locale.'^'.$text['name'];
-            }
-        }
-        $data['country'] = implode('|', $texts);
-
-        // subregion field
-        $subregion = $submission->getSubRegion();
-        $subregion->setTranslatableLocale('en');
-        $em->refresh($subregion);
-
-        // subregion translations
-        $translations = $trans_repository->findTranslations($subregion);
-        $texts = array();
-        $texts['en'] = 'en^'.$subregion->getName();
-        foreach(array('pt_BR', 'es_ES', 'fr_FR') as $_locale) {
-            if ( array_key_exists($_locale, $translations) ) {
-                $text = $translations[$_locale];
-                $_locale = substr($_locale, 0, 2);
-                $texts[$_locale] = $_locale.'^'.$text['name'];
-            }
-        }
-        $data['subregion'] = implode('|', $texts);
-
-        // institution field
-        if ( $submission->getOtherInstitution() ) {
-            $data['institution'] = $submission->getOtherInstitution();
-        } else {
-            $institution = $submission->getInstitution();
-            $institution->setTranslatableLocale('en');
-            $em->refresh($institution);
-
-            // institution translations
-            $translations = $trans_repository->findTranslations($institution);
+            // thematic area translations
+            $translations = $trans_repository->findTranslations($ta);
             $texts = array();
-            $texts['en'] = 'en^'.$institution->getName();
+            $texts['en'] = 'en^'.$ta->getName();
             foreach(array('pt_BR', 'es_ES', 'fr_FR') as $_locale) {
                 if ( array_key_exists($_locale, $translations) ) {
                     $text = $translations[$_locale];
@@ -121,29 +74,7 @@ class Solr {
                     $texts[$_locale] = $_locale.'^'.$text['name'];
                 }
             }
-            $data['institution'] = implode('|', $texts);
-        }
-
-        // stakeholder field
-        if ( $submission->getOtherStakeholder() ) {
-            $data['stakeholder'] = $submission->getOtherStakeholder();
-        } else {
-            $stakeholder = $submission->getStakeholder();
-            $stakeholder->setTranslatableLocale('en');
-            $em->refresh($stakeholder);
-
-            // stakeholder translations
-            $translations = $trans_repository->findTranslations($stakeholder);
-            $texts = array();
-            $texts['en'] = 'en^'.$stakeholder->getName();
-            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $_locale) {
-                if ( array_key_exists($_locale, $translations) ) {
-                    $text = $translations[$_locale];
-                    $_locale = substr($_locale, 0, 2);
-                    $texts[$_locale] = $_locale.'^'.$text['name'];
-                }
-            }
-            $data['stakeholder'] = implode('|', $texts);
+            $data['thematic_area'][] = implode('|', $texts);
         }
 
         // population group field
@@ -168,18 +99,18 @@ class Solr {
             $data['population_group'][] = implode('|', $texts);
         }
 
-        // intervention field
-        $intervention = $submission->getIntervention();
-        $data['intervention'] = array();
+        // tags field
+        $tags = $submission->getTags();
+        $data['tags'] = array();
 
-        foreach ($intervention as $i) {
-            $i->setTranslatableLocale('en');
-            $em->refresh($i);
+        foreach ($tags as $tag) {
+            $tag->setTranslatableLocale('en');
+            $em->refresh($tag);
 
-            // intervention translations
-            $translations = $trans_repository->findTranslations($i);
+            // tags translations
+            $translations = $trans_repository->findTranslations($tag);
             $texts = array();
-            $texts['en'] = 'en^'.$i->getName();
+            $texts['en'] = 'en^'.$tag->getName();
             foreach(array('pt_BR', 'es_ES', 'fr_FR') as $_locale) {
                 if ( array_key_exists($_locale, $translations) ) {
                     $text = $translations[$_locale];
@@ -187,29 +118,7 @@ class Solr {
                     $texts[$_locale] = $_locale.'^'.$text['name'];
                 }
             }
-            $data['intervention'][] = implode('|', $texts);
-        }
-
-        // target field
-        $target = $submission->getTarget();
-        $data['target'] = array();
-
-        foreach ($target as $t) {
-            $t->setTranslatableLocale('en');
-            $em->refresh($t);
-
-            // target translations
-            $translations = $trans_repository->findTranslations($t);
-            $texts = array();
-            $texts['en'] = 'en^'.$t->getName();
-            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $_locale) {
-                if ( array_key_exists($_locale, $translations) ) {
-                    $text = $translations[$_locale];
-                    $_locale = substr($_locale, 0, 2);
-                    $texts[$_locale] = $_locale.'^'.$text['name'];
-                }
-            }
-            $data['target'][] = implode('|', $texts);
+            $data['tags'][] = implode('|', $texts);
         }
 
         $json = json_encode($data);

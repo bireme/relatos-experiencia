@@ -67,10 +67,10 @@ class AjaxController extends Controller
     }
 
     /**
-     * @Route("/bp/{protocol_id}", defaults={"protocol_id"=null}, methods={"GET"}, name="api_get_best_practice")
+     * @Route("/experience/{protocol_id}", defaults={"protocol_id"=null}, methods={"GET"}, name="api_get_experience")
      * @Template()
      */
-    public function getBestPracticeAction($protocol_id)
+    public function getExperienceAction($protocol_id)
     {
 
         $data = array();

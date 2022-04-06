@@ -22,6 +22,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Cocur\Slugify\Slugify;
 
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Exclude;
+
 /**
  * SubmissionMember
  *
@@ -84,6 +88,7 @@ class SubmissionResponsible extends Base
     private $filename;
 
     /**
+     * @Exclude
      * @ORM\Column(type="string", length=1020, nullable=true)
      */
     private $filepath;
