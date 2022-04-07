@@ -222,7 +222,7 @@ class NewSubmissionController extends Controller
             // removing all thematic areas to re-add
             if ($submission->getThematicArea()) {
                 foreach($submission->getThematicArea() as $ta) {
-                    $submission->removeIntervention($ta);
+                    $submission->removeThematicArea($ta);
                 }
             }
             // re-add thematic areas
