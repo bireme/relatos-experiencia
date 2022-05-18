@@ -32,7 +32,6 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
     public function __construct(HttpUtils $httpUtils)
     {
         $this->httpUtils = $httpUtils;
-
         $this->targetUrl = '/login';
     }
 
