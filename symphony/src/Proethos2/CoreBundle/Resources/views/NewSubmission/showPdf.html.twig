@@ -31,6 +31,10 @@
                 line-height: 1 !important;
                 margin: 0 !important;
             }
+            img {
+                width: 100%;
+                max-width: 200px;
+            }
         </style>
     </head>
     <body>
@@ -153,13 +157,19 @@
         <h3>{% trans %}Medias{% endtrans %}:</h3>
         <table>
             <tr>
+                <th>{% trans %}File{% endtrans %}</th>
                 <th>{% trans %}File name{% endtrans %}</th>
                 <th width="20%">{% trans %}Date{% endtrans %}</th>
             </tr>
 
             {% for file in submission.attachments %}
-                <tr>
-                    <td><a href='{{ home_url }}{{ asset(file.uri) }}' target="_blank">{% if file.uploadType.slug in ['protocol'] %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
+                <tr style="text-align: center;">
+                    <td>
+                        <a href='{{ home_url }}{{ asset(file.uri) }}' target="_blank">
+                            <img src="{{ home_url }}{{ asset(file.uri) }}" alt="{% if file.uploadType.slug in ['protocol'] %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}" />
+                        </a>
+                    </td>
+                    <td>{% if file.uploadType.slug in ['protocol'] %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
                     <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
                 </tr>
             {% endfor %}
