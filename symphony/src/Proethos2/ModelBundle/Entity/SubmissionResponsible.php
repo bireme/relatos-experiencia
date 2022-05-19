@@ -84,6 +84,12 @@ class SubmissionResponsible extends Base
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
+     */
+    private $orcid;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $filename;
 
@@ -346,5 +352,29 @@ class SubmissionResponsible extends Base
         }
 
         return $uri;
+    }
+
+    /**
+     * Set orcid
+     *
+     * @param string $orcid
+     *
+     * @return SubmissionResponsible
+     */
+    public function setOrcid($orcid)
+    {
+        $this->orcid = $orcid;
+
+        return $this;
+    }
+
+    /**
+     * Get orcid
+     *
+     * @return string
+     */
+    public function getOrcid()
+    {
+        return $this->orcid;
     }
 }

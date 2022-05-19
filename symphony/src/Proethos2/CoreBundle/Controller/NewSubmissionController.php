@@ -537,6 +537,7 @@ class NewSubmissionController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
+            // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
 
             if(isset($post_data['responsible-name'])) {
                 $post_data = array_map('trim', $post_data);
@@ -556,17 +557,20 @@ class NewSubmissionController extends Controller
                     $submission_responsible->setEmail($post_data['responsible-email']);
                     $submission_responsible->setPhone($post_data['responsible-phone']);
                     $submission_responsible->setCurriculum($post_data['responsible-curriculum']);
+                    $submission_responsible->setOrcid($post_data['responsible-orcid']);
 
                     $file = $request->files->get('responsible-picture');
 
-                    $file_ext = '.'.$file->getClientOriginalExtension();
-                    $ext_formats = array('.jpg', '.jpeg', '.png');
-                    if ( !in_array($file_ext, $ext_formats) ) {
-                        $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
-                        return $output;
-                    }
+                    if ( $file ) {
+                        $file_ext = '.'.$file->getClientOriginalExtension();
+                        $ext_formats = array('.jpg', '.jpeg', '.png');
+                        if ( !in_array($file_ext, $ext_formats) ) {
+                            $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                            return $output;
+                        }
 
-                    $submission_responsible->setFile($file);
+                        $submission_responsible->setFile($file);
+                    }
                 }
 
                 $em->persist($submission_responsible);

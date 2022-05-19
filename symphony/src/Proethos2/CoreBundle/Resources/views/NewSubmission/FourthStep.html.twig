@@ -37,6 +37,7 @@
                                         <th>{% trans %}Email{% endtrans %}</th>
                                         <th>{% trans %}Phone{% endtrans %}</th>
                                         <th>{% trans %}Curriculum{% endtrans %}</th>
+                                        <th>{% trans %}ORCID{% endtrans %}</th>
                                         <th>{% trans %}Actions{% endtrans %}</th>
                                     </tr>
                                 </thead>
@@ -48,10 +49,13 @@
                                             <td>{{ responsible.filiation }}</td>
                                             <td>{{ responsible.email }}</td>
                                             <td>{{ responsible.phone }}</td>
-                                            <td>{{ responsible.curriculum }}</td>
+                                            <td><a href="{{ responsible.curriculum }}" target="_blank">{{ responsible.curriculum }}</a></td>
+                                            <td><a href="https://orcid.org/{{ responsible.orcid }}" target="_blank">{{ responsible.orcid }}</a></td>
                                             <td>
-                                                <a href='{{ asset(responsible.fileUri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
-                                                <a href='#' class='btn btn-default btn-xs button-delete-responsible' data-id='{{ responsible.id }}' data-toggle="modal" data-target="#modal-delete-responsible"'><i class='glyphicon glyphicon-trash'></i></a>
+                                                {% if responsible.filename %}
+                                                    <a href='{{ asset(responsible.fileUri) }}' target="_blank" class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See picture{% endtrans %}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                                {% endif %}
+                                                <a href='#' class='btn btn-default btn-xs button-delete-responsible' data-id='{{ responsible.id }}' data-toggle="modal" data-target="#modal-delete-responsible"><i class='glyphicon glyphicon-trash'></i></a>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -122,33 +126,38 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="input-responsible-name">{% trans %}Name{% endtrans %}:</label>
+                            <label for="input-responsible-name">*{% trans %}Name{% endtrans %}:</label>
                             <input type='text' class='form-control' id='input-responsible-name' name='responsible-name' required>
                         </div>
 
                         <div class="form-group">
-                            <label for="input-responsible-filiation">{% trans %}Filiation{% endtrans %}:</label>
+                            <label for="input-responsible-filiation">*{% trans %}Filiation{% endtrans %}:</label>
                             <input type='text' class='form-control' id='input-responsible-filiation' name='responsible-filiation' required>
                         </div>
 
                         <div class="form-group">
-                            <label for="input-responsible-email">{% trans %}Email{% endtrans %}:</label>
+                            <label for="input-responsible-email">*{% trans %}Email{% endtrans %}:</label>
                             <input type='email' class='form-control' id='input-responsible-email' name='responsible-email' required>
                         </div>
 
                         <div class="form-group">
                             <label for="input-responsible-phone">{% trans %}Phone{% endtrans %}:</label>
-                            <input type='text' class='form-control' id='input-responsible-phone' name='responsible-phone' required>
+                            <input type='text' class='form-control' id='input-responsible-phone' name='responsible-phone'>
                         </div>
 
                         <div class="form-group">
-                            <label for="input-responsible-curriculum">{% trans %}Curriculum{% endtrans %}:</label>
+                            <label for="input-responsible-curriculum">*{% trans %}Curriculum{% endtrans %}  {% trans %}(LinkedIn, Lattes, etc){% endtrans %}:</label>
                             <input type='text' class='form-control' id='input-responsible-curriculum' name='responsible-curriculum' required>
                         </div>
 
                         <div class="form-group">
+                            <label for="input-responsible-orcid">{% trans %}ORCID{% endtrans %}:</label>
+                            <input type='text' class='form-control' id='input-responsible-orcid' name='responsible-orcid'>
+                        </div>
+
+                        <div class="form-group">
                             <label for="input-responsible-picture">{% trans %}Picture{% endtrans %}:</label> 
-                            <input type='file' class='form-control' name='responsible-picture' id='input-responsible-picture' required>
+                            <input type='file' class='form-control' name='responsible-picture' id='input-responsible-picture'>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -172,27 +181,27 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="input-member-name">{% trans %}Name{% endtrans %}:</label>
+                            <label for="input-member-name">*{% trans %}Name{% endtrans %}:</label>
                             <input type='text' class='form-control' id='input-member-name' name='member-name' required>
                         </div>
 
                         <div class="form-group">
-                            <label for="input-member-academic-formation">{% trans %}Academic Formation{% endtrans %}:</label>
+                            <label for="input-member-academic-formation">*{% trans %}Academic Formation{% endtrans %}:</label>
                             <input type='text' class='form-control' id='input-member-academic-formation' name='member-academic-formation' required>
                         </div>
 
                         <div class="form-group">
-                            <label for="input-member-professional-category">{% trans %}Professional Category{% endtrans %}:</label>
+                            <label for="input-member-professional-category">*{% trans %}Professional Category{% endtrans %}:</label>
                             <input type='text' class='form-control' id='input-member-professional-category' name='member-professional-category' required>
                         </div>
 
                         <div class="form-group">
-                            <label for="input-member-institution">{% trans %}Institution{% endtrans %}:</label>
+                            <label for="input-member-institution">*{% trans %}Institution{% endtrans %}:</label>
                             <input type='text' class='form-control' id='input-member-institution' name='member-institution' required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="input-member-responsibility">{% trans %}Responsibility{% endtrans %}:</label>
+                            <label for="input-member-responsibility">*{% trans %}Responsibility{% endtrans %}:</label>
                             <input type='text' class='form-control' id='input-member-responsibility' name='member-responsibility' required>
                         </div>
                     </div>
@@ -280,6 +289,19 @@
 
         $('#modal-delete-member').on('hidden.bs.modal', function () {
             $("#hidden-delete-member").val("");
+        });
+
+        $("#input-responsible-phone").mask("(99) 9999?9-9999").focusout(function (event) {
+            var target, phone, element;
+            target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+            phone = target.value.replace(/\D/g, '');
+            element = $(target);
+            element.unmask();
+            if(phone.length > 10) {
+                element.mask("(99) 99999-999?9");
+            } else {
+                element.mask("(99) 9999-9999?9");
+            }
         });
     </script>
 {% endblock %}
