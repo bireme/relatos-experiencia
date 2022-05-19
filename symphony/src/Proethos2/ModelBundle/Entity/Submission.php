@@ -194,6 +194,14 @@ class Submission extends Base
     private $population_group;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="other_population_group", type="string", length=510)
+     * @Assert\NotBlank
+     */
+    private $other_population_group;
+
+    /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
@@ -1496,5 +1504,29 @@ class Submission extends Base
         }
 
         return $tags;
+    }
+
+    /**
+     * Set otherPopulationGroup
+     *
+     * @param string $otherPopulationGroup
+     *
+     * @return Submission
+     */
+    public function setOtherPopulationGroup($otherPopulationGroup)
+    {
+        $this->other_population_group = $otherPopulationGroup;
+
+        return $this;
+    }
+
+    /**
+     * Get otherPopulationGroup
+     *
+     * @return string
+     */
+    public function getOtherPopulationGroup()
+    {
+        return $this->other_population_group;
     }
 }

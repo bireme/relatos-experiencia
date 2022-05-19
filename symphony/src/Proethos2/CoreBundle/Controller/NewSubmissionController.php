@@ -420,6 +420,7 @@ class NewSubmissionController extends Controller
             $submission->setObjectives($post_data['objectives']);
             $submission->setResources($post_data['resources']);
             $submission->setContext($post_data['context']);
+            $submission->setOtherPopulationGroup($post_data['other_population_group']);
             
             $em->persist($submission);
             $em->flush();

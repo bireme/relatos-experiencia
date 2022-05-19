@@ -91,6 +91,13 @@
         <h3>{% trans %}Population{% endtrans %}:</h3>
         <p>{{ submission.populationGroup|join('; ') }}</p>
 
+        {% if submission.otherPopulationGroup %}
+
+            <h3>{% trans %}Other Population{% endtrans %}:</h3>
+            <p>{{ submission.otherPopulationGroup }}</p>
+
+        {% endif %}
+
         <h3>{% trans %}Objectives{% endtrans %}:</h3>
         <p>{{ submission.objectives }}</p>
 
