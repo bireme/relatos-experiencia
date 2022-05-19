@@ -815,7 +815,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Thematic Area');
+        $text = $translator->trans('Collection');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getThematicArea())) {
             $item = array('text' => $text, 'status' => false);
