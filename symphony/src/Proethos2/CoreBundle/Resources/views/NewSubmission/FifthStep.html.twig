@@ -94,23 +94,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="select-thematic-area">{% trans %}Tags{% endtrans %}:</label>
-                                <div>
-                                    <select class='form-control selectpicker' id='select-tags' name='tags[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Select one or more tags{% endtrans %}" multiple>
-                                        {% for tag in tags %}
-                                            <option value="{{ tag.id }}" {% if tag in submission.tags %}selected{% endif %}>{{ tag.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
 
                 <div class='submission-button-controls'>
                     <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>

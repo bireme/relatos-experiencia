@@ -200,9 +200,6 @@
         <h3>{% trans %}Keywords{% endtrans %}:</h3>
         <p>{{ submission.keywordsList|join('; ') }}</p>
 
-        <h3>{% trans %}Tags{% endtrans %}:</h3>
-        <p>{{ submission.tagsList|join('; ') }}</p>
-
         <footer>{% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</footer>
     </body>
 </html>

@@ -663,12 +663,6 @@ class NewSubmissionController extends Controller
         $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
 
-        // getting tags list
-        $tags_repository = $em->getRepository('Proethos2ModelBundle:Tags');
-        // $tags = $tags_repository->findByStatus(true);
-        $tags = $tags_repository->findBy(array('status' => true), array('name' => 'ASC'));
-        $output['tags'] = $tags;
-
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
@@ -740,7 +734,7 @@ class NewSubmissionController extends Controller
             }
 
             // checking required fields
-            // $required_fields = array('products_information', 'keywords', 'tags');
+            // $required_fields = array('products_information', 'keywords');
             // foreach($required_fields as $field) {
             //     if(!isset($post_data[$field]) or empty($post_data[$field])) {
             //         $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
@@ -752,20 +746,6 @@ class NewSubmissionController extends Controller
             $submission->setOtherMedias($post_data['other_medias']);
             $submission->setProductsInformation($post_data['products_information']);
             $submission->setKeywords($post_data['keywords']);
-
-            // removing all tags to re-add
-            if ($submission->getTags()) {
-                foreach($submission->getTags() as $tag) {
-                    $submission->removeTag($tag);
-                }
-            }
-            // re-add tags
-            if(isset($post_data['tags'])) {
-                foreach($post_data['tags'] as $tag) {
-                    $tag = $tags_repository->find($tag);
-                    $submission->addTag($tag);
-                }
-            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
