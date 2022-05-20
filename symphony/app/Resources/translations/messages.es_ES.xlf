@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-04-04T15:12:11Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-05-20T01:42:51Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="1b4e2f9d8ff9a61737cabea1b834fa031ee037fd" resname="(LinkedIn, Lattes, etc)">
+        <source>(LinkedIn, Lattes, etc)</source>
+        <target>(LinkedIn, Lattes, etc)</target>
+      </trans-unit>
       <trans-unit id="f7fae9b58ef582a295b2bbe3ffcf73705281cd4b" resname="12 months">
         <source>12 months</source>
         <target>12 meses </target>
@@ -306,6 +310,10 @@
         <source>Code</source>
         <target>Código</target>
       </trans-unit>
+      <trans-unit id="30c54a96f8011b39819ba18bcb53fcbb092d650d" resname="Collection">
+        <source>Collection</source>
+        <target>Collection</target>
+      </trans-unit>
       <trans-unit id="79b3d2121da50bcf4bb954b4c3e8b821da058fef" resname="Comment was created with success.">
         <source>Comment was created with success.</source>
         <target>Comment was created with success.</target>
@@ -601,6 +609,10 @@
       <trans-unit id="5b5aafe6b9e2094c341356cec8cab143fe29a38a" resname="Experience">
         <source>Experience</source>
         <target>Experience</target>
+      </trans-unit>
+      <trans-unit id="85c719a13cd343896ef1affe4fb32d785e5dc532" resname="Experience Status">
+        <source>Experience Status</source>
+        <target>Experience Status</target>
       </trans-unit>
       <trans-unit id="fbdde68c51743a90c068d51503d28db47bbe4fb1" resname="Experience Title">
         <source>Experience Title</source>
@@ -916,7 +928,7 @@
       </trans-unit>
       <trans-unit id="3ebaedffb495cb6afb6f231ec5d5bd9e90b5c4cf" resname="Main Results">
         <source>Main Results</source>
-        <target>Resultados principales</target>
+        <target>Impactos</target>
       </trans-unit>
       <trans-unit id="c1fed26979361d06c848030502536d84a52e6a13" resname="Main Type">
         <source>Main Type</source>
@@ -1258,6 +1270,10 @@
         <source>Notes</source>
         <target>Notes</target>
       </trans-unit>
+      <trans-unit id="7fced9588f5d62939fcd50937b62cb844bfbb5e0" resname="ORCID">
+        <source>ORCID</source>
+        <target>ORCID</target>
+      </trans-unit>
       <trans-unit id="24d50592b70a997e82a3839de9c69ef0c75660a9" resname="Objectives">
         <source>Objectives</source>
         <target>Objetivos</target>
@@ -1290,6 +1306,10 @@
         <source>Other Medias</source>
         <target>Other Medias</target>
       </trans-unit>
+      <trans-unit id="7114b0a6e0058ed29b3f43399478f5be8134bed6" resname="Other Population">
+        <source>Other Population</source>
+        <target>Other Population</target>
+      </trans-unit>
       <trans-unit id="98fb06134c5e03165a16bf95306c864379d2b522" resname="Other Results">
         <source>Other Results</source>
         <target>Other Results</target>
@@ -1297,6 +1317,10 @@
       <trans-unit id="44dbabd517322678bd8d6344a0700531073cc40a" resname="Other Status">
         <source>Other Status</source>
         <target>Other Status</target>
+      </trans-unit>
+      <trans-unit id="5d5cca68b60f9d5d52d11c00e8d7fabd6abb1ede" resname="Other population or target audience">
+        <source>Other population or target audience</source>
+        <target>Other population or target audience</target>
       </trans-unit>
       <trans-unit id="5af6a934d6276d644871b4c2df9e0159f8958b0d" resname="Other, please specify">
         <source>Other, please specify</source>
@@ -1622,6 +1646,10 @@
         <source>See original</source>
         <target>Ver original</target>
       </trans-unit>
+      <trans-unit id="a3962ca5a93422a61066540054a136bad2710329" resname="See picture">
+        <source>See picture</source>
+        <target>See picture</target>
+      </trans-unit>
       <trans-unit id="c135ca2ba6ef7f544f8d9e2e09088dd911ead717" resname="Select Members Ad Hoc">
         <source>Select Members Ad Hoc</source>
         <target>Select Members Ad Hoc</target>
@@ -1649,10 +1677,6 @@
       <trans-unit id="1fabf02a74665baa31bea9c4b967b557fada1db7" resname="Select one or more PICS">
         <source>Select one or more PICS</source>
         <target>Select one or more PICS</target>
-      </trans-unit>
-      <trans-unit id="8ee7d009cda323c5218abe60395e98f4798d7ab4" resname="Select one or more tags">
-        <source>Select one or more tags</source>
-        <target>Select one or more tags</target>
       </trans-unit>
       <trans-unit id="9bc2575c3930437e80555f78757b783c842e8e66" resname="Send">
         <source>Send</source>
@@ -1858,10 +1882,6 @@
         <source>The private_key and index_key are required in the parameters.yml file</source>
         <target>La private_key y index_key son requeridas en el archivo parameters.yml</target>
       </trans-unit>
-      <trans-unit id="bc6fd408b391f887f50cbc85c84fb8bbecbeb939" resname="Thematic Area">
-        <source>Thematic Area</source>
-        <target>Thematic Area</target>
-      </trans-unit>
       <trans-unit id="e6e21b91fe035e6e76181adc09d4f8fb3f5e8479" resname="Thematic Areas">
         <source>Thematic Areas</source>
         <target>Thematic Areas</target>
@@ -1991,9 +2011,9 @@
         <source>Use this field to detail or justify your choice about the current situation of the reported experience and to specify the period of implementation of the practice</source>
         <target>Use this field to detail or justify your choice about the current situation of the reported experience and to specify the period of implementation of the practice</target>
       </trans-unit>
-      <trans-unit id="7c425ee77bf8dc3d78a603706e646934f51b46ef" resname="Use this space to share documents, publications, materials or news related to your experience">
-        <source>Use this space to share documents, publications, materials or news related to your experience</source>
-        <target>Use this space to share documents, publications, materials or news related to your experience</target>
+      <trans-unit id="22dc882d7fe2659a2a324963e18ddb46dff4076d" resname="Use this field to share documents, publications, materials or news related to your experience">
+        <source>Use this field to share documents, publications, materials or news related to your experience</source>
+        <target>Use this field to share documents, publications, materials or news related to your experience</target>
       </trans-unit>
       <trans-unit id="dfbff40e0380406fc9e4129026791082174263ee" resname="User created with success.">
         <source>User created with success.</source>
