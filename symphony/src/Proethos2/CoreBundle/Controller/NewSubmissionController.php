@@ -823,7 +823,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Status');
+        $text = $translator->trans('Experience Status');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getStatus())) {
             $item = array('text' => $text, 'status' => false);

@@ -48,7 +48,7 @@
         <h3>{% trans %}Collection{% endtrans %}:</h3>
         <p>{{ submission.thematicAreaList|join('; ') }}</p>
 
-        <h3>{% trans %}Status{% endtrans %}:</h3>
+        <h3>{% trans %}Experience Status{% endtrans %}:</h3>
         <p>{{ status[submission.status] }}</p>
 
         {% if submission.status == "F" %}

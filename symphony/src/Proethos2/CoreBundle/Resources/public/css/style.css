@@ -140,6 +140,9 @@ h5 {
 .answer {
     margin: 0 0 20px 0;
 }
+.field-label {
+    display: block;
+}
 
 /*cor do texto dos selecionados do select2 (multiple) */
 .select2-container--default .select2-selection--multiple .select2-selection__choice {

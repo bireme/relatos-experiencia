@@ -71,7 +71,6 @@
                             <tr>
                                 <th width="10%">{% trans %}ID{% endtrans %}</th>
                                 <th width="50%">{% trans %}Title{% endtrans %}</th>
-                                <th>{% trans %}Type{% endtrans %}</th>
                                 <th>{% trans %}Last Update{% endtrans %}</th>
                                 <th>{% trans %}Status{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
@@ -83,13 +82,6 @@
                                 <tr>
                                     <th>{% if protocol.code %}{{ protocol.code }}{% else %}-{% endif %}</th>
                                     <td>{{ protocol.mainSubmission.title }}</td>
-                                    <td>
-                                        {% if protocol.mainSubmission.type.slug == "paho-who-technical-cooperation" %}
-                                            <span class='label label-success'>{% trans %}TC{% endtrans %}</span>
-                                        {% else %}
-                                            <span class='label label-primary'>{% trans %}BP{% endtrans %}</span>
-                                        {% endif %}
-                                    </td>
                                     <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
                                     <td>{{ protocol.statusLabel|trans }}</td>
                                     <td>

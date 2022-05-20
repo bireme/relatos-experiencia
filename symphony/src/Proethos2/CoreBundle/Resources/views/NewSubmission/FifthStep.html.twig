@@ -63,6 +63,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
+                                <strong class="field-label">{% trans %}Other Medias{% endtrans %}</strong>
                                 <label for="textarea-other-medias">{% trans %}For videos, websites and other medias, please insert in this field{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</label>
                                 <textarea rows="6" class="form-control" name='other_medias' id='textarea-other-medias' placeholder="{% trans %}Please add one hyperlink per line{% endtrans %}">{{ submission.otherMedias }}</textarea>
                             </div>
@@ -80,7 +81,8 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="textarea-products-information">{% trans %}Use this space to share documents, publications, materials or news related to your experience{% endtrans %}:</label>
+                                <strong class="field-label">{% trans %}Products{% endtrans %}</strong>
+                                <label for="textarea-products-information">{% trans %}Use this field to share documents, publications, materials or news related to your experience{% endtrans %}:</label>
                                 <textarea rows="6" class="form-control" name='products_information' id='textarea-products-information' placeholder="{% trans %}Please add one per line{% endtrans %}">{{ submission.productsInformation }}</textarea>
                             </div>
                         </div>
@@ -89,6 +91,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
+                                <strong class="field-label">{% trans %}Keywords{% endtrans %}</strong>
                                 <label for="input_title">{% trans %}Keywords that represent the themes or issues related to the reported experience. Select at least 3 DeCS descriptors - Health Sciences Descriptors{% endtrans %}:</label>
                                 <input type="text" class="form-control" name='keywords' id='input_keywords' placeholder="{% trans %}insert keywords here{% endtrans %}"  value="{{ submission.keywords }}">
                             </div>

@@ -27,11 +27,10 @@
                                     <tr>
                                         <tr>
                                             <th width="10%">{% trans %}ID{% endtrans %}</th>
-                                            <th width="40%">{% trans %}Title{% endtrans %}</th>
-                                            <th width="10%">{% trans %}Type{% endtrans %}</th>
-                                            <th width="15%">{% trans %}Last Update{% endtrans %}</th>
-                                            <th width="15%">{% trans %}Status{% endtrans %}</th>
-                                            <th width="10%">{% trans %}Actions{% endtrans %}</th>
+                                            <th width="50%">{% trans %}Title{% endtrans %}</th>
+                                            <th>{% trans %}Last Update{% endtrans %}</th>
+                                            <th>{% trans %}Status{% endtrans %}</th>
+                                            <th>{% trans %}Actions{% endtrans %}</th>
                                         </tr>
                                     </tr>
                                 </thead>
@@ -41,13 +40,6 @@
                                         <tr>
                                             <th>{% if protocol.code %}{{ protocol.code }}{% else %}-{% endif %}</th>
                                             <td>{{ protocol.mainSubmission.title }}</td>
-                                            <td>
-                                                {% if protocol.mainSubmission.type.slug == "paho-who-technical-cooperation" %}
-                                                    <span class='label label-success'>{% trans %}TC{% endtrans %}</span>
-                                                {% else %}
-                                                    <span class='label label-primary'>{% trans %}BP{% endtrans %}</span>
-                                                {% endif %}
-                                            </td>
                                             <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
                                             <td>{{ protocol.statusLabel|trans }}</td> 
                                             <td>

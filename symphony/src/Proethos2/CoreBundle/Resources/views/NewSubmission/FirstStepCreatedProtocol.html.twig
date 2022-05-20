@@ -43,6 +43,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
+                                <strong class="field-label">{% trans %}Title{% endtrans %}</strong>
                                 <label for="input_title">*{% trans %}What is the title of the experience lived or to be reported?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='title' id='input_title' value="{{ submission.title }}" required>
@@ -69,6 +70,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
+                                <strong class="field-label">{% trans %}Experience Status{% endtrans %}</strong>
                                 <label for="select-status">*{% trans %}What is the current status of the experience?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <select class='form-control selectpicker' id='select-status' name='status' data-size="5" data-live-search="true" required>
@@ -143,6 +145,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
+                                <strong class="field-label">{% trans %}Notes{% endtrans %}</strong>
                                 <label for="textarea-notes">{% trans %}Use this field to detail or justify your choice about the current situation of the reported experience and to specify the period of implementation of the practice{% endtrans %}:</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="6" class="form-control" name='notes' id='textarea-notes'>{{ submission.notes }}</textarea>
