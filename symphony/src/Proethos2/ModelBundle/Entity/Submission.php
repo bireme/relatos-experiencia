@@ -134,7 +134,7 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="other_status", type="string", length=510)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank
      */
     private $other_status;
@@ -163,7 +163,7 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="other_date", type="string", length=510)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank
      */
     private $other_date;
@@ -196,7 +196,7 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="other_population_group", type="string", length=510)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank
      */
     private $other_population_group;
