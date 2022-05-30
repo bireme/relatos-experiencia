@@ -40,6 +40,7 @@ class Solr {
         if ( 'F' == $submission->getStatus() ) $data['other_status'] = $submission->getOtherStatus();
         $data['notes'] = $submission->getNotes();
         $data['issue'] = $submission->getDescription();
+        $data['other_population_group'] = $submission->getOtherPopulationGroup();
         $data['objectives'] = $submission->getObjectives();
         $data['resources'] = $submission->getResources();
         $data['context'] = $submission->getContext();
@@ -97,28 +98,6 @@ class Solr {
                 }
             }
             $data['population_group'][] = implode('|', $texts);
-        }
-
-        // tags field
-        $tags = $submission->getTags();
-        $data['tags'] = array();
-
-        foreach ($tags as $tag) {
-            $tag->setTranslatableLocale('en');
-            $em->refresh($tag);
-
-            // tags translations
-            $translations = $trans_repository->findTranslations($tag);
-            $texts = array();
-            $texts['en'] = 'en^'.$tag->getName();
-            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $_locale) {
-                if ( array_key_exists($_locale, $translations) ) {
-                    $text = $translations[$_locale];
-                    $_locale = substr($_locale, 0, 2);
-                    $texts[$_locale] = $_locale.'^'.$text['name'];
-                }
-            }
-            $data['tags'][] = implode('|', $texts);
         }
 
         $json = json_encode($data);
