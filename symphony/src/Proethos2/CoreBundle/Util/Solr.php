@@ -20,11 +20,11 @@ namespace Proethos2\CoreBundle\Util;
 
 class Solr {
 
-    protected $solr_service = 'http://plugins-idx.bvsalud.org:8983/solr/best-practices/update';
+    protected $solr_service = 'http://plugins-idx.bvsalud.org:8983/solr/relatos-experiencia/update';
 
     public function __construct() {}
 
-    public function update($protocol)
+    public function update($protocol='')
     {
 
         global $kernel;
@@ -139,7 +139,7 @@ class Solr {
 
     }
 
-    public function delete($protocol)
+    public function delete($protocol='')
     {
         $query = ( $protocol ) ? 'id:'.$protocol->getId() : '*:*';
         $json = "{'delete': {'query': '".$query."'}}";
