@@ -40,7 +40,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="select-language">*{% trans %}Language{% endtrans %}:</label>
+                                <label for="select-language"><b>*{% trans %}Language{% endtrans %}:</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <select class='form-control selectpicker' id='select-language' name='language' data-size="5" required>
                                     <option value="">-</option>
@@ -56,8 +56,8 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong class="field-label">{% trans %}Title{% endtrans %}</strong>
-                                <label for="input_title">*{% trans %}What is the title of the experience lived or to be reported?{% endtrans %}</label>
+                                <strong class="field-label">*{% trans %}Title{% endtrans %}</strong>
+                                <label for="input_title">{% trans %}What is the title of the experience lived or to be reported?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='title' id='input_title' value='{% if post_data.title %}{{ post_data.title }}{% endif %}' required>
                             </div>
@@ -67,7 +67,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="select-thematic-area">*{% trans %}Collection{% endtrans %}:</label>
+                                <label for="select-thematic-area"><b>*{% trans %}Collection{% endtrans %}:</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <div>
                                     <select class='form-control selectpicker' id='select-thematic-area' name='thematic-area[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Select one or more PICS{% endtrans %}" multiple required>
@@ -83,8 +83,8 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong class="field-label">{% trans %}Experience Status{% endtrans %}</strong>
-                                <label for="select-status">*{% trans %}What is the current status of the experience?{% endtrans %}</label>
+                                <strong class="field-label">*{% trans %}Experience Status{% endtrans %}</strong>
+                                <label for="select-status">{% trans %}What is the current status of the experience?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <select class='form-control selectpicker' id='select-status' name='status' data-size="5" data-live-search="true" required>
                                     <option value="">-</option>
@@ -99,7 +99,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group hide">
-                                <label for="input_other_status">*{% trans %}Other Status{% endtrans %}:</label>
+                                <label for="input_other_status"><b>*{% trans %}Other Status{% endtrans %}:</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='other_status' id='input_other_status' value="{% if post_data.other_status %}{{ post_data.other_status }}{% endif %}">
                             </div>
@@ -116,7 +116,7 @@
                     <div class='row'>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="input-start-date">*{% trans %}Start Date{% endtrans %} (YYYY-MM-DD):</label>
+                                <label for="input-start-date"><b>*{% trans %}Start Date{% endtrans %} (YYYY-MM-DD):</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class='form-control' id='input-start-date' name='start-date' value='{% if post_data.startDate %}{{ post_data.startDate|date("Y-m-d") }}{% endif %}' required>
                             </div>

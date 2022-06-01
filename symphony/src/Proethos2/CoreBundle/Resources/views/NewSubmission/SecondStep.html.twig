@@ -28,8 +28,8 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong class="field-label">{% trans %}Issue{% endtrans %}</strong>
-                                <label for="textarea-description">*{% trans %}What was the core problem or health situation that the experience sought to address and resolve?{% endtrans %}</label>
+                                <strong class="field-label">*{% trans %}Issue{% endtrans %}</strong>
+                                <label for="textarea-description">{% trans %}What was the core problem or health situation that the experience sought to address and resolve?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="6" class="form-control" name='description' id='textarea-description' required>{{ submission.description }}</textarea>
                             </div>
@@ -66,8 +66,8 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong class="field-label">{% trans %}Objectives{% endtrans %}</strong>
-                                <label for="textarea-objectives">*{% trans %}What were the main expected or promised results when you planned to implement the experiment or when the experiment you are reporting was proposed?{% endtrans %}</label>
+                                <strong class="field-label">*{% trans %}Objectives{% endtrans %}</strong>
+                                <label for="textarea-objectives">{% trans %}What were the main expected or promised results when you planned to implement the experiment or when the experiment you are reporting was proposed?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="6" class="form-control" name='objectives' id='textarea-objectives' required>{{ submission.objectives }}</textarea>
                             </div>
@@ -88,8 +88,8 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong class="field-label">{% trans %}Context{% endtrans %}</strong>
-                                <label for="textarea-context">*{% trans %}In what setting or context was the experience implemented? Indicate the locations, cities and/or regions.{% endtrans %}</label>
+                                <strong class="field-label">*{% trans %}Context{% endtrans %}</strong>
+                                <label for="textarea-context">{% trans %}In what setting or context was the experience implemented? Indicate the locations, cities and/or regions.{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="6" class="form-control" name='context' id='textarea-context' required>{{ submission.context }}</textarea>
                             </div>
