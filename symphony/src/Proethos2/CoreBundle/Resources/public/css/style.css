@@ -203,7 +203,8 @@ img.logo {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 80%;
+    /*font-size: 12px;*/
 }
 
 #bs-example-navbar-collapse-1 ul.nav.navbar-nav li:last-child ul.dropdown-menu {
