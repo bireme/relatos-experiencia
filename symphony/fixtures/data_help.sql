@@ -8,6 +8,7 @@ REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VA
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (15,'2016-06-16 14:11:28','2016-06-16 14:11:28',1,'help','Public title of protocol');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (16,'2016-06-16 14:11:28','2016-06-16 14:11:28',1,'help','Does this protocol have an acronym?');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (56,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'help','Search for a  user by name or email address');
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (52,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'help','User role list:\r\n- Investigator\r\n- Secretary\r\n- Member of Committee \r\n- Member ad hoc\r\n- Administrator');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (64,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'help','Search for a meeting by subject');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (65,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'help','Date');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (66,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'help','Subject');

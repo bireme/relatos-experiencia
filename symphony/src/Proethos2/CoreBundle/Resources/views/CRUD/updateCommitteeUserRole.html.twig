@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <div class="checkbox">
                             <label for="checkbox-{{ role.slug }}">
-                                <input type="checkbox" id="checkbox-{{ role.slug }}" name="{{ role.slug }}" {% if role in user.proethos2Roles %}checked{% endif %}> {{ role.name }}
+                                <input type="checkbox" id="checkbox-{{ role.slug }}" name="{{ role.slug }}" {% if role in user.proethos2Roles %}checked{% endif %}> {{ role.name|trans }}
                                 <a href="{{ path("crud_admin_help_show", {help_id: 52} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             </label>
                         </div>
