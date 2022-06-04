@@ -54,9 +54,9 @@
                 
                 <h1>
                     {% if committee_logourl %}
-                        <img src="{{ committee_logourl }}" class='logo'>
+                        <img src="{{ committee_logourl }}" class="logo" alt="">
                     {% else %}
-                        <b>Proethos</b>2
+                        <img src="{{ asset('bundles/proethos2core/img/bvs_color-' ~ app.request.locale ~ '.svg') }}" class="logo" alt="">
                     {% endif %}
                 </h1>
                 

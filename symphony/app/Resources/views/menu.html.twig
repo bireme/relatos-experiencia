@@ -1,15 +1,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
             {% if render(controller('Proethos2CoreBundle:Index:getLogo')) %}
-            <img src="{{ render(controller('Proethos2CoreBundle:Index:getLogo')) }}" class="logoNav">
+                <img src="{{ render(controller('Proethos2CoreBundle:Index:getLogo')) }}" class="logoNav" alt="">
+            {% else %}
+                <img src="{{ asset('bundles/proethos2core/img/bvs_color-' ~ app.request.locale ~ '.svg') }}" class="logoNav" alt="">
             {% endif %}
         </div>
         
@@ -18,7 +19,9 @@
             <ul class="nav navbar-nav">
 
                 {% if render(controller('Proethos2CoreBundle:Index:getLogo')) %}
-                <li><a><img src='{{ render(controller('Proethos2CoreBundle:Index:getLogo')) }}' class='logo'></a></li>
+                    <li><img src='{{ render(controller('Proethos2CoreBundle:Index:getLogo')) }}' class="logo" alt=""></li>
+                {% else %}
+                    <li><img src="{{ asset('bundles/proethos2core/img/bvs_color-' ~ app.request.locale ~ '.svg') }}" class="logo" alt=""></li>
                 {% endif %}
 
                 {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}

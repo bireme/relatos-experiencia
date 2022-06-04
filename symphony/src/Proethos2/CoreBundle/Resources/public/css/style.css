@@ -183,10 +183,12 @@ img.logo {
     max-width: 300px;
     max-height: 150px;
 }
+.nav>li>img.logo {
+    max-height: 50px;
+}
 .nav>li>a>img.logo {
     max-height: 18px;
 }
-
 .alert-info ul {
     margin: 10px 0 0 0;
 }
