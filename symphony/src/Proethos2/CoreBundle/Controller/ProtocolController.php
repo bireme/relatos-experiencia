@@ -586,7 +586,7 @@ class ProtocolController extends Controller
                 if($post_data['send-to'] == "ethical-revision") {
 
                     // setting the Rejected status
-                    $protocol->setStatus("E");
+                    $protocol->setStatus("H");
 
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();

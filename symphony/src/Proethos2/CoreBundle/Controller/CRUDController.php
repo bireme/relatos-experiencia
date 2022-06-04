@@ -1406,6 +1406,15 @@ class CRUDController extends Controller
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
 
+        $_roles = array(
+            'investigator'        => $translator->trans('Investigator'),
+            'secretary'           => $translator->trans('Secretary'),
+            'member-of-committee' => $translator->trans('Member of Committee'),
+            'member-ad-hoc'       => $translator->trans('Member ad hoc'),
+            'administrator'       => $translator->trans('Administrator'),
+        );
+        $output['_roles'] = $_roles;
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
