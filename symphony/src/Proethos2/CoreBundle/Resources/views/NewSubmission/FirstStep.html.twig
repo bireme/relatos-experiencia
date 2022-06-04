@@ -70,7 +70,7 @@
                                 <label for="select-thematic-area"><b>*{% trans %}Collection{% endtrans %}:</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <div>
-                                    <select class='form-control selectpicker' id='select-thematic-area' name='thematic-area[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Select one or more PICS{% endtrans %}" multiple required>
+                                    <select class='form-control selectpicker' id='select-thematic-area' name='thematic-area[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Select one or more collections{% endtrans %}" multiple required>
                                         {% for ta in thematic_area %}
                                             <option value="{{ ta.id }}" {% if ta in post_data.thematic-area %}selected{% endif %}>{{ ta.name }}</option>
                                         {% endfor %}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-04T00:16:50Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-06-04T01:57:12Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -454,9 +454,9 @@
         <source>Delete Attachment</source>
         <target>Eliminar archivo adjunto</target>
       </trans-unit>
-      <trans-unit id="ff420b1aaf835a138e71ff3ea0366de04bfbc587" resname="Delete Document">
-        <source>Delete Document</source>
-        <target>Eliminar documento</target>
+      <trans-unit id="4a403768c7b25969cc9706a2dd4c7aec3ea42ab9" resname="Delete Help">
+        <source>Delete Help</source>
+        <target>Delete Help</target>
       </trans-unit>
       <trans-unit id="748f9b1b38e93e65df1cd9de2d06aa7f755c9a60" resname="Delete Meeting">
         <source>Delete Meeting</source>
@@ -525,10 +525,6 @@
       <trans-unit id="f683c3602f8770569d6651cb4518e4a6cdd9f202" resname="Document updated with success.">
         <source>Document updated with success.</source>
         <target>Documento actualizado exitosamente.</target>
-      </trans-unit>
-      <trans-unit id="687c82861c956e47456186f6522cfc8dbadb8ef6" resname="Documents">
-        <source>Documents</source>
-        <target>Documentos</target>
       </trans-unit>
       <trans-unit id="23d33e22acfcb9ecddb4a85f10607dc4ff49e23c" resname="Draft">
         <source>Draft</source>
@@ -1094,10 +1090,6 @@
         <source>New Currency</source>
         <target>Nueva moneda</target>
       </trans-unit>
-      <trans-unit id="e69f5da60a4e048b153ac26a5f65b9bb0ea18b3f" resname="New Document">
-        <source>New Document</source>
-        <target>Nuevo documento</target>
-      </trans-unit>
       <trans-unit id="48ce2a3e305902340f68d8bb07df2073b6500b41" resname="New Gender">
         <source>New Gender</source>
         <target>Nuevo género</target>
@@ -1105,6 +1097,10 @@
       <trans-unit id="5e816484934c5b3f66b0fa79c3df0b0c1ecfe641" resname="New Goal">
         <source>New Goal</source>
         <target>New Goal</target>
+      </trans-unit>
+      <trans-unit id="aa7e28ac28bd857fe79386e85fc7fd3bd1a61680" resname="New Help">
+        <source>New Help</source>
+        <target>New Help</target>
       </trans-unit>
       <trans-unit id="947ce86bed0a9a05a460ce619418ca795e6b44b0" resname="New Institution">
         <source>New Institution</source>
@@ -1618,9 +1614,9 @@
         <source>Search</source>
         <target>Buscar</target>
       </trans-unit>
-      <trans-unit id="a122ee60aabbe318f5105be284406e716f38622b" resname="Search for a document">
-        <source>Search for a document</source>
-        <target>Buscar un documento</target>
+      <trans-unit id="5df0736d8079d7506a8109052251103e4c84702d" resname="Search for a help">
+        <source>Search for a help</source>
+        <target>Search for a help</target>
       </trans-unit>
       <trans-unit id="c48a87e22c5b431d8f57903582305d386fc40cf8" resname="Search for a meeting subject">
         <source>Search for a meeting subject</source>
@@ -1682,9 +1678,9 @@
         <source>Select meeting</source>
         <target>Seleccionar reunión</target>
       </trans-unit>
-      <trans-unit id="1fabf02a74665baa31bea9c4b967b557fada1db7" resname="Select one or more PICS">
-        <source>Select one or more PICS</source>
-        <target>Select one or more PICS</target>
+      <trans-unit id="39b94049d6771eeb889734d2a8d871f32b36e226" resname="Select one or more collections">
+        <source>Select one or more collections</source>
+        <target>Select one or more collections</target>
       </trans-unit>
       <trans-unit id="9bc2575c3930437e80555f78757b783c842e8e66" resname="Send">
         <source>Send</source>
@@ -1954,10 +1950,6 @@
       <trans-unit id="c67695c4156cfc5ef1c2da0633523f55a90b5494" resname="Update Configuration">
         <source>Update Configuration</source>
         <target>Actualizar configuración</target>
-      </trans-unit>
-      <trans-unit id="f8854695f5efda2bb8ed664e10a7866ff7d20394" resname="Update Document">
-        <source>Update Document</source>
-        <target>Actualizar documento</target>
       </trans-unit>
       <trans-unit id="21b337a73439496bcfd137ddc1549cbacb16c2ea" resname="Update Help">
         <source>Update Help</source>
