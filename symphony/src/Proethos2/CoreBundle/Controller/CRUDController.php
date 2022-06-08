@@ -455,7 +455,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No FAQ found'));
         }
 
@@ -541,7 +541,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No FAQ found'));
         }
 
@@ -623,7 +623,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No FAQ found'));
         }
 
@@ -703,7 +703,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No document found'));
         }
 
@@ -801,7 +801,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No document found'));
         }
 
@@ -880,7 +880,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No document found'));
         }
 
@@ -938,11 +938,11 @@ class CRUDController extends Controller
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
-        
+/*        
         if (!in_array('secretary', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No document found'));
         }
-
+*/
         $documents = $document_repository->findAll();
 
         // serach parameter
@@ -988,7 +988,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
 
@@ -1235,7 +1235,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
 
@@ -1350,7 +1350,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
 
@@ -1391,7 +1391,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
 
@@ -1462,7 +1462,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
 

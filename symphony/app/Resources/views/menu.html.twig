@@ -37,28 +37,11 @@
                 {% endif %}
 
                 {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
-                    <li class=""><a href="{{ path("crud_investigator_protocol_list") }}">{% trans %}Experiences{% endtrans %}</a></li>
+                    <li class=""><a href="{{ path("crud_investigator_protocol_list") }}">{% trans %}My Experiences{% endtrans %}</a></li>
                 {% endif %}
 
                 {% if is_granted("ROLE_USER") and ('secretary' in app.user.rolesSlug or 'member-of-committee' in app.user.rolesSlug)  %}
-                    <li class="dropdown">
-
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            {% trans %}Committee{% endtrans %} <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ path('crud_committee_protocol_list') }}">{% trans %}Experiences{% endtrans %}</a></li>
-                            {% if 'secretary' in app.user.rolesSlug %}
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{ path('crud_committee_faq_list') }}">{% trans %}FAQ{% endtrans %}</a></li>
-                                <li><a href="{{ path('crud_committee_user_list') }}">{% trans %}Users{% endtrans %}</a></li>
-                                <li><a href="{{ path('crud_committee_meeting_list') }}">{% trans %}Meetings{% endtrans %}</a></li>
-                                <li><a href="{{ path('crud_committee_document_list') }}">{% trans %}Help{% endtrans %}</a></li>
-                                <!-- <li><a href="{{ path('crud_committee_protocol_checklist_show') }}" data-toggle='modal' data-target='#modal-show-protocol-checklist'>{% trans %}Protocol Checklist{% endtrans %}</a></li> -->
-                            {% endif %}
-                        </ul>
-                    </li>
+                    <li class=""><a href="{{ path("crud_committee_protocol_list") }}">{% trans %}Experiences{% endtrans %}</a></li>
                 {% endif %}
 
                 <li class=""><a href="{{ path('crud_faq_list') }}" {% if is_granted("ROLE_USER") %}target="_blank"{% endif %}>{% trans %}FAQ{% endtrans %}</a></li>
@@ -75,6 +58,11 @@
                             {% trans %}System Management{% endtrans %}
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="{{ path('crud_committee_user_list') }}">{% trans %}Users{% endtrans %}</a></li>
+                            <li><a href="{{ path('crud_committee_faq_list') }}">{% trans %}FAQ{% endtrans %}</a></li>
+                            <li><a href="{{ path('crud_committee_document_list') }}">{% trans %}Help{% endtrans %}</a></li>
+                            {# <li><a href="{{ path('crud_committee_meeting_list') }}">{% trans %}Meetings{% endtrans %}</a></li> #}
+                            {# <li><a href="{{ path('crud_committee_protocol_checklist_show') }}" data-toggle='modal' data-target='#modal-show-protocol-checklist'>{% trans %}Protocol Checklist{% endtrans %}</a></li> #}
                             <li><a href="{{ path('crud_admin_help_list') }}">{% trans %}Help Messages{% endtrans %}</a></li>
                             <li><a href="{{ path('crud_admin_mail_list') }}">{% trans %}Mail Messages{% endtrans %}</a></li>
 
