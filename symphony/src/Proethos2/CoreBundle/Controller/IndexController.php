@@ -50,6 +50,10 @@ class IndexController extends Controller
             return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
         }
 
+        // approved protocols
+        $protocols = $protocol_repository->findBy(array('status' => array('A','N')));
+        $output['protocols'] = $protocols;
+
         $revisions = array();
         foreach($protocol_revision_repository->findBy(array("member" => $user)) as $revision) {
             if (in_array($revision->getProtocol()->getStatus(), array('E', 'H'))) {
