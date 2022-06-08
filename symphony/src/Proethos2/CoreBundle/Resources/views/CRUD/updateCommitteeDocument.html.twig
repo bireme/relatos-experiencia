@@ -12,7 +12,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-title">{% trans %}Title{% endtrans %}:</label> 
-                    <a href="{{ path("crud_admin_help_show", {help_id: 68} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 68} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-title" name="title" value="{{ document.title }}" required>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-description">{% trans %}Description{% endtrans %}:</label> 
-                    <a href="{{ path("crud_admin_help_show", {help_id: 69} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 69} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <textarea class='form-control' id="input-description" name="description">{{ document.description }}</textarea>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                     <div class="checkbox">
                         <label for="input-status">
                             <input type="checkbox" id='input-status' name='status' value="true" {% if document.status %}checked{% endif %}> {% trans %}Active?{% endtrans %}
-                            <a href="{{ path("crud_admin_help_show", {help_id: 71} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 71} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                         </label>
                     </div>
                 </div>

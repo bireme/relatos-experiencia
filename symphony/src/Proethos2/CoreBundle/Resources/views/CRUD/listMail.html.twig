@@ -27,7 +27,7 @@
                             {% for mail in mails %}
                                 <tr>
                                     {% if not app.request.get('id') %}<td>{{ loop.index }}</td>{% endif %}
-                                    <td>{{ mail.message|nl2br }}</td> 
+                                    <td>{{ mail.message|raw }}</td> 
                                     <td>
                                         <a href='{{ path('crud_admin_mail_show', {mail_id: mail.id} ) }}' data-toggle='modal' data-target='#modal-mail' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='{{ path('crud_admin_mail_update', {mail_id: mail.id} ) }}' data-toggle='modal' data-target='#modal-update-mail' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
@@ -61,7 +61,6 @@
                     <p><code>%protocol_code%</code> - {% trans %}Protocol code{% endtrans %}</p>
                     <p><code>%home_url%</code> - {% trans %}Proethos URL{% endtrans %}</p>
                     <p><code>%reset_password_url%</code> - {% trans %}Reset password URL{% endtrans %}</p>
-                    <p><code>%committee_screening%</code> - {% trans %}Initial commitee screening{% endtrans %}</p>
                     <p><code>%username%</code> - {% trans %}User name{% endtrans %} ({% trans %}contact form{% endtrans %})</p>
                     <p><code>%email%</code> - {% trans %}Email{% endtrans %} ({% trans %}contact form{% endtrans %})</p>
                     <p><code>%subject%</code> - {% trans %}Subject{% endtrans %} ({% trans %}contact form{% endtrans %})</p>

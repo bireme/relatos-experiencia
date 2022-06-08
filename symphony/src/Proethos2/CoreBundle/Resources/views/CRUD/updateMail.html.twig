@@ -50,3 +50,21 @@
         <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
     </div>
 </form>
+
+{% block script %}
+    <script>
+        $(function(){
+            // $('#form-new-mail textarea').wysihtml5(); 
+            $('#form-new-mail textarea').summernote({
+                height: 150,
+                dialogsInBody: true,
+                lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                }
+            });
+        });
+    </script>
+{% endblock %}
