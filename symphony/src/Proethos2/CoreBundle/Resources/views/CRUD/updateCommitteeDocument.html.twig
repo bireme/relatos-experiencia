@@ -31,20 +31,6 @@
         <div class='row'>
             <div class='col-md-12'>
                 <div class="form-group">
-                    <label for="select-role">{% trans %}Role{% endtrans %}:</label> 
-                    <a href="{{ path("crud_admin_help_show", {help_id: 70} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                    <select class='form-control' id="select-role" name="roles[]" multiple>
-                        {% for role in roles %}
-                            <option value="{{ role.id }}" {% if role in document.roles %}selected{% endif %}>{{ role.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class='row'>
-            <div class='col-md-12'>
-                <div class="form-group">
                     <div class="checkbox">
                         <label for="input-status">
                             <input type="checkbox" id='input-status' name='status' value="true" {% if document.status %}checked{% endif %}> {% trans %}Active?{% endtrans %}
