@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-04T02:00:51Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-06-08T02:45:14Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -294,10 +294,6 @@
         <source>Choose your login</source>
         <target>Escolha seu login</target>
       </trans-unit>
-      <trans-unit id="a4781b4e531e406a69c0092ff5dcf176feecc6dd" resname="Clinical Trial">
-        <source>Clinical Trial</source>
-        <target>Ensaio Clínico</target>
-      </trans-unit>
       <trans-unit id="ed6b163354d00afa17647b94816172f80c7de3fa" resname="Clinical Trial Names">
         <source>Clinical Trial Names</source>
         <target>Nomes de ensaios clínicos</target>
@@ -321,10 +317,6 @@
       <trans-unit id="fce06e20e5f7f74aacccab40b59b75a56c8f7305" resname="Comments">
         <source>Comments</source>
         <target>Comentários</target>
-      </trans-unit>
-      <trans-unit id="f43dba5677dfd5e3e6793095b56bfab6f533b68f" resname="Committee">
-        <source>Committee</source>
-        <target>Comitê</target>
       </trans-unit>
       <trans-unit id="4c5fc09da89297883dd5bec04bb40aef96b22971" resname="Committee Screening">
         <source>Committee Screening</source>
@@ -478,10 +470,6 @@
         <source>Delete User</source>
         <target>Excluir Usuário</target>
       </trans-unit>
-      <trans-unit id="dc23bac92fd631f9d45e31be0488c8d2e4a036b4" resname="Delete this best practice">
-        <source>Delete this best practice</source>
-        <target>Excluir esta Boa Prática.</target>
-      </trans-unit>
       <trans-unit id="941cc06a9c206c31f4c461a2ec5472227ace2164" resname="Delete this experience">
         <source>Delete this experience</source>
         <target>Excluir essa experiência</target>
@@ -532,19 +520,19 @@
       </trans-unit>
       <trans-unit id="cacd05fb0a808efa582e9264c3c8b99054426d8e" resname="Draft Opinion">
         <source>Draft Opinion</source>
-        <target>Projeto de parecer.</target>
+        <target>Projeto de parecer</target>
       </trans-unit>
       <trans-unit id="0d01e2e86669e98441ab4dce5520696c318b7098" resname="E-mail">
         <source>E-mail</source>
         <target>E-mail</target>
       </trans-unit>
+      <trans-unit id="0e85a3354b0b26fe2cb462d79fa2a51f22949c20" resname="Edit experience">
+        <source>Edit experience</source>
+        <target>Editar experiência</target>
+      </trans-unit>
       <trans-unit id="4d32f9f7a82dd68da666475cd6c1355d1220879b" resname="Edit roles">
         <source>Edit roles</source>
-        <target>Editar funções.</target>
-      </trans-unit>
-      <trans-unit id="9a5b8cc4be6810a0c84ade9ad505cd6d3b7e8e26" resname="Edit submission">
-        <source>Edit submission</source>
-        <target>Editar submissão.</target>
+        <target>Editar funções</target>
       </trans-unit>
       <trans-unit id="c26487a385ea3c0881132590cfba21b092c56074" resname="Edit user's information">
         <source>Edit user's information</source>
@@ -556,15 +544,15 @@
       </trans-unit>
       <trans-unit id="384e05cd4ae1fdea062631985ba89e818de0c74c" resname="Email already registered">
         <source>Email already registered</source>
-        <target>Email já cadastrado.</target>
+        <target>Email já cadastrado</target>
       </trans-unit>
       <trans-unit id="362d89094c1e98ea30a0aa49c2156a209d863afe" resname="Email already registered in platform.">
         <source>Email already registered in platform.</source>
-        <target>Email já cadastrado na plataforma.</target>
+        <target>Email já cadastrado na plataforma</target>
       </trans-unit>
       <trans-unit id="74b613213d25264324d85f0a3f84765ad3a37e4c" resname="Email not registered in platform.">
         <source>Email not registered in platform.</source>
-        <target>Email não cadastrado na plataforma.</target>
+        <target>Email não cadastrado na plataforma</target>
       </trans-unit>
       <trans-unit id="84b1478125890bad1cc4b36d6d3781773b3fde5a" resname="End Date">
         <source>End Date</source>
@@ -572,7 +560,7 @@
       </trans-unit>
       <trans-unit id="e55d313325bffb54c173c2b24b2c71a494954346" resname="End Review">
         <source>End Review</source>
-        <target>Finalizar revisão.</target>
+        <target>Finalizar revisão</target>
       </trans-unit>
       <trans-unit id="bcbe56a358c1bad62d39582c845d4463da281275" resname="End experience review">
         <source>End experience review</source>
@@ -588,11 +576,11 @@
       </trans-unit>
       <trans-unit id="a166815f9de31e89ef2508f1f0e36d9df260fd98" resname="Enter registered email">
         <source>Enter registered email</source>
-        <target>Digite o e-mail cadastrado.</target>
+        <target>Digite o e-mail cadastrado</target>
       </trans-unit>
       <trans-unit id="de84c6a03697e058ca921b8cc68aefced20e72b4" resname="Estimated date of initial recruitment">
         <source>Estimated date of initial recruitment</source>
-        <target>Data prevista para o início do recrutamento.</target>
+        <target>Data prevista para o início do recrutamento</target>
       </trans-unit>
       <trans-unit id="67690c75c03cd0e07da2b8ad46be269eb2c39a62" resname="Exclude user">
         <source>Exclude user</source>
@@ -620,8 +608,7 @@
       </trans-unit>
       <trans-unit id="1feee0e7447f87b9466b1b883869ba5eeba023b3" resname="Export to CSV">
         <source>Export to CSV</source>
-        <target xml:space="preserve">Exportar para CSV
-</target>
+        <target>Exportar CSV</target>
       </trans-unit>
       <trans-unit id="659087d3ca23db6ae11e0a43579b5f4a260dda11" resname="Extension">
         <source>Extension</source>
@@ -690,6 +677,10 @@
       <trans-unit id="a9660077b2bf17b83d5eb8b6dcc2a608c2102572" resname="Final Revision">
         <source>Final Revision</source>
         <target>Revisão final</target>
+      </trans-unit>
+      <trans-unit id="2351a83d5cdb0d735966ed88cc09d4369db5e0e4" resname="Final decision">
+        <source>Final decision</source>
+        <target>Decisão final</target>
       </trans-unit>
       <trans-unit id="136d40d186f26bc729c77f09a7c3abd391a95c8d" resname="Find experiences">
         <source>Find experiences</source>
@@ -899,13 +890,9 @@
         <source>Last Update</source>
         <target>Última atualização</target>
       </trans-unit>
-      <trans-unit id="d27a994ddacc20468cacf3667f92f4772338fa7e" resname="Last experiences in which you are part of the research team">
-        <source>Last experiences in which you are part of the research team</source>
-        <target>Últimas experiências em que você faz parte da equipe de pesquisa</target>
-      </trans-unit>
-      <trans-unit id="4f70414a74ca9588660bcde656a88bf416b11a87" resname="Last experiences that you reviewed">
-        <source>Last experiences that you reviewed</source>
-        <target>Últimas experiências que você avaliou</target>
+      <trans-unit id="443e66fe0980af9541fe54cce6580e16441fea8b" resname="Last experiences reviewed">
+        <source>Last experiences reviewed</source>
+        <target>Últimas experiências avaliadas</target>
       </trans-unit>
       <trans-unit id="e41df52dcff2d5fb3f135df9c40c44c902c43f73" resname="Lessons Learned">
         <source>Lessons Learned</source>
@@ -1034,6 +1021,10 @@
       <trans-unit id="ba0b049ecec7e4353432ec58d78e765dd9459bd4" resname="Monitoring period">
         <source>Monitoring period</source>
         <target>Período de monitoramento</target>
+      </trans-unit>
+      <trans-unit id="fe43e90b93043a759de7e287e80066cc7166a16e" resname="My Experiences">
+        <source>My Experiences</source>
+        <target>Minhas Experiências</target>
       </trans-unit>
       <trans-unit id="08d2e98e6754af941484848930ccbaddfefe13d6" resname="N/A">
         <source>N/A</source>
@@ -1203,10 +1194,6 @@
         <source>New user? Start here.</source>
         <target>Novo usuário? Comece aqui.</target>
       </trans-unit>
-      <trans-unit id="907961cea29c6ad5f0736a8170a68e6b48ebab82" resname="Next meetings">
-        <source>Next meetings</source>
-        <target>Próximas reuniões </target>
-      </trans-unit>
       <trans-unit id="7e77d31ff101ea5dad7c57ff4831d6b6746607a2" resname="No FAQ found">
         <source>No FAQ found</source>
         <target>Nenhum FAQ encontrado </target>
@@ -1278,10 +1265,6 @@
       <trans-unit id="24d50592b70a997e82a3839de9c69ef0c75660a9" resname="Objectives">
         <source>Objectives</source>
         <target>Objetivos</target>
-      </trans-unit>
-      <trans-unit id="18015e598e5c3b536f5800eeb4ce0150fc0c602f" resname="Observations to address">
-        <source>Observations to address</source>
-        <target>Observações a serem abordadas</target>
       </trans-unit>
       <trans-unit id="81a66b042f92ae09dec0fc1a1d5fccf4d2f6d252" resname="Opinions Required">
         <source>Opinions Required</source>
@@ -1435,10 +1418,6 @@
         <source>Protocol withdrawn by %user%.</source>
         <target>Protocolo removido por %user%.</target>
       </trans-unit>
-      <trans-unit id="cd6ece72a6865ef15a2a98c642960a5e4dfa6404" resname="Public Title">
-        <source>Public Title</source>
-        <target>Título Público</target>
-      </trans-unit>
       <trans-unit id="66504a22bf9c7de6cb0b13fc9e1924db84e74810" resname="Public title">
         <source>Public title</source>
         <target>Título público</target>
@@ -1499,17 +1478,9 @@
         <source>Reject Submission?</source>
         <target>Rejeitar submissão?</target>
       </trans-unit>
-      <trans-unit id="27eeb7a291bfc566447d9cd928e98caf90f70ee6" resname="Rejected">
-        <source>Rejected</source>
-        <target>Rejeitado</target>
-      </trans-unit>
       <trans-unit id="e963907dac5cd5c017869b4c96c18021c9bd058b" resname="Remove">
         <source>Remove</source>
         <target>Remover</target>
-      </trans-unit>
-      <trans-unit id="be601df25eea91eaaf0d5e80263930143af345be" resname="Research">
-        <source>Research</source>
-        <target>Pesquisa</target>
       </trans-unit>
       <trans-unit id="ddc3636f480fa963a0265568f99c14aea5fc8e88" resname="Reset password URL">
         <source>Reset password URL</source>
@@ -1701,7 +1672,7 @@
       </trans-unit>
       <trans-unit id="f7f7607b333b374d1116f2a2dd4cd970e3c6ef56" resname="Send draft opinion">
         <source>Send draft opinion</source>
-        <target>Enviar esboço do parecer </target>
+        <target>Enviar esboço do parecer</target>
       </trans-unit>
       <trans-unit id="1df3f4928391777fd506da94b7dae8777c7715b8" resname="Send experience revision">
         <source>Send experience revision</source>
@@ -1865,19 +1836,19 @@
       </trans-unit>
       <trans-unit id="77a050428b90c6b14cf63b659c7a9d019e6a2abc" resname="The practice is fully implemented and continues to operate">
         <source>The practice is fully implemented and continues to operate</source>
-        <target>The practice is fully implemented and continues to operate</target>
+        <target>A prática está plenamente implementada e segue em operação</target>
       </trans-unit>
       <trans-unit id="1d313b85e82c825be27b51bd93fadc11c376cc27" resname="The practice is in the initial stage of implementation">
         <source>The practice is in the initial stage of implementation</source>
-        <target>The practice is in the initial stage of implementation</target>
+        <target>A prática está em etapa inicial de implementação</target>
       </trans-unit>
       <trans-unit id="19a8a7cffa84349c7158a6126fb9e4b08ef93488" resname="The practice was discontinued after a period of operation">
         <source>The practice was discontinued after a period of operation</source>
-        <target>The practice was discontinued after a period of operation</target>
+        <target>A prática foi descontinuada após um período de operação</target>
       </trans-unit>
       <trans-unit id="a04ac06ece8b84e41bb3528e59beac135d048b3d" resname="The practice was discontinued before it was fully implemented">
         <source>The practice was discontinued before it was fully implemented</source>
-        <target>The practice was discontinued before it was fully implemented</target>
+        <target>A prática foi interrompida antes de ter sido totalmente implementada</target>
       </trans-unit>
       <trans-unit id="0d09b05871f28db7c369b6e6b77eb0dcc99240b0" resname="The private_key and index_key are required in the parameters.yml file">
         <source>The private_key and index_key are required in the parameters.yml file</source>
@@ -2053,14 +2024,6 @@
         <source>Value</source>
         <target>Valor</target>
       </trans-unit>
-      <trans-unit id="19c86af493b2449f3bf5d1e82bb1693c006b1114" resname="Waiting for Committee">
-        <source>Waiting for Committee</source>
-        <target>Aguardando comitê.</target>
-      </trans-unit>
-      <trans-unit id="c0dbc9647009c412d8233097b849a2ab76fc58c3" resname="Waiting for initial evaluation">
-        <source>Waiting for initial evaluation</source>
-        <target>Aguardando avaliação inicial.</target>
-      </trans-unit>
       <trans-unit id="477bc7417793d2bd9001b1ab4e8087d6c09fc5d4" resname="Welcome to the Proethos2 platform!">
         <source>Welcome to the Proethos2 platform!</source>
         <target>Bem-vindo à plataforma Boas Práticas!</target>
@@ -2112,14 +2075,6 @@
       <trans-unit id="1613e0bd529d4ac55fed7a8adfd0f0ac72a13872" resname="Who were the people directly involved with the implementation of the reported experience? And what was their level of involvement?">
         <source>Who were the people directly involved with the implementation of the reported experience? And what was their level of involvement?</source>
         <target>Quais foram as pessoas envolvidas diretamente com a implementação da experiência relatada? E qual foi o nível de envolvimento delas?</target>
-      </trans-unit>
-      <trans-unit id="e5bc762f403e35e13720314ca194403f24b07d4a" resname="Withdraw experience">
-        <source>Withdraw experience</source>
-        <target>Retirar experiência</target>
-      </trans-unit>
-      <trans-unit id="ab014c3271737b4543fd454e943e9e1066532f7a" resname="Withdrawn">
-        <source>Withdrawn</source>
-        <target>Retirado</target>
       </trans-unit>
       <trans-unit id="c5ba25bc32c6a2e0d3b2fce10ca6ccd436d9e613" resname="You cannot edit this best practice">
         <source>You cannot edit this best practice</source>
