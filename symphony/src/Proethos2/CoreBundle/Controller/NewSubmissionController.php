@@ -1057,7 +1057,7 @@ class NewSubmissionController extends Controller
 
                     // updating protocol and setting status
                     $protocol = $submission->getProtocol();
-                    $protocol->setStatus("H");
+                    $protocol->setStatus("S");
                     $protocol->setDateInformed(new \DateTime());
                     $protocol->setUpdatedIn(new \DateTime());
                     $em->persist($protocol);
