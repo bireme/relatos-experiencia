@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-08T02:44:18Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2022-06-10T02:31:27Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -26,17 +26,17 @@
         <source>6 months</source>
         <target>6 months</target>
       </trans-unit>
-      <trans-unit id="669da8aff3aa4ff59f63de87673a76bb4fe7a13b" resname="A new best practice has been submitted.">
-        <source>A new best practice has been submitted.</source>
-        <target>A new best practice has been submitted.</target>
+      <trans-unit id="c638c8f7bf2b8f889dfefab3a0867f7b2b98fa9b" resname="A new experience has been submitted.">
+        <source>A new experience has been submitted.</source>
+        <target>A new experience has been submitted.</target>
       </trans-unit>
-      <trans-unit id="0f4679c979a95b886c19fafcc73f4b7361867198" resname="A new best practice needs your analysis.">
-        <source>A new best practice needs your analysis.</source>
-        <target>A new best practice needs your analysis.</target>
+      <trans-unit id="959f372e472be4a3f9ff0454c6d313802004e80e" resname="A new experience needs your analysis.">
+        <source>A new experience needs your analysis.</source>
+        <target>A new experience needs your analysis.</target>
       </trans-unit>
-      <trans-unit id="fb25d175b3fc0278c66813115d356e6df18f83bd" resname="A new best practice review was submitted">
-        <source>A new best practice review was submitted</source>
-        <target>A new best practice review was submitted</target>
+      <trans-unit id="57d1be71e66046133a162d1233ee5bc44f5716b4" resname="A new experience review was submitted">
+        <source>A new experience review was submitted</source>
+        <target>A new experience review was submitted</target>
       </trans-unit>
       <trans-unit id="fe1f2c4d494fc40392e39bec35686602dd971e3b" resname="A new monitoring action has been submitted.">
         <source>A new monitoring action has been submitted.</source>
@@ -45,10 +45,6 @@
       <trans-unit id="16457b3a60e193c4a3df6cd13191d355300b3927" resname="Academic Formation">
         <source>Academic Formation</source>
         <target>Academic Formation</target>
-      </trans-unit>
-      <trans-unit id="f8305e030f96d910b8adfa5d7f1623ea1d07b001" resname="Accept Submission">
-        <source>Accept Submission</source>
-        <target>Accept Submission</target>
       </trans-unit>
       <trans-unit id="0182636f85cc5ca30cc8e676ea978384c7029bb8" resname="Accept as Notification">
         <source>Accept as Notification</source>
@@ -94,9 +90,9 @@
         <source>Analyze</source>
         <target>Analyze</target>
       </trans-unit>
-      <trans-unit id="606e26f487dcd77b1abd9f7ceb09b2ad08ec86a8" resname="Analyze Best Practice">
-        <source>Analyze Best Practice</source>
-        <target>Analyze Best Practice</target>
+      <trans-unit id="7f08ae0858fb3a5415d58969e524eda0740fb8b2" resname="Analyze Experience">
+        <source>Analyze Experience</source>
+        <target>Analyze Experience</target>
       </trans-unit>
       <trans-unit id="9b4736c0ce70d7082c7aef99252d160e1d827280" resname="Analyze experience">
         <source>Analyze experience</source>
@@ -126,9 +122,9 @@
         <source>Approved</source>
         <target>Approved</target>
       </trans-unit>
-      <trans-unit id="34aa13c4a94b2035f8e21c545051a3469b75f72e" resname="Are you sure that you want to delete this best practice?">
-        <source>Are you sure that you want to delete this best practice?</source>
-        <target>Are you sure that you want to delete this best practice?</target>
+      <trans-unit id="525c78a189fbab793a1c85213c6bf4aeb143f3ca" resname="Are you sure that you want to delete this experience?">
+        <source>Are you sure that you want to delete this experience?</source>
+        <target>Are you sure that you want to delete this experience?</target>
       </trans-unit>
       <trans-unit id="9e4803f32f8b294ce70e2587d474369b2121e3f0" resname="Are you sure that you want to end this best practice evaluation?">
         <source>Are you sure that you want to end this best practice evaluation?</source>
@@ -142,9 +138,9 @@
         <source>Are you sure that you want to go to the next step without any revisions?</source>
         <target>Are you sure that you want to go to the next step without any revisions?</target>
       </trans-unit>
-      <trans-unit id="dd6b9d135d02dd80558c1ab472b0b7ca16db0fd0" resname="Are you sure that you want to reject this submission?">
-        <source>Are you sure that you want to reject this submission?</source>
-        <target>Are you sure that you want to reject this submission?</target>
+      <trans-unit id="a9bf2e493c2068582e6bcc6d8bb896a2cc308c6a" resname="Are you sure that you want to reject this experience?">
+        <source>Are you sure that you want to reject this experience?</source>
+        <target>Are you sure that you want to reject this experience?</target>
       </trans-unit>
       <trans-unit id="129d86112d0f124b04a96f1e06036d1b66e8e4b2" resname="Are you sure that you want to remove this member?">
         <source>Are you sure that you want to remove this member?</source>
@@ -205,54 +201,6 @@
       <trans-unit id="aedf7a1635bb4e0367005e7d924e291b989b1e97" resname="Best Practice options">
         <source>Best Practice options</source>
         <target>Best Practice options</target>
-      </trans-unit>
-      <trans-unit id="1d0f623140067265033491d9a5de850affbd3159" resname="Best practice accepted for review by %user% and investigators notified.">
-        <source>Best practice accepted for review by %user% and investigators notified.</source>
-        <target>Best practice accepted for review by %user% and investigators notified.</target>
-      </trans-unit>
-      <trans-unit id="b7e00139843cc412e84e3027d051454e8ee4d063" resname="Best practice finalized by %user% under option &quot;%option%&quot;.">
-        <source>Best practice finalized by %user% under option "%option%".</source>
-        <target>Best practice finalized by %user% under option "%option%".</target>
-      </trans-unit>
-      <trans-unit id="49cf8616e3fb7c12bba970bbf0ba4516411fe460" resname="Best practice rejected with success!">
-        <source>Best practice rejected with success!</source>
-        <target>Best practice rejected with success!</target>
-      </trans-unit>
-      <trans-unit id="813d5749c6e202383632da553fd1d2e4542ff264" resname="Best practice status has been modified.">
-        <source>Best practice status has been modified.</source>
-        <target>Best practice status has been modified.</target>
-      </trans-unit>
-      <trans-unit id="4aecca2b4fec9f6d7b323a95dc01399e31c12315" resname="Best practice status modified by %user%.">
-        <source>Best practice status modified by %user%.</source>
-        <target>Best practice status modified by %user%.</target>
-      </trans-unit>
-      <trans-unit id="04710d796296b52b915d66bfc1703210cfb70b0b" resname="Best practice submitted with success!">
-        <source>Best practice submitted with success!</source>
-        <target>Best practice submitted with success!</target>
-      </trans-unit>
-      <trans-unit id="9034bdeb699649396b3d09f711532e8c2cc136cf" resname="Best practice updated with success!">
-        <source>Best practice updated with success!</source>
-        <target>Best practice updated with success!</target>
-      </trans-unit>
-      <trans-unit id="629d83bbec827d6048b3161ccc3c5b399c8a6328" resname="Best practice was concluded as Exempt.">
-        <source>Best practice was concluded as Exempt.</source>
-        <target>Best practice was concluded as Exempt.</target>
-      </trans-unit>
-      <trans-unit id="d85efdbeb2cef126c04f1f8389f7d97c12edb7c9" resname="Best practice was finalized with success!">
-        <source>Best practice was finalized with success!</source>
-        <target>Best practice was finalized with success!</target>
-      </trans-unit>
-      <trans-unit id="1f8d15fb786fb9d5d2432c6bd91adb13205668e3" resname="Best practice was rejected by %user% with this justification &quot;%justify%&quot;.">
-        <source>Best practice was rejected by %user% with this justification "%justify%".</source>
-        <target>Best practice was rejected by %user% with this justification "%justify%".</target>
-      </trans-unit>
-      <trans-unit id="6333568eb51f6b87298cdff61d6d8ea9fd67c07a" resname="Best practice was removed with success!">
-        <source>Best practice was removed with success!</source>
-        <target>Best practice was removed with success!</target>
-      </trans-unit>
-      <trans-unit id="a47b3ccc3258837a5779b3ab973f887bbaf74e7a" resname="Best practice was sent to comittee for initial analysis by %user%.">
-        <source>Best practice was sent to comittee for initial analysis by %user%.</source>
-        <target>Best practice was sent to comittee for initial analysis by %user%.</target>
       </trans-unit>
       <trans-unit id="de3b994d22deb924dfef0da44d5ab981fccb8f0d" resname="CSRF token not valid">
         <source>CSRF token not valid</source>
@@ -602,6 +550,54 @@
         <source>Experience Title</source>
         <target>Experience Title</target>
       </trans-unit>
+      <trans-unit id="a7d1bc54bc457806cffd7f4c5447f77b090f26be" resname="Experience accepted for review by %user% and investigators notified.">
+        <source>Experience accepted for review by %user% and investigators notified.</source>
+        <target>Experience accepted for review by %user% and investigators notified.</target>
+      </trans-unit>
+      <trans-unit id="ef9d85e7e923369dc0245a813ac354f4746b9ae4" resname="Experience finalized by %user% under option &quot;%option%&quot;.">
+        <source>Experience finalized by %user% under option "%option%".</source>
+        <target>Experience finalized by %user% under option "%option%".</target>
+      </trans-unit>
+      <trans-unit id="9534743089728371bfb3de8cd82c6fd9762632ac" resname="Experience rejected with success!">
+        <source>Experience rejected with success!</source>
+        <target>Experience rejected with success!</target>
+      </trans-unit>
+      <trans-unit id="ce687d2478d2158e1717dd72d9749ff64faa1e59" resname="Experience status has been modified.">
+        <source>Experience status has been modified.</source>
+        <target>Experience status has been modified.</target>
+      </trans-unit>
+      <trans-unit id="878874868530131f57e714e74e8628e6d796b03d" resname="Experience status modified by %user%.">
+        <source>Experience status modified by %user%.</source>
+        <target>Experience status modified by %user%.</target>
+      </trans-unit>
+      <trans-unit id="5011aadf7cd685e97dd69310b6b91e10dd27fd86" resname="Experience submitted with success!">
+        <source>Experience submitted with success!</source>
+        <target>Experience submitted with success!</target>
+      </trans-unit>
+      <trans-unit id="177cb3e843a97159f193dc504c83715363b7e4a6" resname="Experience updated with success!">
+        <source>Experience updated with success!</source>
+        <target>Experience updated with success!</target>
+      </trans-unit>
+      <trans-unit id="e741b3f5bbf026fa5e244ed674a37526c5c0bf62" resname="Experience was concluded as Exempt.">
+        <source>Experience was concluded as Exempt.</source>
+        <target>Experience was concluded as Exempt.</target>
+      </trans-unit>
+      <trans-unit id="1bd6d474e93ed7eec35f5bc5a188daa6f50051ff" resname="Experience was finalized with success!">
+        <source>Experience was finalized with success!</source>
+        <target>Experience was finalized with success!</target>
+      </trans-unit>
+      <trans-unit id="9f33a2e0d53617b93878d65e75cc51a414849200" resname="Experience was rejected by %user% with this justification &quot;%justify%&quot;.">
+        <source>Experience was rejected by %user% with this justification "%justify%".</source>
+        <target>Experience was rejected by %user% with this justification "%justify%".</target>
+      </trans-unit>
+      <trans-unit id="cc7dbc8e1417bd7e7c29ef60f514e4300cdd15ab" resname="Experience was removed with success!">
+        <source>Experience was removed with success!</source>
+        <target>Experience was removed with success!</target>
+      </trans-unit>
+      <trans-unit id="f3f9154cc7ebcce91e7efaee6aa4d61e9c0bbd7a" resname="Experience was sent to comittee for initial analysis by %user%.">
+        <source>Experience was sent to comittee for initial analysis by %user%.</source>
+        <target>Experience was sent to comittee for initial analysis by %user%.</target>
+      </trans-unit>
       <trans-unit id="522712582116fcc6e5a881399c84f72c4d5508a6" resname="Experiences">
         <source>Experiences</source>
         <target>Experiences</target>
@@ -801,14 +797,6 @@
       <trans-unit id="34af284908ff7b3e717d1a14042d2de27ef42327" resname="Initial Committee Review">
         <source>Initial Committee Review</source>
         <target>Initial Committee Review</target>
-      </trans-unit>
-      <trans-unit id="91bf74d821f50065919a9c202be4787c9b3710b5" resname="Initial Committee Screening">
-        <source>Initial Committee Screening</source>
-        <target>Initial Committee Screening</target>
-      </trans-unit>
-      <trans-unit id="b91714208b2a583fc023ea1270476f75bcca4c41" resname="Initial commitee screening">
-        <source>Initial commitee screening</source>
-        <target>Initial commitee screening</target>
       </trans-unit>
       <trans-unit id="1a3fae1a69fcdaab82d1737fcf3346a46cf50ac5" resname="Initial committee review">
         <source>Initial committee review</source>
@@ -1198,10 +1186,6 @@
         <source>No FAQ found</source>
         <target>No FAQ found</target>
       </trans-unit>
-      <trans-unit id="0727b4e28e22a9cb435233319bb1b85749a7fe88" resname="No best practice found">
-        <source>No best practice found</source>
-        <target>No best practice found</target>
-      </trans-unit>
       <trans-unit id="4777fc52589c64f55c838ce9f1db39f3e838f2aa" resname="No configuration found">
         <source>No configuration found</source>
         <target>No configuration found</target>
@@ -1209,6 +1193,10 @@
       <trans-unit id="976b102756d0b69ab3f9aab14745305a3db7cf72" resname="No document found">
         <source>No document found</source>
         <target>No document found</target>
+      </trans-unit>
+      <trans-unit id="8425826b5aff2157188c0e10c76b1b0411c4e596" resname="No experience found">
+        <source>No experience found</source>
+        <target>No experience found</target>
       </trans-unit>
       <trans-unit id="2065724e497f0dd0dfd5bd47f55d900c5cbc6a96" resname="No extension found">
         <source>No extension found</source>
@@ -1470,13 +1458,13 @@
         <source>Reject</source>
         <target>Reject</target>
       </trans-unit>
-      <trans-unit id="819133f871d8e86af4cc2f170e04112a94a8799d" resname="Reject Submission">
-        <source>Reject Submission</source>
-        <target>Reject Submission</target>
+      <trans-unit id="3b0c2ab0bfa18b870e7645977dea368a0eb43b81" resname="Reject Experience?">
+        <source>Reject Experience?</source>
+        <target>Reject Experience?</target>
       </trans-unit>
-      <trans-unit id="90b778a9cf57418e64290c77c0ce18430305be64" resname="Reject Submission?">
-        <source>Reject Submission?</source>
-        <target>Reject Submission?</target>
+      <trans-unit id="27eeb7a291bfc566447d9cd928e98caf90f70ee6" resname="Rejected">
+        <source>Rejected</source>
+        <target>Rejected</target>
       </trans-unit>
       <trans-unit id="e963907dac5cd5c017869b4c96c18021c9bd058b" resname="Remove">
         <source>Remove</source>
@@ -1513,10 +1501,6 @@
       <trans-unit id="c49eef8e409f0bb5bc9d182040de8e59c4caba55" resname="Responsible removed with success.">
         <source>Responsible removed with success.</source>
         <target>Responsible removed with success.</target>
-      </trans-unit>
-      <trans-unit id="ca3ca2612a9b15db6b06bdf28fc27124af835f0c" resname="Retrieve experience">
-        <source>Retrieve experience</source>
-        <target>Retrieve experience</target>
       </trans-unit>
       <trans-unit id="a5c6c50c2aa87d3ca138c44ec18716e67238d29e" resname="Return reason">
         <source>Return reason</source>
@@ -1690,10 +1674,6 @@
         <source>Send to committee to decide</source>
         <target>Send to committee to decide</target>
       </trans-unit>
-      <trans-unit id="5c7cc591f759f9fdfaee5bae2a0fe28b0d5df72c" resname="Send to revision">
-        <source>Send to revision</source>
-        <target>Send to revision</target>
-      </trans-unit>
       <trans-unit id="b07eb00d111a743c92ecfbc78133c45b9f7d58c4" resname="Send us a message by entering the fields below, or write to us at">
         <source>Send us a message by entering the fields below, or write to us at</source>
         <target>Send us a message by entering the fields below, or write to us at</target>
@@ -1754,9 +1734,9 @@
         <source>Submission Language</source>
         <target>Submission Language</target>
       </trans-unit>
-      <trans-unit id="d1593f00014bdaaea6a2dd62e7a3b196a2a124c2" resname="Submission of best practice.">
-        <source>Submission of best practice.</source>
-        <target>Submission of best practice.</target>
+      <trans-unit id="45860183ce42cb05f49480d64f5c38e5a2d84749" resname="Submission of experience.">
+        <source>Submission of experience.</source>
+        <target>Submission of experience.</target>
       </trans-unit>
       <trans-unit id="c5eafe1a51b80e934915ccfb1d0afbde2967b915" resname="Submission started with success.">
         <source>Submission started with success.</source>
@@ -1826,9 +1806,9 @@
         <source>Terms of Use</source>
         <target>Terms of Use</target>
       </trans-unit>
-      <trans-unit id="fb549f369a3b4a82fd868e5763cb56fd17809028" resname="The best practice review was finalized!">
-        <source>The best practice review was finalized!</source>
-        <target>The best practice review was finalized!</target>
+      <trans-unit id="ab05ed667ce213133c0a5aa826ff876954aba630" resname="The experience review was finalized!">
+        <source>The experience review was finalized!</source>
+        <target>The experience review was finalized!</target>
       </trans-unit>
       <trans-unit id="33b2fe8fd6b616572111477a7dc3b94a90ec6c45" resname="The practice has not been implemented">
         <source>The practice has not been implemented</source>
@@ -2076,9 +2056,9 @@
         <source>Who were the people directly involved with the implementation of the reported experience? And what was their level of involvement?</source>
         <target>Who were the people directly involved with the implementation of the reported experience? And what was their level of involvement?</target>
       </trans-unit>
-      <trans-unit id="c5ba25bc32c6a2e0d3b2fce10ca6ccd436d9e613" resname="You cannot edit this best practice">
-        <source>You cannot edit this best practice</source>
-        <target>You cannot edit this best practice</target>
+      <trans-unit id="fc9f35caaa65a85408901fdc5fce3d48d2d461bf" resname="You cannot edit this experience">
+        <source>You cannot edit this experience</source>
+        <target>You cannot edit this experience</target>
       </trans-unit>
       <trans-unit id="696751f041de5e60a1187c72223bdd4aa7d6f40c" resname="You don't have access to do this">
         <source>You don't have access to do this</source>
@@ -2100,9 +2080,9 @@
         <source>You must accept the terms and conditions.</source>
         <target>You must accept the terms and conditions.</target>
       </trans-unit>
-      <trans-unit id="3e5418baea40374d842087599cebdad72b415f1f" resname="You were assigned to review a best practice">
-        <source>You were assigned to review a best practice</source>
-        <target>You were assigned to review a best practice</target>
+      <trans-unit id="af5e43f4475482065ff703c18100ad2a966def3e" resname="You were assigned to review a experience">
+        <source>You were assigned to review a experience</source>
+        <target>You were assigned to review a experience</target>
       </trans-unit>
       <trans-unit id="5066b72f14362144b768c328680ac75cf3ea67ff" resname="Your Experiences">
         <source>Your Experiences</source>
@@ -2112,29 +2092,29 @@
         <source>Your Profile</source>
         <target>Your Profile</target>
       </trans-unit>
-      <trans-unit id="1e8ccd2dc480121494673f51edb032b371154aab" resname="Your best practice has been accepted for ethics review. The committee's decision will be informed when the process is finalized.">
-        <source>Your best practice has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</source>
-        <target>Your best practice has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</target>
+      <trans-unit id="f1c843ac8fd434e52b14634d1f61e3d63bf2ffb2" resname="Your experience has been accepted for ethics review. The committee's decision will be informed when the process is finalized.">
+        <source>Your experience has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</source>
+        <target>Your experience has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</target>
       </trans-unit>
-      <trans-unit id="e7ddec86a99501676ec8ec74de90d74bf6c1753d" resname="Your best practice has been withdrawn">
-        <source>Your best practice has been withdrawn</source>
-        <target>Your best practice has been withdrawn</target>
+      <trans-unit id="1b224f1eac23be4075d5b713344a3e2a9dae9cfc" resname="Your experience has been withdrawn">
+        <source>Your experience has been withdrawn</source>
+        <target>Your experience has been withdrawn</target>
       </trans-unit>
-      <trans-unit id="add0e520721b865787ab54e6de4beee6f3b92dbc" resname="Your best practice was concluded as Exempt.">
-        <source>Your best practice was concluded as Exempt.</source>
-        <target>Your best practice was concluded as Exempt.</target>
+      <trans-unit id="f24f0743867254d98c96f41e831d09637db74808" resname="Your experience was concluded as Exempt.">
+        <source>Your experience was concluded as Exempt.</source>
+        <target>Your experience was concluded as Exempt.</target>
       </trans-unit>
-      <trans-unit id="c966ebb70a7b27e8a2b1ca7a361939730bc78047" resname="Your best practice was rejected">
-        <source>Your best practice was rejected</source>
-        <target>Your best practice was rejected</target>
+      <trans-unit id="3064fc13b5c3e6db449aac2b4ec7798580940357" resname="Your experience was rejected">
+        <source>Your experience was rejected</source>
+        <target>Your experience was rejected</target>
       </trans-unit>
-      <trans-unit id="8a9b2eb8c8ab7274265adae9fafb3a5cc104e3c0" resname="Your best practice was sent to review!">
-        <source>Your best practice was sent to review!</source>
-        <target>Your best practice was sent to review!</target>
+      <trans-unit id="74700df4c4243f4288498893fff6e6d4ea09410d" resname="Your experience was sent to review!">
+        <source>Your experience was sent to review!</source>
+        <target>Your experience was sent to review!</target>
       </trans-unit>
-      <trans-unit id="ffa977aea57c1ff4184209ad64612b33a20436a8" resname="Your best practice was sent to review.">
-        <source>Your best practice was sent to review.</source>
-        <target>Your best practice was sent to review.</target>
+      <trans-unit id="90e43f63da48c59bec4c3964c36893d09f10c338" resname="Your experience was sent to review.">
+        <source>Your experience was sent to review.</source>
+        <target>Your experience was sent to review.</target>
       </trans-unit>
       <trans-unit id="2bb6b986c5d6fb26dd9dd1054b545ce022371b0c" resname="active">
         <source>active</source>
