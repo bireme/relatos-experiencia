@@ -1051,7 +1051,7 @@ class NewSubmissionController extends Controller
                         $em->persist($submission);
                         $em->flush();
 
-                        $session->getFlashBag()->add('success', $translator->trans("Best practice submitted with success!"));
+                        $session->getFlashBag()->add('success', $translator->trans("Experience submitted with success!"));
                         return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $submission->getProtocol()->getId()), 301);
                     }
 
@@ -1070,7 +1070,7 @@ class NewSubmissionController extends Controller
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
                     $protocol_history->setUser($user);
-                    $protocol_history->setMessage($translator->trans("Submission of best practice."));
+                    $protocol_history->setMessage($translator->trans("Submission of experience."));
                     $em->persist($protocol_history);
                     $em->flush();
 
@@ -1096,7 +1096,7 @@ class NewSubmissionController extends Controller
                         }
 
                         $message = \Swift_Message::newInstance()
-                        ->setSubject("[BP] " . $mail_translator->trans("A new monitoring action has been submitted."))
+                        ->setSubject("[EXP] " . $mail_translator->trans("A new monitoring action has been submitted."))
                         ->setFrom($util->getConfiguration('committee.email'))
                         ->setTo($secretaries_emails)
                         ->setBody(
@@ -1128,7 +1128,7 @@ class NewSubmissionController extends Controller
                             $recipient = $protocol->getMainSubmission()->getOwner();
 
                             $message = \Swift_Message::newInstance()
-                            ->setSubject("[BP] " . $mail_translator->trans("Your best practice was sent to review."))
+                            ->setSubject("[EXP] " . $mail_translator->trans("Your experience was sent to review."))
                             ->setFrom($util->getConfiguration('committee.email'))
                             ->setTo($recipient->getEmail())
                             ->setBody(
@@ -1157,7 +1157,7 @@ class NewSubmissionController extends Controller
                         }
 
                         $message = \Swift_Message::newInstance()
-                        ->setSubject("[BP] " . $mail_translator->trans("A new best practice has been submitted."))
+                        ->setSubject("[EXP] " . $mail_translator->trans("A new experience has been submitted."))
                         ->setFrom($util->getConfiguration('committee.email'))
                         ->setTo($secretaries_emails)
                         ->setBody(
@@ -1168,7 +1168,7 @@ class NewSubmissionController extends Controller
 
                         $send = $this->get('mailer')->send($message);
 
-                        $session->getFlashBag()->add('success', $translator->trans("Best practice submitted with success!"));
+                        $session->getFlashBag()->add('success', $translator->trans("Experience submitted with success!"));
                     }
 
                     return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
