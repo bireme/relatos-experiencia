@@ -32,7 +32,7 @@
                     </li>
                 {% endif %}
 
-                {% if 'investigator' in app.user.rolesSlug or 'secretary' in app.user.rolesSlug or 'member-of-committee' in app.user.rolesSlug or 'member-ad-hoc' in app.user.rolesSlug %}
+                {% if 'secretary' in app.user.rolesSlug %}
                     <li class=""><a href="{{ path("home") }}">{% trans %}Dashboard{% endtrans %}</a></li>
                 {% endif %}
 

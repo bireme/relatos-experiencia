@@ -274,29 +274,17 @@ class SecurityController extends Controller
     public function loggedAction()
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        $isActive = $user->getIsActive();
 
-        $roles = array('investigator', 'secretary', 'member-of-committee', 'member-ad-hoc', 'administrator');
-        $roles_intersect = array_intersect($roles, $user->getRolesSlug());
-        $_roles = array('secretary', 'member-of-committee');
-        $_roles_intersect = array_intersect($_roles, $user->getRolesSlug());
+        if ( in_array('investigator', $user->getRolesSlug()) ) {
+            return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
+        }
 
-        if($roles_intersect && $isActive) {
-            if ( count($user->getRolesSlug()) == 1 and 'administrator' == $user->getRolesSlug()[0] ) {
-                return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
-            }
+        // if ( in_array('secretary', $user->getRolesSlug()) ) {
+        //     return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
+        // }
 
-            if($_roles_intersect) {
-                return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
-            } else {   
-                if (in_array('investigator', $user->getRolesSlug())) {
-                    return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
-                } else {
-                    return $this->redirectToRoute('home', array(), 301);
-                }
-            }            
-        } else {
-            return $this->redirectToRoute('logout_route', array('error' => 'inactive'), 301);
+        if ( in_array('administrator', $user->getRolesSlug()) ) {
+            return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
         }
     }
 
