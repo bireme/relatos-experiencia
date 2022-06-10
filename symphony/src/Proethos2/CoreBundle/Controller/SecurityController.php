@@ -279,9 +279,9 @@ class SecurityController extends Controller
             return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
         }
 
-        // if ( in_array('secretary', $user->getRolesSlug()) ) {
-        //     return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
-        // }
+        if ( in_array('secretary', $user->getRolesSlug()) ) {
+            return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
+        }
 
         if ( in_array('administrator', $user->getRolesSlug()) ) {
             return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
