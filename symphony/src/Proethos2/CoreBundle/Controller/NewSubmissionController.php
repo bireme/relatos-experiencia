@@ -472,7 +472,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            $required_fields = array('main_results', 'challenges_information', 'other_results', 'lessons_learned');
+            $required_fields = array('main_results', 'challenges_information', 'lessons_learned');
 
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
