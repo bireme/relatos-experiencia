@@ -887,14 +887,6 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Other Results');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getOtherResults())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
         $text = $translator->trans('Lessons Learned');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getLessonsLearned())) {
