@@ -88,14 +88,7 @@
                     </div>
 
                     <div class='row'>
-                        <div class="col-md-12">
-                            <h2 class='sub-header'>{% trans %}Period{% endtrans %}</h2>
-                            <h4>{% trans %}Indicate the period of implementation of the experience to be reported{% endtrans %}</h4>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="input-start-date"><b>*{% trans %}Start Date{% endtrans %} (YYYY-MM-DD):</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
@@ -105,36 +98,14 @@
                     </div>
 
                     <div class='row'>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="input-end-date">{% trans %}If the practice was completed, please indicate the date{% endtrans %} (YYYY-MM-DD):</label>
+                                <label for="input-end-date"><b>*{% trans %}End Date{% endtrans %} (YYYY-MM-DD) {% trans %}and/or current{% endtrans %}:</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class='form-control' id='input-end-date' name='end-date' value='{% if submission.endDate %}{{ submission.endDate|date("Y-m-d") }}{% endif %}'>
                             </div>
                         </div>
                     </div>
-
-                    <div class='row'>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="input-partial-date">{% trans %}If the practice was discontinued, please indicate the date{% endtrans %} (YYYY-MM-DD):</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class='form-control' id='input-partial-date' name='partial-date' value='{% if submission.partialDate %}{{ submission.partialDate|date("Y-m-d") }}{% endif %}'>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="input_other_date">{% trans %}Other, please specify{% endtrans %}:</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class="form-control" name='other_date' id='input_other_date' value="{{ submission.otherDate }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr />
 
                     <div class='row'>
                         <div class="col-md-12">
