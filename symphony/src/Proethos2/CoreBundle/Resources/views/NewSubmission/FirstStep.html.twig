@@ -120,6 +120,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <strong class="field-label">{% trans %}Keywords{% endtrans %}</strong>
+                                <label for="input_title">{% trans %}Keywords that represent the themes or issues related to the reported experience{% endtrans %}:</label>
+                                <input type="text" class="form-control" name='keywords' id='input_keywords' placeholder="{% trans %}insert keywords here{% endtrans %}" value="{% if post_data.keywords %}{{ post_data.keywords }}{% endif %}">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class='submission-button-controls'>
@@ -133,6 +143,10 @@
 {% block script %}
     <script>
         $(function(){
+            // $('[name=keywords]').tagify();
+            var element = document.querySelector('[name=keywords]');
+            new Tagify(element);
+
             $( "#select-status" ).on( "change", function() {
                 var val = $(this).val();
                 if ( 'F' == val ) {

@@ -56,9 +56,9 @@
                             <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-file">{% trans %}New Attachment{% endtrans %}</a>
                         </div>
                     </div>
+                </div>
 
-                    <div class='row submission-meta'></div>
-
+                <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
@@ -68,25 +68,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <strong class="field-label">{% trans %}Products{% endtrans %}</strong>
                                 <label for="textarea-products-information">{% trans %}Use this field to share documents, publications, materials or news related to your experience{% endtrans %}:</label>
                                 <textarea rows="6" class="form-control" name='products_information' id='textarea-products-information' placeholder="{% trans %}Please add one per line{% endtrans %}">{{ submission.productsInformation }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong class="field-label">{% trans %}Keywords{% endtrans %}</strong>
-                                <label for="input_title">{% trans %}Keywords that represent the themes or issues related to the reported experience. Select at least 3 DeCS descriptors - Health Sciences Descriptors{% endtrans %}:</label>
-                                <input type="text" class="form-control" name='keywords' id='input_keywords' placeholder="{% trans %}insert keywords here{% endtrans %}"  value="{{ submission.keywords }}">
                             </div>
                         </div>
                     </div>
@@ -164,18 +152,7 @@
 {% block script %}
     <script>
         $(function(){
-            // $('[name=keywords]').tagify();
-            var element = document.querySelector('[name=keywords]');
-            new Tagify(element);
 
-            $("#table-attachment").on("click", ".button-delete-attachment", function(e){
-                var id = $(this).data('id');
-                $("#hidden-delete-attachment").val(id);
-            });
-
-            $('#modal-delete-attachment').on('hidden.bs.modal', function () {
-                $("#hidden-delete-attachment").val("");
-            });
         });
     </script>
 {% endblock %}

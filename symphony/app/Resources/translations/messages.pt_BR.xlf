@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-13T20:12:28Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-06-13T20:45:30Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -958,9 +958,13 @@
         <source>Keywords</source>
         <target>Palavras-chave</target>
       </trans-unit>
+      <trans-unit id="dec72747d5160356b0220f023c5a2cd298eb4577" resname="Keywords that represent the themes or issues related to the reported experience">
+        <source>Keywords that represent the themes or issues related to the reported experience</source>
+        <target>Indique palavras-chave que representam os temas ou assuntos relacionados à experiência relatada</target>
+      </trans-unit>
       <trans-unit id="1f6a67e2f549d630dca1e5bc3d651ba6056499ca" resname="Keywords that represent the themes or issues related to the reported experience. Select at least 3 DeCS descriptors - Health Sciences Descriptors">
         <source>Keywords that represent the themes or issues related to the reported experience. Select at least 3 DeCS descriptors - Health Sciences Descriptors</source>
-        <target>Palavras-chave que representam os temas ou assuntos relacionados à experiência relatada. Selecione pelo menos 3 descritores do DeCS - Descritores em Ciências da Saúde</target>
+        <target>Indique palavras-chave que representam os temas ou assuntos relacionados à experiência relatada.</target>
       </trans-unit>
       <trans-unit id="53ec6d7dfa2c6ed480e8ec1293af8d6b2cf0a512" resname="Label translations">
         <source>Label translations</source>

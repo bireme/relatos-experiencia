@@ -108,6 +108,7 @@ class NewSubmissionController extends Controller
             if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
             $submission->setNotes($post_data['notes']);
+            $submission->setKeywords($post_data['keywords']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
             $submission->setProtocol($protocol);
             $submission->setNumber(1);
@@ -213,6 +214,7 @@ class NewSubmissionController extends Controller
             if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
             $submission->setNotes($post_data['notes']);
+            $submission->setKeywords($post_data['keywords']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
 
             // removing all thematic areas to re-add
@@ -741,7 +743,6 @@ class NewSubmissionController extends Controller
              // adding fields to model
             $submission->setOtherMedias($post_data['other_medias']);
             $submission->setProductsInformation($post_data['products_information']);
-            $submission->setKeywords($post_data['keywords']);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
