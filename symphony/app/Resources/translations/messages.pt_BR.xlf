@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-13T19:12:54Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-06-13T19:33:03Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -2166,7 +2166,7 @@
       </trans-unit>
       <trans-unit id="175e59fef581aa7fb3ee2ef82528a00616ba3f01" resname="What were the main difficulties and challenges faced in implementing the experience? Have these challenges been overcome? If yes, tell us how.">
         <source>What were the main difficulties and challenges faced in implementing the experience? Have these challenges been overcome? If yes, tell us how.</source>
-        <target>Quais foram as principais dificuldades e desafios enfrentados para implementação da experiência? Estes desafios foram contornados? Se sim, conte-nos como.</target>
+        <target>Quais foram as principais dificuldades e/ou desafios enfrentados para implementação da experiência? Estes desafios foram contornados?</target>
       </trans-unit>
       <trans-unit id="37b17aca0da1e25b7b10399a55bb8c0f1735c7ae" resname="What were the main expected or promised results when you planned to implement the experiment or when the experiment you are reporting was proposed?">
         <source>What were the main expected or promised results when you planned to implement the experiment or when the experiment you are reporting was proposed?</source>
