@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-13T19:59:19Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-06-13T20:12:28Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1600,7 +1600,7 @@
       </trans-unit>
       <trans-unit id="87df60de337fb58864343e396696d74611e0d403" resname="Resources">
         <source>Resources</source>
-        <target>Fontes</target>
+        <target>Recursos</target>
       </trans-unit>
       <trans-unit id="cd78077e58c44f25e53bcd83903b32c524bf46cc" resname="Respondent Name">
         <source>Respondent Name</source>
@@ -2158,7 +2158,7 @@
       </trans-unit>
       <trans-unit id="8dd81d277f6afead91a22ec53ac3200323f03552" resname="What resources were needed and used to implement the experience you are reporting? (Human resources, inputs, materials, equipment, infrastructure, money, etc.)">
         <source>What resources were needed and used to implement the experience you are reporting? (Human resources, inputs, materials, equipment, infrastructure, money, etc.)</source>
-        <target>Que recursos foram necessários e utilizados para implementação da experiência que você está relatando? (Recursos humanos, insumos, materiais, equipamentos, infraestrutura, dinheiro etc.)</target>
+        <target>Que recursos foram necessários para implementação da experiência? (Recursos humanos, financeiros, insumos, materiais, equipamentos, infraestrutura, etc.)</target>
       </trans-unit>
       <trans-unit id="87229b8d393b496709467d7741fb5ee5ae515632" resname="What unexpected or unplanned results were achieved from implementing the experience?">
         <source>What unexpected or unplanned results were achieved from implementing the experience?</source>
