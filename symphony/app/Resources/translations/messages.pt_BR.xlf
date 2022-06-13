@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-13T19:33:03Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-06-13T19:46:46Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -2162,7 +2162,7 @@
       </trans-unit>
       <trans-unit id="ffa1d4e06771cb6911f48894ce67c2eb8c79fbce" resname="What were the lessons learned from this experience? Or, what recommendations, tips or suggestions would you give to those interested in replicating this experience?">
         <source>What were the lessons learned from this experience? Or, what recommendations, tips or suggestions would you give to those interested in replicating this experience?</source>
-        <target>Quais foram as lições aprendidas desta experiência? Ou, que recomendações, dicas ou sugestões você daria para aqueles interessados em replicar esta experiência?</target>
+        <target>Quais foram as lições aprendidas com a experiência? Que recomendações, dicas ou sugestões você daria para aqueles interessados em replicar esta experiência?</target>
       </trans-unit>
       <trans-unit id="175e59fef581aa7fb3ee2ef82528a00616ba3f01" resname="What were the main difficulties and challenges faced in implementing the experience? Have these challenges been overcome? If yes, tell us how.">
         <source>What were the main difficulties and challenges faced in implementing the experience? Have these challenges been overcome? If yes, tell us how.</source>
