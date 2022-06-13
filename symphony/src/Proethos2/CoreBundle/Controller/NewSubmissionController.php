@@ -803,7 +803,7 @@ class NewSubmissionController extends Controller
         // $item = array('text' => $text, 'status' => true);
         // $revisions[] = $item;
 
-        $text = $translator->trans('Title');
+        $text = $translator->trans('Experience title');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getTitle())) {
             $item = array('text' => $text, 'status' => false);
@@ -819,7 +819,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Experience Status');
+        $text = $translator->trans('Experience status');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getStatus())) {
             $item = array('text' => $text, 'status' => false);
@@ -887,7 +887,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Lessons Learned');
+        $text = $translator->trans('Lessons learned');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getLessonsLearned())) {
             $item = array('text' => $text, 'status' => false);
