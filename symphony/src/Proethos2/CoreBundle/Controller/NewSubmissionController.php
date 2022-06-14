@@ -107,7 +107,6 @@ class NewSubmissionController extends Controller
             if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
             if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
-            $submission->setNotes($post_data['notes']);
             $submission->setKeywords($post_data['keywords']);
             $submission->setDescriptors($post_data['descriptors']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
@@ -214,7 +213,6 @@ class NewSubmissionController extends Controller
             if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
             if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
-            $submission->setNotes($post_data['notes']);
             $submission->setKeywords($post_data['keywords']);
             $submission->setDescriptors($post_data['descriptors']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
@@ -748,6 +746,7 @@ class NewSubmissionController extends Controller
             $submission->setOtherMedias($post_data['other_medias']);
             $submission->setProductsInformation($post_data['products_information']);
             $submission->setRelatedLinks($post_data['related_links']);
+            $submission->setNotes($post_data['notes']);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
