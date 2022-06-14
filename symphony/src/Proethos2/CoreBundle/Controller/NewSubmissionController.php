@@ -109,6 +109,7 @@ class NewSubmissionController extends Controller
             $submission->setOtherDate($post_data['other_date']);
             $submission->setNotes($post_data['notes']);
             $submission->setKeywords($post_data['keywords']);
+            $submission->setDescriptors($post_data['descriptors']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
             $submission->setProtocol($protocol);
             $submission->setNumber(1);
@@ -215,6 +216,7 @@ class NewSubmissionController extends Controller
             $submission->setOtherDate($post_data['other_date']);
             $submission->setNotes($post_data['notes']);
             $submission->setKeywords($post_data['keywords']);
+            $submission->setDescriptors($post_data['descriptors']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
 
             // removing all thematic areas to re-add

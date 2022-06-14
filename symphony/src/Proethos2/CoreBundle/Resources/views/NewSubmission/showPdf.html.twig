@@ -85,6 +85,12 @@
         <h3>{% trans %}Notes{% endtrans %}:</h3>
         <p>{{ submission.notes }}</p>
 
+        <h3>{% trans %}Keywords{% endtrans %}:</h3>
+        <p>{{ submission.keywordsList|join('; ') }}</p>
+
+        <h3>{% trans %}Descriptors{% endtrans %}:</h3>
+        <p>{{ submission.descriptorsList|join('; ') }}</p>
+
         <h3>{% trans %}Issue{% endtrans %}:</h3>
         <p>{{ submission.description }}</p>
 
@@ -197,8 +203,6 @@
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
 #}
-        <h3>{% trans %}Keywords{% endtrans %}:</h3>
-        <p>{{ submission.keywordsList|join('; ') }}</p>
 
         <footer>{% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</footer>
     </body>

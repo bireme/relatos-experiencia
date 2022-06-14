@@ -175,6 +175,20 @@ class Submission extends Base
      */
     private $notes;
 
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $keywords;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $descriptors;
+
     /******************** DESCRIÇÃO DO RELATO ********************/
 
     /**
@@ -306,13 +320,6 @@ class Submission extends Base
      * @ORM\Column(type="text", nullable=true)
      */
     private $products_information;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $keywords;
 
     /**
      * @var Tags
@@ -1528,5 +1535,43 @@ class Submission extends Base
     public function getOtherPopulationGroup()
     {
         return $this->other_population_group;
+    }
+
+    /**
+     * Set descriptors
+     *
+     * @param string $descriptors
+     *
+     * @return Submission
+     */
+    public function setDescriptors($descriptors)
+    {
+        $this->descriptors = $descriptors;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptors
+     *
+     * @return string
+     */
+    public function getDescriptors()
+    {
+        return $this->descriptors;
+    }
+
+    public function getDescriptorsList() {
+        $descriptors = array();
+
+        if ( $this->descriptors ) {
+            $descriptors_list = json_decode($this->descriptors);
+            
+            foreach($descriptors_list as $descriptor) {
+                $descriptors[] = $descriptor->value;
+            }
+        }
+
+        return $descriptors;
     }
 }

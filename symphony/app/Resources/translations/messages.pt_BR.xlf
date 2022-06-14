@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-13T20:45:30Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-06-13T21:15:15Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -514,6 +514,10 @@
         <source>Description in Spanish</source>
         <target>Descrição em espanhol</target>
       </trans-unit>
+      <trans-unit id="4b52e2ccdf7625b91f24b09ac19edd764d06a678" resname="Descriptors">
+        <source>Descriptors</source>
+        <target>Descritores</target>
+      </trans-unit>
       <trans-unit id="961f36de4c326fdd7cb4cc66ab04a5bd2188e0c3" resname="Do you confirm the exclusion of this attachment?">
         <source>Do you confirm the exclusion of this attachment?</source>
         <target>Confirma a exclusão desse anexo?</target>
@@ -964,7 +968,7 @@
       </trans-unit>
       <trans-unit id="1f6a67e2f549d630dca1e5bc3d651ba6056499ca" resname="Keywords that represent the themes or issues related to the reported experience. Select at least 3 DeCS descriptors - Health Sciences Descriptors">
         <source>Keywords that represent the themes or issues related to the reported experience. Select at least 3 DeCS descriptors - Health Sciences Descriptors</source>
-        <target>Indique palavras-chave que representam os temas ou assuntos relacionados à experiência relatada.</target>
+        <target>Indique palavras-chave que representam os temas ou assuntos relacionados à experiência relatada. Selecione pelo menos 3 descritores do DeCS (Descritores em Ciências da Saúde) para representar a temática da experiência</target>
       </trans-unit>
       <trans-unit id="53ec6d7dfa2c6ed480e8ec1293af8d6b2cf0a512" resname="Label translations">
         <source>Label translations</source>
@@ -1746,6 +1750,10 @@
         <source>Select an action</source>
         <target>Selecione uma ação </target>
       </trans-unit>
+      <trans-unit id="69e9a0f3d6e9084c95df2d410b32b2a6ae02285d" resname="Select at least 3 DeCS descriptors (Health Sciences Descriptors) to represent the theme of experience">
+        <source>Select at least 3 DeCS descriptors (Health Sciences Descriptors) to represent the theme of experience</source>
+        <target>Selecione pelo menos 3 descritores do DeCS (Descritores em Ciências da Saúde) para representar a temática da experiência</target>
+      </trans-unit>
       <trans-unit id="59ee76bad1c84ae8a74eecd124068c0d3c7d4924" resname="Select country">
         <source>Select country</source>
         <target>Selecione país</target>
@@ -2323,6 +2331,10 @@
       <trans-unit id="d436a3f40e3ecce896010be99dcf00a577b909aa" resname="inactive">
         <source>inactive</source>
         <target>Inativo </target>
+      </trans-unit>
+      <trans-unit id="27bd80948d4be79948b3b704a68d335cf2f353e8" resname="insert descriptors here">
+        <source>insert descriptors here</source>
+        <target>insira descritores aqui</target>
       </trans-unit>
       <trans-unit id="7b66f1e2066e0b2594a38721a7f7777414595af8" resname="insert keywords here">
         <source>insert keywords here</source>
