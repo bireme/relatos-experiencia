@@ -195,7 +195,7 @@
         </table>
 
         <h3>{% trans %}Other Medias{% endtrans %}:</h3>
-        {% for url in submission.otherMediasLinks %}
+        {% for url in submission.otherMediasList %}
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
 
@@ -207,6 +207,10 @@
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
 #}
+        <h3>{% trans %}Related Links{% endtrans %}:</h3>
+        {% for url in submission.relatedLinksList %}
+            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
+        {% endfor %}
 
         <footer>{% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</footer>
     </body>

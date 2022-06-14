@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-13T22:53:45Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-06-13T23:37:10Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -882,6 +882,10 @@
         <source>Inactive account. Please try again later.</source>
         <target>Conta inativa. Por favor, tente novamente mais tarde.</target>
       </trans-unit>
+      <trans-unit id="aded6381087c07ced84d0bb690090480beed5897" resname="Include website links related to the reported experience">
+        <source>Include website links related to the reported experience</source>
+        <target>Inclua links de sites relacionados à experiência relatada</target>
+      </trans-unit>
       <trans-unit id="15782c7351818e74c159d0530853a5e7f4ff1be2" resname="Inclusion criteria">
         <source>Inclusion criteria</source>
         <target>Critério de inclusão.</target>
@@ -1601,6 +1605,14 @@
       <trans-unit id="27eeb7a291bfc566447d9cd928e98caf90f70ee6" resname="Rejected">
         <source>Rejected</source>
         <target>Rejeitado</target>
+      </trans-unit>
+      <trans-unit id="181a415a001731a3644f9a3c789b0b3e252ecdb0" resname="Related Links">
+        <source>Related Links</source>
+        <target>Links Relacionados</target>
+      </trans-unit>
+      <trans-unit id="2256cc6ee2a5d077491a8a63ef76ac743c25d2d2" resname="Related links">
+        <source>Related links</source>
+        <target>Links relacionados</target>
       </trans-unit>
       <trans-unit id="e963907dac5cd5c017869b4c96c18021c9bd058b" resname="Remove">
         <source>Remove</source>

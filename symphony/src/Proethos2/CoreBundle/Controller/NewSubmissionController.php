@@ -747,6 +747,7 @@ class NewSubmissionController extends Controller
              // adding fields to model
             $submission->setOtherMedias($post_data['other_medias']);
             $submission->setProductsInformation($post_data['products_information']);
+            $submission->setRelatedLinks($post_data['related_links']);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);

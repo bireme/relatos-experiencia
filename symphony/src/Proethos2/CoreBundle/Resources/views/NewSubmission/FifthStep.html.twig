@@ -78,6 +78,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <strong class="field-label">{% trans %}Related links{% endtrans %}</strong>
+                                <label for="textarea-related-links">{% trans %}Include website links related to the reported experience{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</label>
+                                <textarea rows="6" class="form-control" name='related_links' id='textarea-related-links' placeholder="{% trans %}Please add one hyperlink per line{% endtrans %}">{{ submission.relatedLinks }}</textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class='submission-button-controls'>

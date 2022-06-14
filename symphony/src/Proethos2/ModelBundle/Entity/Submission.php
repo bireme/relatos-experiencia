@@ -322,6 +322,13 @@ class Submission extends Base
     private $products_information;
 
     /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $related_links;
+
+    /**
      * @var Tags
      *
      * @ORM\ManyToMany(targetEntity="Tags", inversedBy="submissions")
@@ -1284,7 +1291,7 @@ class Submission extends Base
      *
      * @return array
      */
-    public function getOtherMediasLinks()
+    public function getOtherMediasList()
     {
         $links = array();
         $_links = explode("\r\n", $this->other_medias);
@@ -1323,11 +1330,11 @@ class Submission extends Base
     }
 
     /**
-     * Get productsInformationLinks
+     * Get productsInformationList
      *
      * @return array
      */
-    public function getProductsInformationLinks()
+    public function getProductsInformationList()
     {
         $links = array();
         $_links = explode("\r\n", $this->products_information);
@@ -1573,5 +1580,48 @@ class Submission extends Base
         }
 
         return $descriptors;
+    }
+
+    /**
+     * Set relatedLinks
+     *
+     * @param string $relatedLinks
+     *
+     * @return Submission
+     */
+    public function setRelatedLinks($relatedLinks)
+    {
+        $this->related_links = $relatedLinks;
+
+        return $this;
+    }
+
+    /**
+     * Get relatedLinks
+     *
+     * @return string
+     */
+    public function getRelatedLinks()
+    {
+        return $this->related_links;
+    }
+
+    /**
+     * Get getRelatedLinksList
+     *
+     * @return array
+     */
+    public function getRelatedLinksList()
+    {
+        $links = array();
+        $_links = explode("\r\n", $this->related_links);
+
+        foreach ($_links as $link) {
+            if (filter_var($link, FILTER_VALIDATE_URL)) {
+                $links[] = $link;
+            }
+        }
+
+        return $links;
     }
 }
