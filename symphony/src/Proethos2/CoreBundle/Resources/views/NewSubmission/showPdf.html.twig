@@ -154,19 +154,21 @@
         <table>
             <tr>
                 <th width="30%">{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Filiation{% endtrans %}</th>
+                <th>{% trans %}Job{% endtrans %}</th>
                 <th>{% trans %}Academic Formation{% endtrans %}</th>
-                <th>{% trans %}Professional Category{% endtrans %}</th>
-                <th>{% trans %}Institution{% endtrans %}</th>
-                <th>{% trans %}Responsibility{% endtrans %}</th>
+                <th>{% trans %}Email{% endtrans %}</th>
+                <th>{% trans %}Curriculum{% endtrans %}</th>
             </tr>
 
             {% for member in submission.members %}
                 <tr>
                     <td>{{ member.name }}</td>
+                    <td>{{ member.filiation }}</td>
+                    <td>{{ member.job }}</td>
                     <td>{{ member.academicFormation }}</td>
-                    <td>{{ member.professionalCategory }}</td>
-                    <td>{{ member.institution }}</td>
-                    <td>{{ member.responsibility }}</td>
+                    <td>{{ member.email }}</td>
+                    <td style="word-break: break-all;"><a href="{{ member.curriculum }}" target="_blank">{{ member.curriculum }}</a></td>
                 </tr>
             {% endfor %}
         </table>

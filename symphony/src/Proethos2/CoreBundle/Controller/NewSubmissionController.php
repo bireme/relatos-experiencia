@@ -609,10 +609,11 @@ class NewSubmissionController extends Controller
                     $submission_member = new SubmissionMember();
                     $submission_member->setSubmission($submission);
                     $submission_member->setName($post_data['member-name']);
+                    $submission_member->setFiliation($post_data['member-filiation']);
+                    $submission_member->setJob($post_data['member-job']);
                     $submission_member->setAcademicFormation($post_data['member-academic-formation']);
-                    $submission_member->setProfessionalCategory($post_data['member-professional-category']);
-                    $submission_member->setInstitution($post_data['member-institution']);
-                    $submission_member->setResponsibility($post_data['member-responsibility']);
+                    $submission_member->setEmail($post_data['member-email']);
+                    $submission_member->setCurriculum($post_data['member-curriculum']);
                 }
 
                 $em->persist($submission_member);

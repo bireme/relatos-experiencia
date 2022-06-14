@@ -54,28 +54,34 @@ class SubmissionMember extends Base
     protected $name;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
+     */
+    private $filiation;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
+     */
+    private $job;
+
+    /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     protected $academic_formation;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
      */
-    protected $professional_category;
+    private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
      */
-    protected $institution;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     */
-    protected $responsibility;
+    private $curriculum;
 
     /**
      * Get id
@@ -136,6 +142,54 @@ class SubmissionMember extends Base
     }
 
     /**
+     * Set filiation
+     *
+     * @param string $filiation
+     *
+     * @return SubmissionMember
+     */
+    public function setFiliation($filiation)
+    {
+        $this->filiation = $filiation;
+
+        return $this;
+    }
+
+    /**
+     * Get filiation
+     *
+     * @return string
+     */
+    public function getFiliation()
+    {
+        return $this->filiation;
+    }
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     *
+     * @return SubmissionMember
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
      * Set academicFormation
      *
      * @param string $academicFormation
@@ -160,74 +214,50 @@ class SubmissionMember extends Base
     }
 
     /**
-     * Set professionalCategory
+     * Set email
      *
-     * @param string $professionalCategory
+     * @param string $email
      *
      * @return SubmissionMember
      */
-    public function setProfessionalCategory($professionalCategory)
+    public function setEmail($email)
     {
-        $this->professional_category = $professionalCategory;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get professionalCategory
+     * Get email
      *
      * @return string
      */
-    public function getProfessionalCategory()
+    public function getEmail()
     {
-        return $this->professional_category;
+        return $this->email;
     }
 
     /**
-     * Set institution
+     * Set curriculum
      *
-     * @param string $institution
+     * @param string $curriculum
      *
      * @return SubmissionMember
      */
-    public function setInstitution($institution)
+    public function setCurriculum($curriculum)
     {
-        $this->institution = $institution;
+        $this->curriculum = $curriculum;
 
         return $this;
     }
 
     /**
-     * Get institution
+     * Get curriculum
      *
      * @return string
      */
-    public function getInstitution()
+    public function getCurriculum()
     {
-        return $this->institution;
-    }
-
-    /**
-     * Set responsibility
-     *
-     * @param string $responsibility
-     *
-     * @return SubmissionMember
-     */
-    public function setResponsibility($responsibility)
-    {
-        $this->responsibility = $responsibility;
-
-        return $this;
-    }
-
-    /**
-     * Get responsibility
-     *
-     * @return string
-     */
-    public function getResponsibility()
-    {
-        return $this->responsibility;
+        return $this->curriculum;
     }
 }

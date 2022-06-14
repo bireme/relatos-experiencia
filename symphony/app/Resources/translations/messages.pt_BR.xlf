@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-13T22:09:34Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-06-13T22:13:36Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -2214,7 +2214,7 @@
       </trans-unit>
       <trans-unit id="1613e0bd529d4ac55fed7a8adfd0f0ac72a13872" resname="Who were the people directly involved with the implementation of the reported experience? And what was their level of involvement?">
         <source>Who were the people directly involved with the implementation of the reported experience? And what was their level of involvement?</source>
-        <target>Quais foram as pessoas envolvidas diretamente com a implementação da experiência relatada? E qual foi o nível de envolvimento delas?</target>
+        <target>Quem foram os envolvidos na implementação da experiência?</target>
       </trans-unit>
       <trans-unit id="c5ba25bc32c6a2e0d3b2fce10ca6ccd436d9e613" resname="You cannot edit this best practice">
         <source>You cannot edit this best practice</source>
