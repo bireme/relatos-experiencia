@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-13T21:15:15Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-06-13T22:09:34Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -953,6 +953,10 @@
       <trans-unit id="c7b6146845696c0767d229b2ad937ac7d820bbea" resname="Item updated with success.">
         <source>Item updated with success.</source>
         <target>Item atualizado com sucesso.</target>
+      </trans-unit>
+      <trans-unit id="30c8cb83b9acd93beaa32086336c36cb77c065d9" resname="Job">
+        <source>Job</source>
+        <target>Cargo</target>
       </trans-unit>
       <trans-unit id="7d2a7bff0abb0d0de4946434ea191a1498465dec" resname="Justification">
         <source>Justification</source>

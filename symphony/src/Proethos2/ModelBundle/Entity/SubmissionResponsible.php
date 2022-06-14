@@ -68,6 +68,12 @@ class SubmissionResponsible extends Base
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
      */
+    private $job;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
+     */
     private $email;
 
     /**
@@ -376,5 +382,29 @@ class SubmissionResponsible extends Base
     public function getOrcid()
     {
         return $this->orcid;
+    }
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     *
+     * @return SubmissionResponsible
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
     }
 }

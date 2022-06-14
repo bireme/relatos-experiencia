@@ -555,6 +555,7 @@ class NewSubmissionController extends Controller
                     $submission_responsible->setSubmission($submission);
                     $submission_responsible->setName($post_data['responsible-name']);
                     $submission_responsible->setFiliation($post_data['responsible-filiation']);
+                    $submission_responsible->setJob($post_data['responsible-job']);
                     $submission_responsible->setEmail($post_data['responsible-email']);
                     $submission_responsible->setPhone($post_data['responsible-phone']);
                     $submission_responsible->setCurriculum($post_data['responsible-curriculum']);

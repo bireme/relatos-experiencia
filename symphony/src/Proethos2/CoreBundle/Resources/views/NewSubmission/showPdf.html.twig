@@ -129,7 +129,8 @@
         <table>
             <tr>
                 <th width="30%">{% trans %}Name{% endtrans %}</th>
-                <th width="20%">{% trans %}Filiation{% endtrans %}</th>
+                <th width="10%">{% trans %}Filiation{% endtrans %}</th>
+                <th width="10%">{% trans %}Job{% endtrans %}</th>
                 <th width="10%">{% trans %}Email{% endtrans %}</th>
                 <th width="10%">{% trans %}Phone{% endtrans %}</th>
                 <th width="20%">{% trans %}Curriculum{% endtrans %}</th>
@@ -140,6 +141,7 @@
                 <tr>
                     <td>{{ resp.name }}</td>
                     <td>{{ resp.filiation }}</td>
+                    <td>{{ resp.job }}</td>
                     <td>{{ resp.email }}</td>
                     <td>{{ resp.phone }}</td>
                     <td style="word-break: break-all;"><a href="{{ resp.curriculum }}" target="_blank">{{ resp.curriculum }}</a></td>
