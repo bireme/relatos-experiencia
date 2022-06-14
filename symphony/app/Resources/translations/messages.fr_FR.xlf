@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-14T01:27:22Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2022-06-14T01:52:36Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -954,6 +954,10 @@
         <source>Issue</source>
         <target>Issue</target>
       </trans-unit>
+      <trans-unit id="8893765d4f95120244e13e8008e4a7b44da092e4" resname="Issue/Situation">
+        <source>Issue/Situation</source>
+        <target>Issue/Situation</target>
+      </trans-unit>
       <trans-unit id="a0c82c52808e161cd5b44fc9a52ce3065f662a50" resname="Item created with success.">
         <source>Item created with success.</source>
         <target>Item created with success.</target>
@@ -1382,6 +1386,10 @@
         <source>Objectives</source>
         <target>Objectives</target>
       </trans-unit>
+      <trans-unit id="ae2928d55db9207052559b7bda19642645169306" resname="Objectives/Expected results">
+        <source>Objectives/Expected results</source>
+        <target>Objectives/Expected results</target>
+      </trans-unit>
       <trans-unit id="81a66b042f92ae09dec0fc1a1d5fccf4d2f6d252" resname="Opinions Required">
         <source>Opinions Required</source>
         <target>Opinions Required</target>
@@ -1421,6 +1429,10 @@
       <trans-unit id="0e456d5e8f724b853b9267334fab55c7b6fa98cb" resname="Other medias">
         <source>Other medias</source>
         <target>Other medias</target>
+      </trans-unit>
+      <trans-unit id="c74c3135939626dc90de52cd9b2ea709f9c167d0" resname="Other population">
+        <source>Other population</source>
+        <target>Other population</target>
       </trans-unit>
       <trans-unit id="5d5cca68b60f9d5d52d11c00e8d7fabd6abb1ede" resname="Other population or target audience">
         <source>Other population or target audience</source>

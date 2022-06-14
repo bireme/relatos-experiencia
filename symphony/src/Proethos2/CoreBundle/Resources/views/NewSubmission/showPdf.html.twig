@@ -63,22 +63,8 @@
 
         {% if submission.endDate %}
 
-            <h3>{% trans %}End Date{% endtrans %}:</h3>
+            <h3>{% trans %}End Date{% endtrans %} {% trans %}and/or current{% endtrans %}:</h3>
             <p>{{ submission.endDate|date("Y-m-d") }}</p>
-
-        {% endif %}
-
-        {% if submission.partialDate %}
-
-            <h3>{% trans %}Suspension Date{% endtrans %}:</h3>
-            <p>{{ submission.partialDate|date("Y-m-d") }}</p>
-
-        {% endif %}
-
-        {% if submission.otherdate %}
-
-            <h3>{% trans %}Other, please specify{% endtrans %}:</h3>
-            <p>{{ submission.otherdate }}</p>
 
         {% endif %}
 
@@ -88,7 +74,7 @@
         <h3>{% trans %}Descriptors{% endtrans %}:</h3>
         <p>{{ submission.descriptorsList|join('; ') }}</p>
 
-        <h3>{% trans %}Issue{% endtrans %}:</h3>
+        <h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>
         <p>{{ submission.description }}</p>
 
         <h3>{% trans %}Population{% endtrans %}:</h3>
@@ -101,7 +87,7 @@
 
         {% endif %}
 
-        <h3>{% trans %}Objectives{% endtrans %}:</h3>
+        <h3>{% trans %}Objectives{% endtrans %}/{% trans %}Expected results{% endtrans %}:</h3>
         <p>{{ submission.objectives }}</p>
 
         <h3>{% trans %}Resources{% endtrans %}:</h3>
@@ -115,9 +101,6 @@
 
         <h3>{% trans %}Challenges{% endtrans %}:</h3>
         <p>{{ submission.challengesInformation }}</p>
-
-        <h3>{% trans %}Other Results{% endtrans %}:</h3>
-        <p>{{ submission.otherResults }}</p>
 
         <h3>{% trans %}Lessons Learned{% endtrans %}:</h3>
         <p>{{ submission.lessonsLearned }}</p>
@@ -196,7 +179,7 @@
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
 
-        <h3>{% trans %}Products{% endtrans %}:</h3>
+        <h3>{% trans %}Products, materials and publications{% endtrans %}:</h3>
         <p>{{ submission.productsInformation|nl2br }}</p>
 {#
         <h3>{% trans %}Products{% endtrans %}:</h3>

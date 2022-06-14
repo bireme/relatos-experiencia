@@ -852,7 +852,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans("Issue");
+        $text = $translator->trans("Issue/Situation");
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getDescription())) {
             $item = array('text' => $text, 'status' => false);
@@ -860,7 +860,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Objectives');
+        $text = $translator->trans('Objectives/Expected results');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getObjectives())) {
             $item = array('text' => $text, 'status' => false);
