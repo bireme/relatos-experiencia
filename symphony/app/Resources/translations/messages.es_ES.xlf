@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-14T01:52:35Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-06-15T00:26:16Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -538,6 +538,14 @@
         <source>Document updated with success.</source>
         <target>Documento actualizado exitosamente.</target>
       </trans-unit>
+      <trans-unit id="687c82861c956e47456186f6522cfc8dbadb8ef6" resname="Documents">
+        <source>Documents</source>
+        <target>Documents</target>
+      </trans-unit>
+      <trans-unit id="ec289993e0aaebf5f64aa680ccd3c1950f644aee" resname="Documents and Medias">
+        <source>Documents and Medias</source>
+        <target>Documents and Medias</target>
+      </trans-unit>
       <trans-unit id="23d33e22acfcb9ecddb4a85f10607dc4ff49e23c" resname="Draft">
         <source>Draft</source>
         <target>Borrador</target>
@@ -870,6 +878,10 @@
         <source>If the practice was discontinued, please indicate the date</source>
         <target>If the practice was discontinued, please indicate the date</target>
       </trans-unit>
+      <trans-unit id="09e871c98fef3b901a775def173e4126aaf73b42" resname="Images">
+        <source>Images</source>
+        <target>Images</target>
+      </trans-unit>
       <trans-unit id="d9966f86e29f16a86104a191183d328bcf4bd392" resname="Implemented and in regular operation">
         <source>Implemented and in regular operation</source>
         <target>Implemented and in regular operation</target>
@@ -1134,6 +1146,14 @@
         <source>Monitoring period</source>
         <target>Período de monitoreo</target>
       </trans-unit>
+      <trans-unit id="f33077f82401d4edb9f4ec5b2e52eba4ac9a9bec" resname="More documents">
+        <source>More documents</source>
+        <target>More documents</target>
+      </trans-unit>
+      <trans-unit id="84f6cc6087637aa89dfbe09f83cd80cdbad36a42" resname="More medias">
+        <source>More medias</source>
+        <target>More medias</target>
+      </trans-unit>
       <trans-unit id="fe43e90b93043a759de7e287e80066cc7166a16e" resname="My Experiences">
         <source>My Experiences</source>
         <target>My Experiences</target>
@@ -1198,6 +1218,10 @@
         <source>New Currency</source>
         <target>Nueva moneda</target>
       </trans-unit>
+      <trans-unit id="e69f5da60a4e048b153ac26a5f65b9bb0ea18b3f" resname="New Document">
+        <source>New Document</source>
+        <target>New Document</target>
+      </trans-unit>
       <trans-unit id="48ce2a3e305902340f68d8bb07df2073b6500b41" resname="New Gender">
         <source>New Gender</source>
         <target>Nuevo género</target>
@@ -1210,6 +1234,10 @@
         <source>New Help</source>
         <target>New Help</target>
       </trans-unit>
+      <trans-unit id="05a80c298031cedb0f9a0e146a91ab2487cf71d3" resname="New Image">
+        <source>New Image</source>
+        <target>New Image</target>
+      </trans-unit>
       <trans-unit id="947ce86bed0a9a05a460ce619418ca795e6b44b0" resname="New Institution">
         <source>New Institution</source>
         <target>Nueva institución</target>
@@ -1217,6 +1245,10 @@
       <trans-unit id="62083a807aa2824d17f5edea3d48582889abc0fd" resname="New Intervention">
         <source>New Intervention</source>
         <target>Nueva intervención</target>
+      </trans-unit>
+      <trans-unit id="7419965e77ccae8616456b4a2a963e04e96c5d36" resname="New Media">
+        <source>New Media</source>
+        <target>New Media</target>
       </trans-unit>
       <trans-unit id="e4cc33d64af4f8eaa127a13adf4a8d2289fcd97a" resname="New Meeting">
         <source>New Meeting</source>
@@ -1858,9 +1890,25 @@
         <source>Set your password</source>
         <target>Establezca su contraseña</target>
       </trans-unit>
+      <trans-unit id="c16097ac30e85ec65348062961e40cf7e24c1022" resname="Share fulltext documents about the reported experience">
+        <source>Share fulltext documents about the reported experience</source>
+        <target>Share fulltext documents about the reported experience</target>
+      </trans-unit>
+      <trans-unit id="c2f6c2488b68b24808be31e4cd2befffdd03c9d0" resname="Share other media related to the reported experience">
+        <source>Share other media related to the reported experience</source>
+        <target>Share other media related to the reported experience</target>
+      </trans-unit>
+      <trans-unit id="d0c05bda430fc819acf5f392eded780150a776e7" resname="Share photos and/or other images illustrating the reported experience">
+        <source>Share photos and/or other images illustrating the reported experience</source>
+        <target>Share photos and/or other images illustrating the reported experience</target>
+      </trans-unit>
       <trans-unit id="f53e43ca60b0cba9237adc7b63422e249adaf4f6" resname="Share photos, brochures and other materials that illustrate the practice or experience reported and lived">
         <source>Share photos, brochures and other materials that illustrate the practice or experience reported and lived</source>
         <target>Share photos, brochures and other materials that illustrate the practice or experience reported and lived</target>
+      </trans-unit>
+      <trans-unit id="c99f0add099bf0c6f14d29a3a81100704e534bf3" resname="Share videos with testimonials from the person responsible, teams and/or population involved with the reported experience">
+        <source>Share videos with testimonials from the person responsible, teams and/or population involved with the reported experience</source>
+        <target>Share videos with testimonials from the person responsible, teams and/or population involved with the reported experience</target>
       </trans-unit>
       <trans-unit id="2a9e7603ab040fbfcdb98b735f6e3c5ce5f5ff6f" resname="Show Experience">
         <source>Show Experience</source>
@@ -1873,6 +1921,10 @@
       <trans-unit id="30f6fed84499528f3d635da39f8c05cc1c4b429d" resname="Situation">
         <source>Situation</source>
         <target>Situation</target>
+      </trans-unit>
+      <trans-unit id="da581f85e0b26a16cba2c19d07dc95d9cdc81d4f" resname="Sixth step saved with success.">
+        <source>Sixth step saved with success.</source>
+        <target>Sixth step saved with success.</target>
       </trans-unit>
       <trans-unit id="8df7f1b361b2af42d36011e00d22c0f9891ec0b0" resname="Spanish">
         <source>Spanish</source>
@@ -2186,6 +2238,10 @@
       <trans-unit id="8dce170de238b1feda2ecd9674ea3ca0d068fbcb" resname="Value">
         <source>Value</source>
         <target>Valor</target>
+      </trans-unit>
+      <trans-unit id="56b71e89fb1079caaadefd0889e9a22e8b0560e3" resname="Videos">
+        <source>Videos</source>
+        <target>Videos</target>
       </trans-unit>
       <trans-unit id="58b8e30511e7a32eebcd90ccb61ccea388cfa5ec" resname="Welcome to the Experience Reports platform!">
         <source>Welcome to the Experience Reports platform!</source>

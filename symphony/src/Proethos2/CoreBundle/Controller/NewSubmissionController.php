@@ -688,6 +688,174 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            $file = $request->files->get('new-document');
+            if(!empty($file)) {
+
+                $upload_type = $upload_type_repository->findOneBy(array("slug" => "document"));
+
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = $upload_type->getExtensionsFormat();
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
+
+                $submission_upload = new SubmissionUpload();
+                $submission_upload->setSubmission($submission);
+                $submission_upload->setUploadType($upload_type);
+                $submission_upload->setUser($user);
+                $submission_upload->setFile($file);
+                $submission_upload->setSubmissionNumber($submission->getNumber());
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission_upload);
+                $em->flush();
+
+                $submission->addAttachment($submission_upload);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("File uploaded with success."));
+                return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
+
+            }
+
+            $file = $request->files->get('new-image');
+            if(!empty($file)) {
+
+                $upload_type = $upload_type_repository->findOneBy(array("slug" => "image"));
+
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = $upload_type->getExtensionsFormat();
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
+
+                $submission_upload = new SubmissionUpload();
+                $submission_upload->setSubmission($submission);
+                $submission_upload->setUploadType($upload_type);
+                $submission_upload->setUser($user);
+                $submission_upload->setFile($file);
+                $submission_upload->setSubmissionNumber($submission->getNumber());
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission_upload);
+                $em->flush();
+
+                $submission->addAttachment($submission_upload);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("File uploaded with success."));
+                return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
+
+            }
+
+            $file = $request->files->get('new-media');
+            if(!empty($file)) {
+
+                $upload_type = $upload_type_repository->findOneBy(array("slug" => "others"));
+
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = $upload_type->getExtensionsFormat();
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
+
+                $submission_upload = new SubmissionUpload();
+                $submission_upload->setSubmission($submission);
+                $submission_upload->setUploadType($upload_type);
+                $submission_upload->setUser($user);
+                $submission_upload->setFile($file);
+                $submission_upload->setSubmissionNumber($submission->getNumber());
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission_upload);
+                $em->flush();
+
+                $submission->addAttachment($submission_upload);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("File uploaded with success."));
+                return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
+
+            }
+
+            if(isset($post_data['delete-attachment-id']) and !empty($post_data['delete-attachment-id'])) {
+                $submission_upload = $submission_upload_repository->find($post_data['delete-attachment-id']);
+                if($submission_upload) {
+                    $em->remove($submission_upload);
+                    $em->flush();
+                    $session->getFlashBag()->add('success', $translator->trans("File removed with success."));
+                    return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
+                }
+            }
+
+            // adding fields to model
+            $submission->setOtherDocs($post_data['other_docs']);
+            $submission->setOtherVideos($post_data['other_videos']);
+            $submission->setOtherMedias($post_data['other_medias']);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($submission);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Fifth step saved with success."));
+            return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/submission/new/{submission_id}/sixth", name="submission_new_sixth_step")
+     * @Template()
+     */
+    public function SixthStepAction($submission_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
+        $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
+
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        $upload_types = $upload_type_repository->findByStatus(true);
+        $output['upload_types'] = $upload_types;
+
+        if (!$submission or $submission->getCanBeEdited() == false) {
+            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
+                throw $this->createNotFoundException($translator->trans('No submission found'));
+            }
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-fifth-step', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
+            // getting post data
+            $post_data = $request->request->all();
+
             $file = $request->files->get('new-attachment-file');
             if(!empty($file)) {
 
@@ -733,16 +901,7 @@ class NewSubmissionController extends Controller
                 }
             }
 
-            // checking required fields
-            // $required_fields = array('products_information', 'keywords');
-            // foreach($required_fields as $field) {
-            //     if(!isset($post_data[$field]) or empty($post_data[$field])) {
-            //         $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-            //         return $output;
-            //     }
-            // }
-
-             // adding fields to model
+            // adding fields to model
             $submission->setOtherMedias($post_data['other_medias']);
             $submission->setProductsInformation($post_data['products_information']);
             $submission->setRelatedLinks($post_data['related_links']);
@@ -752,18 +911,18 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Fifth step saved with success."));
-            return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
+            $session->getFlashBag()->add('success', $translator->trans("Sixth step saved with success."));
+            return $this->redirectToRoute('submission_new_seventh_step', array('submission_id' => $submission->getId()), 301);
         }
 
         return $output;
     }
 
     /**
-     * @Route("/submission/new/{submission_id}/sixth", name="submission_new_sixth_step")
+     * @Route("/submission/new/{submission_id}/seventh", name="submission_new_seventh_step")
      * @Template()
      */
-    public function SixthStepAction($submission_id)
+    public function SeventhStepAction($submission_id)
     {
         $output = array();
         $request = $this->getRequest();

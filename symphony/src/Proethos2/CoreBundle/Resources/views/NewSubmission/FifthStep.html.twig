@@ -21,14 +21,15 @@
                 <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
-                            <h4>{% trans %}Share photos, brochures and other materials that illustrate the practice or experience reported and lived{% endtrans %}</h4>
+                            <h3>{% trans %}Documents{% endtrans %}</h3>
+                            <h5>{% trans %}Share fulltext documents about the reported experience{% endtrans %}</h5>
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class="col-md-12">
                             <fieldset>
-                                <table class='table table-hover table-condensed' id='table-attachment'>
+                                <table class='table table-hover table-condensed' id='table-document'>
                                     <thead>
                                         <tr>
                                             <th>{% trans %}File name{% endtrans %}</th>
@@ -37,9 +38,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for file in submission.attachments %}
+                                        {% for file in submission.attachments if file.uploadType.slug == 'document' %}
                                             <tr>
-                                                <td>{% if file.uploadType.slug in ['protocol'] %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
+                                                <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
                                                 <td>{{ file.created|date("d/m/Y H:i") }}</td>
                                                 <td>
                                                     <a href='{{ asset(file.uri) }}' class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
@@ -52,52 +53,129 @@
                                     </tbody>
                                 </table>
                             </fieldset>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-document">{% trans %}New Document{% endtrans %}</a>
+                        </div>
+                    </div>
+                    
+                    <br />
 
-                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-file">{% trans %}New Attachment{% endtrans %}</a>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-other-docs"><b>{% trans %}More documents{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</b></label>
+                                <textarea rows="6" class="form-control" name='other_docs' id='textarea-other-docs' placeholder="{% trans %}Please add one hyperlink per line{% endtrans %}">{{ submission.otherDocs }}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class='row submission-meta'></div>
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h3>{% trans %}Images{% endtrans %}</h3>
+                            <h5>{% trans %}Share photos and/or other images illustrating the reported experience{% endtrans %}</h5>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <fieldset>
+                                <table class='table table-hover table-condensed' id='table-image'>
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans %}File name{% endtrans %}</th>
+                                            <th>{% trans %}Date & Time{% endtrans %}</th>
+                                            <th>{% trans %}Actions{% endtrans %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for file in submission.attachments if file.uploadType.slug == 'image' %}
+                                            <tr>
+                                                <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
+                                                <td>{{ file.created|date("d/m/Y H:i") }}</td>
+                                                <td>
+                                                    <a href='{{ asset(file.uri) }}' class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                                    <a href='#' class='btn btn-default btn-xs button-delete-attachment' data-id='{{ file.id }}' data-toggle="modal" data-target="#modal-delete-attachment">
+                                                        <i class='glyphicon glyphicon-trash'></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-image">{% trans %}New Image{% endtrans %}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
 
                 <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
+                            <h3>{% trans %}Videos{% endtrans %}</h3>
+                            <h5>{% trans %}Share videos with testimonials from the person responsible, teams and/or population involved with the reported experience{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</h5>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <strong class="field-label">{% trans %}Other medias{% endtrans %}</strong>
-                                <label for="textarea-other-medias">{% trans %}For videos, websites and other medias, please insert in this field{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</label>
+                                {# <strong class="field-label">{% trans %}Videos{% endtrans %}</strong> #}
+                                {# <label for="textarea-other-videos">{% trans %}Compartilhe vídeos com depoimentos do responsável, equipes e/ou população envolvida com a experiência relatada{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</label> #}
+                                <textarea rows="6" class="form-control" name='other_videos' id='textarea-other-videos' placeholder="{% trans %}Please add one hyperlink per line{% endtrans %}">{{ submission.otherVideos }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h3>{% trans %}Other medias{% endtrans %}</h3>
+                            <h5>{% trans %}Share other media related to the reported experience{% endtrans %}</h5>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <fieldset>
+                                <table class='table table-hover table-condensed' id='table-media'>
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans %}File name{% endtrans %}</th>
+                                            <th>{% trans %}Date & Time{% endtrans %}</th>
+                                            <th>{% trans %}Actions{% endtrans %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for file in submission.attachments if file.uploadType.slug == 'others' %}
+                                            <tr>
+                                                <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
+                                                <td>{{ file.created|date("d/m/Y H:i") }}</td>
+                                                <td>
+                                                    <a href='{{ asset(file.uri) }}' class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                                    <a href='#' class='btn btn-default btn-xs button-delete-attachment' data-id='{{ file.id }}' data-toggle="modal" data-target="#modal-delete-attachment">
+                                                        <i class='glyphicon glyphicon-trash'></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-media">{% trans %}New Media{% endtrans %}</a>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-other-medias"><b>{% trans %}More medias{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</b></label>
                                 <textarea rows="6" class="form-control" name='other_medias' id='textarea-other-medias' placeholder="{% trans %}Please add one hyperlink per line{% endtrans %}">{{ submission.otherMedias }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong class="field-label">{% trans %}Products, materials and publications{% endtrans %}</strong>
-                                <label for="textarea-products-information">{% trans %}Use this field to share documents, publications, materials or news related to your experience{% endtrans %}:</label>
-                                <textarea rows="6" class="form-control" name='products_information' id='textarea-products-information' placeholder="{% trans %}Please add one per line{% endtrans %}">{{ submission.productsInformation }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong class="field-label">{% trans %}Related links{% endtrans %}</strong>
-                                <label for="textarea-related-links">{% trans %}Include website links related to the reported experience{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</label>
-                                <textarea rows="6" class="form-control" name='related_links' id='textarea-related-links' placeholder="{% trans %}Please add one hyperlink per line{% endtrans %}">{{ submission.relatedLinks }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong class="field-label">{% trans %}Notes{% endtrans %}</strong>
-                                <label for="textarea-notes">{% trans %}Free space for any observation and/or additional information{% endtrans %}:</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='notes' id='textarea-notes'>{{ submission.notes }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -110,8 +188,8 @@
         </div>
     </div>
 
-    <!-- Modal Novo Arquivo -->
-    <div class="modal fade" id="modal-new-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- Modal Novo Documento -->
+    <div class="modal fade" id="modal-new-document" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
 
@@ -119,17 +197,78 @@
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
 
                 <div class="modal-content">
-
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Attachment{% endtrans %}</h4>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Document{% endtrans %}</h4>
                     </div>
 
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="input-new-attachment-file">{% trans %}File{% endtrans %}:</label> 
+                            <label for="input-new-document">{% trans %}File{% endtrans %}:</label> 
                             <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 12} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type='file' class='form-control' name='new-attachment-file' id='input-new-attachment-file' required>
+                            <input type='file' class='form-control' name='new-document' id='input-new-document' required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" class="btn btn-primary">{% trans %}Send{% endtrans %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Nova Imagem -->
+    <div class="modal fade" id="modal-new-image" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
+
+                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
+                <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Image{% endtrans %}</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="input-new-image">{% trans %}File{% endtrans %}:</label> 
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 12} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='file' class='form-control' name='new-image' id='input-new-image' required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" class="btn btn-primary">{% trans %}Send{% endtrans %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal New Media -->
+    <div class="modal fade" id="modal-new-media" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
+
+                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
+                <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Media{% endtrans %}</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="input-new-media">{% trans %}File{% endtrans %}:</label> 
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 12} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='file' class='form-control' name='new-media' id='input-new-media' required>
                         </div>
                     </div>
 
@@ -151,7 +290,6 @@
                 <input type="hidden" name="delete-attachment-id" id='hidden-delete-attachment' value="" />
 
                 <div class="modal-content">
-
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">{% trans %}Delete Attachment{% endtrans %}</h4>
@@ -175,7 +313,13 @@
 {% block script %}
     <script>
         $(function(){
-
+            $("#table-document, #table-image, #table-media").on("click", ".button-delete-attachment", function(e){
+                var id = $(this).data('id');
+                $("#hidden-delete-attachment").val(id);
+            });
+            $('#modal-delete-attachment').on('hidden.bs.modal', function () {
+                $("#hidden-delete-attachment").val("");
+            });
         });
     </script>
 {% endblock %}

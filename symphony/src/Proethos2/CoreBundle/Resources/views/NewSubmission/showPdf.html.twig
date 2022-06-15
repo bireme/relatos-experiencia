@@ -153,7 +153,27 @@
             {% endfor %}
         </table>
 
-        <h3>{% trans %}Medias{% endtrans %}:</h3>
+        <h3>{% trans %}Documents{% endtrans %}:</h3>
+        <table>
+            <tr>
+                <th>{% trans %}File{% endtrans %}</th>
+                <th width="50%">{% trans %}Date{% endtrans %}</th>
+            </tr>
+
+            {% for file in submission.attachments if file.uploadType.slug == 'document' %}
+                <tr style="text-align: center;">
+                    <td><a href='{{ home_url }}{{ asset(file.uri) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
+                    <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <h3>{% trans %}More documents{% endtrans %}:</h3>
+        {% for url in submission.otherDocsList %}
+            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
+        {% endfor %}
+
+        <h3>{% trans %}Images{% endtrans %}:</h3>
         <table>
             <tr>
                 <th>{% trans %}File{% endtrans %}</th>
@@ -161,32 +181,47 @@
                 <th width="20%">{% trans %}Date{% endtrans %}</th>
             </tr>
 
-            {% for file in submission.attachments %}
+            {% for file in submission.attachments if file.uploadType.slug == 'image' %}
                 <tr style="text-align: center;">
                     <td>
                         <a href='{{ home_url }}{{ asset(file.uri) }}' target="_blank">
                             <img src="{{ home_url }}{{ asset(file.uri) }}" alt="{% if file.uploadType.slug in ['protocol'] %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}" />
                         </a>
                     </td>
-                    <td>{% if file.uploadType.slug in ['protocol'] %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
+                    <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
                     <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
                 </tr>
             {% endfor %}
         </table>
 
-        <h3>{% trans %}Other Medias{% endtrans %}:</h3>
+        <h3>{% trans %}Videos{% endtrans %}:</h3>
+        {% for url in submission.otherVideosList %}
+            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
+        {% endfor %}
+
+        <h3>{% trans %}Other medias{% endtrans %}:</h3>
+        <table>
+            <tr>
+                <th>{% trans %}File{% endtrans %}</th>
+                <th width="50%">{% trans %}Date{% endtrans %}</th>
+            </tr>
+
+            {% for file in submission.attachments if file.uploadType.slug == 'others' %}
+                <tr style="text-align: center;">
+                    <td><a href='{{ home_url }}{{ asset(file.uri) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
+                    <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <h3>{% trans %}More medias{% endtrans %}:</h3>
         {% for url in submission.otherMediasList %}
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
 
         <h3>{% trans %}Products, materials and publications{% endtrans %}:</h3>
         <p>{{ submission.productsInformation|nl2br }}</p>
-{#
-        <h3>{% trans %}Products{% endtrans %}:</h3>
-        {% for url in submission.productsInformationLinks %}
-            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
-        {% endfor %}
-#}
+
         <h3>{% trans %}Related Links{% endtrans %}:</h3>
         {% for url in submission.relatedLinksList %}
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>

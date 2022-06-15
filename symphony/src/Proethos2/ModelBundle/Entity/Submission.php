@@ -312,7 +312,23 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
+    private $other_docs;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $other_videos;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
     private $other_medias;
+
+    /******************** INFORMAÇÃO ADICIONAL ********************/
 
     /**
      * @var text
@@ -1615,6 +1631,92 @@ class Submission extends Base
     {
         $links = array();
         $_links = explode("\r\n", $this->related_links);
+
+        foreach ($_links as $link) {
+            if (filter_var($link, FILTER_VALIDATE_URL)) {
+                $links[] = $link;
+            }
+        }
+
+        return $links;
+    }
+
+    /**
+     * Set otherDocs
+     *
+     * @param string $otherDocs
+     *
+     * @return Submission
+     */
+    public function setOtherDocs($otherDocs)
+    {
+        $this->other_docs = $otherDocs;
+
+        return $this;
+    }
+
+    /**
+     * Get otherDocs
+     *
+     * @return string
+     */
+    public function getOtherDocs()
+    {
+        return $this->other_docs;
+    }
+
+    /**
+     * Get getOtherDocsLinks
+     *
+     * @return array
+     */
+    public function getOtherDocsList()
+    {
+        $links = array();
+        $_links = explode("\r\n", $this->other_docs);
+
+        foreach ($_links as $link) {
+            if (filter_var($link, FILTER_VALIDATE_URL)) {
+                $links[] = $link;
+            }
+        }
+
+        return $links;
+    }
+
+    /**
+     * Set otherVideos
+     *
+     * @param string $otherVideos
+     *
+     * @return Submission
+     */
+    public function setOtherVideos($otherVideos)
+    {
+        $this->other_videos = $otherVideos;
+
+        return $this;
+    }
+
+    /**
+     * Get otherVideos
+     *
+     * @return string
+     */
+    public function getOtherVideos()
+    {
+        return $this->other_videos;
+    }
+
+    /**
+     * Get getOtherVideosLinks
+     *
+     * @return array
+     */
+    public function getOtherVideosList()
+    {
+        $links = array();
+        $_links = explode("\r\n", $this->other_videos);
 
         foreach ($_links as $link) {
             if (filter_var($link, FILTER_VALIDATE_URL)) {
