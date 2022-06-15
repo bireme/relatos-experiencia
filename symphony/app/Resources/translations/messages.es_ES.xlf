@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-15T00:26:16Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-06-15T01:16:24Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -305,6 +305,10 @@
       <trans-unit id="b46c77fa44760067b496d3820ee234412eb7cde5" resname="Choose your login">
         <source>Choose your login</source>
         <target>Choose your login</target>
+      </trans-unit>
+      <trans-unit id="4271627f4f0bef6104a95cca7bb21cda4d74503e" resname="City">
+        <source>City</source>
+        <target>City</target>
       </trans-unit>
       <trans-unit id="ed6b163354d00afa17647b94816172f80c7de3fa" resname="Clinical Trial Names">
         <source>Clinical Trial Names</source>
@@ -1630,6 +1634,10 @@
         <source>Recruitment Status</source>
         <target>Estado del reclutamiento</target>
       </trans-unit>
+      <trans-unit id="0f217179940c6d89f5cb2c7002a58d91ab7286c1" resname="Region">
+        <source>Region</source>
+        <target>Region</target>
+      </trans-unit>
       <trans-unit id="248b110422fb7ca5f331047755fd8d29dcd8621c" resname="Regional Office for the Americas of the World Health Organization">
         <source>Regional Office for the Americas of the World Health Organization</source>
         <target>Regional Office for the Americas of the World Health Organization</target>
@@ -1941,6 +1949,10 @@
       <trans-unit id="9d7ab1a557965be0eae6205c2d860c45a3eafc11" resname="Start Date">
         <source>Start Date</source>
         <target>Fecha de inicio</target>
+      </trans-unit>
+      <trans-unit id="a72502067518684f9deeec70cf119fd26326cd33" resname="State">
+        <source>State</source>
+        <target>State</target>
       </trans-unit>
       <trans-unit id="bae7d5be70820ed56467bd9a63744e23b47bd711" resname="Status">
         <source>Status</source>

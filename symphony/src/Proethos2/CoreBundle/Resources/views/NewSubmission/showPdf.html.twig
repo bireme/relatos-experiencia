@@ -77,6 +77,15 @@
         <h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>
         <p>{{ submission.description }}</p>
 
+        <h3>{% trans %}Country{% endtrans %}:</h3>
+        <p>{{ submission.country.name }}</p>
+
+        <h3>{% trans %}State{% endtrans %}/{% trans %}Region{% endtrans %}:</h3>
+        <p>{{ submission.region }}</p>
+
+        <h3>{% trans %}City{% endtrans %}:</h3>
+        <p>{{ submission.city }}</p>
+
         <h3>{% trans %}Population{% endtrans %}:</h3>
         <p>{{ submission.populationGroup|join('; ') }}</p>
 

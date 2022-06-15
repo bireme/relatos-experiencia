@@ -355,6 +355,12 @@ class NewSubmissionController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        // getting countries list
+        $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
+        // $country = $country_repository->findByStatus(true);
+        $countries = $country_repository->findBy(array('status' => true), array('name' => 'asc'));
+        $output['countries'] = $countries;
+
         // getting population group list
         $population_group_repository = $em->getRepository('Proethos2ModelBundle:PopulationGroup');
         $population_group = $population_group_repository->findByStatus(true);
@@ -399,6 +405,10 @@ class NewSubmissionController extends Controller
                 }
             }
 
+            // best practice type
+            $selected_country = $country_repository->find($post_data['country']);
+            $submission->setCountry($selected_country);
+
             // removing all population groups to re-add
             if ($submission->getPopulationGroup()) {
                 foreach($submission->getPopulationGroup() as $population_group) {
@@ -419,6 +429,8 @@ class NewSubmissionController extends Controller
             $submission->setResources($post_data['resources']);
             $submission->setContext($post_data['context']);
             $submission->setOtherPopulationGroup($post_data['other_population_group']);
+            $submission->setRegion($post_data['region']);
+            $submission->setCity($post_data['city']);
             
             $em->persist($submission);
             $em->flush();

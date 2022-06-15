@@ -198,6 +198,30 @@ class Submission extends Base
      */
     private $description;
 
+    /** 
+     * @var Country
+     * 
+     * @ORM\ManyToOne(targetEntity="Country") 
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="SET NULL") 
+     */ 
+    private $country;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     */
+    private $region;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     */
+    private $city;
+
     /**
      * @var PopulationGroup
      *
@@ -243,14 +267,6 @@ class Submission extends Base
      * @ORM\Column(type="text", nullable=true)
      */
     private $context;
-
-    /**
-     * @var Country
-     *
-     * @ORM\ManyToOne(targetEntity="Country")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $country;
 
     /******************** EXPERIÊNCIA ********************/
 
@@ -1725,5 +1741,53 @@ class Submission extends Base
         }
 
         return $links;
+    }
+
+    /**
+     * Set region
+     *
+     * @param string $region
+     *
+     * @return Submission
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Submission
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }
