@@ -856,53 +856,7 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-            $file = $request->files->get('new-attachment-file');
-            if(!empty($file)) {
-
-                $upload_type = $upload_type_repository->findOneBy(array("slug" => "image"));
-
-                $file_ext = '.'.$file->getClientOriginalExtension();
-                $ext_formats = $upload_type->getExtensionsFormat();
-                if ( !in_array($file_ext, $ext_formats) ) {
-                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
-                    return $output;
-                }
-
-                $submission_upload = new SubmissionUpload();
-                $submission_upload->setSubmission($submission);
-                $submission_upload->setUploadType($upload_type);
-                $submission_upload->setUser($user);
-                $submission_upload->setFile($file);
-                $submission_upload->setSubmissionNumber($submission->getNumber());
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($submission_upload);
-                $em->flush();
-
-                $submission->addAttachment($submission_upload);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($submission);
-                $em->flush();
-
-                $session->getFlashBag()->add('success', $translator->trans("File uploaded with success."));
-                return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
-
-            }
-
-            if(isset($post_data['delete-attachment-id']) and !empty($post_data['delete-attachment-id'])) {
-
-                $submission_upload = $submission_upload_repository->find($post_data['delete-attachment-id']);
-                if($submission_upload) {
-
-                    $em->remove($submission_upload);
-                    $em->flush();
-                    $session->getFlashBag()->add('success', $translator->trans("File removed with success."));
-                    return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
-                }
-            }
-
             // adding fields to model
-            $submission->setOtherMedias($post_data['other_medias']);
             $submission->setProductsInformation($post_data['products_information']);
             $submission->setRelatedLinks($post_data['related_links']);
             $submission->setNotes($post_data['notes']);
