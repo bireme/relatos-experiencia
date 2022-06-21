@@ -57,6 +57,12 @@ class NewSubmissionController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        // getting collection list
+        $collection_repository = $em->getRepository('Proethos2ModelBundle:Collection');
+        // $collection = $collection_repository->findByStatus(true);
+        $collection = $collection_repository->findBy(array('status' => true), array('name' => 'ASC'));
+        $output['collection'] = $collection;
+
         // getting thematic area list
         $thematic_area_repository = $em->getRepository('Proethos2ModelBundle:ThematicArea');
         // $thematic_area = $thematic_area_repository->findByStatus(true);
@@ -86,7 +92,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            foreach(array('title', 'thematic-area', 'status', 'start-date', 'end-date', 'language') as $field) {
+            foreach(array('title', 'collection', 'thematic-area', 'status', 'start-date', 'end-date', 'language') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -115,10 +121,24 @@ class NewSubmissionController extends Controller
 
             $submission->setOwner($user);
 
+            // removing all collections to re-add
+            if ($submission->getCollection()) {
+                foreach($submission->getCollection() as $col) {
+                    $submission->removeCollection($col);
+                }
+            }
+            // re-add collections
+            if(isset($post_data['collection'])) {
+                foreach($post_data['collection'] as $col) {
+                    $col = $collection_repository->find($col);
+                    $submission->addCollection($col);
+                }
+            }
+
             // removing all thematic areas to re-add
             if ($submission->getThematicArea()) {
                 foreach($submission->getThematicArea() as $ta) {
-                    $submission->removeIntervention($ta);
+                    $submission->removeThematicArea($ta);
                 }
             }
             // re-add thematic areas
@@ -162,6 +182,12 @@ class NewSubmissionController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        // getting collection list
+        $collection_repository = $em->getRepository('Proethos2ModelBundle:Collection');
+        // $collection = $collection_repository->findByStatus(true);
+        $collection = $collection_repository->findBy(array('status' => true), array('name' => 'ASC'));
+        $output['collection'] = $collection;
+
         // getting thematic area list
         $thematic_area_repository = $em->getRepository('Proethos2ModelBundle:ThematicArea');
         // $thematic_area = $thematic_area_repository->findByStatus(true);
@@ -199,7 +225,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            foreach(array('title', 'thematic-area', 'status', 'start-date', 'end-date', 'language') as $field) {
+            foreach(array('title', 'collection', 'thematic-area', 'status', 'start-date', 'end-date', 'language') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -216,6 +242,20 @@ class NewSubmissionController extends Controller
             $submission->setKeywords($post_data['keywords']);
             $submission->setDescriptors($post_data['descriptors']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
+
+            // removing all collections to re-add
+            if ($submission->getCollection()) {
+                foreach($submission->getCollection() as $col) {
+                    $submission->removeCollection($col);
+                }
+            }
+            // re-add collections
+            if(isset($post_data['collection'])) {
+                foreach($post_data['collection'] as $col) {
+                    $col = $collection_repository->find($col);
+                    $submission->addCollection($col);
+                }
+            }
 
             // removing all thematic areas to re-add
             if ($submission->getThematicArea()) {

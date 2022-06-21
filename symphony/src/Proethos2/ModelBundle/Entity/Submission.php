@@ -117,6 +117,15 @@ class Submission extends Base
     private $title;
 
     /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Collection", inversedBy="submissions")
+     * @ORM\JoinTable(name="submission_collection")
+     * @Assert\NotBlank
+     */
+    private $collection;
+
+    /**
      * @var ThematicArea
      *
      * @ORM\ManyToMany(targetEntity="ThematicArea", inversedBy="submissions")
@@ -1789,5 +1798,63 @@ class Submission extends Base
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Add collection
+     *
+     * @param \Proethos2\ModelBundle\Entity\Collection $collection
+     *
+     * @return Submission
+     */
+    public function addCollection(\Proethos2\ModelBundle\Entity\Collection $collection)
+    {
+        $this->collection[] = $collection;
+
+        return $this;
+    }
+
+    /**
+     * Remove collection
+     *
+     * @param \Proethos2\ModelBundle\Entity\Collection $collection
+     */
+    public function removeCollection(\Proethos2\ModelBundle\Entity\Collection $collection)
+    {
+        $this->collection->removeElement($collection);
+    }
+
+    /**
+     * Get collection
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCollection()
+    {
+        return $this->collection;
+    }
+
+    public function getCollectionList() {
+        $collection = array();
+
+        if ( $this->collection ) {
+            foreach($this->collection as $col) {
+                $collection[] = $col->getName();
+            }
+        }
+
+        return $collection;
+    }
+
+    public function getCollectionSlugList() {
+        $collection = array();
+
+        if ( $this->collection ) {
+            foreach($this->collection as $col) {
+                $collection[] = $col->getSlug();
+            }
+        }
+
+        return $collection;
     }
 }

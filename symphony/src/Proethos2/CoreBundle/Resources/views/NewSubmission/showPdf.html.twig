@@ -46,6 +46,9 @@
         {% endif %}
 
         <h3>{% trans %}Collection{% endtrans %}:</h3>
+        <p>{{ submission.collectionList|join('; ') }}</p>
+
+        <h3>{% trans %}Thematic Area{% endtrans %}:</h3>
         <p>{{ submission.thematicAreaList|join('; ') }}</p>
 
         <h3>{% trans %}Experience Status{% endtrans %}:</h3>

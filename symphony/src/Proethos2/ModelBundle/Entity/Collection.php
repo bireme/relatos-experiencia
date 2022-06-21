@@ -24,12 +24,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Cocur\Slugify\Slugify;
 
 /**
- * ThematicArea
+ * Collection
  *
- * @ORM\Table(name="list_thematic_area")
+ * @ORM\Table(name="list_collection")
  * @ORM\Entity
  */
-class ThematicArea extends Base
+class Collection extends Base
 {
     /**
      * @var integer
@@ -50,15 +50,6 @@ class ThematicArea extends Base
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
-
-    /**
-     * @var Collection
-     *
-     * @ORM\ManyToOne(targetEntity="Collection")
-     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id", onDelete="SET NULL")
-     * @Assert\NotBlank
-     */
-    private $collection;
 
     /**
      * @ORM\Column(type="boolean")
@@ -164,29 +155,5 @@ class ThematicArea extends Base
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * Set collection
-     *
-     * @param \Proethos2\ModelBundle\Entity\Collection $collection
-     *
-     * @return ThematicArea
-     */
-    public function setCollection(\Proethos2\ModelBundle\Entity\Collection $collection = null)
-    {
-        $this->collection = $collection;
-
-        return $this;
-    }
-
-    /**
-     * Get collection
-     *
-     * @return \Proethos2\ModelBundle\Entity\Collection
-     */
-    public function getCollection()
-    {
-        return $this->collection;
     }
 }

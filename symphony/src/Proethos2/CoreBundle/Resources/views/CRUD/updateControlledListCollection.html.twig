@@ -1,4 +1,4 @@
-<form class='form' method="POST" id='form-new-item' action="{{ path('crud_admin_controlled_list_thematic_area_update', {item_id: item.id} ) }}">
+<form class='form' method="POST" id='form-new-item' action="{{ path('crud_admin_controlled_list_collection_update', {item_id: item.id} ) }}">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">{% trans %}Update Item{% endtrans %}</h4>
@@ -37,20 +37,6 @@
                 <div class="form-group">
                     <label for="input-name-fr_FR">{% trans %}Name in French{% endtrans %}:</label> 
                     <input type='text' class='form-control' id="input-name-fr_FR" name="name-fr_FR" value="{% if translations.fr_FR is defined %}{{ translations.fr_FR.name }}{% endif %}">
-                </div>
-            </div>
-        </div>
-
-        <div class='row'>
-            <div class='col-md-12'> 
-                <div class="form-group">
-                    <label for="select-collection">{% trans %}Collection{% endtrans %}:</label>
-                    <select class='form-control' id='select-collection' name='collection' data-size="5" required>
-                        <option value="">-</option>
-                        {% for col in collection %}
-                            <option value="{{ col.id }}" {% if item.collection.id == col.id %}selected{% endif %}>{{ col.name }}</option>
-                        {% endfor %}
-                    </select>
                 </div>
             </div>
         </div>

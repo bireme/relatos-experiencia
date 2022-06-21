@@ -48,12 +48,28 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="select-thematic-area"><b>*{% trans %}Collection{% endtrans %}:</b></label>
+                                <label for="select-collection"><b>*{% trans %}Collection{% endtrans %}:</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <div>
-                                    <select class='form-control selectpicker' id='select-thematic-area' name='thematic-area[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Select one or more collections{% endtrans %}" multiple required>
+                                    <select class='form-control selectpicker' id='select-collection' name='collection[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Select one or more collections{% endtrans %}" multiple required>
+                                        {% for col in collection %}
+                                            <option value="{{ col.id }}" data-slug="{{ col.slug }}" {% if col in submission.collection %}selected{% endif %}>{{ col.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="select-thematic-area"><b>*{% trans %}Thematic area{% endtrans %}:</b></label>
+                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <div>
+                                    <select class='form-control selectpicker' id='select-thematic-area' name='thematic-area[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Select one or more thematic areas{% endtrans %}" multiple required>
                                         {% for ta in thematic_area %}
-                                            <option value="{{ ta.id }}" {% if ta in submission.thematicArea %}selected{% endif %}>{{ ta.name }}</option>
+                                            <option value="{{ ta.id }}" data-col="{{ ta.collection.slug }}" {% if ta in submission.thematicArea %}selected{% endif %}>{{ ta.name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -92,7 +108,7 @@
                             <div class="form-group">
                                 <label for="input-end-date"><b>*{% trans %}End Date{% endtrans %} (YYYY-MM-DD) {% trans %}and/or current{% endtrans %}:</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class='form-control' id='input-end-date' name='end-date' value='{% if submission.endDate %}{{ submission.endDate|date("Y-m-d") }}{% endif %}'>
+                                <input type="text" class='form-control' id='input-end-date' name='end-date' value='{% if submission.endDate %}{{ submission.endDate|date("Y-m-d") }}{% endif %}' required>
                             </div>
                         </div>
                     </div>
@@ -146,6 +162,31 @@
                     $("#input_other_status").parent().addClass("hide");
                     $("#input_other_status").prop('required',false);
                 }
+            });
+
+            var _options = $("#select-thematic-area option");
+            $('#select-collection').on('changed.bs.select loaded.bs.select', function(e) {
+                var options = [];
+                var col_list = [];
+
+                $("#select-collection :selected").map(function(i, el) {
+                    var slug = $(el).data('slug');
+                    col_list.push(slug);
+                });
+
+                if (col_list.length === 0) {
+                    options = _options;
+                } else {
+                    _options.map(function(i, el) {
+                        var col = $(el).data('col');
+                        if($.inArray(col, col_list) !== -1) {
+                            options.push(el);
+                        }
+                    });
+                }
+
+                if ('changed' == e.type) $('#select-thematic-area').selectpicker('val', '');
+                $("#select-thematic-area").empty().append(options).selectpicker("refresh");
             });
 
             $("#input-start-date").mask("9999-99-99");
