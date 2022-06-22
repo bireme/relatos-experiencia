@@ -16,9 +16,19 @@
 
         <div class='block'>
             <div class='row'>
-                <div class="col-md-12">
-                    <table class='table table-hover table-condensed'>
+                <div class="col-md-6">
+                    <div class="form-group live-search">
+                        <label for="filter-field">{% trans %}Filter by name{% endtrans %}:</label>
+                        <input type="text" class="form-control text-input filter-field" id="filter-field" value="" />
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class='block'>
+            <div class='row'>
+                <div class="col-md-12">
+                    <table class='table table-hover table-condensed' id='table-data'>
                         <thead>
                             <tr>
                                 <th width="80%">{% trans %}Name{% endtrans %}</th>
@@ -118,6 +128,31 @@
 
 {% block script %}
     <script>
-        $(function(){});
+        $(function(){
+
+            $("#filter-field").keyup(function(){
+                // retrieve the input field text and reset the count to zero
+                var count = 0;
+                var filter = $(this).val();
+         
+                // loop through the comment list
+                $("#table-data tbody tr").each(function(){
+         
+                    // if the list item does not contain the text phrase fade it out
+                    if ($(this).find('td').text().search(new RegExp(filter, "i")) < 0) {
+                        $(this).hide();
+                    // show the list item if the phrase matches and increase the count by 1
+                    } else {
+                        $(this).show();
+                        count++;
+                    }
+                });
+         
+                // update the count
+                var numberItems = count;
+                // $("#filter-count").text("Total: "+count);
+            });
+
+        });
     </script>
 {% endblock %}
