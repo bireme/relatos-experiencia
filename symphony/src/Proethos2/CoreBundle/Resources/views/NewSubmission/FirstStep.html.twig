@@ -126,26 +126,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong class="field-label">{% trans %}Keywords{% endtrans %}</strong>
-                                <label for="input_keywords">{% trans %}Keywords that represent the themes or issues related to the reported experience{% endtrans %}:</label>
-                                <input type="text" class="form-control" name='keywords' id='input_keywords' placeholder="{% trans %}insert keywords here{% endtrans %}" value="{% if post_data.keywords %}{{ post_data.keywords }}{% endif %}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong class="field-label">{% trans %}Descriptors{% endtrans %}</strong>
-                                <label for="input_descriptors">{% trans %}Select at least 3 DeCS descriptors (Health Sciences Descriptors) to represent the theme of experience{% endtrans %}:</label>
-                                <input type="text" class="form-control" name='descriptors' id='input_descriptors' placeholder="{% trans %}insert descriptors here{% endtrans %}" value="{% if post_data.descriptors %}{{ post_data.descriptors }}{% endif %}">
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class='submission-button-controls'>
@@ -159,14 +139,6 @@
 {% block script %}
     <script>
         $(function(){
-            // $('[name=keywords]').tagify();
-            var keywords = document.querySelector('[name=keywords]');
-            new Tagify(keywords);
-
-            // $('[name=descriptors]').tagify();
-            var descriptors = document.querySelector('[name=descriptors]');
-            new Tagify(descriptors);
-
             $( "#select-status" ).on( "change", function() {
                 var val = $(this).val();
                 if ( 'F' == val ) {

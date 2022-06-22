@@ -113,8 +113,6 @@ class NewSubmissionController extends Controller
             if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
             if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
-            $submission->setKeywords($post_data['keywords']);
-            $submission->setDescriptors($post_data['descriptors']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
             $submission->setProtocol($protocol);
             $submission->setNumber(1);
@@ -239,8 +237,6 @@ class NewSubmissionController extends Controller
             if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
             if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
-            $submission->setKeywords($post_data['keywords']);
-            $submission->setDescriptors($post_data['descriptors']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
 
             // removing all collections to re-add
@@ -471,6 +467,8 @@ class NewSubmissionController extends Controller
             $submission->setOtherPopulationGroup($post_data['other_population_group']);
             $submission->setRegion($post_data['region']);
             $submission->setCity($post_data['city']);
+            $submission->setKeywords($post_data['keywords']);
+            $submission->setDescriptors($post_data['descriptors']);
             
             $em->persist($submission);
             $em->flush();

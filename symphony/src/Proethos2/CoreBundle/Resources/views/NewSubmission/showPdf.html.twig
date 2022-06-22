@@ -71,12 +71,6 @@
 
         {% endif %}
 
-        <h3>{% trans %}Keywords{% endtrans %}:</h3>
-        <p>{{ submission.keywordsList|join('; ') }}</p>
-
-        <h3>{% trans %}Descriptors{% endtrans %}:</h3>
-        <p>{{ submission.descriptorsList|join('; ') }}</p>
-
         <h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>
         <p>{{ submission.description }}</p>
 
@@ -107,6 +101,12 @@
 
         <h3>{% trans %}Context{% endtrans %}:</h3>
         <p>{{ submission.context }}</p>
+
+        <h3>{% trans %}Keywords{% endtrans %}:</h3>
+        <p>{{ submission.keywordsList|join('; ') }}</p>
+
+        <h3>{% trans %}Descriptors{% endtrans %}:</h3>
+        <p>{{ submission.descriptorsList|join('; ') }}</p>
 
         <h3>{% trans %}Main Results{% endtrans %}:</h3>
         <p>{{ submission.mainResults }}</p>
