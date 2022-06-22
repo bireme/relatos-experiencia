@@ -21,6 +21,25 @@
                 <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
+                            <h3>{% trans %}Fulltext{% endtrans %}</h3>
+                            <h5>{% trans %}Insert here the fulltext of the reported experience{% endtrans %}:</h5>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {# <strong class="field-label">{% trans %}Fulltext{% endtrans %}</strong> #}
+                                {# <label for="textarea-fulltext">{% trans %}Insert here the fulltext of the reported experience{% endtrans %}:</label> #}
+                                <textarea rows="6" class="form-control" name='fulltext' id='textarea-fulltext'>{{ submission.fullText }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
                             <h3>{% trans %}Documents{% endtrans %}</h3>
                             <h5>{% trans %}Share fulltext documents about the reported experience{% endtrans %}</h5>
                         </div>
@@ -123,7 +142,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 {# <strong class="field-label">{% trans %}Videos{% endtrans %}</strong> #}
-                                {# <label for="textarea-other-videos">{% trans %}Compartilhe vídeos com depoimentos do responsável, equipes e/ou população envolvida com a experiência relatada{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</label> #}
+                                {# <label for="textarea-other-videos">{% trans %}Share videos with testimonials from the person responsible, teams and/or population involved with the reported experience{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</label> #}
                                 <textarea rows="6" class="form-control" name='other_videos' id='textarea-other-videos' placeholder="{% trans %}Please add one hyperlink per line{% endtrans %}">{{ submission.otherVideos }}</textarea>
                             </div>
                         </div>

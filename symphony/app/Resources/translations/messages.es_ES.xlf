@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-21T23:25:59Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-06-22T01:54:47Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -830,6 +830,10 @@
         <source>Full Name</source>
         <target>Full Name</target>
       </trans-unit>
+      <trans-unit id="f4e3ca5cb74e978eb6e9fa3b727276f646351f43" resname="Fulltext">
+        <source>Fulltext</source>
+        <target>Fulltext</target>
+      </trans-unit>
       <trans-unit id="8a754c61c2ced0c5ff79a1827e02c9d643d6d926" resname="Gender">
         <source>Gender</source>
         <target>Género</target>
@@ -929,6 +933,10 @@
       <trans-unit id="618eea33ca57a4f3cc226f2f8dceec8fb290a1bd" resname="Initial committee screening">
         <source>Initial committee screening</source>
         <target>Evaluación inicial del comité</target>
+      </trans-unit>
+      <trans-unit id="efa3a634c9ca02688f4a9a41186efba000a78a73" resname="Insert here the fulltext of the reported experience">
+        <source>Insert here the fulltext of the reported experience</source>
+        <target>Insert here the fulltext of the reported experience</target>
       </trans-unit>
       <trans-unit id="429f9450eaee6957c9b1461227b45d94079f2cac" resname="Institution">
         <source>Institution</source>

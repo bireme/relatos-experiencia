@@ -848,6 +848,7 @@ class NewSubmissionController extends Controller
             }
 
             // adding fields to model
+            $submission->setFullText($post_data['fulltext']);
             $submission->setOtherDocs($post_data['other_docs']);
             $submission->setOtherVideos($post_data['other_videos']);
             $submission->setOtherMedias($post_data['other_medias']);

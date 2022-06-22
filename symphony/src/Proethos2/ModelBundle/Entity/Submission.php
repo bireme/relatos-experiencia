@@ -326,6 +326,13 @@ class Submission extends Base
     /******************** INFORMAÇÃO ADICIONAL ********************/
 
     /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $full_text;
+
+    /**
      * @var SubmissionUpload
      * @ORM\OneToMany(targetEntity="SubmissionUpload", mappedBy="submission", cascade={"persist"})
      * @ORM\JoinTable(name="submission_upload")
@@ -1856,5 +1863,29 @@ class Submission extends Base
         }
 
         return $collection;
+    }
+
+    /**
+     * Set fullText
+     *
+     * @param string $fullText
+     *
+     * @return Submission
+     */
+    public function setFullText($fullText)
+    {
+        $this->full_text = $fullText;
+
+        return $this;
+    }
+
+    /**
+     * Get fullText
+     *
+     * @return string
+     */
+    public function getFullText()
+    {
+        return $this->full_text;
     }
 }
