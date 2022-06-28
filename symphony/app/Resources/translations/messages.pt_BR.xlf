@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-06-22T01:55:15Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-06-27T11:53:41Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -108,7 +108,7 @@
       </trans-unit>
       <trans-unit id="7f08ae0858fb3a5415d58969e524eda0740fb8b2" resname="Analyze Experience">
         <source>Analyze Experience</source>
-        <target>Analyze Experience</target>
+        <target>Analisar Experiência</target>
       </trans-unit>
       <trans-unit id="9b4736c0ce70d7082c7aef99252d160e1d827280" resname="Analyze experience">
         <source>Analyze experience</source>
@@ -145,6 +145,10 @@
       <trans-unit id="9e4803f32f8b294ce70e2587d474369b2121e3f0" resname="Are you sure that you want to end this best practice evaluation?">
         <source>Are you sure that you want to end this best practice evaluation?</source>
         <target>Tem certeza de que deseja concluir esta avaliação de boa prática?</target>
+      </trans-unit>
+      <trans-unit id="1f8ca6dd19b84ff946965d3059b1bcf44a7ebf91" resname="Are you sure that you want to end this experience review?">
+        <source>Are you sure that you want to end this experience review?</source>
+        <target>Tem certeza de que deseja concluir a análise dessa experiência?</target>
       </trans-unit>
       <trans-unit id="82a015d57a9b653f5938e233e81618c31955e00e" resname="Are you sure that you want to end this protocol evaluation?">
         <source>Are you sure that you want to end this protocol evaluation?</source>
@@ -522,6 +526,10 @@
         <source>Descriptors</source>
         <target>Descritores</target>
       </trans-unit>
+      <trans-unit id="dc3decbb93847518f1a049dcf49d0d7c6560bcc6" resname="Details">
+        <source>Details</source>
+        <target>Detalhes</target>
+      </trans-unit>
       <trans-unit id="961f36de4c326fdd7cb4cc66ab04a5bd2188e0c3" resname="Do you confirm the exclusion of this attachment?">
         <source>Do you confirm the exclusion of this attachment?</source>
         <target>Confirma a exclusão desse anexo?</target>
@@ -653,6 +661,10 @@
       <trans-unit id="9534743089728371bfb3de8cd82c6fd9762632ac" resname="Experience rejected with success!">
         <source>Experience rejected with success!</source>
         <target>Experience rejected with success!</target>
+      </trans-unit>
+      <trans-unit id="23d273feea2ff69c1da9eac19eae280c3643fdb6" resname="Experience review was finalized with success">
+        <source>Experience review was finalized with success</source>
+        <target>Experience review was finalized with success</target>
       </trans-unit>
       <trans-unit id="0514343d74877b797abff402232838e4200ad997" resname="Experience status">
         <source>Experience status</source>
@@ -1942,6 +1954,10 @@
         <source>Show Experience</source>
         <target>Mostrar Experiência</target>
       </trans-unit>
+      <trans-unit id="37cae766d455975558bffbda4852be1df06d2f54" resname="Show PDF">
+        <source>Show PDF</source>
+        <target>Mostrar PDF</target>
+      </trans-unit>
       <trans-unit id="56860002c2285b9bff80391678937a3f082e20e5" resname="Sincerely">
         <source>Sincerely</source>
         <target>Atenciosamente</target>
@@ -2026,6 +2042,10 @@
         <source>Submitted by</source>
         <target>Enviado por</target>
       </trans-unit>
+      <trans-unit id="31f668b61aa1d9ab073620836c90d677291466ea" resname="Submitted in">
+        <source>Submitted in</source>
+        <target>Submitted in</target>
+      </trans-unit>
       <trans-unit id="861edba00547bc9ce7a08df78d4378766418179f" resname="Suggestions">
         <source>Suggestions</source>
         <target>Sugestões </target>
@@ -2069,6 +2089,10 @@
       <trans-unit id="fb549f369a3b4a82fd868e5763cb56fd17809028" resname="The best practice review was finalized!">
         <source>The best practice review was finalized!</source>
         <target>The best practice review was finalized!</target>
+      </trans-unit>
+      <trans-unit id="c6bb1323c487d4bedc1aacb23697367ecdf8fa85" resname="The experience review was finalized">
+        <source>The experience review was finalized</source>
+        <target>The experience review was finalized</target>
       </trans-unit>
       <trans-unit id="ab05ed667ce213133c0a5aa826ff876954aba630" resname="The experience review was finalized!">
         <source>The experience review was finalized!</source>
@@ -2382,11 +2406,11 @@
       </trans-unit>
       <trans-unit id="5066b72f14362144b768c328680ac75cf3ea67ff" resname="Your Experiences">
         <source>Your Experiences</source>
-        <target>Suas Experiências</target>
+        <target>Minhas Experiências</target>
       </trans-unit>
       <trans-unit id="21c7fe92b8e2c31b06b3e871a2c2e9c168813a64" resname="Your Profile">
         <source>Your Profile</source>
-        <target>Seu perfil</target>
+        <target>Meu perfil</target>
       </trans-unit>
       <trans-unit id="1e8ccd2dc480121494673f51edb032b371154aab" resname="Your best practice has been accepted for ethics review. The committee's decision will be informed when the process is finalized.">
         <source>Your best practice has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</source>
