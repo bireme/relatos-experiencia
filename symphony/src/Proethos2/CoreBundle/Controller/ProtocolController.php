@@ -454,62 +454,88 @@ class ProtocolController extends Controller
                 }
             }
 
-            // setting the Scheduled status
-            $protocol->setStatus($post_data['final-decision']);
-            $protocol->setMonitoringAction(NULL);
+            if ( $post_data['final-decision'] and in_array($post_data['final-decision'], array('A', 'N')) ) {
 
-            $protocol_history = new ProtocolHistory();
-            $protocol_history->setProtocol($protocol);
-            $protocol_history->setUser($user);
-            $protocol_history->setMessage($translator->trans(
-                'Experience finalized by %user% under option "%option%".',
-                array(
-                    '%user%' => $user->getUsername(),
-                    '%option%' => $finish_options[$post_data['final-decision']],
-                )
-            ));
-            $em->persist($protocol_history);
-            $em->flush();
+                // send data to Solr index
+                if ( 'A' == $post_data['final-decision'] ) {
+                    $solr = new Solr();
+                    list($response, $responseCode) = $solr->update($protocol);
 
-            $protocol->setDecisionIn(new \DateTime());
-            $em->persist($protocol);
-            $em->flush();
+                    if ($responseCode != 200) {
+                        throw $this->createNotFoundException('['.$responseCode.'] Solr error: '.$response->error->msg);
+                    }
 
-            $investigators = array();
-            $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
-            foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
-                $investigators[] = $investigator->getEmail();
+                    // if ($responseCode == 200) {
+                    //     throw $this->createNotFoundException('['.$responseCode.'] Solr query time: '.$response->responseHeader->QTime.'ms');
+                    // }
+                }
+
+                // setting the Scheduled status
+                $protocol->setStatus($post_data['final-decision']);
+                $protocol->setMonitoringAction(NULL);
+
+                $protocol_history = new ProtocolHistory();
+                $protocol_history->setProtocol($protocol);
+                $protocol_history->setUser($user);
+                $protocol_history->setMessage($translator->trans(
+                    'Experience finalized by %user% under option "%option%".',
+                    array(
+                        '%user%' => $user->getUsername(),
+                        '%option%' => $finish_options[$post_data['final-decision']],
+                    )
+                ));
+                $em->persist($protocol_history);
+                $em->flush();
+
+                // generate the code
+                if ( !$protocol->getCode() ) {
+                    $committee_prefix = $util->getConfiguration('committee.prefix');
+                    $total_submissions = count($protocol->getSubmission());
+                    $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
+                    $protocol->setCode($protocol_code);
+                }
+
+                $protocol->setDecisionIn(new \DateTime());
+                $em->persist($protocol);
+                $em->flush();
+
+                $investigators = array();
+                $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
+                foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+                    $investigators[] = $investigator->getEmail();
+                }
+
+                $contacts = $protocol->getContactsList();
+                if ($contacts) {
+                    $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
+                }
+
+                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                $help = $help_repository->find(216);
+                $translations = $trans_repository->findTranslations($help);
+                $text = $translations[$submission->getLanguage()];
+                $body = $text['message'];
+                $body = str_replace("%protocol_url%", $url, $body);
+                $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
+                $body = str_replace("\r\n", "<br />", $body);
+                $body .= "<br /><br />";
+
+                $message = \Swift_Message::newInstance()
+                ->setSubject("[EXP] " . $mail_translator->trans("The experience review was finalized"))
+                ->setFrom($util->getConfiguration('committee.email'))
+                ->setTo($investigators)
+                ->setBody(
+                    $body
+                    ,
+                    'text/html'
+                );
+
+                $session->getFlashBag()->add('success', $translator->trans("Experience review was finalized with success"));
+                return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
+
             }
-
-            $contacts = $protocol->getContactsList();
-            if ($contacts) {
-                $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
-            }
-
-            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-            $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
-
-            $help = $help_repository->find(216);
-            $translations = $trans_repository->findTranslations($help);
-            $text = $translations[$submission->getLanguage()];
-            $body = $text['message'];
-            $body = str_replace("%protocol_url%", $url, $body);
-            $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
-            $body = str_replace("\r\n", "<br />", $body);
-            $body .= "<br /><br />";
-
-            $message = \Swift_Message::newInstance()
-            ->setSubject("[EXP] " . $mail_translator->trans("The experience review was finalized"))
-            ->setFrom($util->getConfiguration('committee.email'))
-            ->setTo($investigators)
-            ->setBody(
-                $body
-                ,
-                'text/html'
-            );
-
-            $session->getFlashBag()->add('success', $translator->trans("Experience review was finalized with success"));
-            return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
 
         }
 
@@ -1480,7 +1506,7 @@ class ProtocolController extends Controller
                 $em->persist($protocol->getMainSubmission());
                 $em->flush();
             }
-/*
+
             // send data to Solr index
             if ( 'A' == $post_data['final-decision'] ) {
                 $solr = new Solr();
@@ -1494,7 +1520,7 @@ class ProtocolController extends Controller
                 //     throw $this->createNotFoundException('['.$responseCode.'] Solr query time: '.$response->responseHeader->QTime.'ms');
                 // }
             }
-*/
+
             // setting the Scheduled status
             $protocol->setStatus($post_data['final-decision']);
             $protocol->setMonitoringAction(NULL);
@@ -1791,7 +1817,7 @@ class ProtocolController extends Controller
             }
 
             if($post_data['are-you-sure'] == 'yes') {
-/*
+
                 // send data to Solr index
                 $solr = new Solr();
                 list($response, $responseCode) = $solr->delete($protocol);
@@ -1803,7 +1829,7 @@ class ProtocolController extends Controller
                 // if ($responseCode == 200) {
                 //     throw $this->createNotFoundException('['.$responseCode.'] Solr query time: '.$response->responseHeader->QTime.'ms');
                 // }
-*/
+
                 $em->remove($protocol);
                 $em->flush();
 
