@@ -38,13 +38,14 @@
                                 <tbody>
                                     {% for protocol in submissions %}
                                         <tr>
-                                            <th>{% if protocol.code %}{{ protocol.code }}{% else %}-{% endif %}</th>
+                                            <th>{% if protocol.code %}{{ protocol.code[:8] }}{% else %}-{% endif %}</th>
                                             <td>{{ protocol.mainSubmission.title }}</td>
                                             <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
                                             <td>{{ protocol.statusLabel|trans }}</td> 
                                             <td>
                                                 <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See experience{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
-                                                <a href='{{ path("submission_new_second_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs {% if protocol.status not in ["R","D","C"] %}disabled{% endif %}' data-toggle="tooltip" data-placement="top" title="{% trans %}Edit submission{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>
+                                                <a href='{{ path("submission_new_first_created_protocol_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs {% if protocol.status not in ["R","D","C"] %}disabled{% endif %}' data-toggle="tooltip" data-placement="top" title="{% trans %}Edit submission{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>
+                                                <a href='{{ path("submission_show_pdf", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Show PDF{% endtrans %}" target='_blank'><i class='glyphicon glyphicon-file'></i></a>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -83,12 +84,13 @@
                                 <tbody>
                                     {% for protocol in protocols %}
                                         <tr>
-                                            <th>{% if protocol.code %}{{ protocol.code }}{% else %}-{% endif %}</th>
+                                            <th>{% if protocol.code %}{{ protocol.code[:8] }}{% else %}-{% endif %}</th>
                                             <td>{{ protocol.mainSubmission.title }}</td>
                                             <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
                                             <td>{{ protocol.statusLabel }}</td>
                                             <td>
                                                 <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See experience{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                                <a href='{{ path("submission_show_pdf", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Show PDF{% endtrans %}" target='_blank'><i class='glyphicon glyphicon-file'></i></a>
                                             </td>
                                         </tr>
                                     {% endfor %}

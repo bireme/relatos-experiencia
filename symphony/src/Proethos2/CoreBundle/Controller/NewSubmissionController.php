@@ -206,7 +206,14 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+        $allow_to_edit_submission = true;
+        if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
+            $allow_to_edit_submission = true;
+        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+            $allow_to_edit_submission = false;
+        }
+
+        if (!$allow_to_edit_submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -407,10 +414,15 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getCanBeEdited() == false) {
-            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
-                throw $this->createNotFoundException($translator->trans('No submission found'));
-            }
+        $allow_to_edit_submission = true;
+        if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
+            $allow_to_edit_submission = true;
+        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+            $allow_to_edit_submission = false;
+        }
+
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
         // checking if was a post request
@@ -501,10 +513,15 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getCanBeEdited() == false) {
-            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
-                throw $this->createNotFoundException($translator->trans('No submission found'));
-            }
+        $allow_to_edit_submission = true;
+        if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
+            $allow_to_edit_submission = true;
+        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+            $allow_to_edit_submission = false;
+        }
+
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
         // checking if was a post request
@@ -569,10 +586,15 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getCanBeEdited() == false) {
-            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
-                throw $this->createNotFoundException($translator->trans('No submission found'));
-            }
+        $allow_to_edit_submission = true;
+        if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
+            $allow_to_edit_submission = true;
+        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+            $allow_to_edit_submission = false;
+        }
+
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
         // checking if was a post request
@@ -720,10 +742,15 @@ class NewSubmissionController extends Controller
         $upload_types = $upload_type_repository->findByStatus(true);
         $output['upload_types'] = $upload_types;
 
-        if (!$submission or $submission->getCanBeEdited() == false) {
-            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
-                throw $this->createNotFoundException($translator->trans('No submission found'));
-            }
+        $allow_to_edit_submission = true;
+        if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
+            $allow_to_edit_submission = true;
+        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+            $allow_to_edit_submission = false;
+        }
+
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
         // checking if was a post request
@@ -889,10 +916,15 @@ class NewSubmissionController extends Controller
         $upload_types = $upload_type_repository->findByStatus(true);
         $output['upload_types'] = $upload_types;
 
-        if (!$submission or $submission->getCanBeEdited() == false) {
-            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
-                throw $this->createNotFoundException($translator->trans('No submission found'));
-            }
+        $allow_to_edit_submission = true;
+        if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
+            $allow_to_edit_submission = true;
+        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+            $allow_to_edit_submission = false;
+        }
+
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
         // checking if was a post request
@@ -958,10 +990,15 @@ class NewSubmissionController extends Controller
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
 
-        if (!$submission or $submission->getCanBeEdited() == false) {
-            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
-                throw $this->createNotFoundException($translator->trans('No submission found'));
-            }
+        $allow_to_edit_submission = true;
+        if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
+            $allow_to_edit_submission = true;
+        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+            $allow_to_edit_submission = false;
+        }
+
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
         // Revisions
@@ -1217,6 +1254,13 @@ class NewSubmissionController extends Controller
                     $protocol->setStatus("S");
                     $protocol->setDateInformed(new \DateTime());
                     $protocol->setUpdatedIn(new \DateTime());
+
+                    // generate the code
+                    $committee_prefix = $util->getConfiguration('committee.prefix');
+                    $total_submissions = count($protocol->getSubmission());
+                    $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
+                    $protocol->setCode($protocol_code);
+                    
                     $em->persist($protocol);
                     $em->flush();
 
@@ -1342,6 +1386,7 @@ class NewSubmissionController extends Controller
     }
 
     /**
+     * @Route("/submission/{submission_id}/pdf", name="submission_show_pdf")
      * @Route("/submission/new/{submission_id}/pdf", name="submission_generate_pdf")
      * @Template()
      */
@@ -1385,7 +1430,7 @@ class NewSubmissionController extends Controller
 
         $output['status'] = $status;
 
-        if (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+        if (!$submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 

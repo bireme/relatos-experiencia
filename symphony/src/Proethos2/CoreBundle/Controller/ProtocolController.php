@@ -63,6 +63,16 @@ class ProtocolController extends Controller
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
 
+        // status options
+        $status = array(
+            "A" => $translator->trans("Under implementation"),
+            "B" => $translator->trans("Implemented and in regular operation"),
+            "C" => $translator->trans("Interrupted"),
+            "D" => $translator->trans("Completed"),
+        );
+
+        $output['status'] = $status;
+
         if (!$protocol) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
@@ -364,6 +374,142 @@ class ProtocolController extends Controller
             }
 
             return $this->redirect($referer, 301);
+
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/protocol/{protocol_id}/review", name="protocol_review_protocol")
+     * @Template()
+     */
+    public function reviewProtocolAction($protocol_id)
+    {
+
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+        $locale = $request->getSession()->get('_locale');
+
+        $util = new Util($this->container, $this->getDoctrine());
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
+        // getting the current submission
+        $protocol = $protocol_repository->find($protocol_id);
+        $submission = $protocol->getMainSubmission();
+        $output['protocol'] = $protocol;
+
+        $mail_translator = $this->get('translator');
+        $mail_translator->setLocale($submission->getLanguage());
+
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
+
+        // status options
+        $status = array(
+            "A" => $translator->trans("Under implementation"),
+            "B" => $translator->trans("Implemented and in regular operation"),
+            "C" => $translator->trans("Interrupted"),
+            "D" => $translator->trans("Completed"),
+        );
+        $output['status'] = $status;
+
+        $finish_options = array(
+            "A" => $translator->trans("Approved"),
+            'N' => $translator->trans('Not approved'),
+        );
+        $output['finish_options'] = $finish_options;
+
+        if (!$protocol or $protocol->getStatus() != "S") {
+            throw $this->createNotFoundException($translator->trans('No best practice found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('analyze-protocol', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // checking required files
+            $required_fields = array('final-decision');
+            foreach($required_fields as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                    return $output;
+                }
+            }
+
+            // setting the Scheduled status
+            $protocol->setStatus($post_data['final-decision']);
+            $protocol->setMonitoringAction(NULL);
+
+            $protocol_history = new ProtocolHistory();
+            $protocol_history->setProtocol($protocol);
+            $protocol_history->setUser($user);
+            $protocol_history->setMessage($translator->trans(
+                'Experience finalized by %user% under option "%option%".',
+                array(
+                    '%user%' => $user->getUsername(),
+                    '%option%' => $finish_options[$post_data['final-decision']],
+                )
+            ));
+            $em->persist($protocol_history);
+            $em->flush();
+
+            $protocol->setDecisionIn(new \DateTime());
+            $em->persist($protocol);
+            $em->flush();
+
+            $investigators = array();
+            $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
+            foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+                $investigators[] = $investigator->getEmail();
+            }
+
+            $contacts = $protocol->getContactsList();
+            if ($contacts) {
+                $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
+            }
+
+            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+            $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+            $help = $help_repository->find(216);
+            $translations = $trans_repository->findTranslations($help);
+            $text = $translations[$submission->getLanguage()];
+            $body = $text['message'];
+            $body = str_replace("%protocol_url%", $url, $body);
+            $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
+            $body = str_replace("\r\n", "<br />", $body);
+            $body .= "<br /><br />";
+
+            $message = \Swift_Message::newInstance()
+            ->setSubject("[EXP] " . $mail_translator->trans("The experience review was finalized"))
+            ->setFrom($util->getConfiguration('committee.email'))
+            ->setTo($investigators)
+            ->setBody(
+                $body
+                ,
+                'text/html'
+            );
+
+            $session->getFlashBag()->add('success', $translator->trans("Experience review was finalized with success"));
+            return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
 
         }
 

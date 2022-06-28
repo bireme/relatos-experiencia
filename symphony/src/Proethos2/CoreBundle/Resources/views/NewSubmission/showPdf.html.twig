@@ -42,7 +42,7 @@
 
         {% if protocol_code %}
             <h3>{% trans %}Code{% endtrans %}</h3>
-            <p>{{ protocol_code }}</p>
+            <p>{{ protocol_code[:8] }}</p>
         {% endif %}
 
         <h3>{% trans %}Collection{% endtrans %}:</h3>

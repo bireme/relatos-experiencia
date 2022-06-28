@@ -38,8 +38,8 @@
                                 <option value="I" {% if app.request.get('status') == "I" %}selected{% endif %}>{% trans %}Waiting for initial evaluation{% endtrans %}</option>
                                 <option value="E" {% if app.request.get('status') == "E" %}selected{% endif %}>{% trans %}Waiting for Committee{% endtrans %}</option>
                                 <option value="T" {% if app.request.get('status') == "T" %}selected{% endif %}>{% trans %}Withdrawn{% endtrans %}</option>
-#}
                                 <option value="H" {% if app.request.get('status') == "H" %}selected{% endif %}>{% trans %}Scheduled{% endtrans %}</option>
+#}
                                 <option value="A" {% if app.request.get('status') == "A" %}selected{% endif %}>{% trans %}Approved{% endtrans %}</option>
                                 <option value="N" {% if app.request.get('status') == "N" %}selected{% endif %}>{% trans %}Not approved{% endtrans %}</option>
                             </select>
@@ -73,16 +73,15 @@
                         <tbody>
                             {% for protocol in protocols if protocols %}
                                 <tr>
-                                    <th>{% if protocol.code %}{{ protocol.code }}{% else %}-{% endif %}</th>
+                                    <th>{% if protocol.code %}{{ protocol.code[:8] }}{% else %}-{% endif %}</th>
                                     <td>{{ protocol.mainSubmission.title }}</td>
                                     <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
                                     <td><span class='label {% if protocol.status == 'R' %}label-danger{% else %}label-default{% endif %}'>{{ protocol.statusLabel|trans }}</span></td>
                                     <td>
                                         <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See experience{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='{{ path("submission_new_first_created_protocol_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs {% if protocol.status not in ["R","D","C"] %}disabled{% endif %}' data-toggle="tooltip" data-placement="top" title="{% trans %}Edit experience{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>
-                                        {% if protocol.status in ['D','A'] %}
-                                            <span data-toggle="tooltip" data-placement="top" title="{% trans %}Delete this experience{% endtrans %}"><a href='{{ path("protocol_delete", {protocol_id: protocol.id} ) }}' class='btn btn-danger btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-trash'></i></a></span>
-                                        {% endif %}
+                                        <a href='{{ path("submission_show_pdf", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Show PDF{% endtrans %}" target='_blank'><i class='glyphicon glyphicon-file'></i></a>
+                                        {% if protocol.status == "D" %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Delete this experience{% endtrans %}"><a href='{{ path("protocol_delete", {protocol_id: protocol.id} ) }}' class='btn btn-danger btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-trash'></i></a></span>{% endif %}
                                         <!--
                                         <span data-toggle="tooltip" data-placement="top" title="{% trans %}Add a monitoring action{% endtrans %}">
                                             <a href='{{ path("protocol_new_monitoring", {protocol_id: protocol.id}) }}' data-toggle='modal' data-target="#modalBaseAjax" class='btn btn-primary btn-xs {% if protocol.status not in ["A"] %}disabled{% endif %}'><i class='glyphicon glyphicon-record'></i></a>

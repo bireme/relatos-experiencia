@@ -46,16 +46,16 @@ class IndexController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        if ( in_array('investigator', $user->getRolesSlug()) ) {
-            return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
-        }
+        if ( in_array('secretary', $user->getRolesSlug()) ) {
+            // return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
+        } else {
+            if ( in_array('investigator', $user->getRolesSlug()) ) {
+                return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
+            }
 
-        // if ( in_array('secretary', $user->getRolesSlug()) ) {
-        //     return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
-        // }
-
-        if ( in_array('administrator', $user->getRolesSlug()) ) {
-            return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
+            if ( in_array('administrator', $user->getRolesSlug()) ) {
+                return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
+            }
         }
 
         // approved protocols
