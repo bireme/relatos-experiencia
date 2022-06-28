@@ -1,0 +1,351 @@
+<div class='block'>
+    <div class='row'>
+        <div class="col-md-12">
+            <h2 class='sub-header toggle-block'>
+                <small class='pull-right'>
+                    <i class='glyphicon glyphicon-minus'></i>
+                </small>
+                {% trans %}Responsible{% endtrans %}:
+            </h2>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class="col-md-12">
+            <table class='table table-hover table-condensed'>
+                <thead>
+                    <tr>
+                        <th width="30%">{% trans %}Name{% endtrans %}</th>
+                        <th>{% trans %}Filiation{% endtrans %}</th>
+                        <th>{% trans %}Job{% endtrans %}</th>
+                        <th>{% trans %}Email{% endtrans %}</th>
+                        <th>{% trans %}Phone{% endtrans %}</th>
+                        <th width="20%">{% trans %}Curriculum{% endtrans %}</th>
+                        <th>{% trans %}ORCID{% endtrans %}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for resp in protocol.mainSubmission.responsible %}
+                    <tr>
+                        <td>{{ resp.name }}</td>
+                        <td>{{ resp.filiation }}</td>
+                        <td>{{ resp.job }}</td>
+                        <td>{{ resp.email }}</td>
+                        <td>{{ resp.phone }}</td>
+                        <td style="word-break: break-all;"><a href="{{ resp.curriculum }}" target="_blank">{{ resp.curriculum }}</a></td>
+                        <td><a href="https://orcid.org/{{ resp.orcid }}" target="_blank">{{ resp.orcid }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class='block'>
+    <div class='row'>
+        <div class="col-md-12">
+            <h2 class='sub-header toggle-block'>
+                <small class='pull-right'>
+                    <i class='glyphicon glyphicon-minus'></i>
+                </small>
+                {% trans %}Members{% endtrans %}:
+            </h2>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class="col-md-12">
+            <table class='table table-hover table-condensed'>
+                <thead>
+                    <tr>
+                        <th width="30%">{% trans %}Name{% endtrans %}</th>
+                        <th>{% trans %}Filiation{% endtrans %}</th>
+                        <th>{% trans %}Job{% endtrans %}</th>
+                        <th>{% trans %}Academic Formation{% endtrans %}</th>
+                        <th>{% trans %}Email{% endtrans %}</th>
+                        <th>{% trans %}Curriculum{% endtrans %}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for member in protocol.mainSubmission.members %}
+                    <tr>
+                        <td>{{ member.name }}</td>
+                        <td>{{ member.filiation }}</td>
+                        <td>{{ member.job }}</td>
+                        <td>{{ member.academicFormation }}</td>
+                        <td>{{ member.email }}</td>
+                        <td style="word-break: break-all;"><a href="{{ member.curriculum }}" target="_blank">{{ member.curriculum }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class='block'>
+    <div class='row'>
+        <div class="col-md-12">
+            <h2 class='sub-header toggle-block'>
+                <small class='pull-right'>
+                    <i class='glyphicon glyphicon-minus'></i>
+                </small>
+                {% trans %}Details{% endtrans %}:
+            </h2>
+        </div>
+    </div>
+
+    <div class='row' id="protocol-data">
+        <div class="col-md-12">
+            {% if protocol.code %}
+                <b>{% trans %}Code{% endtrans %}</b>
+                <p>{{ protocol.code[:8] }}</p>
+            {% endif %}
+
+            <hr />
+
+            <b>{% trans %}Collection{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.collectionList|join('; ') }}</p>
+
+            <hr />
+
+            <b>{% trans %}Thematic Area{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.thematicAreaList|join('; ') }}</p>
+
+            <hr />
+
+            <b>{% trans %}Experience Status{% endtrans %}:</b>
+            <p>{{ status[protocol.mainSubmission.status] }}</p>
+
+            <hr />
+
+            {% if protocol.mainSubmission.status == "F" %}
+
+                <b>{% trans %}Other Status{% endtrans %}:</b>
+                <p>{{ protocol.mainSubmission.otherStatus }}</p>
+                <hr />
+
+            {% endif %}
+
+            <b>{% trans %}Start Date{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.startDate|date("Y-m-d") }}</p>
+
+            <hr />
+
+            {% if protocol.mainSubmission.endDate %}
+
+                <b>{% trans %}End Date{% endtrans %} {% trans %}and/or current{% endtrans %}:</b>
+                <p>{{ protocol.mainSubmission.endDate|date("Y-m-d") }}</p>
+                <hr />
+
+            {% endif %}
+
+            <b>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.description }}</p>
+
+            <hr />
+
+            <b>{% trans %}Country{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.country.name }}</p>
+
+            <hr />
+
+            <b>{% trans %}State{% endtrans %}/{% trans %}Region{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.region }}</p>
+
+            <hr />
+
+            <b>{% trans %}City{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.city }}</p>
+
+            <hr />
+
+            <b>{% trans %}Population{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.populationGroup|join('; ') }}</p>
+
+            <hr />
+
+            {% if protocol.mainSubmission.otherPopulationGroup %}
+
+                <b>{% trans %}Other Population{% endtrans %}:</b>
+                <p>{{ protocol.mainSubmission.otherPopulationGroup }}</p>
+                <hr />
+
+            {% endif %}
+
+            <b>{% trans %}Objectives{% endtrans %}/{% trans %}Expected results{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.objectives }}</p>
+
+            <hr />
+
+            <b>{% trans %}Resources{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.resources }}</p>
+
+            <hr />
+
+            <b>{% trans %}Context{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.context }}</p>
+
+            <hr />
+
+            <b>{% trans %}Keywords{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.keywordsList|join('; ') }}</p>
+
+            <hr />
+
+            <b>{% trans %}Descriptors{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.descriptorsList|join('; ') }}</p>
+
+            <hr />
+
+            <b>{% trans %}Main Results{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.mainResults }}</p>
+
+            <hr />
+
+            <b>{% trans %}Challenges{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.challengesInformation }}</p>
+
+            <hr />
+
+            <b>{% trans %}Lessons Learned{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.lessonsLearned }}</p>
+
+            <hr />
+
+            <b>{% trans %}Fulltext{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.fullText }}</p>
+
+            <hr />
+
+            <table class='table table-hover table-condensed'>
+                <thead>
+                    <tr><th>{% trans %}Documents{% endtrans %}:</th></tr>
+                    <tr>
+                        <th>{% trans %}File name{% endtrans %}</th>
+                        <th>{% trans %}Date & Time{% endtrans %}</th>
+                        <th>{% trans %}Actions{% endtrans %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in protocol.mainSubmission.attachments if file.uploadType.slug == 'document' %}
+                        <tr>
+                            <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
+                            <td>{{ file.created|date("d/m/Y H:i") }}</td>
+                            <td>
+                                <a href='{{ asset(file.uri) }}' class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <hr />
+
+            <b>{% trans %}More documents{% endtrans %}:</b>
+            <ol>
+            {% for url in protocol.mainSubmission.otherDocsList %}
+                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+            {% endfor %}
+            </ol>
+
+            <hr />
+
+            <table class='table table-hover table-condensed'>
+                <thead>
+                    <tr><th>{% trans %}Images{% endtrans %}:</th></tr>
+                    <tr>
+                        <th>{% trans %}File name{% endtrans %}</th>
+                        <th>{% trans %}Date & Time{% endtrans %}</th>
+                        <th>{% trans %}Actions{% endtrans %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in protocol.mainSubmission.attachments if file.uploadType.slug == 'image' %}
+                        <tr>
+                            <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
+                            <td>{{ file.created|date("d/m/Y H:i") }}</td>
+                            <td>
+                                <a href='{{ asset(file.uri) }}' class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <hr />
+
+            <b>{% trans %}Videos{% endtrans %}:</b>
+            <ol>
+            {% for url in protocol.mainSubmission.otherVideosList %}
+                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+            {% endfor %}
+            </ol>
+
+            <hr />
+
+            <table class='table table-hover table-condensed'>
+                <thead>
+                    <tr><th>{% trans %}Other medias{% endtrans %}:</th></tr>
+                    <tr>
+                        <th>{% trans %}File name{% endtrans %}</th>
+                        <th>{% trans %}Date & Time{% endtrans %}</th>
+                        <th>{% trans %}Actions{% endtrans %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in protocol.mainSubmission.attachments if file.uploadType.slug == 'others' %}
+                        <tr>
+                            <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
+                            <td>{{ file.created|date("d/m/Y H:i") }}</td>
+                            <td>
+                                <a href='{{ asset(file.uri) }}' class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <hr />
+
+            <b>{% trans %}More medias{% endtrans %}:</b>
+            <ol>
+            {% for url in protocol.mainSubmission.otherMediasList %}
+                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+            {% endfor %}
+            </ol>
+
+            <hr />
+
+            <b>{% trans %}Products, materials and publications{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.productsInformation|nl2br }}</p>
+
+            <hr />
+
+            <b>{% trans %}Related Links{% endtrans %}:</b>
+            <ol>
+            {% for url in protocol.mainSubmission.relatedLinksList %}
+                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+            {% endfor %}
+            </ol>
+
+            <hr />
+
+            <b>{% trans %}Notes{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.notes }}</p>
+
+            <hr />
+        </div>
+    </div>
+</div>
+
+{% block script %}
+    <script>
+        $(function(){
+
+        });
+    </script>
+{% endblock %}
