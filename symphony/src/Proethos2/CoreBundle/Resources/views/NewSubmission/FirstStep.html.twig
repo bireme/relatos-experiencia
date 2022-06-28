@@ -139,17 +139,6 @@
 {% block script %}
     <script>
         $(function(){
-            $( "#select-status" ).on( "change", function() {
-                var val = $(this).val();
-                if ( 'F' == val ) {
-                    $("#input_other_status").parent().removeClass("hide");
-                    $("#input_other_status").prop('required',true);
-                } else {
-                    $("#input_other_status").parent().addClass("hide");
-                    $("#input_other_status").prop('required',false);
-                }
-            });
-
             var _options = $("#select-thematic-area option");
             $('#select-collection').on('changed.bs.select loaded.bs.select', function(e) {
                 var options = [];
