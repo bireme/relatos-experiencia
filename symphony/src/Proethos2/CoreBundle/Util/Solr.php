@@ -37,9 +37,10 @@ class Solr {
         $data['id'] = $protocol->getId();
         $data['title'] = $submission->getTitle();
         $data['status'] = $submission->getStatus();
-        if ( 'F' == $submission->getStatus() ) $data['other_status'] = $submission->getOtherStatus();
         $data['notes'] = $submission->getNotes();
-        $data['issue'] = $submission->getDescription();
+        $data['region'] = $submission->getRegion();
+        $data['city'] = $submission->getCity();
+        $data['description'] = $submission->getDescription();
         $data['other_population_group'] = $submission->getOtherPopulationGroup();
         $data['objectives'] = $submission->getObjectives();
         $data['resources'] = $submission->getResources();
@@ -48,18 +49,42 @@ class Solr {
         $data['challenges_information'] = $submission->getChallengesInformation();
         $data['other_results'] = $submission->getOtherResults();
         $data['lessons_learned'] = $submission->getLessonsLearned();
-        $data['other_medias'] = $submission->getOtherMediasLinks();
+        $data['fulltext'] = $submission->getFullText();
+        $data['other_docs'] = $submission->getOtherMediasList();
+        $data['other_videos'] = $submission->getOtherMediasList();
+        $data['other_medias'] = $submission->getOtherMediasList();
+        $data['related_links'] = $submission->getRelatedLinksList();
         $data['products_information'] = $submission->getProductsInformation();
         $data['keywords'] = $submission->getKeywordsList();
-        $data['start_date'] = $submission->getStartDate()->format('Y-m-d H:i:s');
+        $data['descriptors'] = $submission->getDescriptorsList();
+        if ( $submission->getStartDate() ) $data['start_date'] = $submission->getStartDate()->format('Y-m-d H:i:s');
         if ( $submission->getEndDate() ) $data['end_date'] = $submission->getEndDate()->format('Y-m-d H:i:s');
-        if ( $submission->getPartialDate() ) $data['partial_date'] = $submission->getPartialDate()->format('Y-m-d H:i:s');
-        if ( $submission->getOtherDate() ) $data['other_date'] = $submission->getOtherDate();
+
+        // country field
+        $collection = $submission->getCollection();
+        $data['collection'] = array();
+        foreach ($collection as $col) {
+            $col->setTranslatableLocale('en');
+            $em->refresh($col);
+
+            // collection translations
+            $translations = $trans_repository->findTranslations($col);
+            $texts = array();
+            $texts['en'] = 'en^'.$col->getName();
+            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $_locale) {
+                if ( array_key_exists($_locale, $translations) ) {
+                    $text = $translations[$_locale];
+                    $_locale = substr($_locale, 0, 2);
+                    $texts[$_locale] = $_locale.'^'.$text['name'];
+                }
+            }
+            $data['collection'][] = implode('|', $texts);
+        }
+
 
         // thematic area field
         $thematic_area = $submission->getThematicArea();
         $data['thematic_area'] = array();
-
         foreach ($thematic_area as $ta) {
             $ta->setTranslatableLocale('en');
             $em->refresh($ta);
@@ -81,7 +106,6 @@ class Solr {
         // population group field
         $population_group = $submission->getPopulationGroup();
         $data['population_group'] = array();
-
         foreach ($population_group as $pg) {
             $pg->setTranslatableLocale('en');
             $em->refresh($pg);
@@ -99,6 +123,24 @@ class Solr {
             }
             $data['population_group'][] = implode('|', $texts);
         }
+
+        // country field
+        $country = $submission->getCountry();
+        $country->setTranslatableLocale('en');
+        $em->refresh($country);
+
+        // country translations
+        $translations = $trans_repository->findTranslations($country);
+        $texts = array();
+        $texts['en'] = 'en^'.$country->getName();
+        foreach(array('pt_BR', 'es_ES', 'fr_FR') as $_locale) {
+            if ( array_key_exists($_locale, $translations) ) {
+                $text = $translations[$_locale];
+                $_locale = substr($_locale, 0, 2);
+                $texts[$_locale] = $_locale.'^'.$text['name'];
+            }
+        }
+        $data['country'][] = implode('|', $texts);
 
         $json = json_encode($data);
 
