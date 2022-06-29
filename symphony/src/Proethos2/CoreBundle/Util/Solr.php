@@ -140,7 +140,7 @@ class Solr {
                 $texts[$_locale] = $_locale.'^'.$text['name'];
             }
         }
-        $data['country'][] = implode('|', $texts);
+        $data['country'] = implode('|', $texts);
 
         $json = json_encode($data);
 
