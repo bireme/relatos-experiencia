@@ -62,7 +62,7 @@
                 <a href="{{ path('submission_new_fourth_step', {'submission_id': submission.id }) }}" title='{% trans %}Team{% endtrans %}'>{% trans %}Team{% endtrans %}</a>
             </li>
             <li role="presentation" {% if app.request.get('_route') == "submission_new_fifth_step" %}class='active'{% endif %}>
-                <a href="{{ path('submission_new_fifth_step', {'submission_id': submission.id }) }}" title='{% trans %}Team{% endtrans %}'>{% trans %}Documents and Medias{% endtrans %}</a>
+                <a href="{{ path('submission_new_fifth_step', {'submission_id': submission.id }) }}" title='{% trans %}Documents and Medias{% endtrans %}'>{% trans %}Documents and Medias{% endtrans %}</a>
             </li>
             <li role="presentation" {% if app.request.get('_route') == "submission_new_sixth_step" %}class='active'{% endif %}>
                 <a href="{{ path('submission_new_sixth_step', {'submission_id': submission.id }) }}" title='{% trans %}Other Information{% endtrans %}'>{% trans %}Other Information{% endtrans %}</a>

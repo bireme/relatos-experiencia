@@ -303,12 +303,10 @@ class NewSubmissionController extends Controller
 
         // status options
         $status = array(
-            "A" => $translator->trans("The practice is in the initial stage of implementation"),
-            "B" => $translator->trans("The practice is fully implemented and continues to operate"),
-            "C" => $translator->trans("The practice was discontinued before it was fully implemented"),
-            "D" => $translator->trans("The practice was discontinued after a period of operation"),
-            "E" => $translator->trans("The practice has not been implemented"),
-            "F" => $translator->trans("Other")
+            "A" => $translator->trans("Under implementation"),
+            "B" => $translator->trans("Implemented and in regular operation"),
+            "C" => $translator->trans("Interrupted"),
+            "D" => $translator->trans("Completed"),
         );
 
         $output['status'] = $status;
