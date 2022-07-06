@@ -20,7 +20,7 @@ namespace Proethos2\CoreBundle\Util;
 
 class Solr {
 
-    protected $solr_service = 'http://plugins-idx.bvsalud.org:8983/solr/relatos-experiencia/update';
+    protected $solr_service = 'http://plugins-idx.teste.bvsalud.org:8983/solr/relatos-experiencia/update';
 
     public function __construct() {}
 
