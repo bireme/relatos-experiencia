@@ -20,7 +20,7 @@ namespace Proethos2\CoreBundle\Util;
 
 class Solr {
 
-    protected $solr_service = 'http://plugins-idx.teste.bvsalud.org:8983/solr/relatos-experiencia/update';
+    protected $solr_service = 'http://plugins-idx.bvsalud.org:8983/solr/relatos-experiencia/update';
 
     public function __construct() {}
 
@@ -50,10 +50,10 @@ class Solr {
         $data['other_results'] = $submission->getOtherResults();
         $data['lessons_learned'] = $submission->getLessonsLearned();
         $data['fulltext'] = $submission->getFullText();
-        $data['other_docs'] = $submission->getOtherMediasList();
-        $data['other_videos'] = $submission->getOtherMediasList();
-        $data['other_medias'] = $submission->getOtherMediasList();
-        $data['related_links'] = $submission->getRelatedLinksList();
+        $data['other_docs'] = $submission->getOtherDocs();
+        $data['other_videos'] = $submission->getOtherVideos();
+        $data['other_medias'] = $submission->getOtherMedias();
+        $data['related_links'] = $submission->getRelatedLinks();
         $data['products_information'] = $submission->getProductsInformation();
         $data['keywords'] = $submission->getKeywordsList();
         $data['descriptors'] = $submission->getDescriptorsList();
