@@ -33,7 +33,7 @@
                             <select class="form-control select2" id="select-final-decision" name="final-decision">
                                 <option value="">-</option>
                                 {% for key, option in finish_options %}
-                                    <option value="{{ key }}">{{ option }}</option>
+                                    <option value="{{ key }}">{{ option|trans }}</option>
                                 {% endfor %}
                             </select>
                         </div>
