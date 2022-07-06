@@ -70,7 +70,7 @@
                             <div class='col-md-12'>
                                 <div class="form-group">
                                     <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
-                                    <a href="{{ path("crud_admin_help_show", {help_id: 153} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 153} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <input type='text' class='form-control' id="input-name" name="name" required>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                             <div class='col-md-12'>
                                 <div class="form-group">
                                     <label for="input-name-pt_BR">{% trans %}Name in Portuguese{% endtrans %}:</label> 
-                                    <a href="{{ path("crud_admin_help_show", {help_id: 155} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 155} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <input type='text' class='form-control' id="input-name-pt_BR" name="name-pt_BR">
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                             <div class='col-md-12'>
                                 <div class="form-group">
                                     <label for="input-name-fr_FR">{% trans %}Name in French{% endtrans %}:</label> 
-                                    <a href="{{ path("crud_admin_help_show", {help_id: 156} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 156} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <input type='text' class='form-control' id="input-name-fr_FR" name="name-fr_FR">
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                             <div class='col-md-12'>
                                 <div class="form-group">
                                     <label for="select-extensions">{% trans %}Extensions{% endtrans %}:</label> 
-                                    <a href="{{ path("crud_admin_help_show", {help_id: 157} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 157} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <select class='form-control select2' id="select-extensions" name="extensions[]" multiple="true" required>
                                         {% for extension in extensions %}
                                             <option value='{{ extension.id }}'>{{ extension.extension }}</option>
