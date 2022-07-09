@@ -270,6 +270,15 @@ img.logo {
     margin-right: 10px;
 }
 
+.input-checkbox label {
+    padding-left: 0;
+    vertical-align: middle;
+}
+
+.input-checkbox .icheckbox_square-blue {
+    margin-right: 0;
+}
+
 .hide {
     display: none;
 }

@@ -64,12 +64,12 @@
         <h3>{% trans %}Start Date{% endtrans %}:</h3>
         <p>{{ submission.startDate|date("Y-m-d") }}</p>
 
-        {% if submission.endDate %}
-
-            <h3>{% trans %}End Date{% endtrans %} {% trans %}and/or current{% endtrans %}:</h3>
-            <p>{{ submission.endDate|date("Y-m-d") }}</p>
-
+        {% if submission.isCurrentDate %}
+            <h3>{% trans %}Current Date{% endtrans %}:</h3>
+        {% else %}
+            <h3>{% trans %}End Date{% endtrans %}:</h3>
         {% endif %}
+        <p>{{ submission.endDate|date("Y-m-d") }}</p>
 
         <h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>
         <p>{{ submission.description }}</p>

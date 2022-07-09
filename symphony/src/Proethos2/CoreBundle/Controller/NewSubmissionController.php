@@ -119,6 +119,11 @@ class NewSubmissionController extends Controller
 
             $submission->setOwner($user);
 
+            $submission->setIsCurrentDate(false);
+            if(isset($post_data['current_date'])) {
+                $submission->setIsCurrentDate(true);
+            }
+
             // removing all collections to re-add
             if ($submission->getCollection()) {
                 foreach($submission->getCollection() as $col) {
@@ -245,6 +250,11 @@ class NewSubmissionController extends Controller
             if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
+            
+            $submission->setIsCurrentDate(false);
+            if(isset($post_data['current_date'])) {
+                $submission->setIsCurrentDate(true);
+            }
 
             // removing all collections to re-add
             if ($submission->getCollection()) {
@@ -1046,6 +1056,14 @@ class NewSubmissionController extends Controller
         $text = $translator->trans('Start Date');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getStartDate())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('End date and/or current');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getEndDate())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }

@@ -135,13 +135,14 @@
 
             <hr />
 
-            {% if protocol.mainSubmission.endDate %}
-
-                <b>{% trans %}End Date{% endtrans %} {% trans %}and/or current{% endtrans %}:</b>
-                <p>{{ protocol.mainSubmission.endDate|date("Y-m-d") }}</p>
-                <hr />
-
+            {% if protocol.mainSubmission.isCurrentDate %}
+                <b>{% trans %}Current date{% endtrans %}:</b>
+            {% else %}
+                <b>{% trans %}End date{% endtrans %}:</b>
             {% endif %}
+            <p>{{ protocol.mainSubmission.endDate|date("Y-m-d") }}</p>
+
+            <hr />
 
             <b>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.description }}</p>

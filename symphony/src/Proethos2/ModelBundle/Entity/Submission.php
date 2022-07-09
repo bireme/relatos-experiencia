@@ -170,6 +170,11 @@ class Submission extends Base
     private $partial_date;
 
     /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isCurrentDate;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -1887,5 +1892,29 @@ class Submission extends Base
     public function getFullText()
     {
         return $this->full_text;
+    }
+
+    /**
+     * Set isCurrentDate
+     *
+     * @param boolean $isCurrentDate
+     *
+     * @return Submission
+     */
+    public function setIsCurrentDate($isCurrentDate)
+    {
+        $this->isCurrentDate = $isCurrentDate;
+
+        return $this;
+    }
+
+    /**
+     * Get isCurrentDate
+     *
+     * @return boolean
+     */
+    public function getIsCurrentDate()
+    {
+        return $this->isCurrentDate;
     }
 }

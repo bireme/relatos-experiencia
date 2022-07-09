@@ -118,11 +118,17 @@
                     </div>
 
                     <div class='row'>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="input-end-date"><b>*{% trans %}End Date{% endtrans %} (YYYY-MM-DD) {% trans %}and/or current{% endtrans %}:</b></label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class='form-control' id='input-end-date' name='end-date' value='{% if post_data.endDate %}{{ post_data.endDate|date("Y-m-d") }}{% endif %}' required>
+                        <div class="col-md-6">
+                            <label for="input-end-date"><b>*{% trans %}End Date{% endtrans %} (YYYY-MM-DD) {% trans %}and/or current{% endtrans %}:</b></label>
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <div class="form-group row">
+                                <div class="col-xs-9">
+                                    <input type="text" class='form-control' id='input-end-date' name='end-date' value='{% if post_data.endDate %}{{ post_data.endDate|date("Y-m-d") }}{% endif %}' required>
+                                </div>
+                                <div class="checkbox input-checkbox">
+                                    <input type="checkbox" id='input-current-date' name='current_date' value="true" {% if post_data.current_date %}checked{% endif %}>
+                                    <label for="input-current-date">{% trans %}Current date{% endtrans %}</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -166,7 +172,6 @@
 
             $("#input-start-date").mask("9999-99-99");
             $("#input-end-date").mask("9999-99-99");
-            $("#input-partial-date").mask("9999-99-99");
         });
     </script>
 {% endblock %}
