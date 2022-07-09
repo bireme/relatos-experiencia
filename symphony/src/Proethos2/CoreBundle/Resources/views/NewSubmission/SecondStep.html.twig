@@ -184,6 +184,23 @@
 
                 $("#select-country").empty().append(options).selectpicker("refresh");
             });
+
+            $('#select-population-group').on('changed.bs.select loaded.bs.select', function(e) {
+                var col_list = [];
+
+                $("#select-population-group :selected").map(function(i, el) {
+                    var slug = $(el).data('slug');
+                    col_list.push(slug);
+                });
+
+                if( $.inArray("others", col_list) !== -1 && col_list.length == 1 ) {
+                    $("#input_other_population_group").parent().removeClass("hide");
+                    // $("#input_other_population_group").prop('required',true);
+                } else {
+                    $("#input_other_population_group").parent().addClass("hide");
+                    // $("#input_other_population_group").prop('required',false);
+                }
+            });
         });
     </script>
 {% endblock %}
