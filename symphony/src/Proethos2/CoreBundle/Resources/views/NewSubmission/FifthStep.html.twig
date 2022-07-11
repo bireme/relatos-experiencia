@@ -40,8 +40,8 @@
                 <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
-                            <h3>{% trans %}Documents{% endtrans %}</h3>
-                            <h5>{% trans %}Share fulltext documents about the reported experience{% endtrans %}</h5>
+                            <h3>{% trans %}Document{% endtrans %}</h3>
+                            <h5>{% trans %}Share the fulltext document about the reported experience{% endtrans %}</h5>
                         </div>
                     </div>
 
@@ -72,7 +72,7 @@
                                     </tbody>
                                 </table>
                             </fieldset>
-                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-document">{% trans %}New Document{% endtrans %}</a>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-document" {% if submission.attachments|length == 1 %}disabled{% endif %}>{% trans %}New Document{% endtrans %}</a>
                         </div>
                     </div>
                     

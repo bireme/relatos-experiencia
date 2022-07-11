@@ -168,7 +168,7 @@
         <h3>{% trans %}Fulltext{% endtrans %}:</h3>
         <p>{{ submission.fullText }}</p>
 
-        <h3>{% trans %}Documents{% endtrans %}:</h3>
+        <h3>{% trans %}Document{% endtrans %}:</h3>
         <table>
             <tr>
                 <th>{% trans %}File{% endtrans %}</th>
@@ -182,12 +182,12 @@
                 </tr>
             {% endfor %}
         </table>
-
+{#
         <h3>{% trans %}More documents{% endtrans %}:</h3>
         {% for url in submission.otherDocsList %}
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
-
+#}
         <h3>{% trans %}Images{% endtrans %}:</h3>
         <table>
             <tr>
@@ -228,12 +228,12 @@
                 </tr>
             {% endfor %}
         </table>
-
+{#
         <h3>{% trans %}More medias{% endtrans %}:</h3>
         {% for url in submission.otherMediasList %}
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
-
+#}
         <h3>{% trans %}Products, materials and publications{% endtrans %}:</h3>
         <p>{{ submission.productsInformation|nl2br }}</p>
 

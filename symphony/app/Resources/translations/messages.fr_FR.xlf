@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-07-11T19:46:03Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2022-07-11T20:41:00Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -517,6 +517,10 @@
       <trans-unit id="3201429c0b3d963297c39a8ade1e11664669b046" resname="Do you confirm the exclusion of this responsible?">
         <source>Do you confirm the exclusion of this responsible?</source>
         <target>Do you confirm the exclusion of this responsible?</target>
+      </trans-unit>
+      <trans-unit id="e214b8a29923056887b7edf6635d90dcbb2abe88" resname="Document">
+        <source>Document</source>
+        <target>Document</target>
       </trans-unit>
       <trans-unit id="1ba3f7b24b33d4429e8627ee88886fafbcf3a27e" resname="Document deleted with success.">
         <source>Document deleted with success.</source>
@@ -1798,10 +1802,6 @@
         <source>Set your password</source>
         <target>Set your password</target>
       </trans-unit>
-      <trans-unit id="c16097ac30e85ec65348062961e40cf7e24c1022" resname="Share fulltext documents about the reported experience">
-        <source>Share fulltext documents about the reported experience</source>
-        <target>Share fulltext documents about the reported experience</target>
-      </trans-unit>
       <trans-unit id="c2f6c2488b68b24808be31e4cd2befffdd03c9d0" resname="Share other media related to the reported experience">
         <source>Share other media related to the reported experience</source>
         <target>Share other media related to the reported experience</target>
@@ -1809,6 +1809,10 @@
       <trans-unit id="d0c05bda430fc819acf5f392eded780150a776e7" resname="Share photos and/or other images illustrating the reported experience">
         <source>Share photos and/or other images illustrating the reported experience</source>
         <target>Share photos and/or other images illustrating the reported experience</target>
+      </trans-unit>
+      <trans-unit id="20757267f3076ed7ce063c1225af6a503d8b940b" resname="Share the fulltext document about the reported experience">
+        <source>Share the fulltext document about the reported experience</source>
+        <target>Share the fulltext document about the reported experience</target>
       </trans-unit>
       <trans-unit id="c99f0add099bf0c6f14d29a3a81100704e534bf3" resname="Share videos with testimonials from the person responsible, teams and/or population involved with the reported experience">
         <source>Share videos with testimonials from the person responsible, teams and/or population involved with the reported experience</source>
