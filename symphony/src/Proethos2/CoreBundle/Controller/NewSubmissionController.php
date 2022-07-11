@@ -1093,7 +1093,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Main Results');
+        $text = $translator->trans('Main results/Impacts');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getMainResults())) {
             $item = array('text' => $text, 'status' => false);

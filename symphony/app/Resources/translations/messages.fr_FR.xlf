@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-07-09T01:37:20Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2022-07-11T19:46:03Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -834,6 +834,10 @@
         <source>Images</source>
         <target>Images</target>
       </trans-unit>
+      <trans-unit id="261b3b049c9b50b9dda180b9fdb6257bd3b26248" resname="Impacts">
+        <source>Impacts</source>
+        <target>Impacts</target>
+      </trans-unit>
       <trans-unit id="d9966f86e29f16a86104a191183d328bcf4bd392" resname="Implemented and in regular operation">
         <source>Implemented and in regular operation</source>
         <target>Implemented and in regular operation</target>
@@ -985,6 +989,10 @@
       <trans-unit id="3ebaedffb495cb6afb6f231ec5d5bd9e90b5c4cf" resname="Main Results">
         <source>Main Results</source>
         <target>Main Results</target>
+      </trans-unit>
+      <trans-unit id="bab9717487fcbaa0e27da5a4eb61962455a527e0" resname="Main results/Impacts">
+        <source>Main results/Impacts</source>
+        <target>Main results/Impacts</target>
       </trans-unit>
       <trans-unit id="2b090feeffd667ab00815a39bd2500b442fecfce" resname="Maximum Age">
         <source>Maximum Age</source>
