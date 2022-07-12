@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-07-11T21:07:40Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-07-12T00:51:06Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1274,6 +1274,10 @@
         <source>New User</source>
         <target>Nuevo usuario</target>
       </trans-unit>
+      <trans-unit id="9a465bd914efc9c714bc130d2bba74f88a778207" resname="New Video">
+        <source>New Video</source>
+        <target>New Video</target>
+      </trans-unit>
       <trans-unit id="ddfdb6753bca11895853f6104046bfc63fe6b23a" resname="New amendment submitted by">
         <source>New amendment submitted by</source>
         <target>Nueva enmienda enviada por</target>
@@ -1449,6 +1453,10 @@
       <trans-unit id="2ac66913f4e299fd22a2bc80c4cf1b32b4dde689" resname="Please add one per line">
         <source>Please add one per line</source>
         <target>Please add one per line</target>
+      </trans-unit>
+      <trans-unit id="bf3be005264fb0bfe4450542f82af8cc2c5a443e" resname="Please paste the embed code here">
+        <source>Please paste the embed code here</source>
+        <target>Please paste the embed code here</target>
       </trans-unit>
       <trans-unit id="182d37ec74bf3c14babc4754e239e56a03a643c7" resname="Population">
         <source>Population</source>
@@ -2158,6 +2166,10 @@
       <trans-unit id="8dce170de238b1feda2ecd9674ea3ca0d068fbcb" resname="Value">
         <source>Value</source>
         <target>Valor</target>
+      </trans-unit>
+      <trans-unit id="3f3cef39ae04a033d7fe20b3673dc32b5c13d3b2" resname="Video embed code">
+        <source>Video embed code</source>
+        <target>Video embed code</target>
       </trans-unit>
       <trans-unit id="56b71e89fb1079caaadefd0889e9a22e8b0560e3" resname="Videos">
         <source>Videos</source>

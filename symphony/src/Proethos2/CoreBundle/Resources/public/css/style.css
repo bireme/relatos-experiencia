@@ -325,6 +325,10 @@ img.logo {
     background-color: #eee;
 }
 
+#textarea-other-videos {
+    font-family: Consolas, "Courier New", monospace;
+}
+
 .form-contacts .tagify {
   --tag-bg                  : #2C93D9;
   --tag-hover               : #CE0078;

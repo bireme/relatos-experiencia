@@ -35,6 +35,11 @@
                 width: 100%;
                 max-width: 200px;
             }
+            .code-highlight {
+                font-family: Consolas, "Courier New", monospace;
+                border: 1px solid #000;
+                padding: 1rem;
+            }
         </style>
     </head>
     <body>
@@ -210,9 +215,26 @@
         </table>
 
         <h3>{% trans %}Videos{% endtrans %}:</h3>
-        {% for url in submission.otherVideosList %}
-            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
-        {% endfor %}
+        <table>
+            <tr>
+                <th>{% trans %}File{% endtrans %}</th>
+                <th width="50%">{% trans %}Date{% endtrans %}</th>
+            </tr>
+
+            {% for file in submission.attachments if file.uploadType.slug == 'video' %}
+                <tr style="text-align: center;">
+                    <td><a href='{{ home_url }}{{ asset(file.uri) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
+                    <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {% if submission.otherVideos %}
+
+            <h3>{% trans %}Video embed code{% endtrans %}:</h3>
+            <p class="code-highlight">{{ submission.otherVideos }}</p>
+
+        {% endif %}
 
         <h3>{% trans %}Other medias{% endtrans %}:</h3>
         <table>

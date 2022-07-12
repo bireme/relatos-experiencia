@@ -839,6 +839,39 @@ class NewSubmissionController extends Controller
 
             }
 
+            $file = $request->files->get('new-video');
+            if(!empty($file)) {
+
+                $upload_type = $upload_type_repository->findOneBy(array("slug" => "video"));
+
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = $upload_type->getExtensionsFormat();
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
+
+                $submission_upload = new SubmissionUpload();
+                $submission_upload->setSubmission($submission);
+                $submission_upload->setUploadType($upload_type);
+                $submission_upload->setUser($user);
+                $submission_upload->setFile($file);
+                $submission_upload->setSubmissionNumber($submission->getNumber());
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission_upload);
+                $em->flush();
+
+                $submission->addAttachment($submission_upload);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("File uploaded with success."));
+                return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
+
+            }
+
             $file = $request->files->get('new-media');
             if(!empty($file)) {
 

@@ -57,7 +57,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% set submission_documents = false %}
                                         {% for file in submission.attachments if file.uploadType.slug == 'document' %}
+                                            {% set submission_documents = true %}
                                             <tr>
                                                 <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
                                                 <td>{{ file.created|date("d/m/Y H:i") }}</td>
@@ -72,7 +74,7 @@
                                     </tbody>
                                 </table>
                             </fieldset>
-                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-document" {% if submission.attachments|length == 1 %}disabled{% endif %}>{% trans %}Upload file{% endtrans %}</a>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-document" {% if submission_documents %}disabled{% endif %}>{% trans %}Upload file{% endtrans %}</a>
                         </div>
                     </div>
                     
@@ -135,16 +137,48 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <h3>{% trans %}Videos{% endtrans %}</h3>
-                            <h5>{% trans %}Share videos with testimonials from the person responsible, teams and/or population involved with the reported experience{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</h5>
+                            <h5>{% trans %}Share videos with testimonials from the person responsible, teams and/or population involved with the reported experience{% endtrans %}:</h5>
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class="col-md-12">
+                            <fieldset>
+                                <table class='table table-hover table-condensed' id='table-document'>
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans %}File name{% endtrans %}</th>
+                                            <th>{% trans %}Date & Time{% endtrans %}</th>
+                                            <th>{% trans %}Actions{% endtrans %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for file in submission.attachments if file.uploadType.slug == 'video' %}
+                                            <tr>
+                                                <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
+                                                <td>{{ file.created|date("d/m/Y H:i") }}</td>
+                                                <td>
+                                                    <a href='{{ asset(file.uri) }}' class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                                    <a href='#' class='btn btn-default btn-xs button-delete-attachment' data-id='{{ file.id }}' data-toggle="modal" data-target="#modal-delete-attachment">
+                                                        <i class='glyphicon glyphicon-trash'></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-video">{% trans %}Upload file{% endtrans %}</a>
+                        </div>
+                    </div>
+                    
+                    <br />
+
+                    <div class='row'>
+                        <div class="col-md-12">
                             <div class="form-group">
-                                {# <strong class="field-label">{% trans %}Videos{% endtrans %}</strong> #}
-                                {# <label for="textarea-other-videos">{% trans %}Share videos with testimonials from the person responsible, teams and/or population involved with the reported experience{% endtrans %} ({% trans %}hyperlinks only{% endtrans %}):</label> #}
-                                <textarea rows="6" class="form-control" name='other_videos' id='textarea-other-videos' placeholder="{% trans %}Please add one hyperlink per line{% endtrans %}">{{ submission.otherVideos }}</textarea>
+                                <label for="textarea-other-videos"><b>{% trans %}Video embed code{% endtrans %}:</b></label>
+                                <textarea rows="6" class="form-control" name='other_videos' id='textarea-other-videos' placeholder="{% trans %}Please paste the embed code here{% endtrans %}">{{ submission.otherVideos }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -212,7 +246,7 @@
     <!-- Modal Novo Documento -->
     <div class="modal fade" id="modal-new-document" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
+            <form method="POST" id='form-new-document' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
 
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
@@ -243,7 +277,7 @@
     <!-- Modal Nova Imagem -->
     <div class="modal fade" id="modal-new-image" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
+            <form method="POST" id='form-new-image' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
 
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
@@ -271,10 +305,41 @@
         </div>
     </div>
 
+    <!-- Modal Novo Video -->
+    <div class="modal fade" id="modal-new-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form method="POST" id='form-new-video' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
+
+                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
+                <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Video{% endtrans %}</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="input-new-video">{% trans %}File{% endtrans %}:</label> 
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 12} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='file' class='form-control' name='new-video' id='input-new-video' required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" class="btn btn-primary">{% trans %}Send{% endtrans %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Modal New Media -->
     <div class="modal fade" id="modal-new-media" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
+            <form method="POST" id='form-new-media' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
 
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
