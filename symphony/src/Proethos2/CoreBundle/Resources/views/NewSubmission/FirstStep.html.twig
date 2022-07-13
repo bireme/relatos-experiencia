@@ -110,7 +110,7 @@
                     <div class='row'>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="input-start-date"><b>*{% trans %}Start Date{% endtrans %} (YYYY-MM-DD):</b></label>
+                                <label for="input-start-date"><b>*{% trans %}Start date{% endtrans %} (YYYY-MM-DD):</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class='form-control' id='input-start-date' name='start-date' value='{% if post_data.startDate %}{{ post_data.startDate|date("Y-m-d") }}{% endif %}' required>
                             </div>
@@ -119,7 +119,7 @@
 
                     <div class='row'>
                         <div class="col-md-6">
-                            <label for="input-end-date"><b>*{% trans %}End Date{% endtrans %} (YYYY-MM-DD) {% trans %}and/or current{% endtrans %}:</b></label>
+                            <label for="input-end-date"><b>*{% trans %}End date{% endtrans %} (YYYY-MM-DD) {% trans %}and/or current{% endtrans %}:</b></label>
                             <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <div class="form-group row">
                                 <div class="col-xs-9">
@@ -168,6 +168,21 @@
 
                 if ('changed' == e.type) $('#select-thematic-area').selectpicker('val', '');
                 $("#select-thematic-area").empty().append(options).selectpicker("refresh");
+            });
+
+            var icheck = $('#input-current-date').iCheck('update')[0].checked;
+
+            if ( icheck ) {
+                $('#input-end-date').prop('disabled', true).val('');
+            }
+
+            $('#input-current-date').on('ifClicked', function(event){
+                var val = $(this).is(':checked');
+                if ( val ) {
+                    $('#input-end-date').prop('disabled', false);
+                } else {
+                    $('#input-end-date').prop('disabled', true).val('');
+                }
             });
 
             $("#input-start-date").mask("9999-99-99");

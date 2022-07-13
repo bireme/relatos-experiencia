@@ -270,6 +270,10 @@ img.logo {
     margin-right: 10px;
 }
 
+.input-checkbox {
+    display: inline-block;
+}
+
 .input-checkbox label {
     padding-left: 0;
     vertical-align: middle;

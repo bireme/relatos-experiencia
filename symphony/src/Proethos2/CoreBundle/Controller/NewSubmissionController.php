@@ -91,8 +91,21 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            $required_fields = array(
+                'title',
+                'collection',
+                'thematic-area',
+                'status',
+                'start-date',
+                'language'
+            );
+
+            if ( !isset($post_data['current_date']) ) {
+                $required_fields[] = 'end-date';
+            }
+
             // checking required files
-            foreach(array('title', 'collection', 'thematic-area', 'status', 'start-date', 'end-date', 'language') as $field) {
+            foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -234,8 +247,21 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            $required_fields = array(
+                'title',
+                'collection',
+                'thematic-area',
+                'status',
+                'start-date',
+                'language'
+            );
+
+            if ( !isset($post_data['current_date']) ) {
+                $required_fields[] = 'end-date';
+            }
+
             // checking required files
-            foreach(array('title', 'collection', 'thematic-area', 'status', 'start-date', 'end-date', 'language') as $field) {
+            foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -1086,7 +1112,7 @@ class NewSubmissionController extends Controller
 
         }
 
-        $text = $translator->trans('Start Date');
+        $text = $translator->trans('Start date');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getStartDate())) {
             $item = array('text' => $text, 'status' => false);
@@ -1096,7 +1122,7 @@ class NewSubmissionController extends Controller
 
         $text = $translator->trans('End date and/or current');
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getEndDate())) {
+        if(empty($submission->getEndDate()) and !$submission->getIsCurrentDate()) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }
