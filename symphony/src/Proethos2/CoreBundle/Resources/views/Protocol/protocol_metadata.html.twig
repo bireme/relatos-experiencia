@@ -149,21 +149,6 @@
 
             <hr />
 
-            <b>{% trans %}Country{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.country.name }}</p>
-
-            <hr />
-
-            <b>{% trans %}State{% endtrans %}/{% trans %}Region{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.region }}</p>
-
-            <hr />
-
-            <b>{% trans %}City{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.city }}</p>
-
-            <hr />
-
             <b>{% trans %}Population{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.populationGroup|join('; ') }}</p>
 
@@ -192,8 +177,18 @@
 
             <hr />
 
-            <b>{% trans %}Keywords{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.keywordsList|join('; ') }}</p>
+            <b>{% trans %}Country{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.country.name }}</p>
+
+            <hr />
+
+            <b>{% trans %}State{% endtrans %}/{% trans %}Region{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.region }}</p>
+
+            <hr />
+
+            <b>{% trans %}City{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.city }}</p>
 
             <hr />
 
@@ -202,7 +197,12 @@
 
             <hr />
 
-            <b>{% trans %}Main Results{% endtrans %}:</b>
+            <b>{% trans %}Keywords{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.keywordsList|join('; ') }}</p>
+
+            <hr />
+
+            <b>{% trans %}Main Results{% endtrans %}/{% trans %}Impacts{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.mainResults }}</p>
 
             <hr />
@@ -224,7 +224,7 @@
 
             <table class='table table-hover table-condensed'>
                 <thead>
-                    <tr><th>{% trans %}Documents{% endtrans %}:</th></tr>
+                    <tr><th>{% trans %}Document{% endtrans %}:</th></tr>
                     <tr>
                         <th>{% trans %}File name{% endtrans %}</th>
                         <th>{% trans %}Date & Time{% endtrans %}</th>
@@ -245,7 +245,7 @@
             </table>
 
             <hr />
-
+{#
             <b>{% trans %}More documents{% endtrans %}:</b>
             <ol>
             {% for url in protocol.mainSubmission.otherDocsList %}
@@ -254,7 +254,7 @@
             </ol>
 
             <hr />
-
+#}
             <table class='table table-hover table-condensed'>
                 <thead>
                     <tr><th>{% trans %}Images{% endtrans %}:</th></tr>
@@ -279,14 +279,38 @@
 
             <hr />
 
-            <b>{% trans %}Videos{% endtrans %}:</b>
-            <ol>
-            {% for url in protocol.mainSubmission.otherVideosList %}
-                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
-            {% endfor %}
-            </ol>
+            <table class='table table-hover table-condensed'>
+                <thead>
+                    <tr><th>{% trans %}Videos{% endtrans %}:</th></tr>
+                    <tr>
+                        <th>{% trans %}File name{% endtrans %}</th>
+                        <th>{% trans %}Date & Time{% endtrans %}</th>
+                        <th>{% trans %}Actions{% endtrans %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in protocol.mainSubmission.attachments if file.uploadType.slug == 'video' %}
+                        <tr>
+                            <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
+                            <td>{{ file.created|date("d/m/Y H:i") }}</td>
+                            <td>
+                                <a href='{{ asset(file.uri) }}' class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
             <hr />
+
+            {% if protocol.mainSubmission.otherVideos %}
+
+                <b>{% trans %}Video embed code{% endtrans %}:</b>
+                <p class="code-highlight">{{ protocol.mainSubmission.otherVideos }}</p>
+
+                <hr />
+
+            {% endif %}
 
             <table class='table table-hover table-condensed'>
                 <thead>
@@ -311,7 +335,7 @@
             </table>
 
             <hr />
-
+{#
             <b>{% trans %}More medias{% endtrans %}:</b>
             <ol>
             {% for url in protocol.mainSubmission.otherMediasList %}
@@ -320,7 +344,7 @@
             </ol>
 
             <hr />
-
+#}
             <b>{% trans %}Products, materials and publications{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.productsInformation|nl2br }}</p>
 

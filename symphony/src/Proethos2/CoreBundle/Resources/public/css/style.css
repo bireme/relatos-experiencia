@@ -283,6 +283,12 @@ img.logo {
     margin-right: 0;
 }
 
+.code-highlight {
+    font-family: Consolas, "Courier New", monospace;
+    border: 1px solid #000;
+    padding: 1rem;
+}
+
 .hide {
     display: none;
 }
