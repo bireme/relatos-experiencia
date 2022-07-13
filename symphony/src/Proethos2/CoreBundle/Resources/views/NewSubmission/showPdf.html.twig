@@ -70,8 +70,10 @@
         <p>{{ submission.startDate|date("Y-m-d") }}</p>
 
         {% if not submission.isCurrentDate %}
+
             <h3>{% trans %}End Date{% endtrans %}:</h3>
             <p>{{ submission.endDate|date("Y-m-d") }}</p>
+            
         {% endif %}
 
         <h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>

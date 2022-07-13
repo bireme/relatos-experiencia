@@ -126,6 +126,7 @@
 
                 <b>{% trans %}Other Status{% endtrans %}:</b>
                 <p>{{ protocol.mainSubmission.otherStatus }}</p>
+
                 <hr />
 
             {% endif %}
@@ -135,14 +136,15 @@
 
             <hr />
 
-            {% if protocol.mainSubmission.isCurrentDate %}
-                <b>{% trans %}Current date{% endtrans %}:</b>
-            {% else %}
-                <b>{% trans %}End date{% endtrans %}:</b>
-            {% endif %}
-            <p>{{ protocol.mainSubmission.endDate|date("Y-m-d") }}</p>
+            {% if not protocol.mainSubmission.isCurrentDate %}
 
-            <hr />
+                <b>{% trans %}End date{% endtrans %}:</b>
+                <p>{{ protocol.mainSubmission.endDate|date("Y-m-d") }}</p>
+
+                <hr />
+
+            {% endif %}
+
 
             <b>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.description }}</p>
@@ -158,6 +160,7 @@
 
                 <b>{% trans %}Other Population{% endtrans %}:</b>
                 <p>{{ protocol.mainSubmission.otherPopulationGroup }}</p>
+
                 <hr />
 
             {% endif %}
