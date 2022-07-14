@@ -248,8 +248,11 @@
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-new-document' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
 
-                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
+                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
+                
+                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="" />
+                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="" />
 
                 <div class="modal-content">
                     <div class="modal-header">
@@ -279,8 +282,11 @@
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-new-image' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
 
-                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
+                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
+
+                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="" />
+                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="" />
 
                 <div class="modal-content">
                     <div class="modal-header">
@@ -310,8 +316,11 @@
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-new-video' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
 
-                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
+                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
+
+                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="" />
+                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="" />
 
                 <div class="modal-content">
                     <div class="modal-header">
@@ -341,8 +350,11 @@
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-new-media' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
 
-                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
+                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
+
+                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="" />
+                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="" />
 
                 <div class="modal-content">
                     <div class="modal-header">
@@ -372,8 +384,11 @@
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-delete-attachment' action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
                 
-                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
+                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
                 <input type="hidden" name="delete-attachment-id" id='hidden-delete-attachment' value="" />
+
+                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="" />
+                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="" />
 
                 <div class="modal-content">
                     <div class="modal-header">
@@ -403,8 +418,19 @@
                 var id = $(this).data('id');
                 $("#hidden-delete-attachment").val(id);
             });
+
             $('#modal-delete-attachment').on('hidden.bs.modal', function () {
                 $("#hidden-delete-attachment").val("");
+            });
+
+            $('#textarea-fulltext').on('blur', function () {
+                var val = $(this).val();
+                $(".input-hidden-fulltext").val(val);
+            });
+
+            $('#textarea-other-videos').on('blur', function () {
+                var val = $(this).val();
+                $(".input-hidden-other-videos").val(val);
             });
         });
     </script>
