@@ -799,6 +799,16 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            // adding fields to model
+            $submission->setFullText($post_data['fulltext']);
+            $submission->setOtherDocs($post_data['other_docs']);
+            $submission->setOtherVideos($post_data['other_videos']);
+            $submission->setOtherMedias($post_data['other_medias']);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($submission);
+            $em->flush();
+
             $file = $request->files->get('new-document');
             if(!empty($file)) {
 
@@ -940,16 +950,6 @@ class NewSubmissionController extends Controller
                     return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
                 }
             }
-
-            // adding fields to model
-            $submission->setFullText($post_data['fulltext']);
-            $submission->setOtherDocs($post_data['other_docs']);
-            $submission->setOtherVideos($post_data['other_videos']);
-            $submission->setOtherMedias($post_data['other_medias']);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($submission);
-            $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("Fifth step saved with success."));
             return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
