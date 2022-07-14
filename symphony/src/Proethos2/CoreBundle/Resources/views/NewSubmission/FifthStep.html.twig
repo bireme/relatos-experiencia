@@ -251,8 +251,8 @@
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
                 
-                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="" />
-                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="" />
+                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="{{ submission.fullText }}" />
+                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="{{ submission.otherVideos }}" />
 
                 <div class="modal-content">
                     <div class="modal-header">
@@ -285,8 +285,8 @@
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
 
-                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="" />
-                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="" />
+                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="{{ submission.fullText }}" />
+                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="{{ submission.otherVideos }}" />
 
                 <div class="modal-content">
                     <div class="modal-header">
@@ -319,8 +319,8 @@
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
 
-                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="" />
-                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="" />
+                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="{{ submission.fullText }}" />
+                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="{{ submission.otherVideos }}" />
 
                 <div class="modal-content">
                     <div class="modal-header">
@@ -353,8 +353,8 @@
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
 
-                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="" />
-                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="" />
+                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="{{ submission.fullText }}" />
+                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="{{ submission.otherVideos }}" />
 
                 <div class="modal-content">
                     <div class="modal-header">
@@ -387,8 +387,8 @@
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
                 <input type="hidden" name="delete-attachment-id" id='hidden-delete-attachment' value="" />
 
-                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="" />
-                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="" />
+                <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="{{ submission.fullText }}" />
+                <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="{{ submission.otherVideos }}" />
 
                 <div class="modal-content">
                     <div class="modal-header">
