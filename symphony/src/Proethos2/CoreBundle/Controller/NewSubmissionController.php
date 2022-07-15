@@ -1476,7 +1476,8 @@ class NewSubmissionController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $util = new Util($this->container, $this->getDoctrine());
 
-        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+        // $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+        $baseurl = 'http://' . $request->getHttpHost() . $request->getBasePath();
         $url = $baseurl . $this->generateUrl('home');
         $output['home_url'] = rtrim($url, '/');
 
