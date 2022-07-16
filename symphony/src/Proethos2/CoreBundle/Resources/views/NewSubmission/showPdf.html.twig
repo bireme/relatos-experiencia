@@ -182,7 +182,7 @@
 
             {% for file in submission.attachments if file.uploadType.slug == 'document' %}
                 <tr style="text-align: center;">
-                    <td><a href='{{ home_url }}{{ asset(file.uri) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
+                    <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
                     <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
                 </tr>
             {% endfor %}
@@ -197,14 +197,12 @@
         <table>
             <tr>
                 <th>{% trans %}File{% endtrans %}</th>
-                <th>{% trans %}File name{% endtrans %}</th>
-                <th width="20%">{% trans %}Date{% endtrans %}</th>
+                <th width="50%">{% trans %}Date{% endtrans %}</th>
             </tr>
 
             {% for file in submission.attachments if file.uploadType.slug == 'image' %}
                 <tr style="text-align: center;">
-                    <td><img src="{{ home_url }}{{ asset(file.uri) }}" alt="{% if file.uploadType.slug in ['protocol'] %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}" /></td>
-                    <td><a href='{{ home_url }}{{ asset(file.uri) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
+                    <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
                     <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
                 </tr>
             {% endfor %}
@@ -219,7 +217,7 @@
 
             {% for file in submission.attachments if file.uploadType.slug == 'video' %}
                 <tr style="text-align: center;">
-                    <td><a href='{{ home_url }}{{ asset(file.uri) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
+                    <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
                     <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
                 </tr>
             {% endfor %}
@@ -241,7 +239,7 @@
 
             {% for file in submission.attachments if file.uploadType.slug == 'others' %}
                 <tr style="text-align: center;">
-                    <td><a href='{{ home_url }}{{ asset(file.uri) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
+                    <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
                     <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
                 </tr>
             {% endfor %}
