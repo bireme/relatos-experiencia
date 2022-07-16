@@ -1,12 +1,12 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}{% trans %}New submission{% endtrans %}{% endblock %}
+{% block title %}{% if submission.protocol.status == 'S' %}{% trans %}Edit experience{% endtrans %}{% else %}{% trans %}New submission{% endtrans %}{% endif %}{% endblock %}
 
 {% block content %}
     <div class="container-fluid main-content">
         <div class="row">
             <div class='col-md-12'>
-                <h1 class="page-header">{% trans %}New submission{% endtrans %}</h1>
+                <h1 class="page-header">{% if submission.protocol.status == 'S' %}{% trans %}Edit experience{% endtrans %}{% else %}{% trans %}New submission{% endtrans %}{% endif %}</h1>
             </div>
         </div>
 
