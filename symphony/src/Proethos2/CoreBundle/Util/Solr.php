@@ -61,9 +61,9 @@ class Solr {
         if ( $submission->getEndDate() ) $data['end_date'] = $submission->getEndDate()->format('Y-m-d H:i:s');
 
         // collection field
-        $data['collection'] = array();
         $collection = $submission->getCollection();
         if ( $collection ) {
+            $data['collection'] = array();
             foreach ($collection as $col) {
                 $col->setTranslatableLocale('en');
                 $em->refresh($col);
@@ -84,9 +84,9 @@ class Solr {
         }
 
         // thematic area field
-        $data['thematic_area'] = array();
         $thematic_area = $submission->getThematicArea();
         if ( $thematic_area ) {
+            $data['thematic_area'] = array();
             foreach ($thematic_area as $ta) {
                 $ta->setTranslatableLocale('en');
                 $em->refresh($ta);
@@ -107,9 +107,9 @@ class Solr {
         }
 
         // population group field
-        $data['population_group'] = array();
         $population_group = $submission->getPopulationGroup();
         if ( $population_group ) {
+            $data['population_group'] = array();
             foreach ($population_group as $pg) {
                 $pg->setTranslatableLocale('en');
                 $em->refresh($pg);
@@ -130,7 +130,6 @@ class Solr {
         }
 
         // country field
-        $data['country'] = '';
         $country = $submission->getCountry();
         if ( $country ) {
             $country->setTranslatableLocale('en');
