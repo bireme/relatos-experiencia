@@ -137,6 +137,10 @@
                         </div>
                     </div>
 
+                    <a href='javascript:void();' class='btn btn-default' id="button-descriptors" onclick="javascript:decs_search();">{% trans %}Add Descriptor{% endtrans %}</a>
+
+                    <hr />
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
@@ -161,11 +165,11 @@
         $(function(){
             // $('[name=keywords]').tagify();
             var element = document.querySelector('[name=keywords]');
-            new Tagify(element);
+            var tagify = new Tagify(element);
 
             // $('[name=descriptors]').tagify();
             var descriptors = document.querySelector('[name=descriptors]');
-            new Tagify(descriptors);
+            var tagify = new Tagify(descriptors);
 
             $('.selectpicker').selectpicker({
                 multipleSeparator: '; '
@@ -213,6 +217,28 @@
                     // $("#input_other_population_group").prop('required',false);
                 }
             });
+
+            var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+            var eventer = window[eventMethod];
+            var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+            // Listen to message from child window
+            eventer(messageEvent,function(e) {
+                var decs_data = e.data;
+                var pipe_pos = decs_data.lastIndexOf('|');
+                var decs_text = decs_data.substring(0, pipe_pos);
+                var decs_code = decs_data.substring(pipe_pos+1);
+
+                // set text for the new descriptor
+                var tags = [];
+                tags.push(decs_text);
+                tagify.addTags(tags);
+            },false);
         });
+
+        function decs_search(){
+            var decs_lookup = 'https://pesquisa.bvsalud.org/portal/decs-locator/?mode=dataentry';
+            window.open(decs_lookup+'&lang={{ app.request.locale|slice(0, 2) }}', 'decslookup', 'scrollbars=1,width=850,height=700');
+        }
     </script>
 {% endblock %}
