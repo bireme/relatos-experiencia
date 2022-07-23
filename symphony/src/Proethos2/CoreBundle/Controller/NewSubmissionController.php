@@ -227,7 +227,7 @@ class NewSubmissionController extends Controller
         $allow_to_edit_submission = true;
         if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
             $allow_to_edit_submission = true;
-        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+        } elseif (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             $allow_to_edit_submission = false;
         }
 
@@ -451,7 +451,7 @@ class NewSubmissionController extends Controller
         $allow_to_edit_submission = true;
         if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
             $allow_to_edit_submission = true;
-        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+        } elseif (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             $allow_to_edit_submission = false;
         }
 
@@ -550,7 +550,7 @@ class NewSubmissionController extends Controller
         $allow_to_edit_submission = true;
         if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
             $allow_to_edit_submission = true;
-        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+        } elseif (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             $allow_to_edit_submission = false;
         }
 
@@ -623,7 +623,7 @@ class NewSubmissionController extends Controller
         $allow_to_edit_submission = true;
         if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
             $allow_to_edit_submission = true;
-        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+        } elseif (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             $allow_to_edit_submission = false;
         }
 
@@ -779,7 +779,7 @@ class NewSubmissionController extends Controller
         $allow_to_edit_submission = true;
         if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
             $allow_to_edit_submission = true;
-        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+        } elseif (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             $allow_to_edit_submission = false;
         }
 
@@ -986,7 +986,7 @@ class NewSubmissionController extends Controller
         $allow_to_edit_submission = true;
         if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
             $allow_to_edit_submission = true;
-        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+        } elseif (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             $allow_to_edit_submission = false;
         }
 
@@ -1060,7 +1060,7 @@ class NewSubmissionController extends Controller
         $allow_to_edit_submission = true;
         if(in_array('secretary', $user->getRolesSlug()) and !in_array($submission->getProtocol()->getStatus(), array('A', 'N')) ) {
             $allow_to_edit_submission = true;
-        } elseif (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
+        } elseif (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             $allow_to_edit_submission = false;
         }
 
