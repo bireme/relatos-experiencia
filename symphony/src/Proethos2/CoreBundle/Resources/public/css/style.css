@@ -289,6 +289,16 @@ img.logo {
     padding: 1rem;
 }
 
+.video-embed {
+    padding: 1rem 1rem 0;
+}
+
+.video-embed embed,
+.video-embed iframe {
+    width: 560px;
+    height: 315px;
+}
+
 .hide {
     display: none;
 }

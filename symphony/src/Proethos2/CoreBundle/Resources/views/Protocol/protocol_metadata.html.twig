@@ -309,7 +309,7 @@
             {% if protocol.mainSubmission.otherVideos %}
 
                 <b>{% trans %}Video embed code{% endtrans %}:</b>
-                <p class="code-highlight">{{ protocol.mainSubmission.otherVideos }}</p>
+                <p class="video-embed">{{ protocol.mainSubmission.otherVideos|raw }}</p>
 
                 <hr />
 
