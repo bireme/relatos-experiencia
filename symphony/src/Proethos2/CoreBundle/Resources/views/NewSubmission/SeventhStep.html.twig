@@ -54,7 +54,7 @@
                     </div>
                 </div>
 
-                {% if submission.owner == app.user %}
+                {% if submission.owner == app.user and submission.protocol.status == 'D' %}
                     <div class='block'>
                         <div class='row'>
                             <div class="col-md-12">
