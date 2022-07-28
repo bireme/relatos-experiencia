@@ -3513,7 +3513,8 @@ class CRUDController extends Controller
         $item_repository = $em->getRepository('Proethos2ModelBundle:Collection');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        $items = $item_repository->findAll();
+        // $items = $item_repository->findAll();
+        $items = $item_repository->findBy(array(), array('name' => 'asc'));
         $output['items'] = $items;
 
         // checking if was a post request
@@ -3635,7 +3636,8 @@ class CRUDController extends Controller
         $item_repository = $em->getRepository('Proethos2ModelBundle:ThematicArea');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        $items = $item_repository->findAll();
+        // $items = $item_repository->findAll();
+        $items = $item_repository->findBy(array(), array('name' => 'asc'));
         $output['items'] = $items;
 
         // checking if was a post request

@@ -146,6 +146,27 @@
     <script>
         $(function(){
             var _options = $("#select-thematic-area option");
+
+            $('#select-thematic-area.selectpicker').on('loaded.bs.select', function(e) {
+                var options = $("#select-thematic-area option");
+                options.sort(function(a,b) {
+                    if (a.text > b.text) return 1;
+                    else if (a.text < b.text) return -1;
+                    else return 0;
+                });
+                $("#select-thematic-area").empty().append(options).selectpicker("refresh");
+            });
+
+            $('#select-collection.selectpicker').on('loaded.bs.select', function(e) {
+                var options = $("#select-collection option");
+                options.sort(function(a,b) {
+                    if (a.text > b.text) return 1;
+                    else if (a.text < b.text) return -1;
+                    else return 0;
+                });
+                $("#select-collection").empty().append(options).selectpicker("refresh");
+            });
+
             $('#select-collection').on('changed.bs.select loaded.bs.select', function(e) {
                 var options = [];
                 var col_list = [];
