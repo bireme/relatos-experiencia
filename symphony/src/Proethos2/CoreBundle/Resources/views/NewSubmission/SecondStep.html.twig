@@ -132,7 +132,7 @@
                             <div class="form-group">
                                 <strong class="field-label">{% trans %}Descriptors{% endtrans %}</strong>
                                 <label for="input_descriptors">{% trans %}Select at least 3 DeCS descriptors (Health Sciences Descriptors) to represent the theme of experience{% endtrans %}:</label>
-                                <input type="text" class="form-control" name='descriptors' id='input_descriptors' placeholder="{% trans %}insert descriptors here{% endtrans %}" value="{{ submission.descriptors }}">
+                                <input type="text" class="form-control" name='descriptors' id='input_descriptors' value="{{ submission.descriptors }}">
                             </div>
                         </div>
                     </div>
@@ -169,7 +169,9 @@
 
             // $('[name=descriptors]').tagify();
             var descriptors = document.querySelector('[name=descriptors]');
-            var tagify = new Tagify(descriptors);
+            var tagify = new Tagify(descriptors, {
+                userInput: false
+            });
 
             $('.selectpicker').selectpicker({
                 multipleSeparator: '; '
