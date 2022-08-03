@@ -37,8 +37,7 @@
                             <div class="form-group">
                                 <label for="select-language"><b>*{% trans %}Language{% endtrans %}:</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <select class='form-control selectpicker' id='select-language' name='language' data-size="5" required>
-                                    <option value="">-</option>
+                                <select class='form-control selectpicker' id='select-language' name='language' data-size="5" title="{% trans %}Select one of the following options{% endtrans %}" required>
                                     <option value="pt_BR" {% if app.request.locale == 'pt_BR' %}selected{% endif %}>Português</option>
                                     <option value="es_ES" {% if app.request.locale == 'es_ES' %}selected{% endif %}>Español</option>
                                     <option value="en" {% if app.request.locale == 'en' %}selected{% endif %}>English</option>
@@ -97,8 +96,7 @@
                                 <strong class="field-label">*{% trans %}Experience status{% endtrans %}</strong>
                                 <label for="select-status">{% trans %}What is the current status of the experience?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <select class='form-control selectpicker' id='select-status' name='status' data-size="5" data-live-search="true" required>
-                                    <option value="">-</option>
+                                <select class='form-control selectpicker' id='select-status' name='status' data-size="5" title="{% trans %}Select one of the following options{% endtrans %}" required>
                                     {% for key, value in status %}
                                         <option value="{{ key }}" {% if post_data.status == key %}selected{% endif %}>{{ value }}</option>
                                     {% endfor %}
@@ -108,7 +106,7 @@
                     </div>
 
                     <div class='row'>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="input-start-date"><b>*{% trans %}Start date{% endtrans %} (YYYY-MM-DD):</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
@@ -118,7 +116,7 @@
                     </div>
 
                     <div class='row'>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="input-end-date"><b>*{% trans %}End date{% endtrans %} (YYYY-MM-DD) {% trans %}and/or current{% endtrans %}:</b></label>
                             <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <div class="form-group row">
