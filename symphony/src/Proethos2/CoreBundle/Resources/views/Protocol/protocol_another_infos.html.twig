@@ -248,7 +248,9 @@
 
             // hide all blocks on the load page
             $(".toggle-block").each(function(){
-                $(this).trigger('click');
+                if ( ! $(this).hasClass('protocol-data') ) {
+                    $(this).trigger('click');
+                }
             });
 
             $("#table-attachment").on("click", ".button-delete-attachment", function(e){
