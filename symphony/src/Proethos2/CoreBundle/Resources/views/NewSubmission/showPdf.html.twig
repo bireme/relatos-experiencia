@@ -56,6 +56,13 @@
         <h3>{% trans %}Thematic Area{% endtrans %}:</h3>
         <p>{{ submission.thematicAreaList|join('; ') }}</p>
 
+        {% if submission.otherThematicArea %}
+
+            <h3>{% trans %}Other thematic area{% endtrans %}:</h3>
+            <p>{{ submission.otherThematicArea }}</p>
+
+        {% endif %}
+
         <h3>{% trans %}Experience Status{% endtrans %}:</h3>
         <p>{{ status[submission.status] }}</p>
 

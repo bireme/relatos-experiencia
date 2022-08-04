@@ -112,7 +112,7 @@
                             <div class='col-md-12'> 
                                 <div class="form-group">
                                     <label for="select-collection">{% trans %}Collection{% endtrans %}:</label>
-                                    <select class='form-control selectpicker' id='select-collection' name='collection' data-size="5" required>
+                                    <select class='form-control selectpicker' id='select-collection' name='collection' data-size="5">
                                         <option value="">-</option>
                                         {% for col in collection %}
                                             <option value="{{ col.id }}" {% if item.collection.id == col.id %}selected{% endif %}>{{ col.name }}</option>

@@ -135,6 +135,14 @@ class Submission extends Base
     private $thematic_area;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     */
+    private $other_thematic_area;
+
+    /**
      * @ORM\Column(type="string", length=1)
      * @Assert\NotBlank
      */
@@ -1916,5 +1924,29 @@ class Submission extends Base
     public function getIsCurrentDate()
     {
         return $this->isCurrentDate;
+    }
+
+    /**
+     * Set otherThematicArea
+     *
+     * @param string $otherThematicArea
+     *
+     * @return Submission
+     */
+    public function setOtherThematicArea($otherThematicArea)
+    {
+        $this->other_thematic_area = $otherThematicArea;
+
+        return $this;
+    }
+
+    /**
+     * Get otherThematicArea
+     *
+     * @return string
+     */
+    public function getOtherThematicArea()
+    {
+        return $this->other_thematic_area;
     }
 }

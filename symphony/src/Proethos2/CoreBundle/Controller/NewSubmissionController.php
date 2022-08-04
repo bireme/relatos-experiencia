@@ -126,6 +126,7 @@ class NewSubmissionController extends Controller
             if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
             if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
+            $submission->setOtherThematicArea($post_data['other_thematic_area']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
             $submission->setProtocol($protocol);
             $submission->setNumber(1);
@@ -275,8 +276,9 @@ class NewSubmissionController extends Controller
             if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
             if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
+            $submission->setOtherThematicArea($post_data['other_thematic_area']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
-            
+
             $submission->setIsCurrentDate(false);
             if(isset($post_data['current_date'])) {
                 $submission->setIsCurrentDate(true);

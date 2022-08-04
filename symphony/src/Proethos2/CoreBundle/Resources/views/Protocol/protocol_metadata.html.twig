@@ -29,6 +29,15 @@
 
             <hr />
 
+            {% if protocol.mainSubmission.otherThematicArea %}
+
+                <b>{% trans %}Other thematic area{% endtrans %}:</b>
+                <p>{{ protocol.mainSubmission.otherThematicArea }}</p>
+
+                <hr />
+
+            {% endif %}
+
             <b>{% trans %}Experience Status{% endtrans %}:</b>
             <p>{{ status[protocol.mainSubmission.status] }}</p>
 

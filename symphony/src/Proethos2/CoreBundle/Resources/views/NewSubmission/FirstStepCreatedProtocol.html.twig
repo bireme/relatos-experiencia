@@ -68,10 +68,20 @@
                                 <div>
                                     <select class='form-control selectpicker' id='select-thematic-area' name='thematic-area[]' data-size="5" data-width="fit" data-live-search="true" title="{% trans %}Select one or more thematic areas{% endtrans %}" multiple required>
                                         {% for ta in thematic_area %}
-                                            <option value="{{ ta.id }}" data-col="{{ ta.collection.slug }}" {% if ta in submission.thematicArea %}selected{% endif %}>{{ ta.name }}</option>
+                                            <option value="{{ ta.id }}" data-slug="{{ ta.slug }}" data-col="{% if ta.collection %}{{ ta.collection.slug }}{% else %}no-col{% endif %}" {% if ta in submission.thematicArea %}selected{% endif %}>{{ ta.name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="input_other_thematic_area"><b>*{% trans %}Other thematic area{% endtrans %}:</b></label>
+                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class="form-control" name='other_thematic_area' id='input_other_thematic_area' value="{{ submission.otherThematicArea }}" oninvalid="this.setCustomValidity('{% trans %}Fill this field{% endtrans %}')" oninput="this.setCustomValidity('')">
                             </div>
                         </div>
                     </div>
@@ -171,7 +181,7 @@
                 } else {
                     _options.map(function(i, el) {
                         var col = $(el).data('col');
-                        if($.inArray(col, col_list) !== -1) {
+                        if($.inArray(col, col_list) !== -1 || 'no-col' == col) {
                             options.push(el);
                         }
                     });
@@ -179,6 +189,24 @@
 
                 if ('changed' == e.type) $('#select-thematic-area').selectpicker('val', '');
                 $("#select-thematic-area").empty().append(options).selectpicker("refresh");
+            });
+
+            $('#select-thematic-area').on('changed.bs.select loaded.bs.select', function(e) {
+                var ta_list = [];
+
+                $("#select-thematic-area :selected").map(function(i, el) {
+                    var slug = $(el).data('slug');
+                    ta_list.push(slug);
+                });
+
+                if( $.inArray("others", ta_list) !== -1 && ta_list.length == 1 ) {
+                    $("#input_other_thematic_area").parent().removeClass("hide");
+                    $("#input_other_thematic_area").prop('required',true);
+                } else {
+                    $("#input_other_thematic_area").parent().addClass("hide");
+                    $("#input_other_thematic_area").prop('required',false);
+                    $("#input_other_thematic_area").val('');
+                }
             });
 
             var icheck = $('#input-current-date').iCheck('update')[0].checked;
