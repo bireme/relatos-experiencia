@@ -131,6 +131,12 @@
         $(function(){
             var _options = $("#select-thematic-area option");
 
+            $('.selectpicker').selectpicker({
+                multipleSeparator: '; '
+            }).on('changed.bs.select', function() {
+                $(this).selectpicker('refresh');
+            });
+
             $('#select-thematic-area.selectpicker').on('loaded.bs.select', function(e) {
                 var options = $("#select-thematic-area option");
                 options.sort(function(a,b) {

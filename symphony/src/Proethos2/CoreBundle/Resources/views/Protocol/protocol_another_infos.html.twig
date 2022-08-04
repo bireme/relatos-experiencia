@@ -64,7 +64,6 @@
                 <small class='pull-right'>
                     <i class='glyphicon glyphicon-minus'></i>
                 </small>
-                
                 {% trans %}History{% endtrans %}:
             </h2>
         </div>
@@ -230,7 +229,6 @@
             });
 
             $("body").on("click", ".toggle-block", function(e){
-
                 // find and toggle all rows of block
                 block = $(this).parents('.block');
                 first_row = $(this).parents('.row');
@@ -250,7 +248,7 @@
 
             // hide all blocks on the load page
             $(".toggle-block").each(function(){
-                $(this).trigger('click');     
+                $(this).trigger('click');
             });
 
             $("#table-attachment").on("click", ".button-delete-attachment", function(e){
