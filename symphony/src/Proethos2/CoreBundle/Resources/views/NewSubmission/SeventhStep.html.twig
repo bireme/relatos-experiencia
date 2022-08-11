@@ -88,7 +88,8 @@
                         {% if submission.isTranslation %}
                             <a href='{{ path("submission_new_seventh_step", {submission_id: submission.originalSubmission.id}) }}' class='btn btn-default'>{% trans %}Back to original to save and finish{% endtrans %}</a>
                         {% else %}
-                            <button type='submit' class='btn btn-primary {% if not final_status %}disabled{% endif %}'>{% trans %}Save and finish{% endtrans %}</button>
+                            <a href='{{ path("crud_investigator_protocol_list") }}' class='btn btn-primary'>{% trans %}Save and continue later{% endtrans %}</a>
+                            <button type='submit' class='btn btn-primary {% if not final_status %}disabled{% endif %}'>{% trans %}Send{% endtrans %}</button>
                         {% endif %}
                     </div>
                 {% endif %}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-08-04T15:30:57Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2022-08-11T02:14:09Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1646,9 +1646,9 @@
         <source>Save</source>
         <target>Save</target>
       </trans-unit>
-      <trans-unit id="d891b939ebd30c077be9b8947d719284d03aae02" resname="Save and finish">
-        <source>Save and finish</source>
-        <target>Save and finish</target>
+      <trans-unit id="d4a24f802d6c8bbb8c4120c73450b1224b501d0c" resname="Save and continue later">
+        <source>Save and continue later</source>
+        <target>Save and continue later</target>
       </trans-unit>
       <trans-unit id="ff708ddf466ae8a6d7c39a05291103bdfa5d0405" resname="Save and mark as final revision">
         <source>Save and mark as final revision</source>
