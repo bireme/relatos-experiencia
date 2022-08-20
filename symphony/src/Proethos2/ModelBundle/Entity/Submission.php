@@ -195,13 +195,6 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $notes;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
     private $keywords;
 
     /**
@@ -378,6 +371,13 @@ class Submission extends Base
     /**
      * @var text
      *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $event;
+    
+    /**
+     * @var text
+     *
      * @ORM\Column(type="text", nullable=true)
      */
     private $products_information;
@@ -388,6 +388,13 @@ class Submission extends Base
      * @ORM\Column(type="text", nullable=true)
      */
     private $related_links;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $notes;
 
     /**
      * @var Tags
@@ -1948,5 +1955,29 @@ class Submission extends Base
     public function getOtherThematicArea()
     {
         return $this->other_thematic_area;
+    }
+
+    /**
+     * Set event
+     *
+     * @param string $event
+     *
+     * @return Submission
+     */
+    public function setEvent($event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return string
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 }

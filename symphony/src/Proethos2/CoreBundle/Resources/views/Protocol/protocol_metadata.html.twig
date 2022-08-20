@@ -328,6 +328,11 @@
 
             <hr />
 #}
+            <b>{% trans %}Event where the experience was presented{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.event }}</p>
+
+            <hr />
+
             <b>{% trans %}Products, materials and publications{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.productsInformation|nl2br }}</p>
 
