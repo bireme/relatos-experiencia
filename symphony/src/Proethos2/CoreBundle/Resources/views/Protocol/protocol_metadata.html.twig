@@ -96,11 +96,6 @@
 
             <hr />
 
-            <b>{% trans %}Context{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.context }}</p>
-
-            <hr />
-
             <b>{% trans %}Country{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.country.name }}</p>
 
@@ -113,6 +108,11 @@
 
             <b>{% trans %}City{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.city }}</p>
+
+            <hr />
+
+            <b>{% trans %}Location{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.context }}</p>
 
             <hr />
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-08-20T04:03:48Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2022-08-20T04:18:49Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -850,10 +850,6 @@
         <source>Implemented and in regular operation</source>
         <target>Implemented and in regular operation</target>
       </trans-unit>
-      <trans-unit id="89399999aca0d87c59b0a64b75bd47bd972ba1ba" resname="In what location or context was the experience implemented?">
-        <source>In what location or context was the experience implemented?</source>
-        <target>In what location or context was the experience implemented?</target>
-      </trans-unit>
       <trans-unit id="013dcdb66b14b0fbb2f5393c8f52a72509f21819" resname="Inactive account. Please try again later.">
         <source>Inactive account. Please try again later.</source>
         <target>Inactive account. Please try again later.</target>
@@ -977,6 +973,10 @@
       <trans-unit id="5f1b602bd58c70400c6cc3123702692e92eee6c0" resname="Lessons learned">
         <source>Lessons learned</source>
         <target>Lessons learned</target>
+      </trans-unit>
+      <trans-unit id="d219c68101f532de10add2cf42fb9dbeca73d3be" resname="Location">
+        <source>Location</source>
+        <target>Location</target>
       </trans-unit>
       <trans-unit id="e43d612e11f1568f2373e719d4c4b08dcecdc7cc" resname="Logout">
         <source>Logout</source>
@@ -1861,6 +1861,10 @@
       <trans-unit id="78a6cdd537964b9aa552f2211ad316d5f9416c27" resname="Spanish message">
         <source>Spanish message</source>
         <target>Spanish message</target>
+      </trans-unit>
+      <trans-unit id="7bfb3a5925124b3c119cbe6d0229cef094629f9d" resname="Specify the location where the experience was deployed">
+        <source>Specify the location where the experience was deployed</source>
+        <target>Specify the location where the experience was deployed</target>
       </trans-unit>
       <trans-unit id="5493e68cb4d6d088d7665c093d2ba3aed447c1b2" resname="Stakeholders">
         <source>Stakeholders</source>

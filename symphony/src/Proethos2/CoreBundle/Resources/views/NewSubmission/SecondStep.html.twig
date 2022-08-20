@@ -82,17 +82,6 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong class="field-label">*{% trans %}Context{% endtrans %}</strong>
-                                <label for="textarea-context">{% trans %}In what location or context was the experience implemented?{% endtrans %}</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='context' id='textarea-context' required>{{ submission.context }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group">
                                 <label for="select-country"><b>{% trans %}Country{% endtrans %}:</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <div>
@@ -122,6 +111,17 @@
                                 <label for="input_city"><b>{% trans %}City{% endtrans %}:</b></label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='city' id='input_city' value="{{ submission.city }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <strong class="field-label">{% trans %}Location{% endtrans %}</strong>
+                                <label for="textarea-context">{% trans %}Specify the location where the experience was deployed{% endtrans %}:</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="6" class="form-control" name='context' id='textarea-context'>{{ submission.context }}</textarea>
                             </div>
                         </div>
                     </div>

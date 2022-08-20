@@ -95,6 +95,9 @@
         <h3>{% trans %}City{% endtrans %}:</h3>
         <p>{{ submission.city }}</p>
 
+        <h3>{% trans %}Location{% endtrans %}:</h3>
+        <p>{{ submission.context }}</p>
+
         <h3>{% trans %}Population{% endtrans %}:</h3>
         <p>{{ submission.populationGroup|join('; ') }}</p>
 
@@ -110,9 +113,6 @@
 
         <h3>{% trans %}Resources{% endtrans %}:</h3>
         <p>{{ submission.resources }}</p>
-
-        <h3>{% trans %}Context{% endtrans %}:</h3>
-        <p>{{ submission.context }}</p>
 
         <h3>{% trans %}Keywords{% endtrans %}:</h3>
         <p>{{ submission.keywordsList|join('; ') }}</p>

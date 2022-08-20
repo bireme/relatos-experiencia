@@ -479,7 +479,6 @@ class NewSubmissionController extends Controller
             $required_fields = array(
                 'description',
                 'objectives',
-                'context'
             );
 
             foreach($required_fields as $field) {
