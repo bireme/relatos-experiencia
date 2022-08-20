@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-08-20T02:15:46Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-08-20T04:03:47Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -609,6 +609,10 @@
       <trans-unit id="de84c6a03697e058ca921b8cc68aefced20e72b4" resname="Estimated date of initial recruitment">
         <source>Estimated date of initial recruitment</source>
         <target>Fecha estimada para el inicio del reclutamiento</target>
+      </trans-unit>
+      <trans-unit id="9a993e5c1082cb0e891f1a6d45e54dcb8574b124" resname="Event where the experience was presented">
+        <source>Event where the experience was presented</source>
+        <target>Event where the experience was presented</target>
       </trans-unit>
       <trans-unit id="67690c75c03cd0e07da2b8ad46be269eb2c39a62" resname="Exclude user">
         <source>Exclude user</source>
@@ -1509,6 +1513,10 @@
       <trans-unit id="4bea7947798fd846780936ca8c6f733addadeb61" resname="Protocol withdrawn by %user%.">
         <source>Protocol withdrawn by %user%.</source>
         <target>Protocolo retirado por %user%.</target>
+      </trans-unit>
+      <trans-unit id="300d3a7e32eb5745308288e0b724ca0e870f806b" resname="Provide the name of the event where this experience was presented">
+        <source>Provide the name of the event where this experience was presented</source>
+        <target>Provide the name of the event where this experience was presented</target>
       </trans-unit>
       <trans-unit id="66504a22bf9c7de6cb0b13fc9e1924db84e74810" resname="Public title">
         <source>Public title</source>

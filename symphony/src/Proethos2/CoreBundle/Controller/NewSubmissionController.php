@@ -1012,6 +1012,7 @@ class NewSubmissionController extends Controller
             $submission->setProductsInformation($post_data['products_information']);
             $submission->setRelatedLinks($post_data['related_links']);
             $submission->setNotes($post_data['notes']);
+            $submission->setEvent($post_data['event']);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);

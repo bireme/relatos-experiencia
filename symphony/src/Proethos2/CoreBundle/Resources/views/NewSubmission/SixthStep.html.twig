@@ -22,6 +22,16 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
+                                <strong class="field-label">{% trans %}Event where the experience was presented{% endtrans %}</strong>
+                                <label for="input_event">{% trans %}Provide the name of the event where this experience was presented{% endtrans %}:</label>
+                                <input type="text" class="form-control" name='event' id='input_event' value="{{ submission.event }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
                                 <strong class="field-label">{% trans %}Products, materials and publications{% endtrans %}</strong>
                                 <label for="textarea-products-information">{% trans %}Use this field to share documents, publications, materials or news related to your experience{% endtrans %}:</label>
                                 <textarea rows="6" class="form-control" name='products_information' id='textarea-products-information' placeholder="{% trans %}Please add one per line{% endtrans %}">{{ submission.productsInformation }}</textarea>
@@ -44,7 +54,6 @@
                             <div class="form-group">
                                 <strong class="field-label">{% trans %}Notes{% endtrans %}</strong>
                                 <label for="textarea-notes">{% trans %}Free space for any observation and/or additional information{% endtrans %}:</label>
-                                <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="6" class="form-control" name='notes' id='textarea-notes'>{{ submission.notes }}</textarea>
                             </div>
                         </div>

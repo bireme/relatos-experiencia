@@ -257,6 +257,9 @@
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
 #}
+        <h3>{% trans %}Event where the experience was presented{% endtrans %}:</h3>
+        <p>{{ submission.event }}</p>
+
         <h3>{% trans %}Products, materials and publications{% endtrans %}:</h3>
         <p>{{ submission.productsInformation|nl2br }}</p>
 
