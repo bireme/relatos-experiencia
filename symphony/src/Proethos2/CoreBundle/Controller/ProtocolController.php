@@ -424,12 +424,13 @@ class ProtocolController extends Controller
         $output['status'] = $status;
 
         $finish_options = array(
+            "V" => $translator->trans("Under review"),
             "A" => $translator->trans("Approved"),
             'N' => $translator->trans('Not approved'),
         );
         $output['finish_options'] = $finish_options;
 
-        if (!$protocol or $protocol->getStatus() != "S") {
+        if (!$protocol or !in_array($protocol->getStatus(), array('S', 'V'))) {
             throw $this->createNotFoundException($translator->trans('No best practice found'));
         }
 
@@ -454,7 +455,7 @@ class ProtocolController extends Controller
                 }
             }
 
-            if ( $post_data['final-decision'] and in_array($post_data['final-decision'], array('A', 'N')) ) {
+            if ( $post_data['final-decision'] and in_array($post_data['final-decision'], array('V', 'A', 'N')) ) {
 
                 // send data to Solr index
                 if ( 'A' == $post_data['final-decision'] ) {
@@ -468,6 +469,24 @@ class ProtocolController extends Controller
                     // if ($responseCode == 200) {
                     //     throw $this->createNotFoundException('['.$responseCode.'] Solr query time: '.$response->responseHeader->QTime.'ms');
                     // }
+                }
+
+                // generate the code
+                if ( !$protocol->getCode() ) {
+                    $committee_prefix = $util->getConfiguration('committee.prefix');
+                    $total_submissions = count($protocol->getSubmission());
+                    $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
+                    $protocol->setCode($protocol_code);
+                }
+
+                if ( 'V' == $post_data['final-decision'] ) {
+                    $protocol->setNotes($post_data['notes']);
+                    $protocol->setStatus($post_data['final-decision']);
+                    $em->persist($protocol);
+                    $em->flush();
+
+                    $session->getFlashBag()->add('success', $translator->trans("Options have been saved with success!"));
+                    return $this->redirectToRoute('protocol_review_protocol', array('protocol_id' => $protocol->getId()), 301);
                 }
 
                 // setting the Scheduled status
@@ -486,14 +505,6 @@ class ProtocolController extends Controller
                 ));
                 $em->persist($protocol_history);
                 $em->flush();
-
-                // generate the code
-                if ( !$protocol->getCode() ) {
-                    $committee_prefix = $util->getConfiguration('committee.prefix');
-                    $total_submissions = count($protocol->getSubmission());
-                    $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
-                    $protocol->setCode($protocol_code);
-                }
 
                 $protocol->setDecisionIn(new \DateTime());
                 $em->persist($protocol);

@@ -22,6 +22,23 @@
             <div class='block action'>
                 <div class='row'>
                     <div class="col-md-12">
+                        <h2 class='sub-header'>{% trans %}Notes{% endtrans %}:</h2>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group" id='textarea-notes'>
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 128} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea rows="6" class="form-control" id="textarea-notes" name='notes'>{{ protocol.notes }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='block action'>
+                <div class='row'>
+                    <div class="col-md-12">
                         <h2 class='sub-header'>{% trans %}Actions{% endtrans %}:</h2>
                     </div>
                 </div>
@@ -30,10 +47,10 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 125} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <select class="form-control select2" id="select-final-decision" name="final-decision">
+                            <select class="form-control select2" id="select-final-decision" name="final-decision" required>
                                 <option value="">-</option>
                                 {% for key, option in finish_options %}
-                                    <option value="{{ key }}">{{ option|trans }}</option>
+                                    <option value="{{ key }}" {% if protocol.status == key %}selected{% endif %}>{{ option|trans }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -43,7 +60,8 @@
 
             <div class='row'>
                 <div class='submission-button-controls col-md-12'>
-                    <button class='btn btn-primary' id='btn-end-review' data-toggle='modal' data-target='#modal-confirm' disabled>{% trans %}End Review{% endtrans %}</button>
+                    <button class='btn btn-primary' id='btn-save-review'>{% trans %}Save{% endtrans %}</button>
+                    <button class='btn btn-primary hide' id='btn-end-review' data-toggle='modal' data-target='#modal-confirm'>{% trans %}End Review{% endtrans %}</button>
                 </div>
             </div>
         </form>
@@ -76,10 +94,14 @@
         $(function(){
             $("#select-final-decision").change(function(){
                 var value = $(this).val();                
-                if(value == "") {
-                    $("#btn-end-review").prop('disabled', true);
+                if(value == "" || value == "V") {
+                    // $("#btn-end-review").prop('disabled', true);
+                    $("#btn-save-review").show();
+                    $("#btn-end-review").addClass('hide');
                 } else {
-                    $("#btn-end-review").prop('disabled', false);
+                    // $("#btn-end-review").prop('disabled', false);
+                    $("#btn-save-review").hide();
+                    $("#btn-end-review").removeClass('hide');
                 }
             });
 

@@ -292,7 +292,7 @@ class CRUDController extends Controller
         $output['best_practice_type'] = $best_practice_type;
 
         // serach  and status parameter
-        $status_array = array('S', 'R', 'I', 'E', 'H', "F", "A", "N", "C", "X", "T");
+        $status_array = array('S', 'V', 'R', 'I', 'E', 'H', "F", "A", "N", "C", "X", "T");
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');
         $type_query = intval($request->query->get('type'));
@@ -408,7 +408,7 @@ class CRUDController extends Controller
         }
 
         // serach  and status parameter
-        $status_array = array('D', 'S', 'R', 'I', 'E', 'H', 'F', 'A', 'N', 'C', 'X', "T");
+        $status_array = array('D', 'S', 'V', 'R', 'I', 'E', 'H', 'F', 'A', 'N', 'C', 'X', "T");
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');
 

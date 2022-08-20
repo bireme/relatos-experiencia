@@ -113,6 +113,13 @@ class Protocol extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
+    private $notes;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
     private $committee_screening;
 
     /**
@@ -296,6 +303,7 @@ class Protocol extends Base
         switch ($this->status) {
             case 'D': return "Draft"; break;
             case 'S': return "Submitted"; break;
+            case 'V': return "Under review"; break;
             case 'R': return "Rejected"; break;
             case 'I': return "Waiting for initial evaluation"; break;
             case 'E': return "Waiting for Committee"; break;
@@ -809,4 +817,28 @@ class Protocol extends Base
         return $contacts;
     }
 
+
+    /**
+     * Set notes
+     *
+     * @param string $notes
+     *
+     * @return Protocol
+     */
+    public function setNotes($notes)
+    {
+        $this->notes = $notes;
+
+        return $this;
+    }
+
+    /**
+     * Get notes
+     *
+     * @return string
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
 }
