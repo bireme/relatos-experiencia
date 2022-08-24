@@ -22,43 +22,64 @@
                         <input type="text" class="form-control text-input filter-field" id="filter-field" value="" />
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class='block'>
-            <div class='row'>
-                <div class="col-md-12">
-                    <table class='table table-hover table-condensed' id='table-data'>
-                        <thead>
-                            <tr>
-                                <th width="40%">{% trans %}Name{% endtrans %}</th>
-                                <th width="40%">{% trans %}Collection{% endtrans %}</th>
-                                <th width="">{% trans %}Status{% endtrans %}</th>
-                                <th>{% trans %}Actions{% endtrans %}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in items %}
-                                <tr>
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.collection.name }}</td>
-                                    <td>
-                                        {% if item.status %}
-                                            <span class='label label-success'>{% trans %}active{% endtrans %}</span>
-                                        {% else %}
-                                            <span class='label label-default'>{% trans %}inactive{% endtrans %}</span>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        <a href="{{ path("crud_admin_controlled_list_thematic_area_update", {item_id: item.id}) }}" data-toggle="modal" data-target="#modal-ajax-item" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    </td>
-                                </tr>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="select-filter-collection">{% trans %}Filter by collection{% endtrans %}:</label>
+                        <select class='form-control selectpicker' id="select-filter-collection" name="filter-collection" data-size="5">
+                            <option value="">-</option>
+                            {% for col in collection %}
+                                <option value="{{ col.name }}">{{ col.name }}</option>
                             {% endfor %}
-                        </tbody>
-                    </table>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 search-button">
+                    <div class="form-group">
+                        <a class='btn btn-warning' id="export-to-csv-button">{% trans %}Export to CSV{% endtrans %}</a>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <form class="form-group" id='form-search' method="POST">
+            <input type="hidden" name="output" id="input-output" value="html" />
+            <div class='block'>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <table class='table table-hover table-condensed export-data' id='table-data'>
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="checkAll" name='check-all' value="" /></th>
+                                    <th width="40%">{% trans %}Name{% endtrans %}</th>
+                                    <th width="40%">{% trans %}Collection{% endtrans %}</th>
+                                    <th width="">{% trans %}Status{% endtrans %}</th>
+                                    <th>{% trans %}Actions{% endtrans %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                    <tr>
+                                        <td><input type="checkbox" name='items[]' value="{{ item.id }}" /></td>
+                                        <td class="filter-first">{{ item.name }}</td>
+                                        <td class="filter-second">{{ item.collection.name }}</td>
+                                        <td>
+                                            {% if item.status %}
+                                                <span class='label label-success'>{% trans %}active{% endtrans %}</span>
+                                            {% else %}
+                                                <span class='label label-default'>{% trans %}inactive{% endtrans %}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a href="{{ path("crud_admin_controlled_list_thematic_area_update", {item_id: item.id}) }}" data-toggle="modal" data-target="#modal-ajax-item" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <!-- Modal New Thematic Area -->
@@ -148,12 +169,24 @@
                 // retrieve the input field text and reset the count to zero
                 var count = 0;
                 var filter = $(this).val();
-         
-                // loop through the comment list
+                var expr = $("#select-filter-collection").val();
+
+                // filter by name
                 $("#table-data tbody tr").each(function(){
-         
                     // if the list item does not contain the text phrase fade it out
-                    if ($(this).find('td').text().search(new RegExp(filter, "i")) < 0) {
+                    if ($(this).find('td.filter-first').text().search(new RegExp(filter, "i")) < 0) {
+                        $(this).hide();
+                    // show the list item if the phrase matches and increase the count by 1
+                    } else {
+                        $(this).show();
+                        count++;
+                    }
+                });
+
+                // filter by collection
+                $("#table-data tbody tr:visible").each(function(){
+                    // if the list item does not contain the text phrase fade it out
+                    if ($(this).find('td.filter-second').text().search(new RegExp(expr, "i")) < 0) {
                         $(this).hide();
                     // show the list item if the phrase matches and increase the count by 1
                     } else {
@@ -165,6 +198,55 @@
                 // update the count
                 var numberItems = count;
                 // $("#filter-count").text("Total: "+count);
+            });
+
+            $("#select-filter-collection").change(function(){
+                // retrieve the input field text and reset the count to zero
+                var count = 0;
+                var filter = $(this).val();
+                var expr = $("#filter-field").val();
+
+                // filter by name
+                $("#table-data tbody tr").each(function(){
+                    // if the list item does not contain the text phrase fade it out
+                    if ($(this).find('td.filter-first').text().search(new RegExp(expr, "i")) < 0) {
+                        $(this).hide();
+                    // show the list item if the phrase matches and increase the count by 1
+                    } else {
+                        $(this).show();
+                        count++;
+                    }
+                });
+
+                // filter by collection
+                $("#table-data tbody tr:visible").each(function(){
+                    // if the list item does not contain the text phrase fade it out
+                    if ($(this).find('td.filter-second').text().search(new RegExp(filter, "i")) < 0) {
+                        $(this).hide();
+                    // show the list item if the phrase matches and increase the count by 1
+                    } else {
+                        $(this).show();
+                        count++;
+                    }
+                });
+         
+                // update the count
+                var numberItems = count;
+                // $("#filter-count").text("Total: "+count);
+            });
+
+            $('#checkAll').on('ifChecked', function(e){
+                $('input:checkbox').not(this).iCheck('check');
+            });
+
+            $('#checkAll').on('ifUnchecked', function(e){
+                $('input:checkbox').not(this).iCheck('uncheck');
+            });
+
+            $("#export-to-csv-button").click(function(e){
+                e.preventDefault();
+                $("#input-output").val('csv');
+                $("#form-search").submit();
             });
         });
     </script>

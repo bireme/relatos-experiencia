@@ -3646,9 +3646,28 @@ class CRUDController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            // output parameter
+            $output_parameter = $post_data['output'];
+            if($output_parameter == 'csv') {
+                $selected_items = $item_repository->findBy(array('id' => $post_data['items']));
+
+                $csv_headers = array('ID', 'NAME', 'COLLECTION');
+                $csv_output = array();
+                foreach($selected_items as $si) {
+                    $current_line = array();
+                    $current_line[] = $si->getId();
+                    $current_line[] = $si->getName();
+                    $current_line[] = ( $si->getCollection() ) ? $si->getCollection()->getName() : '';
+                    $csv_output[] = $current_line;
+                }
+
+                $response = new CSVResponse( $csv_output, 200, $csv_headers );
+                $response->setFilename( "proethos2-thematic-areas.csv" );
+                return $response;
+            }
+
             // checking required files
             foreach(array('name') as $field) {
-
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;

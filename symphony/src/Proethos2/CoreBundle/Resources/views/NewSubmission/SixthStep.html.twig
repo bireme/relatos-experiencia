@@ -23,8 +23,8 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <strong class="field-label">{% trans %}Event where the experience was presented{% endtrans %}</strong>
-                                <label for="input_event">{% trans %}Provide the name of the event where this experience was presented{% endtrans %}:</label>
-                                <input type="text" class="form-control" name='event' id='input_event' value="{{ submission.event }}">
+                                <label for="textarea-event">{% trans %}Provide the name of the event where this experience was presented{% endtrans %}:</label>
+                                <textarea rows="6" class="form-control" name='event' id='textarea-event'>{{ submission.event }}</textarea>
                             </div>
                         </div>
                     </div>
