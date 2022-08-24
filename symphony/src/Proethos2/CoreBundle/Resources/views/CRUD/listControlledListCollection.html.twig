@@ -22,41 +22,51 @@
                         <input type="text" class="form-control text-input filter-field" id="filter-field" value="" />
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class='block'>
-            <div class='row'>
-                <div class="col-md-12">
-                    <table class='table table-hover table-condensed' id='table-data'>
-                        <thead>
-                            <tr>
-                                <th width="80%">{% trans %}Name{% endtrans %}</th>
-                                <th width="">{% trans %}Status{% endtrans %}</th>
-                                <th>{% trans %}Actions{% endtrans %}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in items %}
-                                <tr>
-                                    <td>{{ item.name }}</td>
-                                    <td>
-                                        {% if item.status %}
-                                            <span class='label label-success'>{% trans %}active{% endtrans %}</span>
-                                        {% else %}
-                                            <span class='label label-default'>{% trans %}inactive{% endtrans %}</span>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        <a href="{{ path("crud_admin_controlled_list_collection_update", {item_id: item.id}) }}" data-toggle="modal" data-target="#modal-ajax-item" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                <div class="col-md-6 search-button text-right">
+                    <div class="form-group">
+                        <a class='btn btn-warning' id="export-to-csv-button">{% trans %}Export to CSV{% endtrans %}</a>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <form class="form-group" id='form-search' method="POST">
+            <input type="hidden" name="output" id="input-output" value="html" />
+            <div class='block'>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <table class='table table-hover table-condensed' id='table-data'>
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="checkAll" name='check-all' value="" /></th>
+                                    <th width="80%">{% trans %}Name{% endtrans %}</th>
+                                    <th width="">{% trans %}Status{% endtrans %}</th>
+                                    <th>{% trans %}Actions{% endtrans %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                    <tr>
+                                        <td><input type="checkbox" name='items[]' value="{{ item.id }}" /></td>
+                                        <td class="filter-first">{{ item.name }}</td>
+                                        <td>
+                                            {% if item.status %}
+                                                <span class='label label-success'>{% trans %}active{% endtrans %}</span>
+                                            {% else %}
+                                                <span class='label label-default'>{% trans %}inactive{% endtrans %}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a href="{{ path("crud_admin_controlled_list_collection_update", {item_id: item.id}) }}" data-toggle="modal" data-target="#modal-ajax-item" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <!-- Modal New Collection -->
@@ -137,7 +147,7 @@
                 $("#table-data tbody tr").each(function(){
          
                     // if the list item does not contain the text phrase fade it out
-                    if ($(this).find('td').text().search(new RegExp(filter, "i")) < 0) {
+                    if ($(this).find('td.filter-first').text().search(new RegExp(filter, "i")) < 0) {
                         $(this).hide();
                     // show the list item if the phrase matches and increase the count by 1
                     } else {
@@ -149,6 +159,20 @@
                 // update the count
                 var numberItems = count;
                 // $("#filter-count").text("Total: "+count);
+            });
+
+            $('#checkAll').on('ifChecked', function(e){
+                $('input:checkbox').not(this).iCheck('check');
+            });
+
+            $('#checkAll').on('ifUnchecked', function(e){
+                $('input:checkbox').not(this).iCheck('uncheck');
+            });
+
+            $("#export-to-csv-button").click(function(e){
+                e.preventDefault();
+                $("#input-output").val('csv');
+                $("#form-search").submit();
             });
         });
     </script>

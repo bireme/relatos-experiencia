@@ -3546,6 +3546,30 @@ class CRUDController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            // output parameter
+            $output_parameter = $post_data['output'];
+            if($output_parameter == 'csv') {
+                $selected_items = $item_repository->findBy(array('id' => $post_data['items']));
+
+                $csv_headers = array(
+                    $translator->trans("ID"),
+                    $translator->trans("Name")
+                );
+                $csv_headers = array_map('mb_strtoupper', $csv_headers);
+
+                $csv_output = array();
+                foreach($selected_items as $si) {
+                    $current_line = array();
+                    $current_line[] = $si->getId();
+                    $current_line[] = $si->getName();
+                    $csv_output[] = $current_line;
+                }
+
+                $response = new CSVResponse( $csv_output, 200, $csv_headers );
+                $response->setFilename( "proethos2-collections.csv" );
+                return $response;
+            }
+
             // checking required files
             foreach(array('name') as $field) {
 
