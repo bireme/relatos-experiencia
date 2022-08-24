@@ -3651,7 +3651,13 @@ class CRUDController extends Controller
             if($output_parameter == 'csv') {
                 $selected_items = $item_repository->findBy(array('id' => $post_data['items']));
 
-                $csv_headers = array('ID', 'NAME', 'COLLECTION');
+                $csv_headers = array(
+                    $translator->trans("ID"),
+                    $translator->trans("Name"),
+                    $translator->trans("Collection")
+                );
+                $csv_headers = array_map('mb_strtoupper', $csv_headers);
+
                 $csv_output = array();
                 foreach($selected_items as $si) {
                     $current_line = array();
