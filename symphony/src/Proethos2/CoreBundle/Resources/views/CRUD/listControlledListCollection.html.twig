@@ -145,7 +145,6 @@
          
                 // loop through the comment list
                 $("#table-data tbody tr").each(function(){
-         
                     // if the list item does not contain the text phrase fade it out
                     if ($(this).find('td.filter-first').text().search(new RegExp(filter, "i")) < 0) {
                         $(this).hide();
@@ -154,6 +153,9 @@
                         $(this).show();
                         count++;
                     }
+                    
+                    $('input:checkbox:visible').iCheck('enable');
+                    $('input:checkbox:hidden').iCheck('disable');
                 });
          
                 // update the count
