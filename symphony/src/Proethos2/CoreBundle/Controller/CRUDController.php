@@ -356,7 +356,7 @@ class CRUDController extends Controller
             }
 
             $response = new CSVResponse( $csv_output, 200, $csv_headers );
-            $response->setFilename( "proethos2-protocols.csv" );
+            $response->setFilename( "exp-relatos.csv" );
             return $response;
         }
 
@@ -1031,7 +1031,7 @@ class CRUDController extends Controller
             }
 
             $response = new CSVResponse( $csv_output, 200, $csv_headers );
-            $response->setFilename( "proethos2-users.csv" );
+            $response->setFilename( "exp-users.csv" );
             return $response;
         }
 
@@ -3166,7 +3166,7 @@ class CRUDController extends Controller
                 }
 
                 $response = new CSVResponse( $csv_output, 200, $csv_headers );
-                $response->setFilename( "proethos2-population-groups.csv" );
+                $response->setFilename( "exp-population-groups.csv" );
                 return $response;
             }
 
@@ -3566,7 +3566,7 @@ class CRUDController extends Controller
                 }
 
                 $response = new CSVResponse( $csv_output, 200, $csv_headers );
-                $response->setFilename( "proethos2-collections.csv" );
+                $response->setFilename( "exp-collections.csv" );
                 return $response;
             }
 
@@ -3715,7 +3715,7 @@ class CRUDController extends Controller
                 }
 
                 $response = new CSVResponse( $csv_output, 200, $csv_headers );
-                $response->setFilename( "proethos2-thematic-areas.csv" );
+                $response->setFilename( "exp-thematic-areas.csv" );
                 return $response;
             }
 
