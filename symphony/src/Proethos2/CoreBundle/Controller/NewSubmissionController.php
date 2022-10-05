@@ -678,6 +678,9 @@ class NewSubmissionController extends Controller
 
                         $submission_responsible->setFile($file);
                     }
+                } else {
+                    $session->getFlashBag()->add('error', $translator->trans("Responsible already exits."));
+                    return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
                 }
 
                 $em->persist($submission_responsible);
@@ -706,7 +709,7 @@ class NewSubmissionController extends Controller
                 // check if exists
                 $submission_member = $submission_member_repository->findOneBy(array(
                     'submission' => $submission,
-                    'name' => $post_data['member-name']
+                    'email' => $post_data['member-email']
                 ));
 
                 // if not exists, create the new submission_member
@@ -719,6 +722,9 @@ class NewSubmissionController extends Controller
                     $submission_member->setAcademicFormation($post_data['member-academic-formation']);
                     $submission_member->setEmail($post_data['member-email']);
                     $submission_member->setCurriculum($post_data['member-curriculum']);
+                } else {
+                    $session->getFlashBag()->add('error', $translator->trans("Member already exits."));
+                    return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
                 }
 
                 $em->persist($submission_member);

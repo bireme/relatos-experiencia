@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-08-20T04:18:49Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-10-05T10:43:32Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -734,6 +734,10 @@
         <source>Fill this field</source>
         <target>Fill this field</target>
       </trans-unit>
+      <trans-unit id="fdabb30d82d83881e2761040776d3b7e9b19c440" resname="Filter by collection">
+        <source>Filter by collection</source>
+        <target>Filter by collection</target>
+      </trans-unit>
       <trans-unit id="552d9c89dc5abf874ebda13943a2ba4e50850740" resname="Filter by name">
         <source>Filter by name</source>
         <target>Filter by name</target>
@@ -1041,6 +1045,10 @@
       <trans-unit id="ffa06a5864bc61b35061948b6207412db4c1bb46" resname="Member added with success.">
         <source>Member added with success.</source>
         <target>Member added with success.</target>
+      </trans-unit>
+      <trans-unit id="5c01681eec24b5b1dfe1a06f1d8194b4b472c73d" resname="Member already exits.">
+        <source>Member already exits.</source>
+        <target>Member already exits.</target>
       </trans-unit>
       <trans-unit id="4014afc56173e7dda855348d627c2ccd839bf610" resname="Member has been removed with success!">
         <source>Member has been removed with success!</source>
@@ -1617,6 +1625,10 @@
       <trans-unit id="51980a7cb328b602fdd8a4ece185d9207b87a0ad" resname="Responsible added with success.">
         <source>Responsible added with success.</source>
         <target>Responsible added with success.</target>
+      </trans-unit>
+      <trans-unit id="fd7af77a463ffa7e3de616dab89e99ce49207cb7" resname="Responsible already exits.">
+        <source>Responsible already exits.</source>
+        <target>Responsible already exits.</target>
       </trans-unit>
       <trans-unit id="c49eef8e409f0bb5bc9d182040de8e59c4caba55" resname="Responsible removed with success.">
         <source>Responsible removed with success.</source>
