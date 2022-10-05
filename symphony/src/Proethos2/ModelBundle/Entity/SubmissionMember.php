@@ -48,7 +48,7 @@ class SubmissionMember extends Base
     private $submission;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
      */
     protected $name;
@@ -66,7 +66,7 @@ class SubmissionMember extends Base
     private $job;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
      */
     protected $academic_formation;
