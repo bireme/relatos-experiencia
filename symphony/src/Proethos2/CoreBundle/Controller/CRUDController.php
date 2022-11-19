@@ -291,24 +291,31 @@ class CRUDController extends Controller
         $best_practice_type = $best_practice_type_repository->findByStatus(true);
         $output['best_practice_type'] = $best_practice_type;
 
+        // getting collection list
+        $collection_repository = $em->getRepository('Proethos2ModelBundle:Collection');
+        // $collection = $collection_repository->findByStatus(true);
+        $collection = $collection_repository->findBy(array('status' => true), array('name' => 'ASC'));
+        $output['collection'] = $collection;
+
         // serach  and status parameter
         $status_array = array('S', 'V', 'R', 'I', 'E', 'H', "F", "A", "N", "C", "X", "T");
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');
-        $type_query = intval($request->query->get('type'));
-        $type_object = $best_practice_type_repository->find($type_query);
+        $collection_query = intval($request->query->get('collection'));
+        $collection_object = $collection_repository->find($collection_query);
 
         if(!empty($status_query))
             $status_array = array($status_query);
 
-        if( $type_object ) {
+        if( $collection_object ) {
             $query = $protocol_repository->createQueryBuilder('p')
                ->join('p.main_submission', 's')
-               ->where("s.title LIKE :query AND p.status IN (:status) AND s.type = :type")
+               ->innerJoin("s.collection", 'c')
+               ->where("s.title LIKE :query AND p.status IN (:status) AND c.id = :collection")
                ->orderBy("p.created", 'DESC')
                ->setParameter('query', "%". $search_query ."%")
                ->setParameter('status', $status_array)
-               ->setParameter('type', $type_object);
+               ->setParameter('collection', $collection_object->getId());
         } else {
             $query = $protocol_repository->createQueryBuilder('p')
                ->join('p.main_submission', 's')

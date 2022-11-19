@@ -21,7 +21,7 @@
                 <input type="hidden" name="output" id="input-output" value="html" />
 
                 <div class='row'>
-                    <div class="col-md-9">
+                    <div class="col-md-7">
                         <div class="form-group">
                             <label for="input-filter-q">{% trans %}Find experiences{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 82} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
@@ -32,8 +32,8 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="select-filter-status">{% trans %}Status{% endtrans %}:</label>
-                            <a href="{{ path("crud_admin_help_show", {help_id: 83} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <select class='form-control selectpicker submit-on-change' id="select-filter-status" name="status" data-live-search="true">
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 83} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <select class='form-control selectpicker' id="select-filter-status" name="status" data-live-search="true">
                                 <option value="" {% if app.request.get('status') == "" %}selected{% endif %}>{% trans %}All{% endtrans %}</option>
                                 <option value="S" {% if app.request.get('status') == "S" %}selected{% endif %}>{% trans %}Submitted{% endtrans %}</option>
                                 <option value="V" {% if app.request.get('status') == "V" %}selected{% endif %}>{% trans %}Under review{% endtrans %}</option>
@@ -46,6 +46,19 @@
 #}
                                 <option value="A" {% if app.request.get('status') == "A" %}selected{% endif %}>{% trans %}Approved{% endtrans %}</option>
                                 <option value="N" {% if app.request.get('status') == "N" %}selected{% endif %}>{% trans %}Not approved{% endtrans %}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="select-filter-collection">{% trans %}Collection{% endtrans %}:</label>
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 83} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <select class='form-control selectpicker' id="select-filter-collection" name="collection" data-live-search="true">
+                                <option value="">-</option>
+                                {% for col in collection %}
+                                    <option value="{{ col.id }}" {% if app.request.get('collection') == col.id %}selected{% endif %}>{{ col.name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
