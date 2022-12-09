@@ -317,7 +317,7 @@
             <form method="POST" id='form-new-video' enctype="multipart/form-data" action="{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}">
 
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}" />
-                <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
+                <input type="hidden" name="MAX_FILE_SIZE" value="{{ 500*1024*1024 }}" />
 
                 <input type="hidden" name='fulltext' class='input-hidden-fulltext' value="{{ submission.fullText }}" />
                 <input type="hidden" name='other_videos' class='input-hidden-other-videos' value="{{ submission.otherVideos }}" />
