@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-10-05T10:43:32Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-12-16T10:48:53Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -36,7 +36,7 @@
       </trans-unit>
       <trans-unit id="c638c8f7bf2b8f889dfefab3a0867f7b2b98fa9b" resname="A new experience has been submitted.">
         <source>A new experience has been submitted.</source>
-        <target>A new experience has been submitted.</target>
+        <target>Um novo relato de experiência foi enviado</target>
       </trans-unit>
       <trans-unit id="fe1f2c4d494fc40392e39bec35686602dd971e3b" resname="A new monitoring action has been submitted.">
         <source>A new monitoring action has been submitted.</source>
