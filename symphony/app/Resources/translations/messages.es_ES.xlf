@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-12-16T10:48:53Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-12-20T23:42:13Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -878,10 +878,6 @@
         <source>Initial committee screening</source>
         <target>Evaluación inicial del comité</target>
       </trans-unit>
-      <trans-unit id="efa3a634c9ca02688f4a9a41186efba000a78a73" resname="Insert here the fulltext of the reported experience">
-        <source>Insert here the fulltext of the reported experience</source>
-        <target>Insert here the fulltext of the reported experience</target>
-      </trans-unit>
       <trans-unit id="429f9450eaee6957c9b1461227b45d94079f2cac" resname="Institution">
         <source>Institution</source>
         <target>Institución</target>
@@ -1389,6 +1385,14 @@
       <trans-unit id="798b5a742317d1ee7d4e7f9950b5af9c1f78759e" resname="Options have been saved with success!">
         <source>Options have been saved with success!</source>
         <target>Las opciones se han guardado exitosamente</target>
+      </trans-unit>
+      <trans-unit id="600cf3fb70820d1ec3423d73d9839c3984d5cdce" resname="Or enter here the fulltext of the reported experience">
+        <source>Or enter here the fulltext of the reported experience</source>
+        <target>Or enter here the fulltext of the reported experience</target>
+      </trans-unit>
+      <trans-unit id="a6534d1837487c4422c4f7b6f29dca9467d72587" resname="Or enter here the video embed code">
+        <source>Or enter here the video embed code</source>
+        <target>Or enter here the video embed code</target>
       </trans-unit>
       <trans-unit id="6e6a6f2086bb5fe5dbfd17d8d5f502d48759834b" resname="Other">
         <source>Other</source>

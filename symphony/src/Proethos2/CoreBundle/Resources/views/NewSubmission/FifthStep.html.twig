@@ -22,25 +22,6 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <h3>{% trans %}Fulltext{% endtrans %}</h3>
-                            <h5>{% trans %}Insert here the fulltext of the reported experience{% endtrans %}:</h5>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                {# <strong class="field-label">{% trans %}Fulltext{% endtrans %}</strong> #}
-                                {# <label for="textarea-fulltext">{% trans %}Insert here the fulltext of the reported experience{% endtrans %}:</label> #}
-                                <textarea rows="6" class="form-control" name='fulltext' id='textarea-fulltext'>{{ submission.fullText }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='block'>
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <h3>{% trans %}Document{% endtrans %}</h3>
                             <h5>{% trans %}Share the fulltext document about the reported experience{% endtrans %}</h5>
                         </div>
                     </div>
@@ -77,8 +58,19 @@
                             <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-document" {% if submission_documents %}disabled{% endif %}>{% trans %}Upload file{% endtrans %}</a>
                         </div>
                     </div>
-                    
+
                     <br />
+
+                    <div class='block'>
+                        <div class='row'>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h5><label for="textarea-fulltext">{% trans %}Or enter here the fulltext of the reported experience{% endtrans %}:</label></h5>
+                                    <textarea rows="6" class="form-control" name='fulltext' id='textarea-fulltext'>{{ submission.fullText }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 {#
                     <div class='row'>
                         <div class="col-md-12">
@@ -177,7 +169,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="textarea-other-videos"><b>{% trans %}Video embed code{% endtrans %}:</b></label>
+                                <h5><label for="textarea-other-videos">{% trans %}Or enter here the video embed code{% endtrans %}:</label></h5>
                                 <textarea rows="6" class="form-control" name='other_videos' id='textarea-other-videos' placeholder="{% trans %}Please paste the embed code here{% endtrans %}">{{ submission.otherVideos }}</textarea>
                             </div>
                         </div>
