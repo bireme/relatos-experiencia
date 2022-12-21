@@ -83,9 +83,6 @@
             
         {% endif %}
 
-        <h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>
-        <p>{{ submission.description }}</p>
-
         <h3>{% trans %}Country{% endtrans %}:</h3>
         <p>{{ submission.country.name }}</p>
 
@@ -108,17 +105,20 @@
 
         {% endif %}
 
+        <h3>{% trans %}Descriptors{% endtrans %}:</h3>
+        <p>{{ submission.descriptorsList|join('; ') }}</p>
+
+        <h3>{% trans %}Keywords{% endtrans %}:</h3>
+        <p>{{ submission.keywordsList|join('; ') }}</p>
+
+        <h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>
+        <p>{{ submission.description }}</p>
+
         <h3>{% trans %}Objectives{% endtrans %}/{% trans %}Expected results{% endtrans %}:</h3>
         <p>{{ submission.objectives }}</p>
 
         <h3>{% trans %}Resources{% endtrans %}:</h3>
         <p>{{ submission.resources }}</p>
-
-        <h3>{% trans %}Keywords{% endtrans %}:</h3>
-        <p>{{ submission.keywordsList|join('; ') }}</p>
-
-        <h3>{% trans %}Descriptors{% endtrans %}:</h3>
-        <p>{{ submission.descriptorsList|join('; ') }}</p>
 
         <h3>{% trans %}Main Results{% endtrans %}/{% trans %}Impacts{% endtrans %}:</h3>
         <p>{{ submission.mainResults }}</p>
@@ -180,7 +180,6 @@
         <h3>{% trans %}Fulltext{% endtrans %}:</h3>
         <p>{{ submission.fullText }}</p>
 
-        <h3>{% trans %}Document{% endtrans %}:</h3>
         <table>
             <tr>
                 <th>{% trans %}File{% endtrans %}</th>
