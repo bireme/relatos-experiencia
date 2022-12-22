@@ -184,7 +184,9 @@
         <h2>{% trans %}Files{% endtrans %}</h2>
 
         <h3>{% trans %}Fulltext{% endtrans %}:</h3>
-        <p>{{ submission.fullText }}</p>
+        {% if submission.fullText %}
+            <p>{{ submission.fullText }}</p>
+        {% endif %}
 
         <table>
             <tr>

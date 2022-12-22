@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-12-22T00:30:20Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-12-22T02:54:23Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -518,10 +518,6 @@
         <source>Do you confirm the exclusion of this responsible?</source>
         <target>Confirma a exclusão desse responsável?</target>
       </trans-unit>
-      <trans-unit id="e214b8a29923056887b7edf6635d90dcbb2abe88" resname="Document">
-        <source>Document</source>
-        <target>Documento</target>
-      </trans-unit>
       <trans-unit id="1ba3f7b24b33d4429e8627ee88886fafbcf3a27e" resname="Document deleted with success.">
         <source>Document deleted with success.</source>
         <target>Documento excluído com sucesso.</target>
@@ -837,6 +833,10 @@
       <trans-unit id="7ea305782f9c411ea93b2689186299fdf991e42a" resname="Help updated with success.">
         <source>Help updated with success.</source>
         <target>Ajuda atualizada com sucesso.</target>
+      </trans-unit>
+      <trans-unit id="31ff40aa8dd072c159ba647eb25f4064828a8d90" resname="Hide fulltext">
+        <source>Hide fulltext</source>
+        <target>Ocultar texto completo</target>
       </trans-unit>
       <trans-unit id="1ef32f06f0721d026545a2bf2b164efbd5064b88" resname="I agree with the">
         <source>I agree with the</source>
@@ -1865,6 +1865,10 @@
       <trans-unit id="37cae766d455975558bffbda4852be1df06d2f54" resname="Show PDF">
         <source>Show PDF</source>
         <target>Mostrar PDF</target>
+      </trans-unit>
+      <trans-unit id="8e2e17a9a2e24130de1c61e3981d69cc834ab74d" resname="Show fulltext">
+        <source>Show fulltext</source>
+        <target>Mostrar texto completo</target>
       </trans-unit>
       <trans-unit id="56860002c2285b9bff80391678937a3f082e20e5" resname="Sincerely">
         <source>Sincerely</source>
