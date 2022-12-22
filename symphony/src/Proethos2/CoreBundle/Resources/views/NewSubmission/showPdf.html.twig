@@ -111,7 +111,7 @@
         <h3>{% trans %}Keywords{% endtrans %}:</h3>
         <p>{{ submission.keywordsList|join('; ') }}</p>
 
-        <h2>{% trans %}Experience Details{% endtrans %}</h2>
+        <!-- <h2>{% trans %}Experience Details{% endtrans %}</h2> -->
 
         <h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>
         <p>{{ submission.description }}</p>
@@ -131,7 +131,7 @@
         <h3>{% trans %}Lessons Learned{% endtrans %}:</h3>
         <p>{{ submission.lessonsLearned }}</p>
 
-        <h2>{% trans %}Team{% endtrans %}</h2>
+        <!-- <h2>{% trans %}Team{% endtrans %}</h2> -->
 
         <h3>{% trans %}Responsible{% endtrans %}</h3>
         <table>
@@ -181,7 +181,7 @@
             {% endfor %}
         </table>
 
-        <h2>{% trans %}Files{% endtrans %}</h2>
+        <!-- <h2>{% trans %}Files{% endtrans %}</h2> -->
 
         <h3>{% trans %}Fulltext{% endtrans %}:</h3>
         {% if submission.fullText %}
@@ -264,7 +264,7 @@
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
 #}
-        <h2>{% trans %}Other Information{% endtrans %}</h2>
+        <!-- <h2>{% trans %}Other Information{% endtrans %}</h2> -->
 
         <h3>{% trans %}Event where the experience was presented{% endtrans %}:</h3>
         <p>{{ submission.event }}</p>
