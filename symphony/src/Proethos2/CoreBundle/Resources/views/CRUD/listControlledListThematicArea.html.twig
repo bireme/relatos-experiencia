@@ -72,7 +72,7 @@
                                         <td>
                                             <a href="{{ path("crud_admin_controlled_list_thematic_area_update", {item_id: item.id}) }}" data-toggle="modal" data-target="#modal-ajax-item" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
                                             {% if item.filename %}
-                                                <a href='{{ asset(item.uri) }}' target="_blank" class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Banner{% endtrans %}" target="_blank"><i class='glyphicon glyphicon-picture'></i></a>
+                                                {# <a href='{{ asset(item.uri) }}' target="_blank" class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Banner{% endtrans %}" target="_blank"><i class='glyphicon glyphicon-picture'></i></a> #}
                                             {% endif %}
                                         </td>
                                     </tr>
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-
+{#
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class="form-group">
@@ -157,7 +157,7 @@
                                 </div>
                             </div>
                         </div>
-
+#}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
