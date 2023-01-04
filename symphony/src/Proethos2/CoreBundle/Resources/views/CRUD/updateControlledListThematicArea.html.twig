@@ -1,4 +1,7 @@
-<form class='form' method="POST" id='form-new-item' action="{{ path('crud_admin_controlled_list_thematic_area_update', {item_id: item.id} ) }}">
+<form enctype="multipart/form-data" class='form' method="POST" id='form-new-item' action="{{ path('crud_admin_controlled_list_thematic_area_update', {item_id: item.id} ) }}">
+
+    <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
+
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">{% trans %}Update Item{% endtrans %}</h4>
@@ -51,6 +54,15 @@
                             <option value="{{ col.id }}" {% if item.collection.id == col.id %}selected{% endif %}>{{ col.name }}</option>
                         {% endfor %}
                     </select>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="input-file">{% trans %}Banner{% endtrans %}:</label> 
+                    <input type='file' class='form-control' id="input-file" name="file">
                 </div>
             </div>
         </div>

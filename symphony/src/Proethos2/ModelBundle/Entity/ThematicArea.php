@@ -66,6 +66,16 @@ class ThematicArea extends Base
     private $status = true;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $filename;
+
+    /**
+     * @ORM\Column(type="string", length=1023, nullable=true)
+     */
+    private $filepath;
+
+    /**
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
@@ -79,6 +89,40 @@ class ThematicArea extends Base
 
     public function getLocale(){
         return $this->locale;
+    }
+
+    public function getRealFilename() {
+        $filename = explode('_', $this->getFilename(), 2);
+        return end($filename);
+    }
+
+    public function getUploadDirectory() {
+        $upload_directory = __DIR__.'/../../../../uploads/banners';
+
+        if(!is_dir($upload_directory)) {
+            mkdir($upload_directory);
+        }
+
+        return $upload_directory;
+    }
+
+    public function setFile($file) {
+        $slugify = new Slugify();
+        $upload_directory = $this->getUploadDirectory();
+
+        $filename_without_extension = str_replace("." . $file->getClientOriginalExtension(), "", $file->getClientOriginalName());
+        $filename = uniqid() . '_' . $slugify->slugify($filename_without_extension) . "." . $file->getClientOriginalExtension();
+        $filepath = $upload_directory . "/" . $filename;
+        $file = $file->move($upload_directory, $filename);
+
+        $this->setFilename($filename);
+        $this->setFilepath($filepath);
+
+        return $this;
+    }
+
+    public function getUri() {
+        return "/uploads/banners/" . $this->getFilename();
     }
 
     /**
@@ -188,5 +232,53 @@ class ThematicArea extends Base
     public function getCollection()
     {
         return $this->collection;
+    }
+
+    /**
+     * Set filename
+     *
+     * @param string $filename
+     *
+     * @return ThematicArea
+     */
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Get filename
+     *
+     * @return string
+     */
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Set filepath
+     *
+     * @param string $filepath
+     *
+     * @return ThematicArea
+     */
+    public function setFilepath($filepath)
+    {
+        $this->filepath = $filepath;
+
+        return $this;
+    }
+
+    /**
+     * Get filepath
+     *
+     * @return string
+     */
+    public function getFilepath()
+    {
+        return $this->filepath;
     }
 }

@@ -3688,6 +3688,10 @@ class CRUDController extends Controller
         $collection = $collection_repository->findByStatus(true);
         $output['collection'] = $collection;
 
+        // getting the upload type extensions
+        $upload_type_extension_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+        // $upload_type_extensions = $upload_type_extension_repository->findAll();
+
         $item_repository = $em->getRepository('Proethos2ModelBundle:ThematicArea');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -3739,6 +3743,21 @@ class CRUDController extends Controller
             $item->setTranslatableLocale('en');
             $item->setName($post_data['name']);
 
+            $file = $request->files->get('file');
+            // echo "<pre>"; print_r($file); echo "</pre>"; die();
+
+            if ( $file ) {
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = array('.png', '.jpg', '.jpeg');
+                // $ext_formats = array_map(function($obj) { return $obj->getExtension(); }, $upload_type_extensions);
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
+
+                $item->setFile($file);
+            }
+
             // collection
             $selected_collection = $collection_repository->find($post_data['collection']);
             $item->setCollection($selected_collection);
@@ -3776,6 +3795,10 @@ class CRUDController extends Controller
         $collection = $collection_repository->findByStatus(true);
         $output['collection'] = $collection;
 
+        // getting the upload type extensions
+        $upload_type_extension_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+        // $upload_type_extensions = $upload_type_extension_repository->findAll();
+
         $item_repository = $em->getRepository('Proethos2ModelBundle:ThematicArea');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -3805,6 +3828,27 @@ class CRUDController extends Controller
 
             $item->setTranslatableLocale('en');
             $item->setName($post_data['name']);
+
+            $file = $request->files->get('file');
+            // echo "<pre>"; print_r($file); echo "</pre>"; die();
+
+            if ( $file ) {
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = array('.png', '.jpg', '.jpeg');
+                // $ext_formats = array_map(function($obj) { return $obj->getExtension(); }, $upload_type_extensions);
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
+
+                // delete old file
+                if ( $item->getFilename() ) {
+                    unlink($item->getFilepath());
+                }
+
+                // set new file
+                $item->setFile($file);
+            }
 
             // collection
             $selected_collection = $collection_repository->find($post_data['collection']);
