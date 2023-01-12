@@ -70,8 +70,14 @@ class ProtocolController extends Controller
             "C" => $translator->trans("Interrupted"),
             "D" => $translator->trans("Completed"),
         );
-
         $output['status'] = $status;
+
+        $finish_options = array(
+            "V" => $translator->trans("Under review"),
+            "A" => $translator->trans("Approved"),
+            'N' => $translator->trans('Not approved'),
+        );
+        $output['finish_options'] = $finish_options;
 
         if (!$protocol) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
@@ -83,7 +89,23 @@ class ProtocolController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-            // if has new comment
+            // if has new status
+            if(isset($post_data['final-decision'])) {
+                $submittedToken = $request->request->get('token');
+
+                if (!$this->isCsrfTokenValid('show-protocol', $submittedToken)) {
+                    throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+                }
+
+                $protocol->setStatus($post_data['final-decision']);
+                $em->persist($protocol);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("Options have been saved with success!"));
+                return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
+            }
+
+            // if has new contact
             if(isset($post_data['contacts'])) {
                 $submittedToken = $request->request->get('token');
 
@@ -471,6 +493,20 @@ class ProtocolController extends Controller
                     // }
                 }
 
+                // delete data from Solr index
+                if ( 'N' == $post_data['final-decision'] ) {
+                    $solr = new Solr();
+                    list($response, $responseCode) = $solr->delete($protocol);
+
+                    if ($responseCode != 200) {
+                        throw $this->createNotFoundException('['.$responseCode.'] Solr error: '.$response->error->msg);
+                    }
+
+                    // if ($responseCode == 200) {
+                    //     throw $this->createNotFoundException('['.$responseCode.'] Solr query time: '.$response->responseHeader->QTime.'ms');
+                    // }
+                }
+
                 // generate the code
                 if ( !$protocol->getCode() ) {
                     $committee_prefix = $util->getConfiguration('committee.prefix');
@@ -492,56 +528,63 @@ class ProtocolController extends Controller
                 // setting the Scheduled status
                 $protocol->setStatus($post_data['final-decision']);
                 $protocol->setMonitoringAction(NULL);
-
-                $protocol_history = new ProtocolHistory();
-                $protocol_history->setProtocol($protocol);
-                $protocol_history->setUser($user);
-                $protocol_history->setMessage($translator->trans(
-                    'Experience finalized by %user% under option "%option%".',
-                    array(
-                        '%user%' => $user->getUsername(),
-                        '%option%' => $finish_options[$post_data['final-decision']],
-                    )
-                ));
-                $em->persist($protocol_history);
-                $em->flush();
-
-                $protocol->setDecisionIn(new \DateTime());
                 $em->persist($protocol);
                 $em->flush();
 
-                $investigators = array();
-                $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
-                foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
-                    $investigators[] = $investigator->getEmail();
+                if ( !$protocol->getIsPublic() ) {
+
+                    $protocol_history = new ProtocolHistory();
+                    $protocol_history->setProtocol($protocol);
+                    $protocol_history->setUser($user);
+                    $protocol_history->setMessage($translator->trans(
+                        'Experience finalized by %user% under option "%option%".',
+                        array(
+                            '%user%' => $user->getUsername(),
+                            '%option%' => $finish_options[$post_data['final-decision']],
+                        )
+                    ));
+                    $em->persist($protocol_history);
+                    $em->flush();
+
+                    $protocol->setDecisionIn(new \DateTime());
+                    $protocol->isPublic(true);
+                    $em->persist($protocol);
+                    $em->flush();
+
+                    $investigators = array();
+                    $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
+                    foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+                        $investigators[] = $investigator->getEmail();
+                    }
+
+                    $contacts = $protocol->getContactsList();
+                    if ($contacts) {
+                        $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
+                    }
+
+                    $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                    $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                    $help = $help_repository->find(216);
+                    $translations = $trans_repository->findTranslations($help);
+                    $text = $translations[$submission->getLanguage()];
+                    $body = $text['message'];
+                    $body = str_replace("%protocol_url%", $url, $body);
+                    $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
+                    $body = str_replace("\r\n", "<br />", $body);
+                    $body .= "<br /><br />";
+
+                    $message = \Swift_Message::newInstance()
+                    ->setSubject("[EXP] " . $mail_translator->trans("The experience review was finalized"))
+                    ->setFrom($util->getConfiguration('committee.email'))
+                    ->setTo($investigators)
+                    ->setBody(
+                        $body
+                        ,
+                        'text/html'
+                    );
+
                 }
-
-                $contacts = $protocol->getContactsList();
-                if ($contacts) {
-                    $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
-                }
-
-                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-                $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
-
-                $help = $help_repository->find(216);
-                $translations = $trans_repository->findTranslations($help);
-                $text = $translations[$submission->getLanguage()];
-                $body = $text['message'];
-                $body = str_replace("%protocol_url%", $url, $body);
-                $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
-                $body = str_replace("\r\n", "<br />", $body);
-                $body .= "<br /><br />";
-
-                $message = \Swift_Message::newInstance()
-                ->setSubject("[EXP] " . $mail_translator->trans("The experience review was finalized"))
-                ->setFrom($util->getConfiguration('committee.email'))
-                ->setTo($investigators)
-                ->setBody(
-                    $body
-                    ,
-                    'text/html'
-                );
 
                 $session->getFlashBag()->add('success', $translator->trans("Experience review was finalized with success"));
                 return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
@@ -1828,8 +1871,7 @@ class ProtocolController extends Controller
             }
 
             if($post_data['are-you-sure'] == 'yes') {
-
-                // send data to Solr index
+                // delete data from Solr index
                 $solr = new Solr();
                 list($response, $responseCode) = $solr->delete($protocol);
 

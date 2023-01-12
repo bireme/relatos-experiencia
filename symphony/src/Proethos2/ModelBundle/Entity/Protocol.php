@@ -185,6 +185,13 @@ class Protocol extends Base
     private $contacts;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_public", type="boolean")
+     */
+    private $is_public = false;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -840,5 +847,29 @@ class Protocol extends Base
     public function getNotes()
     {
         return $this->notes;
+    }
+
+    /**
+     * Set isPublic
+     *
+     * @param boolean $isPublic
+     *
+     * @return Protocol
+     */
+    public function setIsPublic($isPublic)
+    {
+        $this->is_public = $isPublic;
+
+        return $this;
+    }
+
+    /**
+     * Get isPublic
+     *
+     * @return boolean
+     */
+    public function getIsPublic()
+    {
+        return $this->is_public;
     }
 }
