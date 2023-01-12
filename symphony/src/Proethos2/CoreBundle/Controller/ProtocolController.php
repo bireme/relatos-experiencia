@@ -97,6 +97,34 @@ class ProtocolController extends Controller
                     throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
                 }
 
+                // send data to Solr index
+                if ( 'A' == $post_data['final-decision'] ) {
+                    $solr = new Solr();
+                    list($response, $responseCode) = $solr->update($protocol);
+
+                    if ($responseCode != 200) {
+                        throw $this->createNotFoundException('['.$responseCode.'] Solr error: '.$response->error->msg);
+                    }
+
+                    // if ($responseCode == 200) {
+                    //     throw $this->createNotFoundException('['.$responseCode.'] Solr query time: '.$response->responseHeader->QTime.'ms');
+                    // }
+                }
+
+                // delete data from Solr index
+                if ( 'N' == $post_data['final-decision'] ) {
+                    $solr = new Solr();
+                    list($response, $responseCode) = $solr->delete($protocol);
+
+                    if ($responseCode != 200) {
+                        throw $this->createNotFoundException('['.$responseCode.'] Solr error: '.$response->error->msg);
+                    }
+
+                    // if ($responseCode == 200) {
+                    //     throw $this->createNotFoundException('['.$responseCode.'] Solr query time: '.$response->responseHeader->QTime.'ms');
+                    // }
+                }
+
                 $protocol->setStatus($post_data['final-decision']);
                 $em->persist($protocol);
                 $em->flush();
