@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-12-22T02:53:20Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2023-01-12T20:28:17Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -165,6 +165,10 @@
       <trans-unit id="c065427871e41b6b6783b908973f9db65960fa60" resname="Are you sure that you want to set this best practice as Exempt?">
         <source>Are you sure that you want to set this best practice as Exempt?</source>
         <target>Are you sure that you want to set this best practice as Exempt?</target>
+      </trans-unit>
+      <trans-unit id="cfedb48b86c5075097c021c0e46a2bb4da40c469" resname="Are you sure that you want to update this experience?">
+        <source>Are you sure that you want to update this experience?</source>
+        <target>Are you sure that you want to update this experience?</target>
       </trans-unit>
       <trans-unit id="287a62cdebe1d3d7ac46913b5cd023196a081135" resname="Are you sure that you want to withdraw this best practice?">
         <source>Are you sure that you want to withdraw this best practice?</source>
