@@ -130,7 +130,6 @@ class ProtocolController extends Controller
                 $em->flush();
 
                 $session->getFlashBag()->add('success', $translator->trans("Options have been saved with success!"));
-                return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
             }
 
             // if has new contact
