@@ -574,7 +574,7 @@ class ProtocolController extends Controller
                     $em->flush();
 
                     $protocol->setDecisionIn(new \DateTime());
-                    $protocol->isPublic(true);
+                    $protocol->getIsPublic(true);
                     $em->persist($protocol);
                     $em->flush();
 
