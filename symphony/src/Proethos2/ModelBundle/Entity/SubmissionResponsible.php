@@ -53,19 +53,19 @@ class SubmissionResponsible extends Base
     private $submission;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=510, nullable=true)
      * @Assert\NotBlank()
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=510, nullable=true)
      * @Assert\NotBlank()
      */
     private $filiation;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=510, nullable=true)
      * @Assert\NotBlank()
      */
     private $job;
@@ -83,7 +83,7 @@ class SubmissionResponsible extends Base
     private $phone;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=510, nullable=true)
      * @Assert\NotBlank()
      */
     private $curriculum;

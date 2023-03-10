@@ -48,25 +48,25 @@ class SubmissionMember extends Base
     private $submission;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=510, nullable=true)
      * @Assert\NotBlank()
      */
     protected $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=510, nullable=true)
      * @Assert\NotBlank()
      */
     private $filiation;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=510, nullable=true)
      * @Assert\NotBlank()
      */
     private $job;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=510, nullable=true)
      * @Assert\NotBlank()
      */
     protected $academic_formation;
@@ -78,7 +78,7 @@ class SubmissionMember extends Base
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=510, nullable=true)
      * @Assert\NotBlank()
      */
     private $curriculum;
