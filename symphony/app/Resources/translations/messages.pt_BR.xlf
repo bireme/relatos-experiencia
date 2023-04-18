@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-01-12T20:29:48Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2023-04-18T17:38:58Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1070,6 +1070,10 @@
         <source>Member removed with success.</source>
         <target>Membro removido com sucesso.</target>
       </trans-unit>
+      <trans-unit id="039c25050a14cacffeca92f2f110b54c8956b1cd" resname="Member updated with success.">
+        <source>Member updated with success.</source>
+        <target>Member updated with success.</target>
+      </trans-unit>
       <trans-unit id="1cb449c1126609b4b41e1d87f65f0d7cd19b49b9" resname="Members">
         <source>Members</source>
         <target>Membros</target>
@@ -1650,6 +1654,10 @@
         <source>Responsible removed with success.</source>
         <target>Responsável removido com sucesso.</target>
       </trans-unit>
+      <trans-unit id="279c157437b7fdf79fd6a872f0af68bce7bca4ed" resname="Responsible updated with success.">
+        <source>Responsible updated with success.</source>
+        <target>Responsible updated with success.</target>
+      </trans-unit>
       <trans-unit id="a5c6c50c2aa87d3ca138c44ec18716e67238d29e" resname="Return reason">
         <source>Return reason</source>
         <target>Razão da devolução</target>
@@ -2136,9 +2144,17 @@
         <source>Update Meeting</source>
         <target>Atualizar reunião </target>
       </trans-unit>
+      <trans-unit id="1ba7196547f9f273813311ef6586d4734e250d92" resname="Update Member">
+        <source>Update Member</source>
+        <target>Update Member</target>
+      </trans-unit>
       <trans-unit id="a4652f309e03aa9378c02de07e4fab50a8310ae3" resname="Update Question">
         <source>Update Question</source>
         <target>Atualizar pergunta </target>
+      </trans-unit>
+      <trans-unit id="8b6363725c6d17ea5d72dd5da9811308ce85293b" resname="Update Responsible">
+        <source>Update Responsible</source>
+        <target>Update Responsible</target>
       </trans-unit>
       <trans-unit id="e27738c47f3ecda86646c8ee5acafaa6829470f9" resname="Update User">
         <source>Update User</source>
