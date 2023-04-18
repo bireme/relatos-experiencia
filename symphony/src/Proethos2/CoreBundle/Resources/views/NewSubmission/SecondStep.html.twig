@@ -210,7 +210,7 @@
                     pg_list.push(slug);
                 });
 
-                if( $.inArray("others", pg_list) !== -1 && pg_list.length == 1 ) {
+                if( $.inArray("others", pg_list) !== -1 ) {
                     $("#input_other_population_group").parent().removeClass("hide");
                     $("#input_other_population_group").prop('required',true);
                 } else {
