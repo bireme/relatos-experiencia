@@ -298,7 +298,7 @@ class CRUDController extends Controller
         $output['collection'] = $collection;
 
         // serach  and status parameter
-        $status_array = array('S', 'V', 'R', 'I', 'E', 'H', "F", "A", "N", "C", "X", "T");
+        $status_array = array('S', 'V', 'R', 'I', 'E', 'H', "F", "A", "N", "C", "X", "T", "D");
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');
         $collection_query = intval($request->query->get('collection'));
