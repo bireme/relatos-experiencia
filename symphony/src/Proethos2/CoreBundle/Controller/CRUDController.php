@@ -319,7 +319,7 @@ class CRUDController extends Controller
         } else {
             $query = $protocol_repository->createQueryBuilder('p')
                ->join('p.main_submission', 's')
-               ->where("s.title LIKE :query AND p.status IN (:status)")
+               ->where("(s.title LIKE :query OR s.descriptors LIKE :query OR s.keywords LIKE :query) AND p.status IN (:status)")
                ->orderBy("p.created", 'DESC')
                ->setParameter('query', "%". $search_query ."%")
                ->setParameter('status', $status_array);
