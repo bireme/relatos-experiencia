@@ -44,7 +44,7 @@
                                 </thead>
 
                                 <tbody>
-                                    {% for responsible in submission.responsible %}
+                                    {% for responsible in submission.responsible|sort((a, b) => a.name < b.name) %}
                                         <tr>
                                             <td>{{ responsible.name }}</td>
                                             <td>{{ responsible.filiation }}</td>
@@ -57,6 +57,7 @@
                                                 {% if responsible.filename %}
                                                     <a href='{{ asset(responsible.fileUri) }}' target="_blank" class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See picture{% endtrans %}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
                                                 {% endif %}
+                                                <a href="{{ path("submission_update_responsible", {submission_id: submission.id, responsible_id: responsible.id}) }}" data-toggle="modal" data-target="#modal-update-responsible" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
                                                 <a href='#' class='btn btn-default btn-xs button-delete-responsible' data-id='{{ responsible.id }}' data-toggle="modal" data-target="#modal-delete-responsible"><i class='glyphicon glyphicon-trash'></i></a>
                                             </td>
                                         </tr>
@@ -93,7 +94,7 @@
                                 </thead>
 
                                 <tbody>
-                                    {% for member in submission.members %}
+                                    {% for member in submission.members|sort((a, b) => a.name < b.name) %}
                                         <tr>
                                             <td>{{ member.name }}</td>
                                             <td>{{ member.filiation }}</td>
@@ -101,7 +102,10 @@
                                             <td>{{ member.academicFormation }}</td>
                                             <td>{{ member.email }}</td>
                                             <td><a href="{{ member.curriculum }}" target="_blank">{{ member.curriculum }}</a></td>
-                                            <td><a href='#' class='btn btn-default btn-xs button-delete-member' data-id='{{ member.id }}' data-toggle="modal" data-target="#modal-delete-member"'><i class='glyphicon glyphicon-trash'></i></a></td>
+                                            <td>
+                                                <a href="{{ path("submission_update_member", {submission_id: submission.id, member_id: member.id}) }}" data-toggle="modal" data-target="#modal-update-member" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
+                                                <a href='#' class='btn btn-default btn-xs button-delete-member' data-id='{{ member.id }}' data-toggle="modal" data-target="#modal-delete-member"'><i class='glyphicon glyphicon-trash'></i></a>
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
@@ -165,7 +169,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="input-responsible-picture">{% trans %}Picture{% endtrans %}:</label> 
+                            <label for="input-responsible-picture">{% trans %}Picture{% endtrans %}:</label>
                             <input type='file' class='form-control' name='responsible-picture' id='input-responsible-picture'>
                         </div>
                     </div>
@@ -225,6 +229,20 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal Atualizar Responsável -->
+    <div class="modal fade" id="modal-update-responsible" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Modal Atualizar Membro -->
+    <div class="modal fade" id="modal-update-member" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
         </div>
     </div>
 

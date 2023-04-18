@@ -1540,4 +1540,140 @@ class NewSubmissionController extends Controller
             )
         );
     }
+
+    /**
+     * @Route("/submission/new/{submission_id}/responsible/{responsible_id}", name="submission_update_responsible")
+     * @Template()
+     */
+    public function updateResponsibleAction($submission_id, $responsible_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $submission_responsible_repository = $em->getRepository('Proethos2ModelBundle:SubmissionResponsible');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        // getting the current responsible
+        $submission_responsible = $submission_responsible_repository->find($responsible_id);
+        $output['responsible'] = $submission_responsible;
+
+        $referer = $request->headers->get('referer');
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-fourth-step', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
+            // getting post data
+            $post_data = $request->request->all();
+            $post_data = array_map('trim', $post_data);
+
+            // $submission_responsible->setSubmission($submission);
+            $submission_responsible->setName($post_data['responsible-name']);
+            $submission_responsible->setFiliation($post_data['responsible-filiation']);
+            $submission_responsible->setJob($post_data['responsible-job']);
+            $submission_responsible->setEmail($post_data['responsible-email']);
+            $submission_responsible->setPhone($post_data['responsible-phone']);
+            $submission_responsible->setCurriculum($post_data['responsible-curriculum']);
+            $submission_responsible->setOrcid($post_data['responsible-orcid']);
+
+            $file = $request->files->get('responsible-picture');
+
+            if ( $file ) {
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = array('.jpg', '.jpeg', '.png');
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
+
+                $submission_responsible->setFile($file);
+            }
+
+            $em->persist($submission_responsible);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Responsible updated with success."));
+            return $this->redirect($referer, 301);
+            // return $this->redirectToRoute('home', array(), 301);
+
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/submission/new/{submission_id}/member/{member_id}", name="submission_update_member")
+     * @Template()
+     */
+    public function updateMemberAction($submission_id, $member_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $submission_member_repository = $em->getRepository('Proethos2ModelBundle:SubmissionMember');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        // getting the current member
+        $submission_member = $submission_member_repository->find($member_id);
+        $output['member'] = $submission_member;
+
+        $referer = $request->headers->get('referer');
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-fourth-step', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
+            // getting post data
+            $post_data = $request->request->all();
+            $post_data = array_map('trim', $post_data);
+
+            // $submission_member->setSubmission($submission);
+            $submission_member->setName($post_data['member-name']);
+            $submission_member->setFiliation($post_data['member-filiation']);
+            $submission_member->setJob($post_data['member-job']);
+            $submission_member->setAcademicFormation($post_data['member-academic-formation']);
+            $submission_member->setEmail($post_data['member-email']);
+            $submission_member->setCurriculum($post_data['member-curriculum']);
+
+            $em->persist($submission_member);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Member updated with success."));
+            return $this->redirect($referer, 301);
+            // return $this->redirectToRoute('home', array(), 301);
+
+        }
+
+        return $output;
+    }
 }
