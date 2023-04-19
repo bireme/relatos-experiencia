@@ -145,7 +145,7 @@
                 <th width="10%">{% trans %}ORCID{% endtrans %}</th>
             </tr>
 
-            {% for resp in submission.responsible|sort((a, b) => b.name <=> a.name %}
+            {% for resp in submission.responsible|sort((a, b) => b.name <=> a.name) %}
                 <tr>
                     <td>{{ resp.name }}</td>
                     <td>{{ resp.filiation }}</td>
@@ -169,7 +169,7 @@
                 <th>{% trans %}Curriculum{% endtrans %}</th>
             </tr>
 
-            {% for member in submission.members|sort((a, b) => b.name <=> a.name %}
+            {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
                 <tr>
                     <td>{{ member.name }}</td>
                     <td>{{ member.filiation }}</td>
