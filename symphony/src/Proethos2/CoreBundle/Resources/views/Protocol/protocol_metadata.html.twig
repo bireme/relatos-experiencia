@@ -158,7 +158,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for resp in protocol.mainSubmission.responsible %}
+                    {% for resp in protocol.mainSubmission.responsible|sort((a, b) => b.name <=> a.name %}
                         <tr>
                             <td>{{ resp.name }}</td>
                             <td>{{ resp.filiation }}</td>
@@ -188,7 +188,7 @@
                 </thead>
 
                 <tbody>
-                {% for member in protocol.mainSubmission.members %}
+                {% for member in protocol.mainSubmission.members|sort((a, b) => b.name <=> a.name %}
                     <tr>
                         <td>{{ member.name }}</td>
                         <td>{{ member.filiation }}</td>

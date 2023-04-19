@@ -44,7 +44,7 @@
                                 </thead>
 
                                 <tbody>
-                                    {% for responsible in submission.responsible|sort((a, b) => a.name < b.name) %}
+                                    {% for responsible in submission.responsible|sort((a, b) => b.name <=> a.name) %}
                                         <tr>
                                             <td>{{ responsible.name }}</td>
                                             <td>{{ responsible.filiation }}</td>
@@ -94,7 +94,7 @@
                                 </thead>
 
                                 <tbody>
-                                    {% for member in submission.members|sort((a, b) => a.name < b.name) %}
+                                    {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
                                         <tr>
                                             <td>{{ member.name }}</td>
                                             <td>{{ member.filiation }}</td>
