@@ -1006,7 +1006,7 @@ class NewSubmissionController extends Controller
 
             $submittedToken = $request->request->get('token');
 
-            if (!$this->isCsrfTokenValid('submission-fifth-step', $submittedToken)) {
+            if (!$this->isCsrfTokenValid('submission-sixth-step', $submittedToken)) {
                 throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
             }
 
