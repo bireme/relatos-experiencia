@@ -378,3 +378,16 @@ img.logo {
         max-height: none !important;
     }
 }
+
+@media (max-width: 1300px) {
+    .nav > li > a {
+        padding: 10px 5px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav > li > a {
+        padding: 10px 5px;
+        font-size: 11px;
+    }
+}
