@@ -124,7 +124,7 @@ class NewSubmissionController extends Controller
             $submission->setOtherstatus($post_data['other_status']);
             $submission->setStartDate(new \DateTime($post_data['start-date']));
             if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
-            if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
+            if ( $post_data['partial-date'] ) $submission->setPartialDate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
             $submission->setOtherThematicArea($post_data['other_thematic_area']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
@@ -274,7 +274,7 @@ class NewSubmissionController extends Controller
             $submission->setOtherstatus($post_data['other_status']);
             $submission->setStartDate(new \DateTime($post_data['start-date']));
             if ( $post_data['end-date'] ) $submission->setEnddate(new \DateTime($post_data['end-date']));
-            if ( $post_data['partial-date'] ) $submission->setPartialdate(new \DateTime($post_data['partial-date']));
+            if ( $post_data['partial-date'] ) $submission->setPartialDate(new \DateTime($post_data['partial-date']));
             $submission->setOtherDate($post_data['other_date']);
             $submission->setOtherThematicArea($post_data['other_thematic_area']);
             $submission->setLanguage(($post_data['language']) ? $post_data['language'] : $locale);
@@ -679,7 +679,7 @@ class NewSubmissionController extends Controller
                         $submission_responsible->setFile($file);
                     }
                 } else {
-                    $session->getFlashBag()->add('error', $translator->trans("Responsible already exits."));
+                    $session->getFlashBag()->add('error', $translator->trans("Responsible already exists."));
                     return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
                 }
 
@@ -709,7 +709,7 @@ class NewSubmissionController extends Controller
                 // check if exists
                 $submission_member = $submission_member_repository->findOneBy(array(
                     'submission' => $submission,
-                    'email' => $post_data['member-email']
+                    'name' => $post_data['member-name']
                 ));
 
                 // if not exists, create the new submission_member
@@ -723,7 +723,7 @@ class NewSubmissionController extends Controller
                     $submission_member->setEmail($post_data['member-email']);
                     $submission_member->setCurriculum($post_data['member-curriculum']);
                 } else {
-                    $session->getFlashBag()->add('error', $translator->trans("Member already exits."));
+                    $session->getFlashBag()->add('error', $translator->trans("Member already exists."));
                     return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
                 }
 
