@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-05-24T16:33:14Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2023-06-07T17:13:25Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -28,15 +28,15 @@
       </trans-unit>
       <trans-unit id="0f4679c979a95b886c19fafcc73f4b7361867198" resname="A new best practice needs your analysis.">
         <source>A new best practice needs your analysis.</source>
-        <target>A new best practice needs your analysis.</target>
+        <target>Un nuevo informe de experiencia necesita su análisis</target>
       </trans-unit>
       <trans-unit id="fb25d175b3fc0278c66813115d356e6df18f83bd" resname="A new best practice review was submitted">
         <source>A new best practice review was submitted</source>
-        <target>A new best practice review was submitted</target>
+        <target>Se envió un nuevo informe de experiencia.</target>
       </trans-unit>
       <trans-unit id="c638c8f7bf2b8f889dfefab3a0867f7b2b98fa9b" resname="A new experience has been submitted.">
         <source>A new experience has been submitted.</source>
-        <target>Um novo relato de experiência foi enviado</target>
+        <target>Se ha enviado un nuevo informe de experiencia.</target>
       </trans-unit>
       <trans-unit id="fe1f2c4d494fc40392e39bec35686602dd971e3b" resname="A new monitoring action has been submitted.">
         <source>A new monitoring action has been submitted.</source>
@@ -44,11 +44,11 @@
       </trans-unit>
       <trans-unit id="16457b3a60e193c4a3df6cd13191d355300b3927" resname="Academic Formation">
         <source>Academic Formation</source>
-        <target>Academic Formation</target>
+        <target>Formación académica</target>
       </trans-unit>
       <trans-unit id="f8305e030f96d910b8adfa5d7f1623ea1d07b001" resname="Accept Submission">
         <source>Accept Submission</source>
-        <target>Accept Submission</target>
+        <target>Aceptar envío</target>
       </trans-unit>
       <trans-unit id="0182636f85cc5ca30cc8e676ea978384c7029bb8" resname="Accept as Notification">
         <source>Accept as Notification</source>
@@ -72,7 +72,7 @@
       </trans-unit>
       <trans-unit id="5c1f023a5941d06628f3af56eccace4f0fce781f" resname="Add Descriptor">
         <source>Add Descriptor</source>
-        <target>Add Descriptor</target>
+        <target>Añadir descriptor</target>
       </trans-unit>
       <trans-unit id="e86236c36d191296130926022e655c7aca7ee34a" resname="Add a monitoring action">
         <source>Add a monitoring action</source>
@@ -80,7 +80,7 @@
       </trans-unit>
       <trans-unit id="1eda23758be9e36e5e0d2a6a87de584aaca0193f" resname="Administrator">
         <source>Administrator</source>
-        <target>Administrator</target>
+        <target>Administrador</target>
       </trans-unit>
       <trans-unit id="6a72085653e4c5be8c7640c868ef787cbcf063d1" resname="All">
         <source>All</source>
@@ -96,15 +96,15 @@
       </trans-unit>
       <trans-unit id="606e26f487dcd77b1abd9f7ceb09b2ad08ec86a8" resname="Analyze Best Practice">
         <source>Analyze Best Practice</source>
-        <target>Analyze Best Practice</target>
+        <target>Analizar Informe de Experiencia</target>
       </trans-unit>
       <trans-unit id="7f08ae0858fb3a5415d58969e524eda0740fb8b2" resname="Analyze Experience">
         <source>Analyze Experience</source>
-        <target>Analyze Experience</target>
+        <target>Analizar Experiencia</target>
       </trans-unit>
       <trans-unit id="9b4736c0ce70d7082c7aef99252d160e1d827280" resname="Analyze experience">
         <source>Analyze experience</source>
-        <target>Analyze experience</target>
+        <target>Analizar Experiencia</target>
       </trans-unit>
       <trans-unit id="a16a4eda7cb2c8e91d7edd25e809ae9d392c7498" resname="Answer">
         <source>Answer</source>
@@ -132,7 +132,7 @@
       </trans-unit>
       <trans-unit id="525c78a189fbab793a1c85213c6bf4aeb143f3ca" resname="Are you sure that you want to delete this experience?">
         <source>Are you sure that you want to delete this experience?</source>
-        <target>Are you sure that you want to delete this experience?</target>
+        <target>¿Está seguro de que desea eliminar este informe?</target>
       </trans-unit>
       <trans-unit id="9e4803f32f8b294ce70e2587d474369b2121e3f0" resname="Are you sure that you want to end this best practice evaluation?">
         <source>Are you sure that you want to end this best practice evaluation?</source>
@@ -140,11 +140,11 @@
       </trans-unit>
       <trans-unit id="1f8ca6dd19b84ff946965d3059b1bcf44a7ebf91" resname="Are you sure that you want to end this experience review?">
         <source>Are you sure that you want to end this experience review?</source>
-        <target>Are you sure that you want to end this experience review?</target>
+        <target>¿Está seguro de que desea completar la revisión de esta experiencia?</target>
       </trans-unit>
       <trans-unit id="82a015d57a9b653f5938e233e81618c31955e00e" resname="Are you sure that you want to end this protocol evaluation?">
         <source>Are you sure that you want to end this protocol evaluation?</source>
-        <target>¿Está seguro de que desea finalizar la evaluación de este protocolo?</target>
+        <target>¿Está seguro de que desea finalizar la evaluación de este informe?</target>
       </trans-unit>
       <trans-unit id="3d0e6589cf988b9b7df265be8361e1f5ee2d4692" resname="Are you sure that you want to go to the next step without any revisions?">
         <source>Are you sure that you want to go to the next step without any revisions?</source>
@@ -152,7 +152,7 @@
       </trans-unit>
       <trans-unit id="dd6b9d135d02dd80558c1ab472b0b7ca16db0fd0" resname="Are you sure that you want to reject this submission?">
         <source>Are you sure that you want to reject this submission?</source>
-        <target>Are you sure that you want to reject this submission?</target>
+        <target>¿Está seguro de que desea rechazar este envío?</target>
       </trans-unit>
       <trans-unit id="129d86112d0f124b04a96f1e06036d1b66e8e4b2" resname="Are you sure that you want to remove this member?">
         <source>Are you sure that you want to remove this member?</source>
@@ -168,7 +168,7 @@
       </trans-unit>
       <trans-unit id="cfedb48b86c5075097c021c0e46a2bb4da40c469" resname="Are you sure that you want to update this experience?">
         <source>Are you sure that you want to update this experience?</source>
-        <target>Are you sure that you want to update this experience?</target>
+        <target>¿Seguro que quieres actualizar esta experiencia?</target>
       </trans-unit>
       <trans-unit id="287a62cdebe1d3d7ac46913b5cd023196a081135" resname="Are you sure that you want to withdraw this best practice?">
         <source>Are you sure that you want to withdraw this best practice?</source>
@@ -224,19 +224,19 @@
       </trans-unit>
       <trans-unit id="49cf8616e3fb7c12bba970bbf0ba4516411fe460" resname="Best practice rejected with success!">
         <source>Best practice rejected with success!</source>
-        <target>Best practice rejected with success!</target>
+        <target>¡Informe de experiencia rechazado con éxito!</target>
       </trans-unit>
       <trans-unit id="813d5749c6e202383632da553fd1d2e4542ff264" resname="Best practice status has been modified.">
         <source>Best practice status has been modified.</source>
-        <target>Best practice status has been modified.</target>
+        <target>El estado del informe ha sido modificado.</target>
       </trans-unit>
       <trans-unit id="4aecca2b4fec9f6d7b323a95dc01399e31c12315" resname="Best practice status modified by %user%.">
         <source>Best practice status modified by %user%.</source>
-        <target>Best practice status modified by %user%.</target>
+        <target>El estado del informe de experiencia fue modificado por %user%.</target>
       </trans-unit>
       <trans-unit id="9034bdeb699649396b3d09f711532e8c2cc136cf" resname="Best practice updated with success!">
         <source>Best practice updated with success!</source>
-        <target>Best practice updated with success!</target>
+        <target>¡El informe de experiencia se ha actualizado con éxito!</target>
       </trans-unit>
       <trans-unit id="629d83bbec827d6048b3161ccc3c5b399c8a6328" resname="Best practice was concluded as Exempt.">
         <source>Best practice was concluded as Exempt.</source>
@@ -244,7 +244,7 @@
       </trans-unit>
       <trans-unit id="d85efdbeb2cef126c04f1f8389f7d97c12edb7c9" resname="Best practice was finalized with success!">
         <source>Best practice was finalized with success!</source>
-        <target>Best practice was finalized with success!</target>
+        <target>¡El informe de experiencia se completó con éxito!</target>
       </trans-unit>
       <trans-unit id="1f8d15fb786fb9d5d2432c6bd91adb13205668e3" resname="Best practice was rejected by %user% with this justification &quot;%justify%&quot;.">
         <source>Best practice was rejected by %user% with this justification "%justify%".</source>
@@ -252,7 +252,7 @@
       </trans-unit>
       <trans-unit id="6333568eb51f6b87298cdff61d6d8ea9fd67c07a" resname="Best practice was removed with success!">
         <source>Best practice was removed with success!</source>
-        <target>Best practice was removed with success!</target>
+        <target>¡El informe de experiencia se ha eliminado con éxito!</target>
       </trans-unit>
       <trans-unit id="a47b3ccc3258837a5779b3ab973f887bbaf74e7a" resname="Best practice was sent to comittee for initial analysis by %user%.">
         <source>Best practice was sent to comittee for initial analysis by %user%.</source>
@@ -268,7 +268,7 @@
       </trans-unit>
       <trans-unit id="ff38765fb13efaef738615a48a439f19a5cd83a9" resname="Challenges">
         <source>Challenges</source>
-        <target>Challenges</target>
+        <target>Desafíos</target>
       </trans-unit>
       <trans-unit id="28470c0b8f4ee501e5f9def0b06aa336ee72886e" resname="Change My Password">
         <source>Change My Password</source>
@@ -296,11 +296,11 @@
       </trans-unit>
       <trans-unit id="b46c77fa44760067b496d3820ee234412eb7cde5" resname="Choose your login">
         <source>Choose your login</source>
-        <target>Choose your login</target>
+        <target>Elija su login</target>
       </trans-unit>
       <trans-unit id="4271627f4f0bef6104a95cca7bb21cda4d74503e" resname="City">
         <source>City</source>
-        <target>City</target>
+        <target>Ciudad</target>
       </trans-unit>
       <trans-unit id="ed6b163354d00afa17647b94816172f80c7de3fa" resname="Clinical Trial Names">
         <source>Clinical Trial Names</source>
@@ -320,11 +320,11 @@
       </trans-unit>
       <trans-unit id="4bbb632f02fd69807705c0179999c17d35c93b0f" resname="Collections">
         <source>Collections</source>
-        <target>Collections</target>
+        <target>Colecciones</target>
       </trans-unit>
       <trans-unit id="79b3d2121da50bcf4bb954b4c3e8b821da058fef" resname="Comment was created with success.">
         <source>Comment was created with success.</source>
-        <target>Comment was created with success.</target>
+        <target>El comentario fue creado con éxito.</target>
       </trans-unit>
       <trans-unit id="fce06e20e5f7f74aacccab40b59b75a56c8f7305" resname="Comments">
         <source>Comments</source>
@@ -336,7 +336,7 @@
       </trans-unit>
       <trans-unit id="1798b3ba42ee08ea09d9720b2d9c0181abbfe3e4" resname="Completed">
         <source>Completed</source>
-        <target>Completed</target>
+        <target>Terminado</target>
       </trans-unit>
       <trans-unit id="fe94b8af05dd4894d73db1b0d03998be2568e24c" resname="Configuration updated with success.">
         <source>Configuration updated with success.</source>
@@ -360,7 +360,7 @@
       </trans-unit>
       <trans-unit id="a744aae1df8817b1fae3dd9ad364aa490eaf65ae" resname="Confirmation of valid access to the Experience Reports platform">
         <source>Confirmation of valid access to the Experience Reports platform</source>
-        <target>Confirmation of valid access to the Experience Reports platform</target>
+        <target>Confirmación de acceso válido a la plataforma Informes de Experiencias</target>
       </trans-unit>
       <trans-unit id="b37456c4530be810dc040f50da72eda09addfb0a" resname="Contact">
         <source>Contact</source>
@@ -376,7 +376,7 @@
       </trans-unit>
       <trans-unit id="cc11b3a28fa30ae6d3d3ad1438824cbd5224ba5c" resname="Context">
         <source>Context</source>
-        <target>Context</target>
+        <target>Contexto</target>
       </trans-unit>
       <trans-unit id="c63d7dc26fc32ada5170c80598c4c75aefdcc105" resname="Controlled Lists">
         <source>Controlled Lists</source>
@@ -404,7 +404,7 @@
       </trans-unit>
       <trans-unit id="8ecafd1e8875c0776431554897c6fdf506c2e45b" resname="Create your password">
         <source>Create your password</source>
-        <target>Create your password</target>
+        <target>Crea tu contraseña</target>
       </trans-unit>
       <trans-unit id="de06a1fbeb64e7f4b184e68b9e8b95b2fb6469c0" resname="Created in">
         <source>Created in</source>
@@ -416,7 +416,7 @@
       </trans-unit>
       <trans-unit id="fc1e56e27a0597efeb808c21d1b38cc357f11a35" resname="Current date">
         <source>Current date</source>
-        <target>Current date</target>
+        <target>Fecha Actual</target>
       </trans-unit>
       <trans-unit id="23364909eb300169f10eda0f7d4fe63217a6cb8d" resname="Curriculum">
         <source>Curriculum</source>
@@ -424,7 +424,7 @@
       </trans-unit>
       <trans-unit id="d87f47b47e4d5794d53fe0734c49417bd046cde0" resname="Dashboard">
         <source>Dashboard</source>
-        <target>Panel de control</target>
+        <target>Experiencias Evaluadas</target>
       </trans-unit>
       <trans-unit id="eb9a4bc1c0c153e4e4b042a79113b815b7e3021d" resname="Date">
         <source>Date</source>
@@ -456,7 +456,7 @@
       </trans-unit>
       <trans-unit id="4a403768c7b25969cc9706a2dd4c7aec3ea42ab9" resname="Delete Help">
         <source>Delete Help</source>
-        <target>Delete Help</target>
+        <target>Eliminar Ayuda</target>
       </trans-unit>
       <trans-unit id="748f9b1b38e93e65df1cd9de2d06aa7f755c9a60" resname="Delete Meeting">
         <source>Delete Meeting</source>
@@ -464,7 +464,7 @@
       </trans-unit>
       <trans-unit id="a5c19d30a3cfe55753ae7e984767170b45925458" resname="Delete Member">
         <source>Delete Member</source>
-        <target>Delete Member</target>
+        <target>Eliminar miembro</target>
       </trans-unit>
       <trans-unit id="75363f97fd76d4ff347ab53db6f874ed9298e298" resname="Delete Question">
         <source>Delete Question</source>
@@ -472,7 +472,7 @@
       </trans-unit>
       <trans-unit id="2d23bcbdc90912bb7ed22135162862bdf1c200f1" resname="Delete Responsible">
         <source>Delete Responsible</source>
-        <target>Delete Responsible</target>
+        <target>Eliminar Responsable</target>
       </trans-unit>
       <trans-unit id="0a0a90f6c5a99223b71ca992b6c52fb82feb64b5" resname="Delete User">
         <source>Delete User</source>
@@ -480,7 +480,7 @@
       </trans-unit>
       <trans-unit id="941cc06a9c206c31f4c461a2ec5472227ace2164" resname="Delete this experience">
         <source>Delete this experience</source>
-        <target>Delete this experience</target>
+        <target>Eliminar esta experiencia</target>
       </trans-unit>
       <trans-unit id="55f8ebc805e65b5b71ddafdae390e3be2bcd69af" resname="Description">
         <source>Description</source>
@@ -504,11 +504,11 @@
       </trans-unit>
       <trans-unit id="4b52e2ccdf7625b91f24b09ac19edd764d06a678" resname="Descriptors">
         <source>Descriptors</source>
-        <target>Descriptors</target>
+        <target>Descriptores</target>
       </trans-unit>
       <trans-unit id="dc3decbb93847518f1a049dcf49d0d7c6560bcc6" resname="Details">
         <source>Details</source>
-        <target>Details</target>
+        <target>Detalles</target>
       </trans-unit>
       <trans-unit id="961f36de4c326fdd7cb4cc66ab04a5bd2188e0c3" resname="Do you confirm the exclusion of this attachment?">
         <source>Do you confirm the exclusion of this attachment?</source>
@@ -516,11 +516,11 @@
       </trans-unit>
       <trans-unit id="17e698bc5224cc471a93ede1ffc3b8711f98cc2e" resname="Do you confirm the exclusion of this member?">
         <source>Do you confirm the exclusion of this member?</source>
-        <target>Do you confirm the exclusion of this member?</target>
+        <target>¿Confirma la exclusión de este miembro?</target>
       </trans-unit>
       <trans-unit id="3201429c0b3d963297c39a8ade1e11664669b046" resname="Do you confirm the exclusion of this responsible?">
         <source>Do you confirm the exclusion of this responsible?</source>
-        <target>Do you confirm the exclusion of this responsible?</target>
+        <target>¿Confirma la exclusión de este responsable?</target>
       </trans-unit>
       <trans-unit id="1ba3f7b24b33d4429e8627ee88886fafbcf3a27e" resname="Document deleted with success.">
         <source>Document deleted with success.</source>
@@ -532,7 +532,7 @@
       </trans-unit>
       <trans-unit id="ec289993e0aaebf5f64aa680ccd3c1950f644aee" resname="Documents and Medias">
         <source>Documents and Medias</source>
-        <target>Documents and Medias</target>
+        <target>Documentos y Medios</target>
       </trans-unit>
       <trans-unit id="23d33e22acfcb9ecddb4a85f10607dc4ff49e23c" resname="Draft">
         <source>Draft</source>
@@ -548,7 +548,7 @@
       </trans-unit>
       <trans-unit id="0e85a3354b0b26fe2cb462d79fa2a51f22949c20" resname="Edit experience">
         <source>Edit experience</source>
-        <target>Edit experience</target>
+        <target>Editar experiencia</target>
       </trans-unit>
       <trans-unit id="4d32f9f7a82dd68da666475cd6c1355d1220879b" resname="Edit roles">
         <source>Edit roles</source>
@@ -576,7 +576,7 @@
       </trans-unit>
       <trans-unit id="84b1478125890bad1cc4b36d6d3781773b3fde5a" resname="End Date">
         <source>End Date</source>
-        <target>End Date</target>
+        <target>Fecha final</target>
       </trans-unit>
       <trans-unit id="e55d313325bffb54c173c2b24b2c71a494954346" resname="End Review">
         <source>End Review</source>
@@ -584,15 +584,15 @@
       </trans-unit>
       <trans-unit id="89d10cd6c1e1437d6318d6fbb25a40e0aaaddd34" resname="End date">
         <source>End date</source>
-        <target>End date</target>
+        <target>Fecha final</target>
       </trans-unit>
       <trans-unit id="cc3e685159fc818afb373f6b6ce1d74f1886926c" resname="End date and/or current">
         <source>End date and/or current</source>
-        <target>End date and/or current</target>
+        <target>Fecha de finalización y/o actual</target>
       </trans-unit>
       <trans-unit id="bcbe56a358c1bad62d39582c845d4463da281275" resname="End experience review">
         <source>End experience review</source>
-        <target>End experience review</target>
+        <target>Finalizar revisión de experiencia</target>
       </trans-unit>
       <trans-unit id="649df08a448ee3fa90f3746baaf6b0907df42c91" resname="English">
         <source>English</source>
@@ -612,7 +612,7 @@
       </trans-unit>
       <trans-unit id="9a993e5c1082cb0e891f1a6d45e54dcb8574b124" resname="Event where the experience was presented">
         <source>Event where the experience was presented</source>
-        <target>Event where the experience was presented</target>
+        <target>Evento donde se presentó la experiencia</target>
       </trans-unit>
       <trans-unit id="67690c75c03cd0e07da2b8ad46be269eb2c39a62" resname="Exclude user">
         <source>Exclude user</source>
@@ -624,23 +624,23 @@
       </trans-unit>
       <trans-unit id="a2a82103728adcb180afcfb832c0f993c5b5c6c5" resname="Expected results">
         <source>Expected results</source>
-        <target>Expected results</target>
+        <target>Resultados previstos</target>
       </trans-unit>
       <trans-unit id="5b5aafe6b9e2094c341356cec8cab143fe29a38a" resname="Experience">
         <source>Experience</source>
-        <target>Experience</target>
+        <target>Experiencia</target>
       </trans-unit>
       <trans-unit id="41d1b57ff12cef21a0e62b16387651ca99734248" resname="Experience Details">
         <source>Experience Details</source>
-        <target>Experience Details</target>
+        <target>Detalles de la experiencia</target>
       </trans-unit>
       <trans-unit id="85c719a13cd343896ef1affe4fb32d785e5dc532" resname="Experience Status">
         <source>Experience Status</source>
-        <target>Experience Status</target>
+        <target>Estado de experiencia</target>
       </trans-unit>
       <trans-unit id="fbdde68c51743a90c068d51503d28db47bbe4fb1" resname="Experience Title">
         <source>Experience Title</source>
-        <target>Experience Title</target>
+        <target>Título da Experiencia </target>
       </trans-unit>
       <trans-unit id="ef9d85e7e923369dc0245a813ac354f4746b9ae4" resname="Experience finalized by %user% under option &quot;%option%&quot;.">
         <source>Experience finalized by %user% under option "%option%".</source>
@@ -648,23 +648,24 @@
       </trans-unit>
       <trans-unit id="23d273feea2ff69c1da9eac19eae280c3643fdb6" resname="Experience review was finalized with success">
         <source>Experience review was finalized with success</source>
-        <target>Experience review was finalized with success</target>
+        <target>La revisión de la experiencia finalizó con éxito</target>
       </trans-unit>
       <trans-unit id="0514343d74877b797abff402232838e4200ad997" resname="Experience status">
         <source>Experience status</source>
-        <target>Experience status</target>
+        <target xml:space="preserve">
+Estado de la experiencia</target>
       </trans-unit>
       <trans-unit id="5011aadf7cd685e97dd69310b6b91e10dd27fd86" resname="Experience submitted with success!">
         <source>Experience submitted with success!</source>
-        <target>Experience submitted with success!</target>
+        <target>¡Experiencia enviada con éxito!</target>
       </trans-unit>
       <trans-unit id="05f7f32e15c91bb7564ddaee36eab7c53275300a" resname="Experience title">
         <source>Experience title</source>
-        <target>Experience title</target>
+        <target>Título de la experiencia</target>
       </trans-unit>
       <trans-unit id="522712582116fcc6e5a881399c84f72c4d5508a6" resname="Experiences">
         <source>Experiences</source>
-        <target>Experiences</target>
+        <target>Todas las experiencias</target>
       </trans-unit>
       <trans-unit id="1feee0e7447f87b9466b1b883869ba5eeba023b3" resname="Export to CSV">
         <source>Export to CSV</source>
@@ -720,7 +721,7 @@
       </trans-unit>
       <trans-unit id="429cb83fb83160c1eacc97d001b80d0930b15ee8" resname="File removed with success.">
         <source>File removed with success.</source>
-        <target>File removed with success.</target>
+        <target>Archivo eliminado con éxito.</target>
       </trans-unit>
       <trans-unit id="014776fef86e430eda7cf9fc73a0619d4870f73e" resname="File submission">
         <source>File submission</source>
@@ -732,23 +733,23 @@
       </trans-unit>
       <trans-unit id="6ce6c512ea433a7fc5c8841628e7696cd0ff7f2b" resname="Files">
         <source>Files</source>
-        <target>Files</target>
+        <target>Archivos</target>
       </trans-unit>
       <trans-unit id="b187bf64740f733ea6ead222fc828a4d2e6b9628" resname="Filiation">
         <source>Filiation</source>
-        <target>Filiation</target>
+        <target>Afiliación</target>
       </trans-unit>
       <trans-unit id="10701b8353801ac610752677d70a75ea184f1300" resname="Fill this field">
         <source>Fill this field</source>
-        <target>Fill this field</target>
+        <target>Rellena este campo</target>
       </trans-unit>
       <trans-unit id="fdabb30d82d83881e2761040776d3b7e9b19c440" resname="Filter by collection">
         <source>Filter by collection</source>
-        <target>Filter by collection</target>
+        <target>Filtrar por colección</target>
       </trans-unit>
       <trans-unit id="552d9c89dc5abf874ebda13943a2ba4e50850740" resname="Filter by name">
         <source>Filter by name</source>
-        <target>Filter by name</target>
+        <target>Filtrar por nombre</target>
       </trans-unit>
       <trans-unit id="a9660077b2bf17b83d5eb8b6dcc2a608c2102572" resname="Final Revision">
         <source>Final Revision</source>
@@ -756,11 +757,11 @@
       </trans-unit>
       <trans-unit id="2351a83d5cdb0d735966ed88cc09d4369db5e0e4" resname="Final decision">
         <source>Final decision</source>
-        <target>Final decision</target>
+        <target>Decisión definitiva</target>
       </trans-unit>
       <trans-unit id="136d40d186f26bc729c77f09a7c3abd391a95c8d" resname="Find experiences">
         <source>Find experiences</source>
-        <target>Find experiences</target>
+        <target>Encuentra experiencias</target>
       </trans-unit>
       <trans-unit id="0b2524216fdd23203c0429eb00e528a14e18fdfc" resname="First Author">
         <source>First Author</source>
@@ -800,11 +801,11 @@
       </trans-unit>
       <trans-unit id="64346b483c0adcfb6e6d4c2e4ce19f1cd2cde025" resname="Full Name">
         <source>Full Name</source>
-        <target>Full Name</target>
+        <target>Nombre Completo</target>
       </trans-unit>
       <trans-unit id="f4e3ca5cb74e978eb6e9fa3b727276f646351f43" resname="Fulltext">
         <source>Fulltext</source>
-        <target>Fulltext</target>
+        <target>Texto completo</target>
       </trans-unit>
       <trans-unit id="8a754c61c2ced0c5ff79a1827e02c9d643d6d926" resname="Gender">
         <source>Gender</source>
@@ -820,7 +821,7 @@
       </trans-unit>
       <trans-unit id="48d8c627be3c12fac8a0a9ddb9ceaa5e126cf358" resname="Goals">
         <source>Goals</source>
-        <target>Goals</target>
+        <target>Metas</target>
       </trans-unit>
       <trans-unit id="9d8ba69ea37ad3dd3008e8b89eb6046f51780130" resname="Have an error with captcha. Please try again.">
         <source>Have an error with captcha. Please try again.</source>
@@ -840,7 +841,7 @@
       </trans-unit>
       <trans-unit id="31ff40aa8dd072c159ba647eb25f4064828a8d90" resname="Hide fulltext">
         <source>Hide fulltext</source>
-        <target>Hide fulltext</target>
+        <target>Ocultar texto completo</target>
       </trans-unit>
       <trans-unit id="1ef32f06f0721d026545a2bf2b164efbd5064b88" resname="I agree with the">
         <source>I agree with the</source>
@@ -856,15 +857,15 @@
       </trans-unit>
       <trans-unit id="09e871c98fef3b901a775def173e4126aaf73b42" resname="Images">
         <source>Images</source>
-        <target>Images</target>
+        <target>Imágenes</target>
       </trans-unit>
       <trans-unit id="261b3b049c9b50b9dda180b9fdb6257bd3b26248" resname="Impacts">
         <source>Impacts</source>
-        <target>Impacts</target>
+        <target>Impactos</target>
       </trans-unit>
       <trans-unit id="d9966f86e29f16a86104a191183d328bcf4bd392" resname="Implemented and in regular operation">
         <source>Implemented and in regular operation</source>
-        <target>Implemented and in regular operation</target>
+        <target>Implementado y en operación regular</target>
       </trans-unit>
       <trans-unit id="013dcdb66b14b0fbb2f5393c8f52a72509f21819" resname="Inactive account. Please try again later.">
         <source>Inactive account. Please try again later.</source>
@@ -904,7 +905,7 @@
       </trans-unit>
       <trans-unit id="50be3afcff74fd9eea61c4dfdd7da275a216bfb6" resname="Interrupted">
         <source>Interrupted</source>
-        <target>Interrupted</target>
+        <target>Interrumpido</target>
       </trans-unit>
       <trans-unit id="952103bb8973f96d62678656499879f262c97a6b" resname="Interventions">
         <source>Interventions</source>
@@ -932,11 +933,11 @@
       </trans-unit>
       <trans-unit id="73781a127ec1294a42a6bd6b81266946ff4be5b3" resname="Issue">
         <source>Issue</source>
-        <target>Issue</target>
+        <target>Asunto</target>
       </trans-unit>
       <trans-unit id="8893765d4f95120244e13e8008e4a7b44da092e4" resname="Issue/Situation">
         <source>Issue/Situation</source>
-        <target>Issue/Situation</target>
+        <target>Asunto/Situación</target>
       </trans-unit>
       <trans-unit id="a0c82c52808e161cd5b44fc9a52ce3065f662a50" resname="Item created with success.">
         <source>Item created with success.</source>
@@ -956,7 +957,7 @@
       </trans-unit>
       <trans-unit id="f530db58b3e5088dc7412c6d2298ba3f8456bdeb" resname="Keywords">
         <source>Keywords</source>
-        <target>Keywords</target>
+        <target>Palabras clave</target>
       </trans-unit>
       <trans-unit id="dec72747d5160356b0220f023c5a2cd298eb4577" resname="Keywords that represent the themes or issues related to the reported experience">
         <source>Keywords that represent the themes or issues related to the reported experience</source>
@@ -976,19 +977,19 @@
       </trans-unit>
       <trans-unit id="443e66fe0980af9541fe54cce6580e16441fea8b" resname="Last experiences reviewed">
         <source>Last experiences reviewed</source>
-        <target>Last experiences reviewed</target>
+        <target>Últimas experiencias revisadas</target>
       </trans-unit>
       <trans-unit id="e41df52dcff2d5fb3f135df9c40c44c902c43f73" resname="Lessons Learned">
         <source>Lessons Learned</source>
-        <target>Lessons Learned</target>
+        <target>Lecciones aprendidas</target>
       </trans-unit>
       <trans-unit id="5f1b602bd58c70400c6cc3123702692e92eee6c0" resname="Lessons learned">
         <source>Lessons learned</source>
-        <target>Lessons learned</target>
+        <target>Lecciones aprendidas</target>
       </trans-unit>
       <trans-unit id="d219c68101f532de10add2cf42fb9dbeca73d3be" resname="Location">
         <source>Location</source>
-        <target>Location</target>
+        <target>Ubicación</target>
       </trans-unit>
       <trans-unit id="e43d612e11f1568f2373e719d4c4b08dcecdc7cc" resname="Logout">
         <source>Logout</source>
@@ -1012,7 +1013,7 @@
       </trans-unit>
       <trans-unit id="bab9717487fcbaa0e27da5a4eb61962455a527e0" resname="Main results/Impacts">
         <source>Main results/Impacts</source>
-        <target>Main results/Impacts</target>
+        <target>Principales resultados/Impactos</target>
       </trans-unit>
       <trans-unit id="2b090feeffd667ab00815a39bd2500b442fecfce" resname="Maximum Age">
         <source>Maximum Age</source>
@@ -1044,19 +1045,19 @@
       </trans-unit>
       <trans-unit id="4f13f48c673e321605ea39070297d7099f85664a" resname="Member Ad Hoc">
         <source>Member Ad Hoc</source>
-        <target>Member Ad Hoc</target>
+        <target>Miembro ad hoc</target>
       </trans-unit>
       <trans-unit id="978d4929c56449dea06de09db22858271b881cd3" resname="Member ad hoc">
         <source>Member ad hoc</source>
-        <target>Member ad hoc</target>
+        <target>Miembro ad hoc</target>
       </trans-unit>
       <trans-unit id="ffa06a5864bc61b35061948b6207412db4c1bb46" resname="Member added with success.">
         <source>Member added with success.</source>
-        <target>Member added with success.</target>
+        <target>Miembro añadido con éxito.</target>
       </trans-unit>
       <trans-unit id="ca48260f309ee964c1eda175ec0866a20b53c261" resname="Member already exists.">
         <source>Member already exists.</source>
-        <target>Member already exists.</target>
+        <target>El miembro ya existe.</target>
       </trans-unit>
       <trans-unit id="4014afc56173e7dda855348d627c2ccd839bf610" resname="Member has been removed with success!">
         <source>Member has been removed with success!</source>
@@ -1068,15 +1069,15 @@
       </trans-unit>
       <trans-unit id="c5b964fcf5f56b45508943d895893daa4f7ec5b2" resname="Member removed with success.">
         <source>Member removed with success.</source>
-        <target>Member removed with success.</target>
+        <target>Miembro eliminado con éxito.</target>
       </trans-unit>
       <trans-unit id="039c25050a14cacffeca92f2f110b54c8956b1cd" resname="Member updated with success.">
         <source>Member updated with success.</source>
-        <target>Member updated with success.</target>
+        <target>Miembro actualizado con éxito.</target>
       </trans-unit>
       <trans-unit id="1cb449c1126609b4b41e1d87f65f0d7cd19b49b9" resname="Members">
         <source>Members</source>
-        <target>Members</target>
+        <target>Miembros</target>
       </trans-unit>
       <trans-unit id="abc4f304a08a21ce7477f600961a7c5e317824c5" resname="Members added with success!">
         <source>Members added with success!</source>
@@ -1124,7 +1125,7 @@
       </trans-unit>
       <trans-unit id="fe43e90b93043a759de7e287e80066cc7166a16e" resname="My Experiences">
         <source>My Experiences</source>
-        <target>My Experiences</target>
+        <target>Mis informes</target>
       </trans-unit>
       <trans-unit id="08d2e98e6754af941484848930ccbaddfefe13d6" resname="N/A">
         <source>N/A</source>
@@ -1172,7 +1173,7 @@
       </trans-unit>
       <trans-unit id="4b68c3ec27492d6e0962aec2fe45ca514f617d29" resname="New Collection">
         <source>New Collection</source>
-        <target>New Collection</target>
+        <target>Nueva colección</target>
       </trans-unit>
       <trans-unit id="392e915c43c276266e65952bfc619351e5ded0a9" resname="New Comment">
         <source>New Comment</source>
@@ -1188,7 +1189,7 @@
       </trans-unit>
       <trans-unit id="e69f5da60a4e048b153ac26a5f65b9bb0ea18b3f" resname="New Document">
         <source>New Document</source>
-        <target>New Document</target>
+        <target>Nuevo documento</target>
       </trans-unit>
       <trans-unit id="48ce2a3e305902340f68d8bb07df2073b6500b41" resname="New Gender">
         <source>New Gender</source>
@@ -1196,15 +1197,15 @@
       </trans-unit>
       <trans-unit id="5e816484934c5b3f66b0fa79c3df0b0c1ecfe641" resname="New Goal">
         <source>New Goal</source>
-        <target>New Goal</target>
+        <target>Nueva meta</target>
       </trans-unit>
       <trans-unit id="aa7e28ac28bd857fe79386e85fc7fd3bd1a61680" resname="New Help">
         <source>New Help</source>
-        <target>New Help</target>
+        <target>Nueva ayuda</target>
       </trans-unit>
       <trans-unit id="05a80c298031cedb0f9a0e146a91ab2487cf71d3" resname="New Image">
         <source>New Image</source>
-        <target>New Image</target>
+        <target>Nueva imagen</target>
       </trans-unit>
       <trans-unit id="947ce86bed0a9a05a460ce619418ca795e6b44b0" resname="New Institution">
         <source>New Institution</source>
@@ -1216,7 +1217,7 @@
       </trans-unit>
       <trans-unit id="7419965e77ccae8616456b4a2a963e04e96c5d36" resname="New Media">
         <source>New Media</source>
-        <target>New Media</target>
+        <target>Nuevo medios</target>
       </trans-unit>
       <trans-unit id="e4cc33d64af4f8eaa127a13adf4a8d2289fcd97a" resname="New Meeting">
         <source>New Meeting</source>
@@ -1224,7 +1225,7 @@
       </trans-unit>
       <trans-unit id="dec23e436010e1fa2c5c74d17cc352c033f61e97" resname="New Member">
         <source>New Member</source>
-        <target>New Member</target>
+        <target>Nuevo miembro</target>
       </trans-unit>
       <trans-unit id="cac08db1ad677c19c4e82d917ecc4c4e59c4b565" resname="New Monitoring Action">
         <source>New Monitoring Action</source>
@@ -1232,11 +1233,11 @@
       </trans-unit>
       <trans-unit id="452333629400940f887e8af83175f4a51bd5b13d" resname="New Outcome">
         <source>New Outcome</source>
-        <target>New Outcome</target>
+        <target>Nuevo resultado</target>
       </trans-unit>
       <trans-unit id="4894cb39ee419a77b480060f3e4a6d0a4d0fa01f" resname="New Password">
         <source>New Password</source>
-        <target>Nuevo contraseña</target>
+        <target>Nueva contraseña</target>
       </trans-unit>
       <trans-unit id="99d53e65be28257061668c3ff319fed95e312a12" resname="New Population Group">
         <source>New Population Group</source>
@@ -1252,7 +1253,7 @@
       </trans-unit>
       <trans-unit id="e4b93306cde4041b1a41127d095ada9db76315d9" resname="New Responsible">
         <source>New Responsible</source>
-        <target>New Responsible</target>
+        <target>Nuevo Responsable</target>
       </trans-unit>
       <trans-unit id="ee195013f288001bcd68b192600d8b36176756bb" resname="New Stakeholder">
         <source>New Stakeholder</source>
@@ -1264,7 +1265,7 @@
       </trans-unit>
       <trans-unit id="9ed047752b8b87061ee16aa2a898b9fdf58cc21a" resname="New Tag">
         <source>New Tag</source>
-        <target>New Tag</target>
+        <target>Nueva Tag</target>
       </trans-unit>
       <trans-unit id="67dc05bac4fb2befd45ecf6c0ce101f1aaa0443b" resname="New Target">
         <source>New Target</source>
@@ -1276,7 +1277,7 @@
       </trans-unit>
       <trans-unit id="c8b01e169741f05a38e866022c8c08c15465fe68" resname="New Thematic Area">
         <source>New Thematic Area</source>
-        <target>New Thematic Area</target>
+        <target>Nueva Área Temática</target>
       </trans-unit>
       <trans-unit id="18f799d1cd8870445a42463145ecd8b976bf884c" resname="New Upload Extension Type">
         <source>New Upload Extension Type</source>
@@ -1292,7 +1293,7 @@
       </trans-unit>
       <trans-unit id="9a465bd914efc9c714bc130d2bba74f88a778207" resname="New Video">
         <source>New Video</source>
-        <target>New Video</target>
+        <target>Nuevo video</target>
       </trans-unit>
       <trans-unit id="ddfdb6753bca11895853f6104046bfc63fe6b23a" resname="New amendment submitted by">
         <source>New amendment submitted by</source>
@@ -1300,7 +1301,7 @@
       </trans-unit>
       <trans-unit id="7c060b6b28994b098ea422c7d1bc20339716e2e9" resname="New collection">
         <source>New collection</source>
-        <target>New collection</target>
+        <target>Nueva colección</target>
       </trans-unit>
       <trans-unit id="bb960e9c73715c458a976bd2d21ad295b133a9bf" resname="New comment on Proethos2">
         <source>New comment on Proethos2</source>
@@ -1312,11 +1313,11 @@
       </trans-unit>
       <trans-unit id="9a617d556c5b922c8bf352424e84b1ade685cac6" resname="New user on Experience Reports platform">
         <source>New user on Experience Reports platform</source>
-        <target>New user on Experience Reports platform</target>
+        <target>Nuevo usuario en la plataforma Informes de Experiencia</target>
       </trans-unit>
       <trans-unit id="6353049937c27ac2f99e782658c52f29e91fd4f2" resname="New user? Start here.">
         <source>New user? Start here.</source>
-        <target>New user? Start here.</target>
+        <target>¿Nuevo Usuario? Empieza aqui.</target>
       </trans-unit>
       <trans-unit id="7e77d31ff101ea5dad7c57ff4831d6b6746607a2" resname="No FAQ found">
         <source>No FAQ found</source>
@@ -1324,7 +1325,7 @@
       </trans-unit>
       <trans-unit id="0727b4e28e22a9cb435233319bb1b85749a7fe88" resname="No best practice found">
         <source>No best practice found</source>
-        <target>No best practice found</target>
+        <target>No se encontraron informes</target>
       </trans-unit>
       <trans-unit id="4777fc52589c64f55c838ce9f1db39f3e838f2aa" resname="No configuration found">
         <source>No configuration found</source>
@@ -1380,7 +1381,7 @@
       </trans-unit>
       <trans-unit id="70440046a3dc2e079f23ee1c57dfa76669b732aa" resname="Notes">
         <source>Notes</source>
-        <target>Notes</target>
+        <target>Notas</target>
       </trans-unit>
       <trans-unit id="7fced9588f5d62939fcd50937b62cb844bfbb5e0" resname="ORCID">
         <source>ORCID</source>
@@ -1392,7 +1393,7 @@
       </trans-unit>
       <trans-unit id="ae2928d55db9207052559b7bda19642645169306" resname="Objectives/Expected results">
         <source>Objectives/Expected results</source>
-        <target>Objectives/Expected results</target>
+        <target>Objetivos/Resultados esperados</target>
       </trans-unit>
       <trans-unit id="81a66b042f92ae09dec0fc1a1d5fccf4d2f6d252" resname="Opinions Required">
         <source>Opinions Required</source>
@@ -1408,39 +1409,40 @@
       </trans-unit>
       <trans-unit id="a6534d1837487c4422c4f7b6f29dca9467d72587" resname="Or enter here the video embed code">
         <source>Or enter here the video embed code</source>
-        <target>Or enter here the video embed code</target>
+        <target>O ingrese aquí el código de inserción del video</target>
       </trans-unit>
       <trans-unit id="6e6a6f2086bb5fe5dbfd17d8d5f502d48759834b" resname="Other">
         <source>Other</source>
-        <target>Other</target>
+        <target>Otro</target>
       </trans-unit>
       <trans-unit id="fcb9009fc747525c6f33f20b4e6f3cf7e4923247" resname="Other Information">
         <source>Other Information</source>
-        <target>Other Information</target>
+        <target>Otra información</target>
       </trans-unit>
       <trans-unit id="7114b0a6e0058ed29b3f43399478f5be8134bed6" resname="Other Population">
         <source>Other Population</source>
-        <target>Other Population</target>
+        <target>Otra Población</target>
       </trans-unit>
       <trans-unit id="44dbabd517322678bd8d6344a0700531073cc40a" resname="Other Status">
         <source>Other Status</source>
-        <target>Other Status</target>
+        <target xml:space="preserve">
+Otro estado</target>
       </trans-unit>
       <trans-unit id="0e456d5e8f724b853b9267334fab55c7b6fa98cb" resname="Other medias">
         <source>Other medias</source>
-        <target>Other medias</target>
+        <target>Otros medios</target>
       </trans-unit>
       <trans-unit id="c74c3135939626dc90de52cd9b2ea709f9c167d0" resname="Other population">
         <source>Other population</source>
-        <target>Other population</target>
+        <target>Otra población</target>
       </trans-unit>
       <trans-unit id="790e40fd2ad5d669ae1daa58fb0e3306afafb4f6" resname="Other thematic area">
         <source>Other thematic area</source>
-        <target>Other thematic area</target>
+        <target>Otra área temática</target>
       </trans-unit>
       <trans-unit id="6848ce552eefdb4708bb7274612f44308492fee2" resname="Outcomes">
         <source>Outcomes</source>
-        <target>Outcomes</target>
+        <target>Resultados</target>
       </trans-unit>
       <trans-unit id="97fdd5490df99ffa64c2b7a0a31614eff19d9a8e" resname="PAHOERC Secretariat">
         <source>PAHOERC Secretariat</source>
@@ -1452,7 +1454,7 @@
       </trans-unit>
       <trans-unit id="2289a8a246f7b81936db44bb94258173fa9daee0" resname="Pan American Health Organization. All rights reserved.">
         <source>Pan American Health Organization. All rights reserved.</source>
-        <target>Pan American Health Organization. All rights reserved.</target>
+        <target>Organización Panamericana de la Salud. Reservados todos los derechos.</target>
       </trans-unit>
       <trans-unit id="e4d64aa6b64e302e5b6b2c82be0fd71cc0cc8624" resname="Password changed with success.">
         <source>Password changed with success.</source>
@@ -1464,11 +1466,11 @@
       </trans-unit>
       <trans-unit id="77064d5265236e0ac252f3fc4a5ba7b274b6a583" resname="Phone">
         <source>Phone</source>
-        <target>Phone</target>
+        <target>Teléfono</target>
       </trans-unit>
       <trans-unit id="61852524b8f8fb65ef0743aec389512536cc7b64" resname="Picture">
         <source>Picture</source>
-        <target>Picture</target>
+        <target>Imagen</target>
       </trans-unit>
       <trans-unit id="b5b07f718c694688f631936da9ccc95edaf5ca54" resname="Please access your account in the system to present your monitoring action.">
         <source>Please access your account in the system to present your monitoring action.</source>
@@ -1476,19 +1478,19 @@
       </trans-unit>
       <trans-unit id="2efabaa80d675c8cc6d86843ea5b32b62a33a239" resname="Please add one hyperlink per line">
         <source>Please add one hyperlink per line</source>
-        <target>Please add one hyperlink per line</target>
+        <target>Agregue un hipervínculo por línea</target>
       </trans-unit>
       <trans-unit id="2ac66913f4e299fd22a2bc80c4cf1b32b4dde689" resname="Please add one per line">
         <source>Please add one per line</source>
-        <target>Please add one per line</target>
+        <target>Agregue uno por línea</target>
       </trans-unit>
       <trans-unit id="bf3be005264fb0bfe4450542f82af8cc2c5a443e" resname="Please paste the embed code here">
         <source>Please paste the embed code here</source>
-        <target>Please paste the embed code here</target>
+        <target>Por favor, pegue el código de inserción aquí</target>
       </trans-unit>
       <trans-unit id="182d37ec74bf3c14babc4754e239e56a03a643c7" resname="Population">
         <source>Population</source>
-        <target>Population</target>
+        <target>Población</target>
       </trans-unit>
       <trans-unit id="e744dd6b3c48af417bc6eb39dca6cfe62210fda8" resname="Population Groups">
         <source>Population Groups</source>
@@ -1580,7 +1582,7 @@
       </trans-unit>
       <trans-unit id="2052351991fc7a61d505bd2445a42ddee6877f01" resname="Reason that this experience was rejected">
         <source>Reason that this experience was rejected</source>
-        <target>Reason that this experience was rejected</target>
+        <target>Motivo por el que se rechazó esta experiencia</target>
       </trans-unit>
       <trans-unit id="5405cefe81474c3ed7b2b319a6c073988bd214e8" resname="Recruitment Date">
         <source>Recruitment Date</source>
@@ -1592,11 +1594,11 @@
       </trans-unit>
       <trans-unit id="0f217179940c6d89f5cb2c7002a58d91ab7286c1" resname="Region">
         <source>Region</source>
-        <target>Region</target>
+        <target>Región</target>
       </trans-unit>
       <trans-unit id="248b110422fb7ca5f331047755fd8d29dcd8621c" resname="Regional Office for the Americas of the World Health Organization">
         <source>Regional Office for the Americas of the World Health Organization</source>
-        <target>Regional Office for the Americas of the World Health Organization</target>
+        <target>Oficina Regional para las Américas de la Organización Mundial de la Salud</target>
       </trans-unit>
       <trans-unit id="2b03b59293b6fc7101306f5d9ae1e96327bb419a" resname="Reject">
         <source>Reject</source>
@@ -1604,19 +1606,19 @@
       </trans-unit>
       <trans-unit id="819133f871d8e86af4cc2f170e04112a94a8799d" resname="Reject Submission">
         <source>Reject Submission</source>
-        <target>Reject Submission</target>
+        <target>Rechazar envío</target>
       </trans-unit>
       <trans-unit id="90b778a9cf57418e64290c77c0ce18430305be64" resname="Reject Submission?">
         <source>Reject Submission?</source>
-        <target>Reject Submission?</target>
+        <target>¿Rechazar envío?</target>
       </trans-unit>
       <trans-unit id="181a415a001731a3644f9a3c789b0b3e252ecdb0" resname="Related Links">
         <source>Related Links</source>
-        <target>Related Links</target>
+        <target>Enlaces relacionados</target>
       </trans-unit>
       <trans-unit id="2256cc6ee2a5d077491a8a63ef76ac743c25d2d2" resname="Related links">
         <source>Related links</source>
-        <target>Related links</target>
+        <target>Enlaces relacionados</target>
       </trans-unit>
       <trans-unit id="e963907dac5cd5c017869b4c96c18021c9bd058b" resname="Remove">
         <source>Remove</source>
@@ -1632,7 +1634,7 @@
       </trans-unit>
       <trans-unit id="87df60de337fb58864343e396696d74611e0d403" resname="Resources">
         <source>Resources</source>
-        <target>Resources</target>
+        <target>Recursos</target>
       </trans-unit>
       <trans-unit id="cd78077e58c44f25e53bcd83903b32c524bf46cc" resname="Respondent Name">
         <source>Respondent Name</source>
@@ -1640,23 +1642,23 @@
       </trans-unit>
       <trans-unit id="96cd625f32068aa16ba9bcd824e0a8b3ef5ed4f3" resname="Responsible">
         <source>Responsible</source>
-        <target>Responsible</target>
+        <target>Responsable</target>
       </trans-unit>
       <trans-unit id="51980a7cb328b602fdd8a4ece185d9207b87a0ad" resname="Responsible added with success.">
         <source>Responsible added with success.</source>
-        <target>Responsible added with success.</target>
+        <target>Responsable añadido con acierto.</target>
       </trans-unit>
       <trans-unit id="edbf7e69f3e648b3cf48f7325bc890541b7e7308" resname="Responsible already exists.">
         <source>Responsible already exists.</source>
-        <target>Responsible already exists.</target>
+        <target>El responsable ya existe.</target>
       </trans-unit>
       <trans-unit id="c49eef8e409f0bb5bc9d182040de8e59c4caba55" resname="Responsible removed with success.">
         <source>Responsible removed with success.</source>
-        <target>Responsible removed with success.</target>
+        <target>Responsable eliminado con éxito.</target>
       </trans-unit>
       <trans-unit id="279c157437b7fdf79fd6a872f0af68bce7bca4ed" resname="Responsible updated with success.">
         <source>Responsible updated with success.</source>
-        <target>Responsible updated with success.</target>
+        <target>Responsable actualizado con éxito.</target>
       </trans-unit>
       <trans-unit id="a5c6c50c2aa87d3ca138c44ec18716e67238d29e" resname="Return reason">
         <source>Return reason</source>
@@ -1692,7 +1694,7 @@
       </trans-unit>
       <trans-unit id="d4a24f802d6c8bbb8c4120c73450b1224b501d0c" resname="Save and continue later">
         <source>Save and continue later</source>
-        <target>Save and continue later</target>
+        <target>Guardar y continuar más tarde</target>
       </trans-unit>
       <trans-unit id="ff708ddf466ae8a6d7c39a05291103bdfa5d0405" resname="Save and mark as final revision">
         <source>Save and mark as final revision</source>
@@ -1724,7 +1726,7 @@
       </trans-unit>
       <trans-unit id="5df0736d8079d7506a8109052251103e4c84702d" resname="Search for a help">
         <source>Search for a help</source>
-        <target>Search for a help</target>
+        <target>Buscar una ayuda</target>
       </trans-unit>
       <trans-unit id="c48a87e22c5b431d8f57903582305d386fc40cf8" resname="Search for a meeting subject">
         <source>Search for a meeting subject</source>
@@ -1744,15 +1746,15 @@
       </trans-unit>
       <trans-unit id="a7f07da18c5beac462a8d871cff6ba2a5a948628" resname="Secretary">
         <source>Secretary</source>
-        <target>Secretary</target>
+        <target>Editor</target>
       </trans-unit>
       <trans-unit id="40f21a434a37f41440189d1bf446a52384c6c1d3" resname="See Experience">
         <source>See Experience</source>
-        <target>See Experience</target>
+        <target>Ver experiencia</target>
       </trans-unit>
       <trans-unit id="095da9d18a46d925e07277b040d7e56f53dc00fc" resname="See experience">
         <source>See experience</source>
-        <target>See experience</target>
+        <target>Ver experiencia</target>
       </trans-unit>
       <trans-unit id="2fce269c0372ec6b495feaefdd72011592276c2f" resname="See original">
         <source>See original</source>
@@ -1760,11 +1762,11 @@
       </trans-unit>
       <trans-unit id="a3962ca5a93422a61066540054a136bad2710329" resname="See picture">
         <source>See picture</source>
-        <target>See picture</target>
+        <target>Ver imagen</target>
       </trans-unit>
       <trans-unit id="c135ca2ba6ef7f544f8d9e2e09088dd911ead717" resname="Select Members Ad Hoc">
         <source>Select Members Ad Hoc</source>
-        <target>Select Members Ad Hoc</target>
+        <target>Seleccionar miembros ad hoc</target>
       </trans-unit>
       <trans-unit id="760f9df06db95a28b99e075c59b970b8685671a5" resname="Select Members Of Committee">
         <source>Select Members Of Committee</source>
@@ -1840,7 +1842,7 @@
       </trans-unit>
       <trans-unit id="5c7cc591f759f9fdfaee5bae2a0fe28b0d5df72c" resname="Send to revision">
         <source>Send to revision</source>
-        <target>Send to revision</target>
+        <target>Enviar a revisión</target>
       </trans-unit>
       <trans-unit id="b07eb00d111a743c92ecfbc78133c45b9f7d58c4" resname="Send us a message by entering the fields below, or write to us at">
         <source>Send us a message by entering the fields below, or write to us at</source>
@@ -1872,15 +1874,15 @@
       </trans-unit>
       <trans-unit id="2a9e7603ab040fbfcdb98b735f6e3c5ce5f5ff6f" resname="Show Experience">
         <source>Show Experience</source>
-        <target>Show Experience</target>
+        <target>Mostrar Experiencia</target>
       </trans-unit>
       <trans-unit id="37cae766d455975558bffbda4852be1df06d2f54" resname="Show PDF">
         <source>Show PDF</source>
-        <target>Show PDF</target>
+        <target>Mostrar PDF</target>
       </trans-unit>
       <trans-unit id="8e2e17a9a2e24130de1c61e3981d69cc834ab74d" resname="Show fulltext">
         <source>Show fulltext</source>
-        <target>Show fulltext</target>
+        <target>Mostrar texto completo</target>
       </trans-unit>
       <trans-unit id="56860002c2285b9bff80391678937a3f082e20e5" resname="Sincerely">
         <source>Sincerely</source>
@@ -1888,11 +1890,11 @@
       </trans-unit>
       <trans-unit id="30f6fed84499528f3d635da39f8c05cc1c4b429d" resname="Situation">
         <source>Situation</source>
-        <target>Situation</target>
+        <target>Situación</target>
       </trans-unit>
       <trans-unit id="da581f85e0b26a16cba2c19d07dc95d9cdc81d4f" resname="Sixth step saved with success.">
         <source>Sixth step saved with success.</source>
-        <target>Sixth step saved with success.</target>
+        <target>Sexto paso salvado con éxito.</target>
       </trans-unit>
       <trans-unit id="8df7f1b361b2af42d36011e00d22c0f9891ec0b0" resname="Spanish">
         <source>Spanish</source>
@@ -1908,7 +1910,7 @@
       </trans-unit>
       <trans-unit id="5493e68cb4d6d088d7665c093d2ba3aed447c1b2" resname="Stakeholders">
         <source>Stakeholders</source>
-        <target>Stakeholders</target>
+        <target>Partes interesadas</target>
       </trans-unit>
       <trans-unit id="9d7ab1a557965be0eae6205c2d860c45a3eafc11" resname="Start Date">
         <source>Start Date</source>
@@ -1916,11 +1918,11 @@
       </trans-unit>
       <trans-unit id="ff99f5b5f7948dfa71fd545b3d99f5f00856ea29" resname="Start date">
         <source>Start date</source>
-        <target>Start date</target>
+        <target>Fecha de inicio</target>
       </trans-unit>
       <trans-unit id="a72502067518684f9deeec70cf119fd26326cd33" resname="State">
         <source>State</source>
-        <target>State</target>
+        <target>Estado</target>
       </trans-unit>
       <trans-unit id="bae7d5be70820ed56467bd9a63744e23b47bd711" resname="Status">
         <source>Status</source>
@@ -1944,7 +1946,7 @@
       </trans-unit>
       <trans-unit id="45860183ce42cb05f49480d64f5c38e5a2d84749" resname="Submission of experience.">
         <source>Submission of experience.</source>
-        <target>Submission of experience.</target>
+        <target>Envío del informe.</target>
       </trans-unit>
       <trans-unit id="c5eafe1a51b80e934915ccfb1d0afbde2967b915" resname="Submission started with success.">
         <source>Submission started with success.</source>
@@ -1968,11 +1970,11 @@
       </trans-unit>
       <trans-unit id="cd57f6a3e7666fa5a87d7a7fa00ed1b37f28825d" resname="Submitted Experiences">
         <source>Submitted Experiences</source>
-        <target>Submitted Experiences</target>
+        <target>Experiencias enviadas</target>
       </trans-unit>
       <trans-unit id="31f668b61aa1d9ab073620836c90d677291466ea" resname="Submitted in">
         <source>Submitted in</source>
-        <target>Submitted in</target>
+        <target>Enviado en</target>
       </trans-unit>
       <trans-unit id="861edba00547bc9ce7a08df78d4378766418179f" resname="Suggestions">
         <source>Suggestions</source>
@@ -1996,7 +1998,7 @@
       </trans-unit>
       <trans-unit id="218887269ad5946d9dc53238651c90472884fb0f" resname="Team">
         <source>Team</source>
-        <target>Team</target>
+        <target>Equipo</target>
       </trans-unit>
       <trans-unit id="860452b75c152ee2e3fcfc8671c049657bee284f" resname="Technical Matters">
         <source>Technical Matters</source>
@@ -2012,11 +2014,11 @@
       </trans-unit>
       <trans-unit id="fb549f369a3b4a82fd868e5763cb56fd17809028" resname="The best practice review was finalized!">
         <source>The best practice review was finalized!</source>
-        <target>The best practice review was finalized!</target>
+        <target>¡Se finalizó la revisión de los informes de experiencias!</target>
       </trans-unit>
       <trans-unit id="c6bb1323c487d4bedc1aacb23697367ecdf8fa85" resname="The experience review was finalized">
         <source>The experience review was finalized</source>
-        <target>The experience review was finalized</target>
+        <target>Se finalizó la revisión de la experiencia.</target>
       </trans-unit>
       <trans-unit id="33b2fe8fd6b616572111477a7dc3b94a90ec6c45" resname="The practice has not been implemented">
         <source>The practice has not been implemented</source>
@@ -2044,15 +2046,15 @@
       </trans-unit>
       <trans-unit id="bc6fd408b391f887f50cbc85c84fb8bbecbeb939" resname="Thematic Area">
         <source>Thematic Area</source>
-        <target>Thematic Area</target>
+        <target>Área temática</target>
       </trans-unit>
       <trans-unit id="e6e21b91fe035e6e76181adc09d4f8fb3f5e8479" resname="Thematic Areas">
         <source>Thematic Areas</source>
-        <target>Thematic Areas</target>
+        <target>Áreas temáticas</target>
       </trans-unit>
       <trans-unit id="fcf070bff15609d710964c8b24ce5bb9493634a0" resname="Thematic area">
         <source>Thematic area</source>
-        <target>Thematic area</target>
+        <target>Área temática</target>
       </trans-unit>
       <trans-unit id="80641d12b06bab66399479a096f095554b0710ae" resname="There is no help message set for this field.">
         <source>There is no help message set for this field.</source>
@@ -2068,7 +2070,7 @@
       </trans-unit>
       <trans-unit id="2278aae634b594b27375bfa2a2e5c3363755f31e" resname="This is a migrated experience. You can edit some informations.">
         <source>This is a migrated experience. You can edit some informations.</source>
-        <target>This is a migrated experience. You can edit some informations.</target>
+        <target>Esta es una experiencia migrada. Puede editar alguna información.</target>
       </trans-unit>
       <trans-unit id="57482c5aaff1ec5281be4a8390934b2a15263f7a" resname="This is a translated version.">
         <source>This is a translated version.</source>
@@ -2113,7 +2115,7 @@
       </trans-unit>
       <trans-unit id="7e3e171a15d4c42296765868f4131af6df1b2400" resname="Under review">
         <source>Under review</source>
-        <target>Under review</target>
+        <target>En revisión</target>
       </trans-unit>
       <trans-unit id="fb91e24fa52d8d2b32937bf04d843f730319a902" resname="Update">
         <source>Update</source>
@@ -2137,7 +2139,7 @@
       </trans-unit>
       <trans-unit id="5de635b3955611ae42b839efc02ee58cb4e9c64d" resname="Update Mail">
         <source>Update Mail</source>
-        <target>Actualizar correo</target>
+        <target>Actualizar correo electrónico</target>
       </trans-unit>
       <trans-unit id="448b971c7b7738a4c2cb5fea621654b09beab725" resname="Update Meeting">
         <source>Update Meeting</source>
@@ -2145,7 +2147,7 @@
       </trans-unit>
       <trans-unit id="1ba7196547f9f273813311ef6586d4734e250d92" resname="Update Member">
         <source>Update Member</source>
-        <target>Update Member</target>
+        <target>Actualizar miembro</target>
       </trans-unit>
       <trans-unit id="a4652f309e03aa9378c02de07e4fab50a8310ae3" resname="Update Question">
         <source>Update Question</source>
@@ -2153,7 +2155,7 @@
       </trans-unit>
       <trans-unit id="8b6363725c6d17ea5d72dd5da9811308ce85293b" resname="Update Responsible">
         <source>Update Responsible</source>
-        <target>Update Responsible</target>
+        <target>Actualizar Responsable</target>
       </trans-unit>
       <trans-unit id="e27738c47f3ecda86646c8ee5acafaa6829470f9" resname="Update User">
         <source>Update User</source>
@@ -2189,7 +2191,7 @@
       </trans-unit>
       <trans-unit id="503a3d8ca27443c8f052d4092e928c0d93f4033f" resname="Upload file">
         <source>Upload file</source>
-        <target>Upload file</target>
+        <target>Subir archivo</target>
       </trans-unit>
       <trans-unit id="22dc882d7fe2659a2a324963e18ddb46dff4076d" resname="Use this field to share documents, publications, materials or news related to your experience">
         <source>Use this field to share documents, publications, materials or news related to your experience</source>
@@ -2245,7 +2247,7 @@
       </trans-unit>
       <trans-unit id="58b8e30511e7a32eebcd90ccb61ccea388cfa5ec" resname="Welcome to the Experience Reports platform!">
         <source>Welcome to the Experience Reports platform!</source>
-        <target>Welcome to the Experience Reports platform!</target>
+        <target>¡Bienvenido a la plataforma Informes de Experiencias!</target>
       </trans-unit>
       <trans-unit id="e872e4eff428da353511e0ae62fd1084b203954c" resname="What is the current status of the experience?">
         <source>What is the current status of the experience?</source>
@@ -2293,7 +2295,7 @@
       </trans-unit>
       <trans-unit id="c5ba25bc32c6a2e0d3b2fce10ca6ccd436d9e613" resname="You cannot edit this best practice">
         <source>You cannot edit this best practice</source>
-        <target>You cannot edit this best practice</target>
+        <target>No puede editar este informe</target>
       </trans-unit>
       <trans-unit id="696751f041de5e60a1187c72223bdd4aa7d6f40c" resname="You don't have access to do this">
         <source>You don't have access to do this</source>
@@ -2309,7 +2311,7 @@
       </trans-unit>
       <trans-unit id="7399ae3f36c173d8dfd713f21ce73380f0b6ea58" resname="You haven't submitted any best practice yet.">
         <source>You haven't submitted any best practice yet.</source>
-        <target>Usted aún no ha enviado ninguna buena práctica.</target>
+        <target>Usted aún no ha enviado ninguno informe.</target>
       </trans-unit>
       <trans-unit id="287ad1915f74ae42ce209a189bd00e21548e38a6" resname="You must accept the terms and conditions.">
         <source>You must accept the terms and conditions.</source>
@@ -2317,11 +2319,11 @@
       </trans-unit>
       <trans-unit id="3e5418baea40374d842087599cebdad72b415f1f" resname="You were assigned to review a best practice">
         <source>You were assigned to review a best practice</source>
-        <target>You were assigned to review a best practice</target>
+        <target>Se le asignó revisar un informe</target>
       </trans-unit>
       <trans-unit id="5066b72f14362144b768c328680ac75cf3ea67ff" resname="Your Experiences">
         <source>Your Experiences</source>
-        <target>Your Experiences</target>
+        <target>Experiencias Enviadas</target>
       </trans-unit>
       <trans-unit id="21c7fe92b8e2c31b06b3e871a2c2e9c168813a64" resname="Your Profile">
         <source>Your Profile</source>
@@ -2333,7 +2335,7 @@
       </trans-unit>
       <trans-unit id="e7ddec86a99501676ec8ec74de90d74bf6c1753d" resname="Your best practice has been withdrawn">
         <source>Your best practice has been withdrawn</source>
-        <target>Your best practice has been withdrawn</target>
+        <target>Su informe ha sido retirado</target>
       </trans-unit>
       <trans-unit id="add0e520721b865787ab54e6de4beee6f3b92dbc" resname="Your best practice was concluded as Exempt.">
         <source>Your best practice was concluded as Exempt.</source>
@@ -2341,15 +2343,15 @@
       </trans-unit>
       <trans-unit id="c966ebb70a7b27e8a2b1ca7a361939730bc78047" resname="Your best practice was rejected">
         <source>Your best practice was rejected</source>
-        <target>Your best practice was rejected</target>
+        <target>Su informe fue rechazado</target>
       </trans-unit>
       <trans-unit id="8a9b2eb8c8ab7274265adae9fafb3a5cc104e3c0" resname="Your best practice was sent to review!">
         <source>Your best practice was sent to review!</source>
-        <target>Your best practice was sent to review!</target>
+        <target>¡Tu informe fue enviado a revisión!</target>
       </trans-unit>
       <trans-unit id="90e43f63da48c59bec4c3964c36893d09f10c338" resname="Your experience was sent to review.">
         <source>Your experience was sent to review.</source>
-        <target>Your experience was sent to review.</target>
+        <target>Tu experiencia fue enviada a revisión.</target>
       </trans-unit>
       <trans-unit id="2bb6b986c5d6fb26dd9dd1054b545ce022371b0c" resname="active">
         <source>active</source>
@@ -2357,11 +2359,11 @@
       </trans-unit>
       <trans-unit id="cffa50a32cb13a240d705317bcec65dd1f31b6ad" resname="and">
         <source>and</source>
-        <target>and</target>
+        <target>y</target>
       </trans-unit>
       <trans-unit id="1e94320b4b841dddc00dd3a1c83db6a1870a4bb3" resname="and/or current">
         <source>and/or current</source>
-        <target>and/or current</target>
+        <target>y/o actual</target>
       </trans-unit>
       <trans-unit id="34356a0bb97032d85b905883f666dba5e56cfece" resname="clinical trial">
         <source>clinical trial</source>
@@ -2377,7 +2379,7 @@
       </trans-unit>
       <trans-unit id="6d8f25398a851812efd240ea146e195345c106ae" resname="hyperlinks only">
         <source>hyperlinks only</source>
-        <target>hyperlinks only</target>
+        <target>Solo hyperlinks</target>
       </trans-unit>
       <trans-unit id="d436a3f40e3ecce896010be99dcf00a577b909aa" resname="inactive">
         <source>inactive</source>
@@ -2385,7 +2387,7 @@
       </trans-unit>
       <trans-unit id="7b66f1e2066e0b2594a38721a7f7777414595af8" resname="insert keywords here">
         <source>insert keywords here</source>
-        <target>insert keywords here</target>
+        <target>inserte palabras clave aquí</target>
       </trans-unit>
       <trans-unit id="efd7fd7f2954713c1ee7facf9750fe53e8cf589c" resname="translation">
         <source>translation</source>
