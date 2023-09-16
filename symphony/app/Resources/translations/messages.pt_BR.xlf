@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-06-07T17:14:48Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2023-06-15T13:38:29Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -664,7 +664,7 @@
       </trans-unit>
       <trans-unit id="522712582116fcc6e5a881399c84f72c4d5508a6" resname="Experiences">
         <source>Experiences</source>
-        <target>Todas as Experiências</target>
+        <target>Relatos de Experiências</target>
       </trans-unit>
       <trans-unit id="1feee0e7447f87b9466b1b883869ba5eeba023b3" resname="Export to CSV">
         <source>Export to CSV</source>
@@ -1969,7 +1969,7 @@
       </trans-unit>
       <trans-unit id="cd57f6a3e7666fa5a87d7a7fa00ed1b37f28825d" resname="Submitted Experiences">
         <source>Submitted Experiences</source>
-        <target>Experiências Submetidas</target>
+        <target>Todas as experiências</target>
       </trans-unit>
       <trans-unit id="31f668b61aa1d9ab073620836c90d677291466ea" resname="Submitted in">
         <source>Submitted in</source>
