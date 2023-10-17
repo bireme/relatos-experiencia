@@ -820,6 +820,10 @@ class NewSubmissionController extends Controller
             if(!empty($file)) {
 
                 $upload_type = $upload_type_repository->findOneBy(array("slug" => "document"));
+                if ( !$upload_type ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
 
                 $file_ext = '.'.$file->getClientOriginalExtension();
                 $ext_formats = $upload_type->getExtensionsFormat();
