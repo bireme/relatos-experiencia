@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 <strong class="field-label">{% trans %}Event where the experience was presented{% endtrans %}</strong>
                                 <label for="textarea-event">{% trans %}Provide the name of the event where this experience was presented{% endtrans %}:</label>
-                                <textarea rows="6" class="form-control" name='event' id='textarea-event'>{{ submission.event }}</textarea>
+                                <textarea rows="6" class="form-control summernote" name='event' id='textarea-event'>{{ submission.event }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <strong class="field-label">{% trans %}Products, materials and publications{% endtrans %}</strong>
                                 <label for="textarea-products-information">{% trans %}Use this field to share documents, publications, materials or news related to your experience{% endtrans %}:</label>
-                                <textarea rows="6" class="form-control" name='products_information' id='textarea-products-information' placeholder="{% trans %}Please add one per line{% endtrans %}">{{ submission.productsInformation }}</textarea>
+                                <textarea rows="6" class="form-control summernote" name='products_information' id='textarea-products-information'>{{ submission.productsInformation }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <strong class="field-label">{% trans %}Notes{% endtrans %}</strong>
                                 <label for="textarea-notes">{% trans %}Free space for any observation and/or additional information{% endtrans %}:</label>
-                                <textarea rows="6" class="form-control" name='notes' id='textarea-notes'>{{ submission.notes }}</textarea>
+                                <textarea rows="6" class="form-control summernote" name='notes' id='textarea-notes'>{{ submission.notes }}</textarea>
                             </div>
                         </div>
                     </div>

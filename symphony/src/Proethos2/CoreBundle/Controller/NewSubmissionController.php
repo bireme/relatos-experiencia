@@ -473,7 +473,12 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-            // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
+            // sanitize WYSIWYG fields
+            array_walk($post_data, function(&$value){
+                if ( '<p><br></p>' == $value )
+                    $value = '';
+                return trim($value);
+            });
 
             // checking required files
             $required_fields = array(
@@ -571,6 +576,13 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            // sanitize WYSIWYG fields
+            array_walk($post_data, function(&$value){
+                if ( '<p><br></p>' == $value )
+                    $value = '';
+                return trim($value);
+            });
+
             // checking required files
             $required_fields = array('main_results', 'challenges_information', 'lessons_learned');
 
@@ -643,7 +655,6 @@ class NewSubmissionController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
 
             if(isset($post_data['responsible-name'])) {
                 $post_data = array_map('trim', $post_data);
@@ -805,6 +816,13 @@ class NewSubmissionController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
+
+            // sanitize WYSIWYG fields
+            array_walk($post_data, function(&$value){
+                if ( '<p><br></p>' == $value )
+                    $value = '';
+                return trim($value);
+            });
 
             // adding fields to model
             $submission->setFullText($post_data['fulltext']);
@@ -1016,6 +1034,13 @@ class NewSubmissionController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
+
+            // sanitize WYSIWYG fields
+            array_walk($post_data, function(&$value){
+                if ( '<p><br></p>' == $value )
+                    $value = '';
+                return trim($value);
+            });
 
             // adding fields to model
             $submission->setProductsInformation($post_data['products_information']);

@@ -495,6 +495,13 @@ class ProtocolController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            // sanitize WYSIWYG fields
+            array_walk($post_data, function(&$value){
+                if ( '<p><br></p>' == $value )
+                    $value = '';
+                return trim($value);
+            });
+
             // checking required files
             $required_fields = array('final-decision');
             foreach($required_fields as $field) {

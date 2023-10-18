@@ -25,7 +25,7 @@
                                 <strong class="field-label">*{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}</strong>
                                 <label for="textarea-description">{% trans %}What was the core problem or health situation that the experience sought to address and resolve?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='description' id='textarea-description' required>{{ submission.description }}</textarea>
+                                <textarea rows="6" class="form-control summernote" name='description' id='textarea-description' required>{{ submission.description }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                                 <strong class="field-label">*{% trans %}Objectives{% endtrans %}/{% trans %}Expected results{% endtrans %}</strong>
                                 <label for="textarea-objectives">{% trans %}What were the main expected or promised results when you planned to implement the experiment or when the experiment you are reporting was proposed?{% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='objectives' id='textarea-objectives' required>{{ submission.objectives }}</textarea>
+                                <textarea rows="6" class="form-control summernote" name='objectives' id='textarea-objectives' required>{{ submission.objectives }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                                 <strong class="field-label">{% trans %}Resources{% endtrans %}</strong>
                                 <label for="textarea-resources">{% trans %}What resources were needed and used to implement the experience you are reporting? (Human resources, inputs, materials, equipment, infrastructure, money, etc.){% endtrans %}</label>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='resources' id='textarea-resources'>{{ submission.resources }}</textarea>
+                                <textarea rows="6" class="form-control summernote" name='resources' id='textarea-resources'>{{ submission.resources }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                                 <strong class="field-label">{% trans %}Location{% endtrans %}</strong>
                                 <label for="textarea-context">{% trans %}Specify the location where the experience was deployed{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='context' id='textarea-context'>{{ submission.context }}</textarea>
+                                <textarea rows="6" class="form-control summernote" name='context' id='textarea-context'>{{ submission.context }}</textarea>
                             </div>
                         </div>
                     </div>

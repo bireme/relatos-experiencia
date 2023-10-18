@@ -297,7 +297,7 @@ class CRUDController extends Controller
         $collection = $collection_repository->findBy(array('status' => true), array('name' => 'ASC'));
         $output['collection'] = $collection;
 
-        // serach  and status parameter
+        // search and status parameter
         $status_array = array('S', 'V', 'R', 'I', 'E', 'H', "F", "A", "N", "C", "X", "T", "D");
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');
@@ -414,7 +414,7 @@ class CRUDController extends Controller
             $session->set('show_protocol_checklist', false);
         }
 
-        // serach  and status parameter
+        // search and status parameter
         $status_array = array('D', 'S', 'V', 'R', 'I', 'E', 'H', 'F', 'A', 'N', 'C', 'X', "T");
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');

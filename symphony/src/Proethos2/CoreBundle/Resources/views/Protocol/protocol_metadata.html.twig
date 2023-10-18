@@ -82,7 +82,7 @@
             <hr />
 
             <b>{% trans %}Location{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.context }}</p>
+            <p>{{ protocol.mainSubmission.context|raw }}</p>
 
             <hr />
 
@@ -113,32 +113,32 @@
             {# <h5>{% trans %}Experience Details{% endtrans %}</h5> #}
 
             <b>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.description }}</p>
+            <p>{{ protocol.mainSubmission.description|raw }}</p>
 
             <hr />
 
             <b>{% trans %}Objectives{% endtrans %}/{% trans %}Expected results{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.objectives }}</p>
+            <p>{{ protocol.mainSubmission.objectives|raw }}</p>
 
             <hr />
 
             <b>{% trans %}Resources{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.resources }}</p>
+            <p>{{ protocol.mainSubmission.resources|raw }}</p>
 
             <hr />
 
             <b>{% trans %}Main Results{% endtrans %}/{% trans %}Impacts{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.mainResults }}</p>
+            <p>{{ protocol.mainSubmission.mainResults|raw }}</p>
 
             <hr />
 
             <b>{% trans %}Challenges{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.challengesInformation }}</p>
+            <p>{{ protocol.mainSubmission.challengesInformation|raw }}</p>
 
             <hr />
 
             <b>{% trans %}Lessons Learned{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.lessonsLearned }}</p>
+            <p>{{ protocol.mainSubmission.lessonsLearned|raw }}</p>
 
             <hr />
 
@@ -350,12 +350,12 @@
             {# <h5>{% trans %}Other Information{% endtrans %}</h5> #}
 
             <b>{% trans %}Event where the experience was presented{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.event }}</p>
+            <p>{{ protocol.mainSubmission.event|raw }}</p>
 
             <hr />
 
             <b>{% trans %}Products, materials and publications{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.productsInformation|nl2br }}</p>
+            <p>{{ protocol.mainSubmission.productsInformation|raw }}</p>
 
             <hr />
 
@@ -369,7 +369,7 @@
             <hr />
 
             <b>{% trans %}Notes{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.notes }}</p>
+            <p>{{ protocol.mainSubmission.notes|raw }}</p>
 
             <hr />
         </div>
