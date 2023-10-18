@@ -58,8 +58,25 @@ class IndexController extends Controller
             }
         }
 
+        // search and status parameter
+        $status_array = array('A', 'N');
+        $search_query = $request->query->get('q');
+        $status_query = $request->query->get('status');
+
+        if(!empty($status_query))
+            $status_array = array($status_query);
+
+        $query = $protocol_repository->createQueryBuilder('p')
+           ->join('p.main_submission', 's')
+           ->leftJoin('s.team', 't')
+           ->leftJoin('p.revision', 'r')
+           ->where("(s.title LIKE :query OR s.descriptors LIKE :query OR s.keywords LIKE :query) AND p.status IN (:status)")
+           ->orderBy("p.created", 'DESC')
+           ->setParameter('query', "%". $search_query ."%")
+           ->setParameter('status', $status_array);
+
         // approved protocols
-        $protocols = $protocol_repository->findBy(array('status' => array('A','N')));
+        $protocols = $query->getQuery()->getResult();
         $output['protocols'] = $protocols;
 
         $revisions = array();
@@ -91,8 +108,15 @@ class IndexController extends Controller
             ->getQuery();
 
         $meetings = $query->getResult();
-
         $output['meetings'] = $meetings;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+        }
         
         return $output;
     }

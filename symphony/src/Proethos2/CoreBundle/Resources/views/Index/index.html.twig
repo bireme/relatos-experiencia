@@ -1,143 +1,95 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}{% trans %}Experiences{% endtrans %}{% endblock %}
 
 {% block content %}
-     <div class="container-fluid main-content see-submission">
+
+    <div class="container-fluid main-content see-submission">
 
         <div class="row">
             <div class='col-md-12'>
-                <h1 class="page-header">{% trans %}Dashboard{% endtrans %}</h1>
+                <h1 class="page-header">
+                    {% trans %}Dashboard{% endtrans %}
+                </h1>
             </div>
         </div>
-{#
-        {% if 'investigator' in app.user.rolesSlug %}
-            <div class='block'>
+
+        <div class='block'>
+            <form class="form-group" id='form-filter'>
                 <div class='row'>
-                    <div class="col-md-12">
-                        <h2 class="sub-header">{% trans %}Last experiences in which you are part of the research team{% endtrans %}</h2>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label for="input-filter-q">{% trans %}Find experiences{% endtrans %}:</label>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 72} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' id='input-filter-q' name='q' value="{{ app.request.get('q') }}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="select-filter-status">{% trans %}Status{% endtrans %}:</label>
+                            <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 73} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <select class='form-control selectpicker submit-on-change' id="select-filter-status" name="status" data-live-search="true">
+                                <option value="" {% if app.request.get('status') == "" %}selected{% endif %}>{% trans %}All{% endtrans %}</option>
+                                <option value="A" {% if app.request.get('status') == "A" %}selected{% endif %}>{% trans %}Approved{% endtrans %}</option>
+                                <option value="N" {% if app.request.get('status') == "N" %}selected{% endif %}>{% trans %}Not approved{% endtrans %}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 search-button">
+                        <div class="form-group">
+                            <button class='btn btn-primary' type='submit'>{% trans %}Search{% endtrans %}</button>
+                        </div>
                     </div>
                 </div>
+            </form>
+        </div>
 
-                <div class='row'>
-                    <div class="col-md-12">
-                        {% if submissions %}
-                            <table class='table table-hover'>
-                                <thead>
-                                    <tr>
-                                        <tr>
-                                            <th width="10%">{% trans %}ID{% endtrans %}</th>
-                                            <th width="50%">{% trans %}Title{% endtrans %}</th>
-                                            <th>{% trans %}Last Update{% endtrans %}</th>
-                                            <th>{% trans %}Status{% endtrans %}</th>
-                                            <th>{% trans %}Actions{% endtrans %}</th>
-                                        </tr>
-                                    </tr>
-                                </thead>
+        <div class='block'>
+            <div class='row'>
+                <div class="col-md-12">
+                    <table class='table table-hover table-condensed'>
 
-                                <tbody>
-                                    {% for protocol in submissions %}
-                                        <tr>
-                                            <th>{% if protocol.code %}{{ protocol.code[:8] }}{% else %}-{% endif %}</th>
-                                            <td>{{ protocol.mainSubmission.title }}</td>
-                                            <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
-                                            <td>{{ protocol.statusLabel|trans }}</td> 
-                                            <td>
-                                                <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See experience{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
-                                                <a href='{{ path("submission_new_first_created_protocol_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs {% if protocol.status not in ["R","D","C"] %}disabled{% endif %}' data-toggle="tooltip" data-placement="top" title="{% trans %}Edit submission{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>
-                                                <a href='{{ path("submission_show_pdf", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Show PDF{% endtrans %}" target='_blank'><i class='glyphicon glyphicon-file'></i></a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-#}
-        {% if 'secretary' in app.user.rolesSlug %}
-            <div class='block'>
-                <div class='row'>
-                    <div class="col-md-12">
-                        <h2 class="sub-header">{% trans %}Last experiences reviewed{% endtrans %}</h2>
-                    </div>
-                </div>
-
-                <div class='row'>
-                    <div class="col-md-12">
-                        {% if protocols %}
-                            <table class='table table-hover'>
-                                <thead>
-                                    <tr>
-                                        <tr>
-                                            <th width="10%">{% trans %}ID{% endtrans %}</th>
-                                            <th width="50%">{% trans %}Title{% endtrans %}</th>
-                                            <th width="15%">{% trans %}Last Update{% endtrans %}</th>
-                                            <th width="15%">{% trans %}Status{% endtrans %}</th>
-                                            <th width="10%">{% trans %}Actions{% endtrans %}</th>
-                                        </tr>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    {% for protocol in protocols %}
-                                        <tr>
-                                            <th>{% if protocol.code %}{{ protocol.code[:8] }}{% else %}-{% endif %}</th>
-                                            <td>{{ protocol.mainSubmission.title }}</td>
-                                            <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
-                                            <td>{{ protocol.statusLabel }}</td>
-                                            <td>
-                                                <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See experience{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
-                                                <a href='{{ path("submission_show_pdf", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Show PDF{% endtrans %}" target='_blank'><i class='glyphicon glyphicon-file'></i></a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-{#
-        {% if 'secretary' in app.user.rolesSlug or 'member-of-committee' in app.user.rolesSlug %}
-            <div class='block'>
-                <div class='row'>
-                    <div class="col-md-12">
-                        <h2 class="sub-header">{% trans %}Next meetings{% endtrans %}</h2>
-                    </div>
-                </div>
-
-                <div class='row'>
-                    <div class="col-md-12">
-                        <table class='table table-hover'>
-                            <thead>
+                        <thead>
+                            <tr>
                                 <tr>
-                                    <th width="10%">{% trans %}Date{% endtrans %}</th>
-                                    <th width="80%">{% trans %}Subject{% endtrans %}</th>
-                                    <th>{% trans %}Actions{% endtrans %}</th>
+                                    <th width="10%">{% trans %}ID{% endtrans %}</th>
+                                    <th width="50%">{% trans %}Title{% endtrans %}</th>
+                                    <th width="15%">{% trans %}Last Update{% endtrans %}</th>
+                                    <th width="15%">{% trans %}Status{% endtrans %}</th>
+                                    <th width="10%">{% trans %}Actions{% endtrans %}</th>
                                 </tr>
-                            </thead>
+                            </tr>
+                        </thead>
 
-                            <tbody>
-                                {% for meeting in meetings %}
-                                    <tr>
-                                        <td>{{ meeting.date|date("d/m/Y") }}</td>
-                                        <td>{{ meeting.subject }}</td>
-                                        <td>
-                                            <a href='{{ path("crud_committee_meeting_show", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modalBaseAjax' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-
-                            </tbody>
-                        </table>
-                    </div>
+                        <tbody>
+                            {% for protocol in protocols %}
+                                <tr>
+                                    <th>{% if protocol.code %}{{ protocol.code[:8] }}{% else %}-{% endif %}</th>
+                                    <td>{{ protocol.mainSubmission.title }}</td>
+                                    <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
+                                    <td>{{ protocol.statusLabel }}</td>
+                                    <td>
+                                        <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See experience{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                        <a href='{{ path("submission_show_pdf", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Show PDF{% endtrans %}" target='_blank'><i class='glyphicon glyphicon-file'></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        {% endif %}
-#}
+        </div>
+        
     </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+
+        });
+    </script>
 {% endblock %}
