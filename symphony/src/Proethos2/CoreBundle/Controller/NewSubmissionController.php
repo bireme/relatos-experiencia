@@ -1500,6 +1500,7 @@ class NewSubmissionController extends Controller
     /**
      * @Route("/submission/{submission_id}/pdf", name="submission_show_pdf")
      * @Route("/submission/new/{submission_id}/pdf", name="submission_generate_pdf")
+     * @Route("/public/submission/{submission_id}/pdf", name="submission_public_show_pdf")
      * @Template()
      */
     public function showPdfAction($submission_id)
