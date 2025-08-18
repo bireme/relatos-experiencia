@@ -81,8 +81,8 @@ class AjaxController extends Controller
         $post_data = $request->query->all();
 
         $lang = $post_data["lang"] ? $post_data["lang"] : 'en';
-        $limit = $post_data["limit"] ? $post_data["limit"] : 10;
-        $offset = $post_data["offset"] ? $post_data["offset"] : null;
+        $limit = $post_data["limit"] ? (int)$post_data["limit"] : 10;
+        $offset = $post_data["offset"] ? (int)$post_data["offset"] : null;
         $orderBy = array();
         if ($post_data["sort"] and $post_data["order"]) {
             $orderBy = array($post_data["sort"], $post_data["order"]);
@@ -102,8 +102,16 @@ class AjaxController extends Controller
             $data = $protocol_repository->findBy(array('id' => $protocol_id, 'status' => 'A'));
         } else {
             $protocols = $protocol_repository->findBy(array('status' => 'A'), $orderBy, $limit, $offset);
-            $data['total'] = count($protocols);
-            $data['items'] = $protocols;
+            $total_protocols = $protocol_repository->createQueryBuilder('p')
+                ->select('count(p.id)')
+                ->where('p.status LIKE :status')
+                ->setParameter('status', 'A')
+                ->getQuery()
+                ->getSingleScalarResult();
+            $data['total']  = (int)$total_protocols;
+            $data['limit']  = $limit;
+            $data['offset'] = $offset;
+            $data['items']  = $protocols;
         }
 
         $json = $serializer->serialize($data, 'json');
