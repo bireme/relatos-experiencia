@@ -76,6 +76,7 @@ class UpdateSolrIndexCommand extends ContainerAwareCommand
                 }
 
                 $output->writeln("----------------------------------");
+                $output->writeln("[INFO] Total: " . count($protocols)) . " protocols";
                 $output->writeln("[INFO] Solr index update finished!");
             } else {
                 $output->writeln("[ERROR] Solr index update failed.");
