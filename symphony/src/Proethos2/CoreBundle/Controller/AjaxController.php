@@ -75,10 +75,16 @@ class AjaxController extends Controller
 
         $data = array();
         $request = $this->getRequest();
+        $translator = $this->get('translator');
         $serializer = SerializerBuilder::create()->build();
 
         // getting post data
         $post_data = $request->query->all();
+
+        // prevent XSS (cross-site scripting)
+        $post_data = array_map(function ($value) {
+            return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        }, $post_data);
 
         $lang = $post_data["lang"] ? $post_data["lang"] : 'en';
         $limit = $post_data["limit"] ? (int)$post_data["limit"] : 10;
@@ -101,13 +107,53 @@ class AjaxController extends Controller
         if ( $protocol_id ) {
             $data = $protocol_repository->findBy(array('id' => $protocol_id, 'status' => 'A'));
         } else {
-            $protocols = $protocol_repository->findBy(array('status' => 'A'), $orderBy, $limit, $offset);
+            $search_query = $post_data["q"] ? $post_data["q"] : '';
+            $tokens = explode(':', $search_query);
+
+            if ( count($tokens) == 2 ) {
+                $key    = str_replace(' ', '_', $tokens[0]);
+                $value  = $tokens[1];
+                $fields = array("collection", "thematic_area");
+
+                if ( in_array($key, $fields) ) {
+                    $field  = "s.".$key;
+                    $where = 'p.status LIKE :status AND o.name LIKE :q';
+                } else {
+                    $field = "s.collection";
+                    $where = 'p.status LIKE :status AND s.'.$key.' LIKE :q';
+                }
+            } else {
+                $value = '';
+                $field = "s.collection";
+                $where = 'p.status LIKE :status AND o.name LIKE :q';
+
+                if ( !empty($search_query) ) {
+                    throw $this->createNotFoundException($translator->trans('Invalid parameter'));
+                }
+            }
+
+            // $protocols = $protocol_repository->findBy(array('status' => 'A'), $orderBy, $limit, $offset);
+            $protocols = $protocol_repository->createQueryBuilder('p')
+                ->join('p.main_submission', 's')
+                ->innerJoin($field, 'o')
+                ->where($where)
+                ->setParameter('q', "%".$value."%")
+                ->setParameter('status', 'A')
+                ->setFirstResult($offset)
+                ->setMaxResults($limit)
+                ->getQuery()
+                ->getResult();
+
             $total_protocols = $protocol_repository->createQueryBuilder('p')
                 ->select('count(p.id)')
-                ->where('p.status LIKE :status')
+                ->join('p.main_submission', 's')
+                ->innerJoin($field, 'o')
+                ->where($where)
+                ->setParameter('q', "%".$value."%")
                 ->setParameter('status', 'A')
                 ->getQuery()
                 ->getSingleScalarResult();
+
             $data['total']  = (int)$total_protocols;
             $data['limit']  = $limit;
             $data['offset'] = $offset;
