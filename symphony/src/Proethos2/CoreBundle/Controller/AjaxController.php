@@ -81,10 +81,7 @@ class AjaxController extends Controller
         // getting post data
         $post_data = $request->query->all();
 
-        // prevent XSS (cross-site scripting)
-        $post_data = array_map(function ($value) {
-            return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-        }, $post_data);
+        // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
 
         $lang = $post_data["lang"] ? $post_data["lang"] : 'en';
         $limit = $post_data["limit"] ? (int)$post_data["limit"] : 10;
@@ -111,16 +108,31 @@ class AjaxController extends Controller
             $tokens = explode(':', $search_query);
 
             if ( count($tokens) == 2 ) {
-                $key    = str_replace(' ', '_', $tokens[0]);
+                $key    = $tokens[0];
                 $value  = $tokens[1];
                 $fields = array("collection", "thematic_area");
 
+                // Check if string starts and ends with quotes (exact search)
+                $length = strlen("'");
+                if ( (substr($value, 0, $length) === '"' && substr($value, -$length) === '"') || (substr($value, 0, $length) === "'" && substr($value, -$length) === "'") ) {
+                    $operator = "=";
+                } else {
+                    $operator = "LIKE";
+                    $value = "%".$value."%";
+                }
+
+                // Remove both single and double quotes
+                $value = str_replace(array("'", "\""), "", $value);
+
+                // Remove backslashes from a string
+                $value = stripslashes($value);
+
                 if ( in_array($key, $fields) ) {
                     $field  = "s.".$key;
-                    $where = 'p.status LIKE :status AND o.name LIKE :q';
+                    $where = 'p.status LIKE :status AND o.name '.$operator.' :q';
                 } else {
                     $field = "s.collection";
-                    $where = 'p.status LIKE :status AND s.'.$key.' LIKE :q';
+                    $where = 'p.status LIKE :status AND s.'.$key.' '.$operator.' :q';
                 }
             } else {
                 $value = '';
@@ -137,7 +149,7 @@ class AjaxController extends Controller
                 ->join('p.main_submission', 's')
                 ->innerJoin($field, 'o')
                 ->where($where)
-                ->setParameter('q', "%".$value."%")
+                ->setParameter('q', $value)
                 ->setParameter('status', 'A')
                 ->setFirstResult($offset)
                 ->setMaxResults($limit)
@@ -149,7 +161,7 @@ class AjaxController extends Controller
                 ->join('p.main_submission', 's')
                 ->innerJoin($field, 'o')
                 ->where($where)
-                ->setParameter('q', "%".$value."%")
+                ->setParameter('q', $value)
                 ->setParameter('status', 'A')
                 ->getQuery()
                 ->getSingleScalarResult();
