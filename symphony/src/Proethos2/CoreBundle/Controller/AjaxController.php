@@ -113,8 +113,7 @@ class AjaxController extends Controller
                 $fields = array("collection", "thematic_area");
 
                 // Check if string starts and ends with quotes (exact search)
-                $length = strlen("'");
-                if ( (substr($value, 0, $length) === '"' && substr($value, -$length) === '"') || (substr($value, 0, $length) === "'" && substr($value, -$length) === "'") ) {
+                if ( (substr($value, 0, 1) === '"' && substr($value, -1) === '"') || (substr($value, 0, 1) === "'" && substr($value, -1) === "'") ) {
                     $operator = "=";
                 } else {
                     $operator = "LIKE";
@@ -137,7 +136,7 @@ class AjaxController extends Controller
             } else {
                 $value = '';
                 $field = "s.collection";
-                $where = 'p.status LIKE :status AND o.name LIKE :q';
+                $where = 'p.status LIKE :status AND o.name NOT LIKE :q';
 
                 if ( !empty($search_query) ) {
                     throw $this->createNotFoundException($translator->trans('Invalid parameter'));
