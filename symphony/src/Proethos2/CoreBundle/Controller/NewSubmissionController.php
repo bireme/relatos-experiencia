@@ -1510,6 +1510,26 @@ class NewSubmissionController extends Controller
         $url = $baseurl . $this->generateUrl('home');
         $output['home_url'] = rtrim($url, '/');
 
+        $route = $request->attributes->get('_route');
+
+        if ( 'submission_public_show_pdf' == $route ) {
+            $default_locale = $this->container->getParameter('locale');
+
+            // getting post data
+            $post_data = $request->query->all();
+
+            // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
+
+            $lang = $post_data["lang"] ? $post_data["lang"] : $default_locale;
+
+            $locale = array('pt_BR', 'es_ES', 'fr_FR', 'en');
+            if ( in_array($lang, $locale) ) {
+                $translator->setLocale($lang);
+            } else {
+                $translator->setLocale($default_locale);
+            }
+        }
+
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
 
         // getting the current submission
