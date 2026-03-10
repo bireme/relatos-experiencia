@@ -1502,6 +1502,7 @@ class NewSubmissionController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
+        $route = $request->attributes->get('_route');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $util = new Util($this->container, $this->getDoctrine());
@@ -1510,9 +1511,23 @@ class NewSubmissionController extends Controller
         $url = $baseurl . $this->generateUrl('home');
         $output['home_url'] = rtrim($url, '/');
 
-        $route = $request->attributes->get('_route');
+        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
+
+        // getting the current submission
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        $protocol = $submission->getProtocol();
 
         if ( 'submission_public_show_pdf' == $route ) {
+            $status = $protocol->getStatus();
+            $status = ( 'A' == $status ) ? true : false;
+
+            if (!$status) {
+                throw $this->createNotFoundException($translator->trans('No document found'));
+            }
+
             $default_locale = $this->container->getParameter('locale');
 
             // getting post data
@@ -1530,14 +1545,6 @@ class NewSubmissionController extends Controller
             }
         }
 
-        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
-
-        // getting the current submission
-        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
-        $submission = $submission_repository->find($submission_id);
-        $output['submission'] = $submission;
-
-        $protocol = $submission->getProtocol();
         $committee_prefix = $util->getConfiguration('committee.prefix');
         $total_submissions = count($protocol->getSubmission());
         $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
