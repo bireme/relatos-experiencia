@@ -1502,6 +1502,7 @@ class NewSubmissionController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
+        $route = $request->attributes->get('_route');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $util = new Util($this->container, $this->getDoctrine());
@@ -1518,6 +1519,32 @@ class NewSubmissionController extends Controller
         $output['submission'] = $submission;
 
         $protocol = $submission->getProtocol();
+
+        if ( 'submission_public_show_pdf' == $route ) {
+            $status = $protocol->getStatus();
+            $status = ( 'A' == $status ) ? true : false;
+
+            if (!$status) {
+                throw $this->createNotFoundException($translator->trans('No document found'));
+            }
+
+            $default_locale = $this->container->getParameter('locale');
+
+            // getting post data
+            $post_data = $request->query->all();
+
+            // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
+
+            $lang = $post_data["lang"] ? $post_data["lang"] : $default_locale;
+
+            $locale = array('pt_BR', 'es_ES', 'fr_FR', 'en');
+            if ( in_array($lang, $locale) ) {
+                $translator->setLocale($lang);
+            } else {
+                $translator->setLocale($default_locale);
+            }
+        }
+
         $committee_prefix = $util->getConfiguration('committee.prefix');
         $total_submissions = count($protocol->getSubmission());
         $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);

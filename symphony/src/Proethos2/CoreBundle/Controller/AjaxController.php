@@ -100,6 +100,7 @@ class AjaxController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         if ( $protocol_id ) {
             $data = $protocol_repository->findBy(array('id' => $protocol_id, 'status' => 'A'));
@@ -133,37 +134,41 @@ class AjaxController extends Controller
                     $field = "s.collection";
                     $where = 'p.status LIKE :status AND s.'.$key.' '.$operator.' :q';
                 }
-            } else {
-                $value = '';
-                $field = "s.collection";
-                $where = 'p.status LIKE :status AND o.name NOT LIKE :q';
 
+                $protocols = $protocol_repository->createQueryBuilder('p')
+                    ->join('p.main_submission', 's')
+                    ->innerJoin($field, 'o')
+                    ->where($where)
+                    ->setParameter('q', $value)
+                    ->setParameter('status', 'A')
+                    ->setFirstResult($offset)
+                    ->setMaxResults($limit)
+                    ->getQuery()
+                    ->getResult();
+
+                $total_protocols = $protocol_repository->createQueryBuilder('p')
+                    ->select('count(p.id)')
+                    ->join('p.main_submission', 's')
+                    ->innerJoin($field, 'o')
+                    ->where($where)
+                    ->setParameter('q', $value)
+                    ->setParameter('status', 'A')
+                    ->getQuery()
+                    ->getSingleScalarResult();
+            } else {
                 if ( !empty($search_query) ) {
                     throw $this->createNotFoundException($translator->trans('Invalid parameter'));
                 }
+
+                $protocols = $protocol_repository->findBy(array('status' => 'A'), $orderBy, $limit, $offset);
+
+                $total_protocols = $protocol_repository->createQueryBuilder('p')
+                    ->select('count(p.id)')
+                    ->where('p.status LIKE :status')
+                    ->setParameter('status', 'A')
+                    ->getQuery()
+                    ->getSingleScalarResult();
             }
-
-            // $protocols = $protocol_repository->findBy(array('status' => 'A'), $orderBy, $limit, $offset);
-            $protocols = $protocol_repository->createQueryBuilder('p')
-                ->join('p.main_submission', 's')
-                ->innerJoin($field, 'o')
-                ->where($where)
-                ->setParameter('q', $value)
-                ->setParameter('status', 'A')
-                ->setFirstResult($offset)
-                ->setMaxResults($limit)
-                ->getQuery()
-                ->getResult();
-
-            $total_protocols = $protocol_repository->createQueryBuilder('p')
-                ->select('count(p.id)')
-                ->join('p.main_submission', 's')
-                ->innerJoin($field, 'o')
-                ->where($where)
-                ->setParameter('q', $value)
-                ->setParameter('status', 'A')
-                ->getQuery()
-                ->getSingleScalarResult();
 
             $data['total']  = (int)$total_protocols;
             $data['limit']  = $limit;
