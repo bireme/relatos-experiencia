@@ -54,6 +54,8 @@
         <p>{{ submission.collectionList|join('; ') }}</p>
         <h3>{{ submission.title }}</h3>
 
+                            <table>
+<tr><td>
             {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
                 <tr>
                     <td>{{ member.name }},<Br>
@@ -64,10 +66,16 @@
                     <td style="word-break: break-all;"><a href="{{ member.curriculum }}" target="_blank">{{ member.curriculum }}</a></td>
                 </tr>
             {% endfor %}
+</td></tr>
+
 
         <!--<h3>{% trans %}Keywords{% endtrans %}:</h3>-->
-        <p style="background-color: #c75858;">{{ submission.keywordsList|join('; ') }}</p>
+      <!-- <p style="background-color: #c75858;">{{ submission.keywordsList|join('; ') }}</p>-->
 
+
+        {% for keyword in submission.keywordsList %}
+    {{ keyword }}<br>-span
+{% endfor %}
                     <table>
 <tr><td>
         <span class="azul">Onde aconteceu ?</span> {{ submission.context|raw }}
@@ -80,7 +88,28 @@
 
         <BR><span class="azul">Quem participa? </span> 
 
+        <h3>{% trans %}Members{% endtrans %}</h3>
+        <table>
+            <tr>
+                <th width="30%">{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Filiation{% endtrans %}</th>
+                <th>{% trans %}Job{% endtrans %}</th>
+                <th>{% trans %}Academic Formation{% endtrans %}</th>
+                <th>{% trans %}Email{% endtrans %}</th>
+                <th>{% trans %}Curriculum{% endtrans %}</th>
+            </tr>
 
+            {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
+                <tr>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.filiation }}</td>
+                    <td>{{ member.job }}</td>
+                    <td>{{ member.academicFormation }}</td>
+                    <td>{{ member.email }}</td>
+                    <td style="word-break: break-all;"><a href="{{ member.curriculum }}" target="_blank">{{ member.curriculum }}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
 
         <BR><span class="azul">Situação da experiência:
             <!--{% trans %}Experience Status{% endtrans %}:--></span> 
@@ -104,17 +133,21 @@
 
 
         <!-- <h2>{% trans %}Experience Details{% endtrans %}</h2> -->
-        <span class="azul">O porque desta experiência?</span>
+        <h2><span class="azul">O porque desta experiência?</span></h2>
         <!--<h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>-->
         <p>{{ submission.description|raw }}</p>
 
 
-        <span class="azul">O que se pretende alcançar com esta experiência?</span>
-        <h3>{% trans %}Objectives{% endtrans %}/{% trans %}Expected results{% endtrans %}:</h3>
+        <h2><span class="azul">O que se pretende alcançar com esta experiência?</span></h2>
+       <!---<h3>{% trans %}Objectives{% endtrans %}/{% trans %}Expected results{% endtrans %}:</h3>--> 
         <p>{{ submission.objectives|raw }}</p>
 
-        <h3>{% trans %}Resources{% endtrans %}:</h3>
-        <p>{{ submission.resources|raw }}</p>
+        <!--<h2><h3>{% trans %}Resources{% endtrans %}:</h3>-->
+
+
+        <h2><span class="azul">Como essa experiência está ganhando forma?</span></h2>
+            
+        <h2><p>{{ submission.resources|raw }}</p></h2>
 
         <h3>{% trans %}Challenges{% endtrans %}:</h3>
         <p>{{ submission.challengesInformation|raw }}</p>
@@ -128,60 +161,12 @@
 
         <!---------------------------------------------------------------->
 
+        <h2><p>Saiba mais</p></h2>
 
-        {% if protocol_code %}
-            <h3>{% trans %}Code{% endtrans %}</h3>
-            <p>{{ protocol_code[:8] }}</p>
-        {% endif %}
-
-     
-
-        <h3>{% trans %}Thematic Area{% endtrans %}:</h3>
-        <p>{{ submission.thematicAreaList|join('; ') }}</p>
-
-        {% if submission.otherThematicArea %}
-
-            <h3>{% trans %}Other thematic area{% endtrans %}:</h3>
-            <p>{{ submission.otherThematicArea }}</p>
-
-        {% endif %}
+        <h3>{% trans %}Products, materials and publications{% endtrans %}:</h3>
+        <p>{{ submission.productsInformation|raw }}</p>
 
 
-
-        {% if submission.status == "F" %}
-
-            <h3>{% trans %}Other Status{% endtrans %}:</h3>
-            <p>{{ submission.otherStatus }}</p>
-
-        {% endif %}
-
-
-
-        <h3>{% trans %}Country{% endtrans %}:</h3>
-        <p>{{ submission.country.name }}</p>
-
-        <h3>{% trans %}State{% endtrans %}/{% trans %}Region{% endtrans %}:</h3>
-        <p>{{ submission.region }}</p>
-
-        <h3>{% trans %}City{% endtrans %}:</h3>
-        <p>{{ submission.city }}</p>
-
-        
-
-        <h3>{% trans %}Population{% endtrans %}:</h3>
-        <p>{{ submission.populationGroup|join('; ') }}</p>
-
-        {% if submission.otherPopulationGroup %}
-
-            <h3>{% trans %}Other Population{% endtrans %}:</h3>
-            <p>{{ submission.otherPopulationGroup }}</p>
-
-        {% endif %}
-
-        <h3>{% trans %}Descriptors{% endtrans %}:</h3>
-        <p>{{ submission.descriptorsList|join('; ') }}</p>
-
-        
 
 
 
@@ -212,28 +197,7 @@
             {% endfor %}
         </table>
     -->
-        <h3>{% trans %}Members{% endtrans %}</h3>
-        <table>
-            <tr>
-                <th width="30%">{% trans %}Name{% endtrans %}</th>
-                <th>{% trans %}Filiation{% endtrans %}</th>
-                <th>{% trans %}Job{% endtrans %}</th>
-                <th>{% trans %}Academic Formation{% endtrans %}</th>
-                <th>{% trans %}Email{% endtrans %}</th>
-                <th>{% trans %}Curriculum{% endtrans %}</th>
-            </tr>
 
-            {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
-                <tr>
-                    <td>{{ member.name }}</td>
-                    <td>{{ member.filiation }}</td>
-                    <td>{{ member.job }}</td>
-                    <td>{{ member.academicFormation }}</td>
-                    <td>{{ member.email }}</td>
-                    <td style="word-break: break-all;"><a href="{{ member.curriculum }}" target="_blank">{{ member.curriculum }}</a></td>
-                </tr>
-            {% endfor %}
-        </table>
 
         <!-- <h2>{% trans %}Files{% endtrans %}</h2> -->
 
@@ -323,8 +287,7 @@
         <h3>{% trans %}Event where the experience was presented{% endtrans %}:</h3>
         <p>{{ submission.event|raw }}</p>
 
-        <h3>{% trans %}Products, materials and publications{% endtrans %}:</h3>
-        <p>{{ submission.productsInformation|raw }}</p>
+
 
         <h3>{% trans %}Related Links{% endtrans %}:</h3>
         {% for url in submission.relatedLinksList %}
@@ -333,6 +296,64 @@
 
         <h3>{% trans %}Notes{% endtrans %}:</h3>
         <p>{{ submission.notes|raw }}</p>
+
+
+        {% if protocol_code %}
+            <h3>{% trans %}Code{% endtrans %}</h3>
+            <p>{{ protocol_code[:8] }}</p>
+        {% endif %}
+
+     
+
+        <h3>{% trans %}Thematic Area{% endtrans %}:</h3>
+        <p>{{ submission.thematicAreaList|join('; ') }}</p>
+
+        {% if submission.otherThematicArea %}
+
+            <h3>{% trans %}Other thematic area{% endtrans %}:</h3>
+            <p>{{ submission.otherThematicArea }}</p>
+
+        {% endif %}
+
+
+
+        {% if submission.status == "F" %}
+
+            <h3>{% trans %}Other Status{% endtrans %}:</h3>
+            <p>{{ submission.otherStatus }}</p>
+
+        {% endif %}
+
+
+
+        <h3>{% trans %}Country{% endtrans %}:</h3>
+        <p>{{ submission.country.name }}</p>
+
+        <h3>{% trans %}State{% endtrans %}/{% trans %}Region{% endtrans %}:</h3>
+        <p>{{ submission.region }}</p>
+
+        <h3>{% trans %}City{% endtrans %}:</h3>
+        <p>{{ submission.city }}</p>
+
+        
+
+        <h3>{% trans %}Population{% endtrans %}:</h3>
+        <p>{{ submission.populationGroup|join('; ') }}</p>
+
+        {% if submission.otherPopulationGroup %}
+
+            <h3>{% trans %}Other Population{% endtrans %}:</h3>
+            <p>{{ submission.otherPopulationGroup }}</p>
+
+        {% endif %}
+
+        <h3>{% trans %}Descriptors{% endtrans %}:</h3>
+        <p>{{ submission.descriptorsList|join('; ') }}</p>
+
+        
+
+
+
 
         <footer>{% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</footer>
     </body>
