@@ -51,7 +51,10 @@
             }
             .capsula{
                 background-color :  rgb(28, 90, 184); border-radius: 8px; color:#fff; margin-right: 10px;
-                padding: 3px 6px; margin-bottom:20PX; float: left; 
+                padding: 3px 6px; margin-bottom:20PX; float: left; height: 20px;
+            }
+            .verde{
+                background-color : rgb(33 106 103);
             }
             html{
                 background-color: #eee;
@@ -71,14 +74,15 @@
 
                             <table>
 <tr><td>
-            {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
+            {% for resp in submission.responsible|sort((a, b) => b.name <=> a.name) %}
                 <tr>
-                    <td>{{ member.name }},<Br>
-                    <td>{{ member.filiation }},<Br>
-                    <td>{{ member.job }},<Br>
-                    <td>{{ member.academicFormation }}</td>
-                    <td>{{ member.email }}</td>
-                    <td style="word-break: break-all;"><a href="{{ member.curriculum }}" target="_blank">{{ member.curriculum }}</a></td>
+                    <td>{{ resp.name }}, </td>
+                    <td>{{ resp.filiation }}, </td>
+                    <td>{{ resp.job }}, </td>
+                    <td>{{ resp.email }}, </td>
+                    <!--<td>{{ resp.phone }}, </td>
+                    <td style="word-break: break-all;"><a href="{{ resp.curriculum }}" target="_blank">{{ resp.curriculum }}</a></td>
+                    <td><a href="https://orcid.org/{{ resp.orcid }}" target="_blank">{{ resp.orcid }}</a></td>-->
                 </tr>
             {% endfor %}
 </td></tr>
@@ -91,7 +95,9 @@
 -->
         {% for descriptor in submission.descriptorsList %}
     <span class="capsula">{{ descriptor }}</span>
-    <!--
+
+    <span class="capsula">{{ descriptor }}</span>
+  <!--  <span class="capsula">{{ descriptor }}</span>
     <span class="capsula">{{ descriptor }}</span>
     <span class="capsula">{{ descriptor }}</span>
     <span class="capsula">{{ descriptor }}</span>
@@ -111,6 +117,14 @@
     <span class="capsula">{{ descriptor }}</span>
     <span class="capsula">{{ descriptor }}</span>
     <span class="capsula">{{ descriptor }}</span>
+    <span class="capsula">{{ descriptor }} dedeedfrfermo mdoemd mdoiemdoieo mdoekmdoe</span>
+    <span class="capsula">{{ descriptor }}</span>
+    <span class="capsula">{{ descriptor }}</span>
+    <span class="capsula">{{ descriptor }}</span>
+    <span class="capsula">{{ descriptor }}</span>
+    <span class="capsula">{{ descriptor }}</span>
+    <span class="capsula">{{ descriptor }}</span>
+    <span class="capsula" title="{{ descriptor }}">{{ descriptor }} edeeded <br> edede</span>
     <span class="capsula">{{ descriptor }}</span>
     <span class="capsula">{{ descriptor }}</span>
     <span class="capsula">{{ descriptor }}</span>
@@ -124,22 +138,12 @@
     <span class="capsula">{{ descriptor }}</span>
     <span class="capsula">{{ descriptor }}</span>
     <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>--->
+    <span class="capsula">{{ descriptor }}</span>-->
 
 {% endfor %}
 
         {% for keyword in submission.keywordsList %}
-    <span class="capsula">{{ keyword }}</span>
+    <span class="capsula verde">{{ keyword }}</span>
 {% endfor %}
                     <table>
 <tr><td>
@@ -437,6 +441,6 @@ que certamente influenciam os hábitos alimentares da população</p>
 
         <footer>{% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</footer>
 
-   <img src="{{ asset('bundles/proethos2core/img/logo-' ~ app.request.locale ~ '.png') }}">
+   <img src="{{ asset('bundles/proethos2core/img/logo-pt-BR.png') }}">
     </body>
 </html>
