@@ -15,6 +15,7 @@
                 border-bottom: 1px solid #000;
                 border-right: 1px solid #000;
                 border: 1px solid #000;
+                margin: 20px;;
             }
             table td, table th {
                 border: 0px solid #000;
@@ -44,6 +45,10 @@
             .azul{
                 color: rgb(131, 181, 255)
             }
+            .capsula{
+                background-color :  rgb(28, 90, 184); border-radius: 8px; color:#fff; margin-right: 10px;
+                padding-left: 4px 8px;
+            }
         </style>
     </head>
     <body>
@@ -71,10 +76,16 @@
 
         <!--<h3>{% trans %}Keywords{% endtrans %}:</h3>-->
       <!-- <p style="background-color: #c75858;">{{ submission.keywordsList|join('; ') }}</p>-->
+       <!--- <h3>{% trans %}Descriptors{% endtrans %}:</h3>
+        <p>{{ submission.descriptorsList|join('; ') }}</p>
+-->
+        {% for descriptor in submission.descriptorsList %}
+    <span class="capsula">{{ descriptor }}</span>
 
+{% endfor %}
 
         {% for keyword in submission.keywordsList %}
-    {{ keyword }}<br>-span
+    <span class="capsula">{{ keyword }}</span>
 {% endfor %}
                     <table>
 <tr><td>
@@ -147,13 +158,20 @@
 
         <h2><span class="azul">Como essa experiência está ganhando forma?</span></h2>
             
-        <h2><p>{{ submission.resources|raw }}</p></h2>
+        <p>{{ submission.resources|raw }}</p>
 
-        <h3>{% trans %}Challenges{% endtrans %}:</h3>
+        <h2><span class="azul">O que aconteceu durante o percurso? </span></h2>
+
+        <!--<h3>{% trans %}Challenges{% endtrans %}:</h3>-->
         <p>{{ submission.challengesInformation|raw }}</p>
 
-        <h3>{% trans %}Main Results{% endtrans %}/{% trans %}Impacts{% endtrans %}:</h3>
+        <h2><span class="azul">O que começou a mudar?</span></h2>
+
+        <!--<h3>{% trans %}Main Results{% endtrans %}/{% trans %}Impacts{% endtrans %}:</h3>-->
         <p>{{ submission.mainResults|raw }}</p>
+
+
+        <h2><span class="azul">O que essa experiência nos ensina?</span></h2>
 
         <h3>{% trans %}Lessons Learned{% endtrans %}:</h3>
         <p>{{ submission.lessonsLearned|raw }}</p>
@@ -347,10 +365,9 @@
 
         {% endif %}
 
-        <h3>{% trans %}Descriptors{% endtrans %}:</h3>
-        <p>{{ submission.descriptorsList|join('; ') }}</p>
 
-        
+        <h3>{% trans %}Descriptors{% endtrans %}: colocado junto a keyword</h3>
+        <p>{{ submission.descriptorsList|join('; ') }}</p>
 
 
 
