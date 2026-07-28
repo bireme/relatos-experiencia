@@ -6,7 +6,7 @@
                 text-align: center;
             }
             h2, h3 {
-                border-top: 2px solid #000;
+                border-top: 0px solid #000;
                 margin: 30px 0 10px 0;
             }
             table {
@@ -14,9 +14,10 @@
                 border-spacing : 0;
                 border-bottom: 1px solid #000;
                 border-right: 1px solid #000;
+                border: 1px solid #000;
             }
             table td, table th {
-                border: 1px solid #000;
+                border: 0px solid #000;
                 border-bottom: none;
                 border-right: none;
                 margin: 0;
@@ -40,18 +41,101 @@
                 border: 1px solid #000;
                 padding: 1rem;
             }
+            .azul{
+                color: rgb(131, 181, 255)
+            }
         </style>
     </head>
     <body>
-        <h1>{{ submission.title }}</h1>
+
+
+
+        <h3><span class="azul">Relato de Experiência{% trans %}</span> Collection{% endtrans %}:</h3>
+        <p>{{ submission.collectionList|join('; ') }}</p>
+        {{ dump(submission.collectionList) }}
+        <h3>{{ submission.title }}</h3>
+
+            {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
+                <tr>
+                    <td>{{ member.name }},<Br>
+                    <td>{{ member.filiation }},<Br>
+                    <td>{{ member.job }},<Br>
+                    <td>{{ member.academicFormation }}</td>
+                    <td>{{ member.email }}</td>
+                    <td style="word-break: break-all;"><a href="{{ member.curriculum }}" target="_blank">{{ member.curriculum }}</a></td>
+                </tr>
+            {% endfor %}
+
+        <!--<h3>{% trans %}Keywords{% endtrans %}:</h3>-->
+        <p style="background-color: #c75858;">{{ submission.keywordsList|join('; ') }}</p>
+
+                    <table>
+<tr><td>
+        <span class="azul">Onde aconteceu ?</span> {{ submission.context|raw }}
+
+
+        <!--
+        <h3>{% trans %}Location{% endtrans %}:</h3>
+        <p></p>-->
+
+
+        <BR><span class="azul">Quem participa? </span> 
+
+
+
+        <BR><span class="azul">Situação da experiência:
+            <!--{% trans %}Experience Status{% endtrans %}:--></span> 
+        {{ status[submission.status] }}
+
+        <BR><span class="azul">Quando foi iniciada e implementada?</span> 
+        <!--<h3>{% trans %}Start Date{% endtrans %}:</h3>-->
+        {{ submission.startDate|date("Y-m-d") }} - 
+        {% if not submission.isCurrentDate %}
+
+            {{ submission.endDate|date("Y-m-d") }}
+            
+        {% endif %}
+  
+        </td>
+</tr>
+        </table>
+        <!--<h3>{% trans %}End Date{% endtrans %}:</h3>-->
+            <p></p>
+            
+
+
+        <!-- <h2>{% trans %}Experience Details{% endtrans %}</h2> -->
+        <span class="azul">O porque desta experiência?</span>
+        <!--<h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>-->
+        <p>{{ submission.description|raw }}</p>
+
+
+        <span class="azul">O que se pretende alcançar com esta experiência?</span>
+        <h3>{% trans %}Objectives{% endtrans %}/{% trans %}Expected results{% endtrans %}:</h3>
+        <p>{{ submission.objectives|raw }}</p>
+
+        <h3>{% trans %}Resources{% endtrans %}:</h3>
+        <p>{{ submission.resources|raw }}</p>
+
+        <h3>{% trans %}Challenges{% endtrans %}:</h3>
+        <p>{{ submission.challengesInformation|raw }}</p>
+
+        <h3>{% trans %}Main Results{% endtrans %}/{% trans %}Impacts{% endtrans %}:</h3>
+        <p>{{ submission.mainResults|raw }}</p>
+
+        <h3>{% trans %}Lessons Learned{% endtrans %}:</h3>
+        <p>{{ submission.lessonsLearned|raw }}</p>
+
+
+        <!---------------------------------------------------------------->
+
 
         {% if protocol_code %}
             <h3>{% trans %}Code{% endtrans %}</h3>
             <p>{{ protocol_code[:8] }}</p>
         {% endif %}
 
-        <h3>{% trans %}Collection{% endtrans %}:</h3>
-        <p>{{ submission.collectionList|join('; ') }}</p>
+     
 
         <h3>{% trans %}Thematic Area{% endtrans %}:</h3>
         <p>{{ submission.thematicAreaList|join('; ') }}</p>
@@ -63,8 +147,7 @@
 
         {% endif %}
 
-        <h3>{% trans %}Experience Status{% endtrans %}:</h3>
-        <p>{{ status[submission.status] }}</p>
+
 
         {% if submission.status == "F" %}
 
@@ -73,15 +156,7 @@
 
         {% endif %}
 
-        <h3>{% trans %}Start Date{% endtrans %}:</h3>
-        <p>{{ submission.startDate|date("Y-m-d") }}</p>
 
-        {% if not submission.isCurrentDate %}
-
-            <h3>{% trans %}End Date{% endtrans %}:</h3>
-            <p>{{ submission.endDate|date("Y-m-d") }}</p>
-            
-        {% endif %}
 
         <h3>{% trans %}Country{% endtrans %}:</h3>
         <p>{{ submission.country.name }}</p>
@@ -92,8 +167,7 @@
         <h3>{% trans %}City{% endtrans %}:</h3>
         <p>{{ submission.city }}</p>
 
-        <h3>{% trans %}Location{% endtrans %}:</h3>
-        <p>{{ submission.context|raw }}</p>
+        
 
         <h3>{% trans %}Population{% endtrans %}:</h3>
         <p>{{ submission.populationGroup|join('; ') }}</p>
@@ -108,30 +182,11 @@
         <h3>{% trans %}Descriptors{% endtrans %}:</h3>
         <p>{{ submission.descriptorsList|join('; ') }}</p>
 
-        <h3>{% trans %}Keywords{% endtrans %}:</h3>
-        <p>{{ submission.keywordsList|join('; ') }}</p>
+        
 
-        <!-- <h2>{% trans %}Experience Details{% endtrans %}</h2> -->
 
-        <h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>
-        <p>{{ submission.description|raw }}</p>
 
-        <h3>{% trans %}Objectives{% endtrans %}/{% trans %}Expected results{% endtrans %}:</h3>
-        <p>{{ submission.objectives|raw }}</p>
-
-        <h3>{% trans %}Resources{% endtrans %}:</h3>
-        <p>{{ submission.resources|raw }}</p>
-
-        <h3>{% trans %}Main Results{% endtrans %}/{% trans %}Impacts{% endtrans %}:</h3>
-        <p>{{ submission.mainResults|raw }}</p>
-
-        <h3>{% trans %}Challenges{% endtrans %}:</h3>
-        <p>{{ submission.challengesInformation|raw }}</p>
-
-        <h3>{% trans %}Lessons Learned{% endtrans %}:</h3>
-        <p>{{ submission.lessonsLearned|raw }}</p>
-
-        <!-- <h2>{% trans %}Team{% endtrans %}</h2> -->
+        <!-- <h2>{% trans %}Team{% endtrans %}</h2> --
 
         <h3>{% trans %}Responsible{% endtrans %}</h3>
         <table>
@@ -157,7 +212,7 @@
                 </tr>
             {% endfor %}
         </table>
-
+    -->
         <h3>{% trans %}Members{% endtrans %}</h3>
         <table>
             <tr>
