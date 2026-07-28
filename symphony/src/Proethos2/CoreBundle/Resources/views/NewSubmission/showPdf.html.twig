@@ -10,12 +10,14 @@
                 margin: 30px 0 10px 0;
             }
             table {
-                width: 100%;
+                width: 90%;
                 border-spacing : 0;
                 border-bottom: 1px solid #000;
                 border-right: 1px solid #000;
-                border: 1px solid #000;
-                margin: 20px;;
+                border: 2px solid #000;
+                margin: 20px 1%;
+                border-radius: 2px;
+
             }
             table td, table th {
                 border: 0px solid #000;
@@ -23,6 +25,7 @@
                 border-right: none;
                 margin: 0;
                 padding: 3px;
+                background-color: #efefef;
             }
             footer {
                 margin: 40px 0 0 0;
@@ -43,11 +46,14 @@
                 padding: 1rem;
             }
             .azul{
-                color: rgb(131, 181, 255)
+                color: rgb(28, 90, 184); font-weight: bold;
             }
             .capsula{
                 background-color :  rgb(28, 90, 184); border-radius: 8px; color:#fff; margin-right: 10px;
-                padding-left: 4px 8px;
+                padding: 3px 6px;
+            }
+            html{
+                background-color: #eee;
             }
         </style>
     </head>
@@ -73,7 +79,7 @@
             {% endfor %}
 </td></tr>
 
-
+</table>
         <!--<h3>{% trans %}Keywords{% endtrans %}:</h3>-->
       <!-- <p style="background-color: #c75858;">{{ submission.keywordsList|join('; ') }}</p>-->
        <!--- <h3>{% trans %}Descriptors{% endtrans %}:</h3>
