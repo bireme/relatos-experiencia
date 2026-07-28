@@ -51,7 +51,7 @@
             }
             .capsula{
                 background-color :  rgb(28, 90, 184); border-radius: 8px; color:#fff; margin-right: 10px;
-                padding: 3px 6px; margin-bottom:20PX; float: left; height: 20px;
+                padding: 3px 6px; margin-bottom:20PX; float: left; height: 20px; white-space: nowrap;
             }
             .verde{
                 background-color : rgb(33 106 103);
@@ -94,8 +94,8 @@
         <p>{{ submission.descriptorsList|join('; ') }}</p>
 -->
         {% for descriptor in submission.descriptorsList %}
-    <span class="capsula">{{ descriptor }}</span>
-
+    <span class="capsula">{{ descriptor|replace({"\r\n": " ","\n": " ","\r": " "}) }}</span>
+<!--
     <span class="capsula">{{ descriptor }}</span>
  <span class="capsula">{{ descriptor }}</span>
     <span class="capsula">{{ descriptor }}</span>
@@ -437,14 +437,11 @@ que certamente influenciam os hábitos alimentares da população</p>
         <p>{{ submission.descriptorsList|join('; ') }}</p>
 
 
-{{ asset('bundles/proethos2core/img/logo-pt_BR.png') }}
+
 
         <footer>{% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</footer>
-<img src="https://experiencias.teste.bvsalud.org/bundles/proethos2core/img/logo-pt_BR.png"
+<img src="https://experiencias.bvsalud.org/bundles/proethos2core/img/logo-pt_BR.png"
      width="180">
-
-<img src="{{ absolute_url(asset('bundles/proethos2core/img/logo-pt_BR.png')) }}">
-
-   <img src="{{ asset('bundles/proethos2core/img/logo-pt_BR.png') }}">
+   <img src="{{ asset('bundles/proethos2core/img/logo-pt-BR.png') }}">
     </body>
 </html>
