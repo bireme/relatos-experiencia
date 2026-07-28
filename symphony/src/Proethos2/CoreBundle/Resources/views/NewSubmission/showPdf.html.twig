@@ -52,7 +52,6 @@
 
         <h3><span class="azul">Relato de Experiência{% trans %}</span> Collection{% endtrans %}:</h3>
         <p>{{ submission.collectionList|join('; ') }}</p>
-        {{ dump(submission.collectionList) }}
         <h3>{{ submission.title }}</h3>
 
             {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
