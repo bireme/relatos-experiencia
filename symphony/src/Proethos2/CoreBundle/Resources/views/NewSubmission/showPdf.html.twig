@@ -68,18 +68,22 @@
 
 
 
-        <h3><span class="azul">Relato de Experiência{% trans %}</span> Collection{% endtrans %}:</h3>
+        <h3><span class="azul">Relato de Experiência</span>:</h3>
+
+        {% trans %}Updated in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}
+
         <p>{{ submission.collectionList|join('; ') }}</p>
         <h3>{{ submission.title }}</h3>
 
-                            <table>
+        <table>
 <tr><td>
             {% for resp in submission.responsible|sort((a, b) => b.name <=> a.name) %}
                 <tr>
-                    <td>{{ resp.name }}, </td>
-                    <td>{{ resp.filiation }}, </td>
-                    <td>{{ resp.job }}, </td>
-                    <td>{{ resp.email }}, </td>
+                    <td>{{ resp.name }}, {{ resp.job }}, ORCID: {{ resp.orcid }} <BR>
+                    {{ resp.filiation }}, <BR>
+                    email:{{ resp.email }}, curriculo: {{ resp.curriculum }}, </td>
+                    <BR><BR>
+
                     <!--<td>{{ resp.phone }}, </td>
                     <td style="word-break: break-all;"><a href="{{ resp.curriculum }}" target="_blank">{{ resp.curriculum }}</a></td>
                     <td><a href="https://orcid.org/{{ resp.orcid }}" target="_blank">{{ resp.orcid }}</a></td>-->
@@ -141,7 +145,7 @@
     <span class="capsula">{{ descriptor }}</span>-->
 
 {% endfor %}
-
+<br>
         {% for keyword in submission.keywordsList %}
     <span class="capsula verde">{{ keyword }}</span>
 {% endfor %}
@@ -149,6 +153,11 @@
 <tr><td>
         <span class="azul">Onde aconteceu ?</span> {{ submission.context|raw }}
 
+        {{ submission.city }} - {{ submission.region }}
+
+        {% if submission.fullText %}
+        ,{{ submission.country.name }}
+        {% endif %}
 
         <!--
         <h3>{% trans %}Location{% endtrans %}:</h3>
@@ -158,7 +167,7 @@
         <BR><span class="azul">Quem participa? </span> 
 
         <h3>{% trans %}Members{% endtrans %}</h3>
-        <table>
+        <!---<table>
             <tr>
                 <th width="30%">{% trans %}Name{% endtrans %}</th>
                 <th>{% trans %}Filiation{% endtrans %}</th>
@@ -167,16 +176,16 @@
                 <th>{% trans %}Email{% endtrans %}</th>
                 <th>{% trans %}Curriculum{% endtrans %}</th>
             </tr>
-
+--->
             {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
-                <tr>
-                    <td>{{ member.name }}</td>
-                    <td>{{ member.filiation }}</td>
-                    <td>{{ member.job }}</td>
+
+                    
+                    {{ member.filiation }} -
+                    <!--<td>{{ member.name }}{{ member.job }}</td>
                     <td>{{ member.academicFormation }}</td>
                     <td>{{ member.email }}</td>
                     <td style="word-break: break-all;"><a href="{{ member.curriculum }}" target="_blank">{{ member.curriculum }}</a></td>
-                </tr>
+                --->
             {% endfor %}
         </table>
 
@@ -186,10 +195,10 @@
 
         <BR><span class="azul">Quando foi iniciada e implementada?</span> 
         <!--<h3>{% trans %}Start Date{% endtrans %}:</h3>-->
-        {{ submission.startDate|date("Y-m-d") }} - 
+        {{ submission.startDate|date("d/m/Y") }} - 
         {% if not submission.isCurrentDate %}
 
-            {{ submission.endDate|date("Y-m-d") }}
+            {{ submission.endDate|date("d/m/Y") }}
             
         {% endif %}
   
@@ -294,13 +303,13 @@ que certamente influenciam os hábitos alimentares da população</p>
         <table>
             <tr>
                 <th>{% trans %}File{% endtrans %}</th>
-                <th width="50%">{% trans %}Date{% endtrans %}</th>
+                <!--<th width="50%">{% trans %}Date{% endtrans %}</th>-->
             </tr>
 
             {% for file in submission.attachments if file.uploadType.slug == 'document' %}
                 <tr style="text-align: center;">
                     <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
-                    <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
+                    <!--<td>{{ file.created|date("d/m/Y H:i:s") }}</td>-->
                 </tr>
             {% endfor %}
         </table>
@@ -320,7 +329,7 @@ que certamente influenciam os hábitos alimentares da população</p>
             {% for file in submission.attachments if file.uploadType.slug == 'image' %}
                 <tr style="text-align: center;">
                     <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
-                    <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
+                   <!--- <td>{{ file.created|date("d/m/Y H:i:s") }}</td>-->
                 </tr>
             {% endfor %}
         </table>
@@ -335,7 +344,7 @@ que certamente influenciam os hábitos alimentares da população</p>
             {% for file in submission.attachments if file.uploadType.slug == 'video' %}
                 <tr style="text-align: center;">
                     <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
-                    <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
+                    <!--<td>{{ file.created|date("d/m/Y H:i:s") }}</td>--->
                 </tr>
             {% endfor %}
         </table>
@@ -367,12 +376,12 @@ que certamente influenciam os hábitos alimentares da população</p>
             <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
         {% endfor %}
 #}
-        <!-- <h2>{% trans %}Other Information{% endtrans %}</h2> -->
+        <!-- <h2>{% trans %}Other Information{% endtrans %}</h2> 
 
         <h3>{% trans %}Event where the experience was presented{% endtrans %}:</h3>
         <p>{{ submission.event|raw }}</p>
 
-
+-->
 
         <h3>{% trans %}Related Links{% endtrans %}:</h3>
         {% for url in submission.relatedLinksList %}
@@ -389,7 +398,7 @@ que certamente influenciam os hábitos alimentares da população</p>
         {% endif %}
 
      
-
+<!--
         <h3>{% trans %}Thematic Area{% endtrans %}:</h3>
         <p>{{ submission.thematicAreaList|join('; ') }}</p>
 
@@ -400,7 +409,7 @@ que certamente influenciam os hábitos alimentares da população</p>
 
         {% endif %}
 
-
+-->
 
         {% if submission.status == "F" %}
 
@@ -410,7 +419,7 @@ que certamente influenciam os hábitos alimentares da população</p>
         {% endif %}
 
 
-
+<!---
         <h3>{% trans %}Country{% endtrans %}:</h3>
         <p>{{ submission.country.name }}</p>
 
@@ -432,14 +441,14 @@ que certamente influenciam os hábitos alimentares da população</p>
 
         {% endif %}
 
-
+-->
         <h3>{% trans %}Descriptors{% endtrans %}: colocado junto a keyword</h3>
         <p>{{ submission.descriptorsList|join('; ') }}</p>
 
 
 
 
-        <footer>{% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</footer>
+        <footer>BIREME/PAHP/OMS <!--{% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}--></footer>
 <img src="https://experiencias.bvsalud.org/bundles/proethos2core/img/logo-pt_BR.png"
      width="180">
    <img src="{{ asset('bundles/proethos2core/img/logo-pt-BR.png') }}">
