@@ -112,6 +112,16 @@
 
             {# <h5>{% trans %}Experience Details{% endtrans %}</h5> #}
 
+            <b>{% trans %}Call{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.call }}</p>
+
+            <hr />
+
+            <b>{% trans %}Presentation{% endtrans %}/{% trans %}Introduction{% endtrans %}:</b>
+            <p>{{ protocol.mainSubmission.presentation|raw }}</p>
+
+            <hr />
+
             <b>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.description|raw }}</p>
 
