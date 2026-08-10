@@ -207,6 +207,21 @@ class Submission extends Base
     /******************** DESCRIÇÃO DO RELATO ********************/
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     */
+    private $call;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $presentation;
+
+    /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
@@ -1979,5 +1994,53 @@ class Submission extends Base
     public function getEvent()
     {
         return $this->event;
+    }
+
+    /**
+     * Set call
+     *
+     * @param string $call
+     *
+     * @return Submission
+     */
+    public function setCall($call)
+    {
+        $this->call = $call;
+
+        return $this;
+    }
+
+    /**
+     * Get call
+     *
+     * @return string
+     */
+    public function getCall()
+    {
+        return $this->call;
+    }
+
+    /**
+     * Set presentation
+     *
+     * @param string $presentation
+     *
+     * @return Submission
+     */
+    public function setPresentation($presentation)
+    {
+        $this->presentation = $presentation;
+
+        return $this;
+    }
+
+    /**
+     * Get presentation
+     *
+     * @return string
+     */
+    public function getPresentation()
+    {
+        return $this->presentation;
     }
 }
