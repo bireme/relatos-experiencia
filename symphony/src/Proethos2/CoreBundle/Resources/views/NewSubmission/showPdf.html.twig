@@ -232,7 +232,7 @@
     </section>    
     <section class="container card-secton">
         <h2>{% trans %}What does this experience teach us?{% endtrans %}</h2>
-        <p><b>{% trans %}Lessons Learned{% endtrans %}:</b> {{ submission.lessonsLearned|raw }}</p>
+        <p>{{ submission.lessonsLearned|raw }}</p>
     </section>    
     <section class="container card-secton">
         <h2>{% trans %}Learn more{% endtrans %}:</h2>
@@ -273,7 +273,7 @@
     </section>
     <section class="container card-secton">
         <h2>{% trans %}Observations{% endtrans %}:</h2>
-        <p><b>{% trans %}Abstract{% endtrans %}:</b> {{ submission.notes }}</p>
+        <p>{{ submission.notes }}</p>
     </section>
 
     <footer id="footer" class="container">
