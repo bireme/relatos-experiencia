@@ -1,456 +1,283 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <style>
-            h1 {
-                text-align: center;
-            }
-            h2, h3 {
-                border-top: 0px solid #000;
-                margin: 30px 0 10px 0;
-            }
-            table {
-                width: 90%;
-                border-spacing : 0;
-                border-bottom: 1px solid #000;
-                border-right: 1px solid #000;
-                border: 2px solid #000;
-                margin: 20px 1%;
-                border-radius: 2px;
-
-            }
-            table td, table th {
-                border: 0px solid #000;
-                border-bottom: none;
-                border-right: none;
-                margin: 0;
-                padding: 3px;
-                background-color: #efefef;
-            }
-            footer {
-                margin: 40px 0 0 0;
-                text-align: right;
-                font-size: 9pt;
-            }
-            div p {
-                line-height: 1 !important;
-                margin: 0 !important;
-            }
-            img {
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans %}Experiences{% endtrans %}</title>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6{
+            font-family: "Roboto", sans-serif;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            word-wrap: break-word;
+        }
+        .mt-20{
+            margin-top: 20px;
+        }
+        .mb-20{
+            margin-bottom: 20px;
+        }
+        .color1{
+            color: #0027cd;
+        }
+        .data-update{
+            float: right;
+            font-size: 14px;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #d9d9d9;
+            margin: 20px 0;
+        }
+        .container{
+            width: 72%;
+            margin: auto;
+        }
+        .list-tag {
+            display: table;
+            list-style: none;
+            white-space: nowrap;
+        }
+        .list-tag li{
+            background-color: #ffcf00;
+            color: #333;
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 8px;
+            margin: 0 5px 10px 0;
+            font-size: 12px;
+            float: left;
+            white-space: nowrap;
+        }
+        .cards {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            gap: 20px;
+            align-items: stretch; /* Todos com a mesma altura */
+            flex-wrap: wrap;
+        }
+        .card {
+            -webkit-box-flex: 1 1 calc(25% - 20px);
+            -webkit-flex: 1 1 calc(25% - 20px);
+            flex: 1 1 calc(25% - 20px);
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+        .card:last-child {
+            margin-right: 0;
+        }
+        .card h3 {
+            margin: 0 0 5px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .card p {
+            margin: 0;
+            color: #555;
+            line-height: 1.6;
+        }
+        .card-secton{
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        .fotos ul{
+            display: none;
+        }
+        .olinks li{
+            margin-bottom: 10px;
+        }
+        #footer{
+            text-align: center;
+            margin: 20px  auto;
+        }
+        #footer img{
+            height: 50px;
+        }
+        .m-badge{
+            background: #ffcf00;
+            border-radius: 50%;
+            padding: 2px 5px;
+            margin-right: 10px;
+            font-size: 13px;
+            vertical-align: top;
+        }
+        .m-list{
+            margin: 0;
+            padding: 0 10px;
+            font-size: 13px;
+        }
+        .m-list li{
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 992px){
+            .container{
                 width: 100%;
-                max-width: 200px;
             }
-            .code-highlight {
-                font-family: Consolas, "Courier New", monospace;
-                border: 1px solid #000;
-                padding: 1rem;
+            .card {
+                flex: 1 1 calc(50% - 20px);
             }
-            .azul{
-                color: rgb(28, 90, 184); font-weight: bold; line-height: 22px;
-                
+        }
+        @media print {
+            .container{
+                width: 100%;
             }
-            .capsula{
-                background-color :  rgb(28, 90, 184); border-radius: 8px; color:#fff; margin-right: 10px;
-                padding: 3px 6px; margin-bottom:20PX; float: left; height: 20px; white-space: nowrap;
+            .card {
+                flex: 1 1 calc(50% - 20px);
             }
-            .verde{
-                background-color : rgb(33 106 103);
+            .fotos img{
+                display: none;
             }
-            html{
-                background-color: #eee;
-            }
-            p{
-                line-height: 20px;
-            }
-        </style>
-    </head>
-    <body>
-
-
-
-        <h3><span class="azul">Relato de Experiência</span>:</h3>
-
-        {% trans %}Updated in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}
-
-        <p>{{ submission.collectionList|join('; ') }}</p>
-        <h3>{{ submission.title }}</h3>
-
-        <table>
-<tr><td>
-            {% for resp in submission.responsible|sort((a, b) => b.name <=> a.name) %}
-                <tr>
-                    <td>{{ resp.name }}, {{ resp.job }}, ORCID: {{ resp.orcid }} <BR>
-                    {{ resp.filiation }}, <BR>
-                    email:{{ resp.email }}, curriculo: {{ resp.curriculum }}, </td>
-                    <BR><BR>
-
-                    <!--<td>{{ resp.phone }}, </td>
-                    <td style="word-break: break-all;"><a href="{{ resp.curriculum }}" target="_blank">{{ resp.curriculum }}</a></td>
-                    <td><a href="https://orcid.org/{{ resp.orcid }}" target="_blank">{{ resp.orcid }}</a></td>-->
-                </tr>
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <b>{% trans %}Experiences{% endtrans %}:</b>
+        <div class="data-update">{% trans %}Updated in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</div>
+        <h1 class="color1">{{ submission.title }}</h1>
+        <ul class="list-tag">
+            {% for descriptor in submission.descriptorsList %}
+            <li>{{ descriptor|replace({"\r\n": " ","\n": " ","\r": " "}) }}</li>
             {% endfor %}
-</td></tr>
+        </ul>
+        <ul class="list-tag">
+            {% for keyword in submission.keywordsList %}
+            <li>{{ keyword }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section class="container">
+        <div class="cards mt-20 mb-20">
+            <div class="card">
+                <h3>{% trans %}Where did it happen?{% endtrans %}</h3>
+                {% if submission.context %}
+                    <p>{{ submission.context|raw }}</p>
+                {% endif %}
+                {% if submission.city %}
+                    <p>{{ submission.city }}{% if submission.region %} - {{ submission.region }}{% endif %}{% if submission.country %}, {{ submission.country.name }}{% endif %}</p>
+                {% endif %}
+            </div>
 
-</table>
-        <!--<h3>{% trans %}Keywords{% endtrans %}:</h3>-->
-      <!-- <p style="background-color: #c75858;">{{ submission.keywordsList|join('; ') }}</p>-->
-       <!--- <h3>{% trans %}Descriptors{% endtrans %}:</h3>
-        <p>{{ submission.descriptorsList|join('; ') }}</p>
--->
-        {% for descriptor in submission.descriptorsList %}
-    <span class="capsula">{{ descriptor|replace({"\r\n": " ","\n": " ","\r": " "}) }}</span>
-<!--
-    <span class="capsula">{{ descriptor }}</span>
- <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }} dedeedfrfermo mdoemd mdoiemdoieo mdoekmdoe</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula" title="{{ descriptor }}">{{ descriptor|replace({"\r\n": " ","\n": " ","\r": " "}) }} edeeded <br> edede</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>
-    <span class="capsula">{{ descriptor }}</span>-->
+            <div class="card">
+                <h3>{% trans %}Who participates?{% endtrans %}</h3>
+                {% for resp in submission.responsible|sort((a, b) => b.name <=> a.name) %}
+                <p>{{ resp.filiation }}</p>
+                {% endfor %}
+            </div>
 
-{% endfor %}
-<br>
-        {% for keyword in submission.keywordsList %}
-    <span class="capsula verde">{{ keyword }}</span>
-{% endfor %}
-                    <table>
-<tr><td>
-        <span class="azul">Onde aconteceu ?</span> {{ submission.context|raw }}
+            <div class="card">
+                <h3>{% trans %}Experience Status{% endtrans %}:</h3>
+                <p>{{ status[submission.status] }}</p>
+            </div>
 
-        {{ submission.city }} - {{ submission.region }}
-
-        {% if submission.fullText %}
-        ,{{ submission.country.name }}
-        {% endif %}
-
-        <!--
-        <h3>{% trans %}Location{% endtrans %}:</h3>
-        <p></p>-->
-
-
-        <BR><span class="azul">Quem participa? </span> 
-
-        <h3>{% trans %}Members{% endtrans %}</h3>
-        <!---<table>
-            <tr>
-                <th width="30%">{% trans %}Name{% endtrans %}</th>
-                <th>{% trans %}Filiation{% endtrans %}</th>
-                <th>{% trans %}Job{% endtrans %}</th>
-                <th>{% trans %}Academic Formation{% endtrans %}</th>
-                <th>{% trans %}Email{% endtrans %}</th>
-                <th>{% trans %}Curriculum{% endtrans %}</th>
-            </tr>
---->
+            <div class="card">
+                <h3>{% trans %}When was it initiated and implemented?{% endtrans %}</h3>
+                <p>{{ submission.startDate|date("d/m/Y") }} - {% if not submission.isCurrentDate %}{{ submission.endDate|date("d/m/Y") }}{% endif %}</p>
+            </div>
+        </div>
+    </section>
+    <section class="container card-secton">
+        <h2>{% trans %}Members{% endtrans %}</h2>
+        {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
+        {{ member.name }} <sup class="m-badge">{{ loop.index }}</sup>
+        {% endfor %}
+        <hr>
+        <div class="m-list">
             {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
-
-                    
-                    {{ member.filiation }} -
-                    <!--<td>{{ member.name }}{{ member.job }}</td>
-                    <td>{{ member.academicFormation }}</td>
-                    <td>{{ member.email }}</td>
-                    <td style="word-break: break-all;"><a href="{{ member.curriculum }}" target="_blank">{{ member.curriculum }}</a></td>
-                --->
+            <sup class="m-badge">{{ loop.index }}</sup> {{ member.filiation }} <br><br>
             {% endfor %}
-        </table>
-
-        <BR><span class="azul">Situação da experiência:
-            <!--{% trans %}Experience Status{% endtrans %}:--></span> 
-        {{ status[submission.status] }}
-
-        <BR><span class="azul">Quando foi iniciada e implementada?</span> 
-        <!--<h3>{% trans %}Start Date{% endtrans %}:</h3>-->
-        {{ submission.startDate|date("d/m/Y") }} - 
-        {% if not submission.isCurrentDate %}
-
-            {{ submission.endDate|date("d/m/Y") }}
-            
-        {% endif %}
-  
-        </td>
-</tr>
-        </table>
-        <!--<h3>{% trans %}End Date{% endtrans %}:</h3>-->
-            <p></p>
-            
-
-
-        <!-- <h2>{% trans %}Experience Details{% endtrans %}</h2> -->
-        <h2><span class="azul">O porque desta experiência?</span></h2>
-        <!--<h3>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</h3>-->
+        </div>
+    </section>
+    <section class="container card-secton">
+        <h2>{% trans %}Presentation/Introduction{% endtrans %}</h2>
+        <p>{{ submission.presentation|raw }}</p>
+    </section>    
+    <section class="container card-secton">
+        <h2>{% trans %}What is the reason for this experiment?{% endtrans %}</h2>
         <p>{{ submission.description|raw }}</p>
-        <!--<p>Segundo dados de 2016 divulgados pelo Ministério da Saúde (MS), os brasileiros estão mais obesos. Em dez anos, a
-prevalência da obesidade passou de 11,8% no ano de 2006 para 18,9% em 2016: quase um em cada cinco brasileiros. Os
-dados fazem parte da Pesquisa de Vigilância de Fatores de Risco e Proteção para Doenças Crônicas por Inquérito Telefônico
-(Vigitel), realizada pelo MS em todas as capitais do país no período de fevereiro a dezembro de 2016. Ainda segundo a
-pesquisa, houve diminuição da ingestão de ingredientes como o feijão, por exemplo, passando de 67,5% em 2012 para 61,3%
-em 2016. Em relação ao consumo de frutas e hortaliças, apenas um entre três adultos consomem este tipo de alimento em
-cinco dias da semana. A grande oferta de produtos industrializados e já prontos para o consumo, a falta de tempo para preparar
-alimentos e poucas condições financeiras que permitam a compra e o consumo de alimentos saudáveis também são condições
-que certamente influenciam os hábitos alimentares da população</p>
-        -->
-
-        <h2><span class="azul">O que se pretende alcançar com esta experiência?</span></h2>
-       <!---<h3>{% trans %}Objectives{% endtrans %}/{% trans %}Expected results{% endtrans %}:</h3>--> 
+    </section>    
+    <section class="container card-secton">
+        <h2>{% trans %}What is the goal of this experiment?{% endtrans %}</h2>
         <p>{{ submission.objectives|raw }}</p>
-
-        <!--<h2><h3>{% trans %}Resources{% endtrans %}:</h3>-->
-
-
-        <h2><span class="azul">Como essa experiência está ganhando forma?</span></h2>
-            
+    </section>    
+    <section class="container card-secton">
+        <h2>C{% trans %}How is this experience taking shape?{% endtrans %}</h2>
         <p>{{ submission.resources|raw }}</p>
-
-        <h2><span class="azul">O que aconteceu durante o percurso? </span></h2>
-
-        <!--<h3>{% trans %}Challenges{% endtrans %}:</h3>-->
+    </section>    
+    <section class="container card-secton">
+        <h2>{% trans %}What happened along the way?{% endtrans %}</h2>
         <p>{{ submission.challengesInformation|raw }}</p>
-
-        <h2><span class="azul">O que começou a mudar?</span></h2>
-
-        <!--<h3>{% trans %}Main Results{% endtrans %}/{% trans %}Impacts{% endtrans %}:</h3>-->
+    </section>    
+    <section class="container card-secton">
+        <h2>{% trans %}What started to change?{% endtrans %}</h2>
         <p>{{ submission.mainResults|raw }}</p>
-
-
-        <h2><span class="azul">O que essa experiência nos ensina?</span></h2>
-
-        <h3>{% trans %}Lessons Learned{% endtrans %}:</h3>
-        <p>{{ submission.lessonsLearned|raw }}</p>
-
-
-        <!---------------------------------------------------------------->
-
-        <h2><p>Saiba mais</p></h2>
-
-        <h3>{% trans %}Products, materials and publications{% endtrans %}:</h3>
-        <p>{{ submission.productsInformation|raw }}</p>
-
-
-
-
-
-        <!-- <h2>{% trans %}Team{% endtrans %}</h2> --
-
-        <h3>{% trans %}Responsible{% endtrans %}</h3>
-        <table>
-            <tr>
-                <th width="30%">{% trans %}Name{% endtrans %}</th>
-                <th width="10%">{% trans %}Filiation{% endtrans %}</th>
-                <th width="10%">{% trans %}Job{% endtrans %}</th>
-                <th width="10%">{% trans %}Email{% endtrans %}</th>
-                <th width="10%">{% trans %}Phone{% endtrans %}</th>
-                <th width="20%">{% trans %}Curriculum{% endtrans %}</th>
-                <th width="10%">{% trans %}ORCID{% endtrans %}</th>
-            </tr>
-
-            {% for resp in submission.responsible|sort((a, b) => b.name <=> a.name) %}
-                <tr>
-                    <td>{{ resp.name }}</td>
-                    <td>{{ resp.filiation }}</td>
-                    <td>{{ resp.job }}</td>
-                    <td>{{ resp.email }}</td>
-                    <td>{{ resp.phone }}</td>
-                    <td style="word-break: break-all;"><a href="{{ resp.curriculum }}" target="_blank">{{ resp.curriculum }}</a></td>
-                    <td><a href="https://orcid.org/{{ resp.orcid }}" target="_blank">{{ resp.orcid }}</a></td>
-                </tr>
-            {% endfor %}
-        </table>
-    -->
-
-
-        <!-- <h2>{% trans %}Files{% endtrans %}</h2> -->
-
-        <h3>{% trans %}Fulltext{% endtrans %}:</h3>
-        {% if submission.fullText %}
-            <p>{{ submission.fullText }}</p>
-        {% endif %}
-
-        <table>
-            <tr>
-                <th>{% trans %}File{% endtrans %}</th>
-                <!--<th width="50%">{% trans %}Date{% endtrans %}</th>-->
-            </tr>
-
-            {% for file in submission.attachments if file.uploadType.slug == 'document' %}
-                <tr style="text-align: center;">
-                    <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
-                    <!--<td>{{ file.created|date("d/m/Y H:i:s") }}</td>-->
-                </tr>
-            {% endfor %}
-        </table>
-{#
-        <h3>{% trans %}More documents{% endtrans %}:</h3>
-        {% for url in submission.otherDocsList %}
-            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
-        {% endfor %}
-#}
-        <h3>{% trans %}Images{% endtrans %}:</h3>
-        <table>
-            <tr>
-                <th>{% trans %}File{% endtrans %}</th>
-                <th width="50%">{% trans %}Date{% endtrans %}</th>
-            </tr>
-
+    </section>    
+    <section class="container card-secton">
+        <h2>{% trans %}What does this experience teach us?{% endtrans %}</h2>
+        <p><b>{% trans %}Lessons Learned{% endtrans %}:</b> {{ submission.lessonsLearned|raw }}</p>
+    </section>    
+    <section class="container card-secton">
+        <h2>{% trans %}Learn more{% endtrans %}:</h2>
+        <hr>
+        <h3>{% trans %}Images{% endtrans %}</h3>
+        <ol class="olinks">
             {% for file in submission.attachments if file.uploadType.slug == 'image' %}
-                <tr style="text-align: center;">
-                    <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
-                   <!--- <td>{{ file.created|date("d/m/Y H:i:s") }}</td>-->
-                </tr>
+            <li><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ absolute_url(asset(file.uri)) }}</a></li>
             {% endfor %}
-        </table>
-
-        <h3>{% trans %}Videos{% endtrans %}:</h3>
-        <table>
-            <tr>
-                <th>{% trans %}File{% endtrans %}</th>
-                <th width="50%">{% trans %}Date{% endtrans %}</th>
-            </tr>
-
+        </ol>
+    </section>    
+    <section class="container card-secton">
+        <h3>{% trans %}Videos{% endtrans %}</h3>
+        <ol class="olinks">
             {% for file in submission.attachments if file.uploadType.slug == 'video' %}
-                <tr style="text-align: center;">
-                    <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
-                    <!--<td>{{ file.created|date("d/m/Y H:i:s") }}</td>--->
-                </tr>
+            <li><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ absolute_url(asset(file.uri)) }}</a></li>
             {% endfor %}
-        </table>
-{#
-        {% if submission.otherVideos %}
-
-            <h3>{% trans %}Video embed code{% endtrans %}:</h3>
-            <p class="code-highlight">{{ submission.otherVideos }}</p>
-
+        </ol>
+    </section>    
+    <section class="container card-secton">
+        <h3>{% trans %}Files{% endtrans %}</h3>
+        {% if submission.fullText %}
+        <p>{{ submission.fullText }}</p>
         {% endif %}
-#}
-        <h3>{% trans %}Other medias{% endtrans %}:</h3>
-        <table>
-            <tr>
-                <th>{% trans %}File{% endtrans %}</th>
-                <th width="50%">{% trans %}Date{% endtrans %}</th>
-            </tr>
-
-            {% for file in submission.attachments if file.uploadType.slug == 'others' %}
-                <tr style="text-align: center;">
-                    <td><a href='{{ absolute_url(asset(file.uri)) }}' target="_blank">{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</a></td>
-                    <td>{{ file.created|date("d/m/Y H:i:s") }}</td>
-                </tr>
+        <ol class="olinks">
+            {% for file in submission.attachments if file.uploadType.slug == 'document' %}
+            <li><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ absolute_url(asset(file.uri)) }}</a></li>
             {% endfor %}
-        </table>
-{#
-        <h3>{% trans %}More medias{% endtrans %}:</h3>
-        {% for url in submission.otherMediasList %}
-            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
-        {% endfor %}
-#}
-        <!-- <h2>{% trans %}Other Information{% endtrans %}</h2> 
-
-        <h3>{% trans %}Event where the experience was presented{% endtrans %}:</h3>
-        <p>{{ submission.event|raw }}</p>
-
--->
-
+        </ol>
+    </section>    
+    <section class="container card-secton">
         <h3>{% trans %}Related Links{% endtrans %}:</h3>
-        {% for url in submission.relatedLinksList %}
-            <p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
-        {% endfor %}
+        <ol class="olinks">
+            {% for url in submission.relatedLinksList %}
+            <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+            {% endfor %}
+        </ol>
+    </section>
+    <section class="container card-secton">
+        <h2>{% trans %}Observations{% endtrans %}:</h2>
+        <p><b>{% trans %}Abstract{% endtrans %}:</b> {{ submission.notes }}</p>
+    </section>
 
-        <h3>{% trans %}Notes{% endtrans %}:</h3>
-        <p>{{ submission.notes|raw }}</p>
-
-
-        {% if protocol_code %}
-            <h3>{% trans %}Code{% endtrans %}</h3>
-            <p>{{ protocol_code[:8] }}</p>
-        {% endif %}
-
-     
-<!--
-        <h3>{% trans %}Thematic Area{% endtrans %}:</h3>
-        <p>{{ submission.thematicAreaList|join('; ') }}</p>
-
-        {% if submission.otherThematicArea %}
-
-            <h3>{% trans %}Other thematic area{% endtrans %}:</h3>
-            <p>{{ submission.otherThematicArea }}</p>
-
-        {% endif %}
-
--->
-
-        {% if submission.status == "F" %}
-
-            <h3>{% trans %}Other Status{% endtrans %}:</h3>
-            <p>{{ submission.otherStatus }}</p>
-
-        {% endif %}
-
-
-<!---
-        <h3>{% trans %}Country{% endtrans %}:</h3>
-        <p>{{ submission.country.name }}</p>
-
-        <h3>{% trans %}State{% endtrans %}/{% trans %}Region{% endtrans %}:</h3>
-        <p>{{ submission.region }}</p>
-
-        <h3>{% trans %}City{% endtrans %}:</h3>
-        <p>{{ submission.city }}</p>
-
-        
-
-        <h3>{% trans %}Population{% endtrans %}:</h3>
-        <p>{{ submission.populationGroup|join('; ') }}</p>
-
-        {% if submission.otherPopulationGroup %}
-
-            <h3>{% trans %}Other Population{% endtrans %}:</h3>
-            <p>{{ submission.otherPopulationGroup }}</p>
-
-        {% endif %}
-
--->
-        <h3>{% trans %}Descriptors{% endtrans %}: colocado junto a keyword</h3>
-        <p>{{ submission.descriptorsList|join('; ') }}</p>
-
-
-
-
-        <footer>BIREME/PAHP/OMS <!--{% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}--></footer>
-<img src="https://experiencias.bvsalud.org/bundles/proethos2core/img/logo-pt_BR.png"
-     width="180">
-   <img src="{{ asset('bundles/proethos2core/img/logo-pt-BR.png') }}">
-    </body>
+    <footer id="footer" class="container">
+        <img src="http://logos.bireme.org/img/pt/v_bir_color.svg" alt="">
+    </footer>
+</body>
 </html>
