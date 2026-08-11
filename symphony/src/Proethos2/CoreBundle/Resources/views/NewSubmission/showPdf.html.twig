@@ -209,7 +209,7 @@
     </section>
     <section class="container card-secton">
         <h2>{% trans %}Presentation/Introduction{% endtrans %}</h2>
-        <p>{{ submission.presentation|raw }}</p>
+        <p>{{ submission.introduction|raw }}</p>
     </section>    
     <section class="container card-secton">
         <h2>{% trans %}What is the reason for this experiment?{% endtrans %}</h2>
@@ -278,7 +278,7 @@
     </section>
 
     <footer id="footer" class="container">
-        <img src="https://logos.bireme.org/img/{{ app.request.locale|split('_')[0] }}/v_bir_color.svg" alt="">
+        <img src="{{ app.request.baseUrl }}/bundles/proethos2core/img/v_bir_color-{{ app.request.locale }}.svg" alt="logo footer">
     </footer>
 </body>
 </html>
