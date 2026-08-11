@@ -219,7 +219,7 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $presentation;
+    private $introduction;
 
     /**
      * @var text
@@ -2021,26 +2021,26 @@ class Submission extends Base
     }
 
     /**
-     * Set presentation
+     * Set introduction
      *
-     * @param string $presentation
+     * @param string $introduction
      *
      * @return Submission
      */
-    public function setPresentation($presentation)
+    public function setIntroduction($introduction)
     {
-        $this->presentation = $presentation;
+        $this->introduction = $introduction;
 
         return $this;
     }
 
     /**
-     * Get presentation
+     * Get introduction
      *
      * @return string
      */
-    public function getPresentation()
+    public function getIntroduction()
     {
-        return $this->presentation;
+        return $this->introduction;
     }
 }

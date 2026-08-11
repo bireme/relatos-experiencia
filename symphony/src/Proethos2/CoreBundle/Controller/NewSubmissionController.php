@@ -471,7 +471,9 @@ class NewSubmissionController extends Controller
             }
 
             // getting post data
-            $post_data = $request->request->all();
+	    $post_data = $request->request->all();
+	    
+	    //echo "<pre>"; print_r($post_data); echo "</pre>"; die();
 
             // sanitize WYSIWYG fields
             array_walk($post_data, function(&$value){
@@ -482,7 +484,7 @@ class NewSubmissionController extends Controller
 
             // checking required files
             $required_fields = array(
-                'presentation',
+                'introduction',
                 'description',
                 'objectives',
             );
@@ -514,7 +516,7 @@ class NewSubmissionController extends Controller
 
             // adding fields to model
             $submission->setCall($post_data['call']);
-            $submission->setPresentation($post_data['presentation']);
+            $submission->setIntroduction($post_data['introduction']);
             $submission->setDescription($post_data['description']);
             $submission->setObjectives($post_data['objectives']);
             $submission->setResources($post_data['resources']);
@@ -1170,7 +1172,7 @@ class NewSubmissionController extends Controller
 
         $text = $translator->trans("Presentation/Introduction");
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getPresentation())) {
+        if(empty($submission->getIntroduction())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }

@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <strong class="field-label">*{% trans %}Presentation{% endtrans %}/{% trans %}Introduction{% endtrans %}</strong>
                                 <a class="help-text" href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control summernote" name='presentation' id='textarea-presentation' required>{{ submission.presentation }}</textarea>
+                                <textarea rows="6" class="form-control summernote" name='introduction' id='textarea-introduction'>{{ submission.introduction }}</textarea>
                             </div>
                         </div>
                     </div>
