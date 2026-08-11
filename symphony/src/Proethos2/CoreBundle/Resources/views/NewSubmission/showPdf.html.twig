@@ -203,7 +203,7 @@
         <hr>
         <div class="m-list">
             {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
-            <sup class="m-badge">{{ loop.index }}</sup> {{ member.filiation }} <br><br>
+                {% if member.filiation %}<sup class="m-badge">{{ loop.index }}</sup> {{ member.filiation }} <br><br>{% endif %}
             {% endfor %}
         </div>
     </section>
