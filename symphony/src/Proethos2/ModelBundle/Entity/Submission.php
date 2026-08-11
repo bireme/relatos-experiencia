@@ -212,7 +212,7 @@ class Submission extends Base
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank
      */
-    private $call;
+    private $calls;
 
     /**
      * @var text
@@ -1997,27 +1997,27 @@ class Submission extends Base
     }
 
     /**
-     * Set call
+     * Set calls
      *
-     * @param string $call
+     * @param string $calls
      *
      * @return Submission
      */
-    public function setCall($call)
+    public function setCalls($calls)
     {
-        $this->call = $call;
+        $this->calls = $calls;
 
         return $this;
     }
 
     /**
-     * Get call
+     * Get calls
      *
      * @return string
      */
-    public function getCall()
+    public function getCalls()
     {
-        return $this->call;
+        return $this->calls;
     }
 
     /**

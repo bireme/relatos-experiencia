@@ -515,7 +515,7 @@ class NewSubmissionController extends Controller
             }
 
             // adding fields to model
-            $submission->setCall($post_data['call']);
+            $submission->setCalls($post_data['call']);
             $submission->setIntroduction($post_data['introduction']);
             $submission->setDescription($post_data['description']);
             $submission->setObjectives($post_data['objectives']);
