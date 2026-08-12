@@ -1091,9 +1091,6 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        $mail_translator = $this->get('translator');
-        $mail_translator->setLocale($submission->getLanguage());
-
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
@@ -1391,6 +1388,9 @@ class NewSubmissionController extends Controller
                     $protocol_history->setMessage($translator->trans("Submission of experience."));
                     $em->persist($protocol_history);
                     $em->flush();
+
+                    $mail_translator = $this->get('translator');
+                    $mail_translator->setLocale($submission->getLanguage());
 
                     if($protocol->getMonitoringAction()) {
                         // sending email
