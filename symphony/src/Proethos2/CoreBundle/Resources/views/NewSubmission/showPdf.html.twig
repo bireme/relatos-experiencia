@@ -179,8 +179,8 @@
 
             <div class="card">
                 <h3>{% trans %}Who participates?{% endtrans %}</h3>
-                {% for resp in submission.responsible|sort((a, b) => b.name <=> a.name) %}
-                <p>{{ resp.filiation }}</p>
+                {% for participant in submission.participantsList|sort((a, b) => b.name <=> a.name) %}
+                <p>{{ participant }}</p>
                 {% endfor %}
             </div>
 

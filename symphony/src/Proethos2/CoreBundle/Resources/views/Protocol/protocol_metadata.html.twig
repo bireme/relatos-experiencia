@@ -122,6 +122,15 @@
 
             <hr />
 
+            <b>{% trans %}Who participates?{% endtrans %}:</b>
+            <ul>
+            {% for participant in protocol.mainSubmission.participantsList|sort((a, b) => b.name <=> a.name) %}
+                <li>{{ participant }}</li>
+            {% endfor %}
+            </ul>
+
+            <hr />
+
             <b>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.description|raw }}</p>
 
@@ -365,7 +374,11 @@
             <hr />
 
             <b>{% trans %}Products, materials and publications{% endtrans %}:</b>
-            <p>{{ protocol.mainSubmission.productsInformation|raw }}</p>
+            <ol>
+            {% for url in protocol.mainSubmission.productsInformationList %}
+                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+            {% endfor %}
+            </ol>
 
             <hr />
 

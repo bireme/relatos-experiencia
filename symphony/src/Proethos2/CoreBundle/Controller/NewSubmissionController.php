@@ -485,6 +485,7 @@ class NewSubmissionController extends Controller
             // checking required files
             $required_fields = array(
                 'introduction',
+                'participants',
                 'description',
                 'objectives',
             );
@@ -517,6 +518,7 @@ class NewSubmissionController extends Controller
             // adding fields to model
             $submission->setCalls($post_data['call']);
             $submission->setIntroduction($post_data['introduction']);
+            $submission->setParticipants($post_data['participants']);
             $submission->setDescription($post_data['description']);
             $submission->setObjectives($post_data['objectives']);
             $submission->setResources($post_data['resources']);

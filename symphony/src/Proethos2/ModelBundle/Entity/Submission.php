@@ -226,6 +226,13 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
+    private $participants;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
     private $description;
 
     /** 
@@ -2042,5 +2049,46 @@ class Submission extends Base
     public function getIntroduction()
     {
         return $this->introduction;
+    }
+
+    /**
+     * Set participants
+     *
+     * @param string $participants
+     *
+     * @return Submission
+     */
+    public function setParticipants($participants)
+    {
+        $this->participants = $participants;
+
+        return $this;
+    }
+
+    /**
+     * Get participants
+     *
+     * @return string
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
+    }
+
+    /**
+     * Get participantsList
+     *
+     * @return array
+     */
+    public function getParticipantsList()
+    {
+        $participants = array();
+        $_participants = explode("\r\n", $this->participants);
+
+        foreach ($_participants as $participant) {
+            $participants[] = $participant;
+        }
+
+        return $participants;
     }
 }
