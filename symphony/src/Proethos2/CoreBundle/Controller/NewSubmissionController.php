@@ -1177,6 +1177,14 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
+        $text = $translator->trans("Participants");
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getParticipants())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
         $text = $translator->trans("Issue/Situation");
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getDescription())) {
