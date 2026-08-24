@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2026-08-12T02:46:42Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2026-08-24T05:10:18Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1454,6 +1454,10 @@
         <source>Pan American Health Organization. All rights reserved.</source>
         <target>Pan American Health Organization. All rights reserved.</target>
       </trans-unit>
+      <trans-unit id="cd56e0839d06af74923cd6ad99d6fc9e7dab8e3a" resname="Participants">
+        <source>Participants</source>
+        <target>Participants</target>
+      </trans-unit>
       <trans-unit id="e4d64aa6b64e302e5b6b2c82be0fd71cc0cc8624" resname="Password changed with success.">
         <source>Password changed with success.</source>
         <target>Password changed with success.</target>
@@ -1477,6 +1481,10 @@
       <trans-unit id="2efabaa80d675c8cc6d86843ea5b32b62a33a239" resname="Please add one hyperlink per line">
         <source>Please add one hyperlink per line</source>
         <target>Please add one hyperlink per line</target>
+      </trans-unit>
+      <trans-unit id="2ac66913f4e299fd22a2bc80c4cf1b32b4dde689" resname="Please add one per line">
+        <source>Please add one per line</source>
+        <target>Please add one per line</target>
       </trans-unit>
       <trans-unit id="bf3be005264fb0bfe4450542f82af8cc2c5a443e" resname="Please paste the embed code here">
         <source>Please paste the embed code here</source>
