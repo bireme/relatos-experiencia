@@ -3,281 +3,722 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% trans %}Experiences{% endtrans %}</title>
+    <title>{% trans %}Experiences{% endtrans %}: {{ submission.collectionList|join('|') }}</title>
     <style>
-        *{
-            font-family: sans-serif;
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
         }
-        h1, h2, h3, h4, h5, h6{
-            font-family: "Roboto", sans-serif;
+
+        html {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
         }
-        ul{
+
+        body {
+            margin: 10px 0 0 0 ;
+            background: #fff;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Roboto", Arial, Helvetica, sans-serif;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        ul {
             margin: 0;
             padding: 0;
         }
-        a{
-            word-wrap: break-word;
+
+        a {
+            overflow-wrap: anywhere;
         }
-        .mt-20{
-            margin-top: 20px;
-        }
-        .mb-20{
-            margin-bottom: 20px;
-        }
-        .color1{
-            color: #0027cd;
-        }
-        .data-update{
-            float: right;
-            font-size: 14px;
-        }
+
         hr {
-            border: 0;
             height: 1px;
-            background: #d9d9d9;
             margin: 20px 0;
+            border: 0;
+            background: #d9d9d9;
         }
-        .container{
-            width: 72%;
-            margin: auto;
+        #main-title{
+            font-size: 32px;
+            margin: 30px auto;
         }
-        .list-tag {
-            display: table;
-            list-style: none;
-            white-space: nowrap;
+        #main-title small{
+            font-size: 20px;
         }
-        .list-tag li{
-            background-color: #ffcf00;
-            color: #333;
-            display: inline-block;
-            padding: 4px 20px;
-            border-radius: 8px;
-            margin: 0 5px 10px 0;
-            font-size: 12px;
-            float: left;
-            white-space: nowrap;
+        .content-container {
+            width: 90%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .cards {
+
+        .section-spacing {
+            margin-top: 50px;
+        }
+
+        #hero {
             display: -webkit-box;
             display: -webkit-flex;
             display: flex;
-            gap: 20px;
-            align-items: stretch; /* Todos com a mesma altura */
-            flex-wrap: wrap;
+            -webkit-box-align: end;
+            -webkit-align-items: flex-end;
+            align-items: flex-end;
+            min-height: 430px;
+            margin: 20px 0 10px;
+            padding: 40px;
+            overflow: hidden;
+            border-radius: 10px;
+            background:
+            linear-gradient(
+                to top,
+                rgba(20, 25, 24, 0.92) 0%,
+                rgba(20, 25, 24, 0.60) 32%,
+                rgba(20, 25, 24, 0.15) 70%,
+                rgba(20, 25, 24, 0.02) 100%
+            ),
+            url("{{ home_url }}/bundles/proethos2core/img/capa-relato.jpg") center / cover no-repeat;
+            /*url("{% for file in submission.attachments if file.uploadType.slug == 'cover' %}{{ absolute_url(asset(file.uri)) }}{% endfor %}") center / cover no-repeat;*/
         }
-        .card {
-            -webkit-box-flex: 1 1 calc(25% - 20px);
-            -webkit-flex: 1 1 calc(25% - 20px);
-            flex: 1 1 calc(25% - 20px);
-            border: 1px solid #d9d9d9;
-            border-radius: 8px;
-            padding: 10px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            margin-right: 20px;
-            width: 23.5%;
-        }
-        .card:last-child {
-            margin-right: 0;
-        }
-        .card h3 {
-            margin: 0 0 5px;
-            font-size: 18px;
-            font-weight: 700;
-        }
-        .card p {
+
+        #hero h1 {
+            width: 85%;
+            max-width: 900px;
             margin: 0;
-            color: #555;
-            line-height: 1.6;
+            color: #fff;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.15;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
         }
-        .card-secton{
-            border: 1px solid #d9d9d9;
+
+        .update-date {
+            float: right;
+            font-size: 14px;
+        }
+
+        .tag-list li {
+            display: inline-block;
+            margin: 0 5px 10px 0;
+            padding: 2px 20px;
             border-radius: 8px;
-            padding: 10px 20px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
+            background: #ffcf00;
+            color: #333;
+            font-size: 12px;
         }
-        .fotos ul{
+
+        #experience-summary {
+            padding: 10px 20px;
+            border: 2px solid #d9d9d9;
+            border-radius: 16px;
+            background: #ebebeb;
+            width: 50%;
+            margin-top: 30px;
+            display: block;
+            font-size: .9rem;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            max-width: calc(100% - 18px);
+            margin: 30px 0 24px;
+            padding: 11px 34px 11px 24px;
+            border-radius: 10px 28px 28px 10px;
+            background: linear-gradient(
+                90deg,
+                #040284 0%,
+                #0a05c9 62%,
+                #5554fd 100%
+            );
+            box-shadow: 0 6px 16px rgba(52, 66, 63, 0.14);
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .section-title::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 12px;
+            height: 62%;
+            transform: translate(-45%, -50%);
+            border-radius: 12px;
+            background: #ffcf00;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            right: 16px;
+            bottom: -5px;
+            width: 34px;
+            height: 5px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.72);
+        }
+
+        .content-image {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .content-image img {
+            max-width: 100%;
+            margin-bottom: 20px;
+            border-radius: 16px;
+        }
+
+        .image-gallery {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin: 50px -8px;
+        }
+
+        .image-gallery img {
+            display: block;
+            height: 250px;
+            border-radius: 12px;
+            object-fit: cover;
+            max-width: 100%;
+        }
+
+        .image-gallery img:first-child:last-child {
+            width: 100%;
+        }
+
+        .image-gallery img:not(:first-child:last-child) {
+            width: 31.333%;
+            margin: 0 1%;
+        }
+
+        .video-grid {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-left: -12px;
+            margin-right: -12px;
+        }
+
+        .video-item {
+            width: 50%;
+            padding: 0 12px;
+            box-sizing: border-box;
+        }
+
+        .video-item iframe {
+            display: block;
+            width: 100%;
+            height: 300px;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        .video-item:only-child {
+            width: 50%;
+            margin-left: 25%;
+        }
+
+        .print-video {
             display: none;
         }
-        .olinks li{
+
+        .file-grid {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-align: start;
+            -webkit-align-items: flex-start;
+            align-items: flex-start;
+        }
+
+
+        .file-item {
+            width: 150px;
+            margin: 0 24px 24px 0;
+            text-align: center;
+        }
+
+        .file-item a {
+            color: #222;
+            text-decoration: none;
+        }
+
+        .file-icon {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 10px;
+            border: 1px solid #f2f2f2;
+            border-radius: 8px;
+            background: #d9d9d9;
+        }
+
+        .file-icon:hover {
+            border-color: #d9d9d9;
+            background: #f2f2f2;
+        }
+
+        .file-icon svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .file-title {
+            display: block;
+            font-size: 14px;
+            line-height: 1.3;
+        }
+
+        .file-url {
+            display: none;
+        }
+
+        .related-links li {
             margin-bottom: 10px;
         }
-        #footer{
-            text-align: center;
-            margin: 20px  auto;
+
+        .member-badge {
+            margin-right: 10px;
+            padding: 2px 5px;
+            border-radius: 50%;
+            background: #ffcf00;
+            font-size: 13px;
         }
-        #footer img{
+
+        #page-footer {
+            margin: 50px auto 20px;
+            text-align: center;
+        }
+
+        #page-footer img {
             height: 50px;
         }
-        .m-badge{
-            background: #ffcf00;
-            border-radius: 50%;
-            padding: 2px 5px;
-            margin-right: 10px;
-            font-size: 13px;
-            vertical-align: top;
+        .clear{
+            clear: both;
         }
-        .m-list{
-            margin: 0;
-            padding: 0 10px;
-            font-size: 13px;
+        #logo-relato{
+            height: 100px;
+            float: right;
+            border: 1px solid #f2f2ff;
+            background: #fff;
+            padding: 5px;
+            border-radius: 12px;
         }
-        .m-list li{
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-        }
-        @media (max-width: 992px){
-            .container{
+
+        @media (max-width: 992px) {
+            .content-container {
+                width: calc(100% - 32px);
+            }
+
+            #hero {
+                min-height: 360px;
+                padding: 28px;
+            }
+
+            #hero h1 {
                 width: 100%;
             }
-            .card {
-                flex: 1 1 calc(50% - 20px);
+
+            .video-grid {
+                grid-template-columns: 1fr;
             }
+
+            .video-item:only-child {
+                width: 100%;
+            }
+            #experience-summary{
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #hero {
+                min-height: 320px;
+                padding: 22px;
+            }
+
+            #hero h1 {
+                font-size: 25px;
+                line-height: 1.2;
+            }
+
+            .section-title {
+                display: block;
+                max-width: 100%;
+                padding: 10px 20px;
+                border-radius: 8px 20px 20px 8px;
+                font-size: 24px;
+            }
+
+            .section-title::before {
+                width: 8px;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 16mm 15mm 20mm;
         }
         @media print {
-            .container{
+
+            img {
+                max-width: 100%;
+            }
+            html,
+            body {
+                font-size: 14px;
+                -webkit-print-color-adjust: exact;
+            }
+            body{
+                background: none;
+            }
+            .content-container {
                 width: 100%;
+                padding: 0 25px;
+                max-width: none;
             }
-            .card {
-                flex: 1 1 calc(50% - 20px);
+
+            #hero {
+                min-height: auto;
+                margin-top: 0;
+                padding: 150px 20px 20px;
+                page-break-inside: avoid;
+                break-inside: avoid;
             }
-            .fotos img{
+
+            #hero h1 {
+                width: 100%;
+                max-width: none;
+                font-size: 24px;
+                text-shadow: none;
+            }
+
+            .update-date {
+                font-size: 12px;
+            }
+
+            .tag-list li {
+                font-size: 10px;
+            }
+
+            .section-title {
+                page-break-after: avoid;
+                break-after: avoid;
+                padding: 8px 18px;
+                background: #efefef;
+                box-shadow: none;
+                color: #222;
+                font-size: 22px;
+            }
+
+            .section-title::before {
+                background: #999;
+            }
+
+            .section-title::after {
                 display: none;
+            }
+
+            p,
+            li,
+            .content-image,
+            .image-gallery,
+            .file-item,
+            .video-item {
+                orphans: 3;
+                widows: 3;
+            }
+
+            .content-image,
+            .image-gallery,
+            #experience-summary,
+            .file-item,
+            .video-item {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            .video-grid,
+            .file-grid {
+                display: block;
+            }
+
+            .video-item {
+                width: 100% !important;
+                margin-bottom: 12px;
+            }
+
+            .video-screen {
+                display: none;
+            }
+
+            .print-video {
+                display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+                -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+                
+            }
+
+            .print-video img {
+                width: 110px;
+                margin-right: 12px;
+                height: 62px;
+                border: 1px solid #ddd;
+                object-fit: cover;
+            max-width: 100%;
+            }
+
+            .print-video a {
+                font-size: 11px;
+            }
+
+            .file-item {
+                display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+                -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+                
+                width: 100%;
+                margin-bottom: 8px;
+                text-align: left;
+            }
+
+            .file-item a {
+                display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+                -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+                
+            }
+
+            .file-icon {
+                width: 28px;
+                margin-right: 10px;
+                height: 28px;
+                margin: 0;
+                border: 0;
+            }
+
+            .file-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .file-title {
+                font-size: 11px;
+            }
+
+            .file-url {
+                display: inline;
+                margin-left: 8px;
+                color: #555;
+                font-size: 10px;
+            }
+
+            .member-badge {
+                font-size: 11px;
+            }
+
+            #page-footer {
+                display: none;
+            }
+            #experience-summary{
+                width: 60%;
+            }
+            #logo-relato{
+                height: 60px;
+            }
+            #main-title{
+                font-size: 20px;
+                margin: 20px auto;
+            }
+            #main-title small{
+                font-size: 14px;
+            }
+        }
+        body{
+            background: url("{{ home_url }}/bundles/proethos2core/img/bg-relato.jpg") center top;
+            background-size: 100%;
+        }
+        @media print {
+            @page {
+                size: A4;
+                margin-top: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <section class="container">
-        <b>{% trans %}Experiences{% endtrans %}:</b>
-        <div class="data-update">{% trans %}Updated in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</div>
-        <h1 class="color1">{{ submission.title }}</h1>
-        <ul class="list-tag">
+    <div id="main-title" class="content-container">
+        <!-- <img src="logo-relato.jpg" id="logo-relato" alt="logo relato"> -->
+        <b><small>{% trans %}Experiences{% endtrans %}:</small></b> <br />
+        {% for collection in submission.collectionList %}
+            <b>{{ collection }}</b> <br />
+        {% endfor %}
+        <div class="clear"></div>
+    </div>
+    <section class="content-container">
+        <div id="hero">
+            <h1>{{ submission.title }}</h1>
+        </div>
+    </section>
+
+    <section class="container"><section class="content-container ">
+        <div class="update-date clear">{% trans %}Updated in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</div>
+        <br>        
+        <br>        
+    </section>
+    
+    <section class="content-container clear">
+        <ul class="tag-list">
             {% for descriptor in submission.descriptorsList %}
             <li>{{ descriptor|replace({"\r\n": " ","\n": " ","\r": " "}) }}</li>
             {% endfor %}
         </ul>
-        <ul class="list-tag">
+        <ul class="tag-list">
             {% for keyword in submission.keywordsList %}
             <li>{{ keyword }}</li>
             {% endfor %}
         </ul>
     </section>
-    <section class="container">
-        <div class="cards mt-20 mb-20">
-            <div class="card">
-                <h3>{% trans %}Where did it happen?{% endtrans %}</h3>
-                {% if submission.context %}
-                    <p>{{ submission.context|raw }}</p>
-                {% endif %}
-                {% if submission.city %}
-                    <p>{{ submission.city }}{% if submission.region %} - {{ submission.region }}{% endif %}{% if submission.country %}, {{ submission.country.name }}{% endif %}</p>
-                {% endif %}
-            </div>
 
-            <div class="card">
-                <h3>{% trans %}Who participates?{% endtrans %}</h3>
-                {% for participant in submission.participantsList|sort((a, b) => b.name <=> a.name) %}
-                <p>{{ participant }}</p>
-                {% endfor %}
-            </div>
+    <section class="content-container">
+        <div id="experience-summary">
+            <h3>{% trans %}Where did it happen?{% endtrans %}</h3>
+            {% if submission.context %}
+                <p>{{ submission.context|raw }}</p>
+            {% endif %}
+            {% if submission.city %}
+                <p>{{ submission.city }}{% if submission.region %} - {{ submission.region }}{% endif %}{% if submission.country %}, {{ submission.country.name }}{% endif %}</p>
+            {% endif %}
 
-            <div class="card">
-                <h3>{% trans %}Experience Status{% endtrans %}:</h3>
-                <p>{{ status[submission.status] }}</p>
-            </div>
+            <h3>{% trans %}Experience Status{% endtrans %}:</h3>
+            <p>{{ status[submission.status] }}</p>
 
-            <div class="card">
-                <h3>{% trans %}When was it initiated and implemented?{% endtrans %}</h3>
-                <p>{{ submission.startDate|date("d/m/Y") }} - {% if not submission.isCurrentDate %}{{ submission.endDate|date("d/m/Y") }}{% endif %}</p>
-            </div>
+            <h3>{% trans %}When was it initiated and implemented?{% endtrans %}</h3>
+            <p>{{ submission.startDate|date("d/m/Y") }} - {% if not submission.isCurrentDate %}{{ submission.endDate|date("d/m/Y") }}{% endif %}</p>
         </div>
     </section>
-    <section class="container card-secton">
-        <h2>{% trans %}Members{% endtrans %}</h2>
-        {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
-        {{ member.name }} <sup class="m-badge">{{ loop.index }}</sup>
-        {% endfor %}
-        <hr>
-        <div class="m-list">
-            {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
-                {% if member.filiation %}<sup class="m-badge">{{ loop.index }}</sup> {{ member.filiation }} <br><br>{% endif %}
-            {% endfor %}
-        </div>
-    </section>
-    <section class="container card-secton">
-        <h2>{% trans %}Presentation/Introduction{% endtrans %}</h2>
+
+    <section class="content-container">
+        <h2 class="section-title">{% trans %}Presentation/Introduction{% endtrans %}</h2>
         <p>{{ submission.introduction|raw }}</p>
-    </section>    
-    <section class="container card-secton">
-        <h2>{% trans %}What is the reason for this experiment?{% endtrans %}</h2>
+
+        <h2 class="section-title">{% trans %}What is the reason for this experiment?{% endtrans %}</h2>
         <p>{{ submission.description|raw }}</p>
-    </section>    
-    <section class="container card-secton">
-        <h2>{% trans %}What is the goal of this experiment?{% endtrans %}</h2>
+
+        <h2 class="section-title">{% trans %}What is the goal of this experiment?{% endtrans %}</h2>
         <p>{{ submission.objectives|raw }}</p>
-    </section>    
-    <section class="container card-secton">
-        <h2>{% trans %}How is this experience taking shape?{% endtrans %}</h2>
+
+        <h2 class="section-title">{% trans %}How is this experience taking shape?{% endtrans %}</h2>
         <p>{{ submission.resources|raw }}</p>
-    </section>    
-    <section class="container card-secton">
-        <h2>{% trans %}What happened along the way?{% endtrans %}</h2>
+
+        <h2 class="section-title">{% trans %}What happened along the way?{% endtrans %}</h2>
         <p>{{ submission.challengesInformation|raw }}</p>
-    </section>    
-    <section class="container card-secton">
-        <h2>{% trans %}What started to change?{% endtrans %}</h2>
+
+        <h2 class="section-title">{% trans %}What started to change?{% endtrans %}</h2>
         <p>{{ submission.mainResults|raw }}</p>
-    </section>    
-    <section class="container card-secton">
-        <h2>{% trans %}What does this experience teach us?{% endtrans %}</h2>
+
+        <h2 class="section-title">{% trans %}What does this experience teach us?{% endtrans %}</h2>
         <p>{{ submission.lessonsLearned|raw }}</p>
-    </section>    
-    <section class="container card-secton">
-        <h2>{% trans %}Learn more{% endtrans %}:</h2>
-        <hr>
+
+        <h2 class="section-title">{% trans %}Notes{% endtrans %}:</h2>
+        <p>{{ submission.notes }}</p>
+
+        <h2 class="section-title">{% trans %}Learn more{% endtrans %}</h2>
+
         <h3>{% trans %}Images{% endtrans %}</h3>
-        <ol class="olinks">
+        <div class="image-gallery">
             {% for file in submission.attachments if file.uploadType.slug == 'image' %}
-            <li><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ absolute_url(asset(file.uri)) }}</a></li>
+            <img src="{{ absolute_url(asset(file.uri)) }}" alt="">
             {% endfor %}
-        </ol>
-    </section>    
-    <section class="container card-secton">
+        </div>
+
         <h3>{% trans %}Videos{% endtrans %}</h3>
-        <ol class="olinks">
+        <div class="video-grid">
             {% for file in submission.attachments if file.uploadType.slug == 'video' %}
-            <li><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ absolute_url(asset(file.uri)) }}</a></li>
+            <div class="video-item">
+                <div class="video-screen">
+                    <iframe src="{{ absolute_url(asset(file.uri)) }}" title="Apresentação da experiência" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
             {% endfor %}
-        </ol>
-    </section>    
-    <section class="container card-secton">
+        </div>
+
         <h3>{% trans %}Files{% endtrans %}</h3>
-        {% if submission.fullText %}
-        <p>{{ submission.fullText }}</p>
-        {% endif %}
-        <ol class="olinks">
+        <div class="file-grid">
             {% for file in submission.attachments if file.uploadType.slug == 'document' %}
-            <li><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ absolute_url(asset(file.uri)) }}</a></li>
+            <div class="file-item">
+                <a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">
+                    <span class="file-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 20h14"></path></svg></span>
+                    <span class="file-title">{{ file.filename }}</span>
+                </a>
+                <span class="file-url"><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ file.filename }}</a></span>
+            </div>
             {% endfor %}
-        </ol>
-    </section>    
-    <section class="container card-secton">
+        </div>
+
         <h3>{% trans %}Related Links{% endtrans %}:</h3>
-        <ol class="olinks">
+        <ol class="related-links">
             {% for url in submission.relatedLinksList %}
             <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
             {% endfor %}
         </ol>
-    </section>
-    <section class="container card-secton">
-        <h2>{% trans %}Notes{% endtrans %}:</h2>
-        <p>{{ submission.notes }}</p>
+
+        <h2 class="section-title">{% trans %}Members{% endtrans %}</h2>
+        <div>
+            {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
+                {{ member.name }} <sup class="member-badge">{{ loop.index }}</sup>
+            {% endfor %}
+        </div>
+
+        <hr />
+
+        <div>
+            {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
+                {% if member.filiation %}<sup class="member-badge">{{ loop.index }}</sup> {{ member.filiation }} <br /><br />{% endif %}
+            {% endfor %}
+        </div>
     </section>
 
-    <footer id="footer" class="container">
+    <footer id="page-footer" class="content-container">
         <img src="{{ home_url }}/bundles/proethos2core/img/v_bir_color-{{ app.request.locale }}.png" alt="logo footer">
     </footer>
 </body>
