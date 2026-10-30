@@ -485,7 +485,6 @@ class NewSubmissionController extends Controller
             // checking required files
             $required_fields = array(
                 'introduction',
-                'participants',
                 'description',
                 'objectives',
             );
@@ -518,7 +517,6 @@ class NewSubmissionController extends Controller
             // adding fields to model
             $submission->setCalls($post_data['call']);
             $submission->setIntroduction($post_data['introduction']);
-            $submission->setParticipants($post_data['participants']);
             $submission->setDescription($post_data['description']);
             $submission->setObjectives($post_data['objectives']);
             $submission->setResources($post_data['resources']);
@@ -1164,22 +1162,6 @@ class NewSubmissionController extends Controller
         $text = $translator->trans('End date and/or current');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getEndDate()) and !$submission->getIsCurrentDate()) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        $text = $translator->trans("Presentation/Introduction");
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getIntroduction())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
-
-        $text = $translator->trans("Participants");
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getParticipants())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }

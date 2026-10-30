@@ -122,17 +122,6 @@
 
             <hr />
 
-            <b>{% trans %}Who participates?{% endtrans %}</b>
-            {% if protocol.mainSubmission.participants %}
-                <ul>
-                {% for participant in protocol.mainSubmission.participantsList|sort((a, b) => b.name <=> a.name) %}
-                    <li>{{ participant }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-
-            <hr />
-
             <b>{% trans %}Issue{% endtrans %}/{% trans %}Situation{% endtrans %}:</b>
             <p>{{ protocol.mainSubmission.description|raw }}</p>
 
