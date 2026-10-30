@@ -226,13 +226,6 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $participants;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
     private $description;
 
     /** 
@@ -1796,6 +1789,59 @@ class Submission extends Base
             if (filter_var($link, FILTER_VALIDATE_URL)) {
                 $links[] = $link;
             }
+        }
+
+        return $links;
+    }
+
+    /**
+     * Get getOtherVideosLinksList
+     *
+     * @return array
+     */
+    public function getOtherVideosLinksList() {
+        $dom = new \DOMDocument();
+
+        // Libxml_use_internal_errors evita avisos de HTML5 mal formatado
+        libxml_use_internal_errors(true);
+
+        // Carrega o HTML garantindo suporte a caracteres UTF-8
+        $dom->loadHTML(mb_convert_encoding($this->other_videos, 'HTML-ENTITIES', 'UTF-8'));
+
+        libxml_clear_errors();
+
+        $links = array();
+        $iframes = $dom->getElementsByTagName('iframe');
+
+        foreach ($iframes as $iframe) {
+            $url = "";
+            $thumb_url = "";
+
+            // 1. Extrai o link que está dentro do atributo src="..." do iframe
+            $src = $iframe->getAttribute('src');
+
+            if (filter_var($src, FILTER_VALIDATE_URL)) {
+                // 2. Extrai o ID do vídeo (11 caracteres) a partir da URL encontrada
+                $idPattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/ ]{11})/i';
+
+                if (preg_match($idPattern, $src, $idMatches)) {
+                    $videoId = $idMatches[1];
+                    $url = "https://www.youtube.com/watch?v={$videoId}";
+                    $thumb_url = "https://img.youtube.com/vi/{$videoId}/maxresdefault.jpg";
+
+                    // Verifica se a imagem em HD existe (procura pelo status 200 na resposta)
+                    $headers = @get_headers($thumb_url);
+                    if ($headers && strpos($headers[0], '200') !== true) {
+                        // Se não existir, retorna a imagem de alta qualidade padrão (sempre disponível)
+                        $thumb_url = "https://img.youtube.com/vi/{$videoId}/hqdefault.jpg";
+                    }
+                }
+            }
+
+            $links[] = array(
+                "url" => $url,
+                "thumb_url" => $thumb_url
+            );
         }
 
         return $links;

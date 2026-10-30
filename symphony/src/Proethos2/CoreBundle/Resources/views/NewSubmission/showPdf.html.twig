@@ -80,16 +80,25 @@
             padding: 40px;
             overflow: hidden;
             border-radius: 10px;
-            background:
-            linear-gradient(
+            background: -webkit-linear-gradient(
                 to top,
                 rgba(20, 25, 24, 0.92) 0%,
                 rgba(20, 25, 24, 0.60) 32%,
                 rgba(20, 25, 24, 0.15) 70%,
                 rgba(20, 25, 24, 0.02) 100%
-            ),
-            url("{{ home_url }}/bundles/proethos2core/img/capa-relato.jpg") center / cover no-repeat;
-            /*url("{% for file in submission.attachments if file.uploadType.slug == 'cover' %}{{ absolute_url(asset(file.uri)) }}{% endfor %}") center / cover no-repeat;*/
+            );
+            background: linear-gradient(
+                to top,
+                rgba(20, 25, 24, 0.92) 0%,
+                rgba(20, 25, 24, 0.60) 32%,
+                rgba(20, 25, 24, 0.15) 70%,
+                rgba(20, 25, 24, 0.02) 100%
+            );
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url("{{ home_url }}/bundles/proethos2core/img/capa-relato.jpg");
+            /*background-image: url("{% for file in submission.attachments if file.uploadType.slug == 'cover' %}{{ absolute_url(asset(file.uri)) }}{% endfor %}");*/
         }
 
         #hero h1 {
@@ -129,13 +138,26 @@
             font-size: .9rem;
         }
 
+        .clear {
+            clear: both;
+        }
+
         .section-title {
             position: relative;
             display: inline-block;
+            float: left;          /* Força o H2 a encolher até o tamanho do texto */
+            clear: both;          /* Garante que o conteúdo seguinte quebre para a linha de baixo */
+            white-space: nowrap;  /* Impede que o texto quebre linha internamente */
             max-width: calc(100% - 18px);
             margin: 30px 0 24px;
             padding: 11px 34px 11px 24px;
             border-radius: 10px 28px 28px 10px;
+            background: -webkit-linear-gradient(
+                90deg,
+                #040284 0%,
+                #0a05c9 62%,
+                #5554fd 100%
+            );
             background: linear-gradient(
                 90deg,
                 #040284 0%,
@@ -156,6 +178,7 @@
             left: 0;
             width: 12px;
             height: 62%;
+            -webkit-transform: translate(-45%, -50%);
             transform: translate(-45%, -50%);
             border-radius: 12px;
             background: #ffcf00;
@@ -184,37 +207,47 @@
         }
 
         .image-gallery {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-flex-wrap: wrap;
-            flex-wrap: wrap;
-            margin: 50px -8px;
+            display: block;
+            margin: 50px 0;
+            width: 100%;
+            letter-spacing: 0;
+            word-spacing: 0;
         }
 
         .image-gallery img {
-            display: block;
+            display: inline-block; /* Alinha lado a lado */
+            vertical-align: top;   /* Alinha todas pelo topo */
             height: 250px;
             border-radius: 12px;
-            object-fit: cover;
-            max-width: 100%;
+            
+            /* Evita quebras de página feias */
+            -webkit-page-break-inside: avoid;
+            page-break-inside: avoid;
         }
 
+        /* Condição quando existe apenas UMA imagem na galeria */
         .image-gallery img:first-child:last-child {
             width: 100%;
+            height: auto;
+            margin: 0;
+            box-sizing: border-box;
         }
 
+        /* Caso sejam várias imagens lado a lado */
         .image-gallery img:not(:first-child:last-child) {
             width: 31.333%;
-            margin: 0 1%;
+            margin-bottom: 16px; /* Adicionado 16px abaixo para o caso de quebrar linha se houver mais de 3 imagens */
+            box-sizing: border-box;
+        }
+
+        .image-gallery img:not(:first-child):not(:last-child) {
+            margin-top: 0;
+            margin-right: 2%;
+            margin-left: 2%;
         }
 
         .video-grid {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-flex-wrap: wrap;
-            flex-wrap: wrap;
+            display: block;
             margin-left: -12px;
             margin-right: -12px;
         }
@@ -222,6 +255,7 @@
         .video-item {
             width: 50%;
             padding: 0 12px;
+            margin-bottom: 24px;
             box-sizing: border-box;
         }
 
@@ -236,6 +270,11 @@
         .video-item:only-child {
             width: 50%;
             margin-left: 25%;
+        }
+
+        .video-flex {
+            display: inline-block;
+            vertical-align: middle;
         }
 
         .print-video {
@@ -253,11 +292,15 @@
             align-items: flex-start;
         }
 
-
         .file-item {
             width: 150px;
             margin: 0 24px 24px 0;
             text-align: center;
+
+            /* SOLUÇÃO PARA A SOBREPOSIÇÃO: Força a quebra do texto */
+            word-wrap: break-word;       /* Padrão antigo aceito pelo WebKit */
+            overflow-wrap: break-word;   /* Padrão moderno */
+            word-break: break-all;       /* Força a quebra mesmo no meio de palavras longas/links */
         }
 
         .file-item a {
@@ -301,6 +344,20 @@
 
         .file-url {
             display: none;
+        }
+
+        /* Força o link a ter uma área física clicável no motor do WebKit antigo */
+        .pdf-link, .video-link {
+            display: inline-block !important;
+            position: relative !important;
+            z-index: 10 !important;
+            text-decoration: underline; /* Ajuda o wkhtmltopdf a identificar como link */
+            pointer-events: auto !important;
+        }
+
+        /* Evita que os spans internos 'engulam' o clique */
+        .pdf-link span, .video-link span {
+            pointer-events: none !important; 
         }
 
         .related-links li {
@@ -389,8 +446,8 @@
             size: A4;
             margin: 16mm 15mm 20mm;
         }
-        @media print {
 
+        @media print {
             img {
                 max-width: 100%;
             }
@@ -484,12 +541,11 @@
 
             .print-video {
                 display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
+                display: -webkit-flex;
+                display: flex;
                 -webkit-box-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-                
+                -webkit-align-items: center;
+                align-items: center;
             }
 
             .print-video img {
@@ -498,7 +554,7 @@
                 height: 62px;
                 border: 1px solid #ddd;
                 object-fit: cover;
-            max-width: 100%;
+                max-width: 100%;
             }
 
             .print-video a {
@@ -507,12 +563,11 @@
 
             .file-item {
                 display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
+                display: -webkit-flex;
+                display: flex;
                 -webkit-box-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-                
+                -webkit-align-items: center;
+                align-items: center;
                 width: 100%;
                 margin-bottom: 8px;
                 text-align: left;
@@ -520,12 +575,11 @@
 
             .file-item a {
                 display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
+                display: -webkit-flex;
+                display: flex;
                 -webkit-box-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-                
+                -webkit-align-items: center;
+                align-items: center;
             }
 
             .file-icon {
@@ -601,9 +655,9 @@
     </section>
 
     <section class="container"><section class="content-container ">
-        <div class="update-date clear">{% trans %}Updated in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}</div>
-        <br>        
-        <br>        
+        <div class="update-date clear">{% trans %}Updated in{% endtrans %} {{ "now"|date("d/m/Y") }}</div>
+        <br />
+        <br />
     </section>
     
     <section class="content-container clear">
@@ -621,10 +675,11 @@
 
     <section class="content-container">
         <div id="experience-summary">
-            <h3>{% trans %}Where did it happen?{% endtrans %}</h3>
             {% if submission.context %}
+                <h3>{% trans %}Where did it happen?{% endtrans %}</h3>
                 <p>{{ submission.context|raw }}</p>
             {% endif %}
+
             {% if submission.city %}
                 <p>{{ submission.city }}{% if submission.region %} - {{ submission.region }}{% endif %}{% if submission.country %}, {{ submission.country.name }}{% endif %}</p>
             {% endif %}
@@ -638,84 +693,135 @@
     </section>
 
     <section class="content-container">
+        {% if submission.introduction %}
         <h2 class="section-title">{% trans %}Presentation/Introduction{% endtrans %}</h2>
-        <p>{{ submission.introduction|raw }}</p>
+        <p class="clear">{{ submission.introduction|raw }}</p>
+        {% endif %}
 
+        {% if submission.description %}
         <h2 class="section-title">{% trans %}What is the reason for this experiment?{% endtrans %}</h2>
-        <p>{{ submission.description|raw }}</p>
+        <p class="clear">{{ submission.description|raw }}</p>
+        {% endif %}
 
+        {% if submission.objectives %}
         <h2 class="section-title">{% trans %}What is the goal of this experiment?{% endtrans %}</h2>
-        <p>{{ submission.objectives|raw }}</p>
+        <p class="clear">{{ submission.objectives|raw }}</p>
+        {% endif %}
 
+        {% if submission.resources %}
         <h2 class="section-title">{% trans %}How is this experience taking shape?{% endtrans %}</h2>
-        <p>{{ submission.resources|raw }}</p>
+        <p class="clear">{{ submission.resources|raw }}</p>
+        {% endif %}
 
+        {% if submission.challengesInformation %}
         <h2 class="section-title">{% trans %}What happened along the way?{% endtrans %}</h2>
-        <p>{{ submission.challengesInformation|raw }}</p>
+        <p class="clear">{{ submission.challengesInformation|raw }}</p>
+        {% endif %}
 
+        {% if submission.mainResults %}
         <h2 class="section-title">{% trans %}What started to change?{% endtrans %}</h2>
-        <p>{{ submission.mainResults|raw }}</p>
+        <p class="clear">{{ submission.mainResults|raw }}</p>
+        {% endif %}
 
+        {% if submission.lessonsLearned %}
         <h2 class="section-title">{% trans %}What does this experience teach us?{% endtrans %}</h2>
-        <p>{{ submission.lessonsLearned|raw }}</p>
+        <p class="clear">{{ submission.lessonsLearned|raw }}</p>
+        {% endif %}
 
+        {% if submission.notes %}
         <h2 class="section-title">{% trans %}Notes{% endtrans %}:</h2>
-        <p>{{ submission.notes }}</p>
+        <p class="clear">{{ submission.notes|raw }}</p>
+        {% endif %}
 
         <h2 class="section-title">{% trans %}Learn more{% endtrans %}</h2>
 
-        <h3>{% trans %}Images{% endtrans %}</h3>
+        <div class="clear"></div>
+
+        <h2>{% trans %}Images{% endtrans %}</h2>
         <div class="image-gallery">
             {% for file in submission.attachments if file.uploadType.slug == 'image' %}
             <img src="{{ absolute_url(asset(file.uri)) }}" alt="">
             {% endfor %}
         </div>
 
-        <h3>{% trans %}Videos{% endtrans %}</h3>
+        <h2>{% trans %}Videos{% endtrans %}</h2>
         <div class="video-grid">
             {% for file in submission.attachments if file.uploadType.slug == 'video' %}
+            <div class="video-item video-flex">
+                <span class="video-flex">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
+                    </svg>
+                </span>
+                <span class="video-flex"><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ file.filename }}</a></span>
+            </div>
+            {% endfor %}
+            {% for video in submission.otherVideosLinksList %}
             <div class="video-item">
-                <div class="video-screen">
-                    <iframe src="{{ absolute_url(asset(file.uri)) }}" title="Apresentação da experiência" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
+                <a href="{{ video.url }}" target="_blank" class="video-link"><img src="{{ video.thumb_url }}" alt="thumbnail"></a>
+                <span class="video-flex"><a href="{{ video.url }}" target="_blank">{{ video.url }}</a></span>
             </div>
             {% endfor %}
         </div>
 
-        <h3>{% trans %}Files{% endtrans %}</h3>
+        <h2>{% trans %}Files{% endtrans %}</h2>
         <div class="file-grid">
             {% for file in submission.attachments if file.uploadType.slug == 'document' %}
             <div class="file-item">
-                <a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">
-                    <span class="file-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 20h14"></path></svg></span>
-                    <span class="file-title">{{ file.filename }}</span>
+                <a href="{{ absolute_url(asset(file.uri)) }}" target="_blank" class="pdf-link">
+                    <span class="file-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3v12"></path>
+                            <path d="m7 10 5 5 5-5"></path>
+                            <path d="M5 20h14"></path>
+                        </svg>
+                    </span>
                 </a>
+                <span class="file-title" style="display: inline-block; vertical-align: middle;">{{ file.filename }}</span>
+                <span class="file-url"><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ file.filename }}</a></span>
+            </div>
+            {% endfor %}
+            {% for file in submission.attachments if file.uploadType.slug == 'others' %}
+            <div class="file-item">
+                <a href="{{ absolute_url(asset(file.uri)) }}" target="_blank" class="pdf-link">
+                    <span class="file-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3v12"></path>
+                            <path d="m7 10 5 5 5-5"></path>
+                            <path d="M5 20h14"></path>
+                        </svg>
+                    </span>
+                </a>
+                <span class="file-title" style="display: inline-block; vertical-align: middle;">{{ file.filename }}</span>
                 <span class="file-url"><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ file.filename }}</a></span>
             </div>
             {% endfor %}
         </div>
 
-        <h3>{% trans %}Related Links{% endtrans %}:</h3>
+        <h2>{% trans %}Related Links{% endtrans %}:</h2>
         <ol class="related-links">
             {% for url in submission.relatedLinksList %}
             <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
             {% endfor %}
         </ol>
 
-        <h2 class="section-title">{% trans %}Members{% endtrans %}</h2>
-        <div>
-            {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
-                {{ member.name }} <sup class="member-badge">{{ loop.index }}</sup>
-            {% endfor %}
-        </div>
+        {% if submission.member %}
+            <h2 class="section-title">{% trans %}Members{% endtrans %}</h2>
+            <div class="clear">
+                {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
+                    {{ member.name }} <sup class="member-badge">{{ loop.index }}</sup>
+                {% endfor %}
+            </div>
 
-        <hr />
+            <hr />
 
-        <div>
-            {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
-                {% if member.filiation %}<sup class="member-badge">{{ loop.index }}</sup> {{ member.filiation }} <br /><br />{% endif %}
-            {% endfor %}
-        </div>
+            <div>
+                {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
+                    {% if member.filiation %}<sup class="member-badge">{{ loop.index }}</sup> {{ member.filiation }} <br /><br />{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
     </section>
 
     <footer id="page-footer" class="content-container">
