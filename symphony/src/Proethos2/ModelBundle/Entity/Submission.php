@@ -226,6 +226,13 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
+    private $participants;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
     private $description;
 
     /** 
