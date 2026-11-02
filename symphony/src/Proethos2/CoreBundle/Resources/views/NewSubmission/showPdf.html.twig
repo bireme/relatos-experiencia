@@ -119,17 +119,34 @@
             font-size: 14px;
         }
 
+        /* Container clássico para PDF */
+        .tag-list {
+            display: block;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            clear: both;
+        }
+
+        /* Itens da lista compatíveis com PDF */
         .tag-list li {
             display: inline-block;
-            margin: 0 5px 10px 0;
-            padding: 2px 20px;
+            /* vertical-align: bottom ou middle força todos os blocos a se alinharem na mesma linha de base */
+            vertical-align: bottom; 
+            
+            /* Substitutos seguros para o gap */
+            margin: 0 5px 10px 0; 
+            padding: 0 20px; /* Removemos o padding vertical para controlar estritamente por altura */
+            
+            /* Definir uma altura fixa e line-height idêntico força o texto a centralizar verticalmente no PDF */
+            height: 22px;
+            line-height: 22px; 
+            
             border-radius: 8px;
             background: #ffcf00;
             color: #333;
             font-size: 12px;
-            white-space: nowrap; /* Evita que o texto dentro da tag quebre em duas linhas */
-            vertical-align: middle;
-            line-height: 1.5;
+            white-space: nowrap;
         }
 
         #experience-summary {
