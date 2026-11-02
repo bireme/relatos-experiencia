@@ -127,6 +127,7 @@
             background: #ffcf00;
             color: #333;
             font-size: 12px;
+            white-space: nowrap; /* Evita que o texto dentro da tag quebre em duas linhas */
         }
 
         #experience-summary {
@@ -147,9 +148,9 @@
         .section-title {
             position: relative;
             display: inline-block;
-            float: left;          /* Força o H2 a encolher até o tamanho do texto */
-            clear: both;          /* Garante que o conteúdo seguinte quebre para a linha de baixo */
-            white-space: nowrap;  /* Impede que o texto quebre linha internamente */
+            float: left;         /* Força o H2 a encolher até o tamanho do texto */
+            clear: both;         /* Garante que o conteúdo seguinte quebre para a linha de baixo */
+            white-space: nowrap; /* Impede que o texto quebre linha internamente */
             max-width: calc(100% - 18px);
             margin: 30px 0 24px;
             padding: 11px 34px 11px 24px;
@@ -275,8 +276,9 @@
         }
 
         .video-flex {
-            display: inline-block;
-            vertical-align: middle;
+            display: block;
+            word-break: break-all;
+            /*vertical-align: middle;*/
         }
 
         .print-video {
@@ -382,9 +384,7 @@
         #page-footer img {
             height: 50px;
         }
-        .clear{
-            clear: both;
-        }
+
         #logo-relato{
             height: 100px;
             float: right;
@@ -643,11 +643,14 @@
 </head>
 <body>
     <div id="main-title" class="content-container">
-        <!-- <img src="logo-relato.jpg" id="logo-relato" alt="logo relato"> -->
-        <b><small>{% trans %}Experiences{% endtrans %}:</small></b> <br />
-        {% for collection in submission.collectionList %}
-            <b>{{ collection }}</b> <br />
-        {% endfor %}
+        {% if submission.collectionList %}
+            <b><small>{% trans %}Experiences{% endtrans %}:</small></b> <br />
+            {% for collection in submission.collectionList %}
+                <b>{{ collection }}</b> <br />
+            {% endfor %}
+        {% else %}
+            <b>{% trans %}Experiences{% endtrans %}</b> <br />
+        {% endif %}
         <div class="clear"></div>
     </div>
     <section class="content-container">
@@ -665,7 +668,7 @@
     <section class="content-container clear">
         <ul class="tag-list">
             {% for descriptor in submission.descriptorsList %}
-            <li>{{ descriptor|replace({"\r\n": " ","\n": " ","\r": " "}) }}</li>
+            <li>{{ descriptor|replace({"\r\n": " ","\n": " ","\r": " "})|trim }}</li>
             {% endfor %}
         </ul>
         <ul class="tag-list">
