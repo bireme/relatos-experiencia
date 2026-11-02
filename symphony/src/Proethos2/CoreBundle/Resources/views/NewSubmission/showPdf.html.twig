@@ -128,19 +128,18 @@
             clear: both;
         }
 
-        /* Itens da lista compatíveis com PDF */
         .tag-list li {
             display: inline-block;
-            /* vertical-align: bottom ou middle força todos os blocos a se alinharem na mesma linha de base */
-            vertical-align: bottom; 
             
-            /* Substitutos seguros para o gap */
-            margin: 0 5px 10px 0; 
-            padding: 0 20px; /* Removemos o padding vertical para controlar estritamente por altura */
+            /* vertical-align: middle é crucial para alinhar blocos inline-block entre si */
+            vertical-align: middle; 
             
-            /* Definir uma altura fixa e line-height idêntico força o texto a centralizar verticalmente no PDF */
-            height: 22px;
-            line-height: 22px; 
+            /* Espaçamento controlado: margens externas e padding interno simétrico */
+            margin: 0 5px 10px 0;
+            padding: 6px 20px; /* 6px acima/abaixo e 20px nas laterais */
+            
+            /* Força o navegador do PDF a calcular o tamanho com base apenas no caractere */
+            line-height: 1; 
             
             border-radius: 8px;
             background: #ffcf00;
@@ -148,6 +147,7 @@
             font-size: 12px;
             white-space: nowrap;
         }
+
 
         #experience-summary {
             padding: 10px 20px;
@@ -686,7 +686,7 @@
     <section class="content-container clear">
         <ul class="tag-list">
             {% for descriptor in submission.descriptorsList %}
-            <li>{{ descriptor|replace({"\r\n": " ","\n": " ","\r": " "})|trim }}</li>
+            <li>{{- descriptor|replace({"\r\n": " ","\n": " ","\r": " "})|trim -}}</li>
             {% endfor %}
         </ul>
         <ul class="tag-list">
