@@ -806,19 +806,29 @@
             {% endfor %}
         </ol>
 
-        {% if submission.member %}
+        {% if submission.members %}
             <h2 class="section-title">{% trans %}Members{% endtrans %}</h2>
             <div class="clear">
+                {% set count = 0 %}
+                {% for responsible in submission.responsible|sort((a, b) => b.name <=> a.name) %}
+                    {{ responsible.name }} <sup class="member-badge">{{ loop.index }}</sup>
+                    {% set count = count + 1 %}
+                {% endfor %}
                 {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
-                    {{ member.name }} <sup class="member-badge">{{ loop.index }}</sup>
+                    {{ member.name }} <sup class="member-badge">{{ loop.index + count }}</sup>
                 {% endfor %}
             </div>
 
             <hr />
 
             <div>
+                {% set count = 0 %}
+                {% for responsible in submission.responsible|sort((a, b) => b.name <=> a.name) %}
+                    {% if responsible.filiation %}<sup class="member-badge">{{ loop.index }}</sup> {{ responsible.filiation }} <br /><br />{% endif %}
+                    {% set count = count + 1 %}
+                {% endfor %}
                 {% for member in submission.members|sort((a, b) => b.name <=> a.name) %}
-                    {% if member.filiation %}<sup class="member-badge">{{ loop.index }}</sup> {{ member.filiation }} <br /><br />{% endif %}
+                    {% if member.filiation %}<sup class="member-badge">{{ loop.index + count }}</sup> {{ member.filiation }} <br /><br />{% endif %}
                 {% endfor %}
             </div>
         {% endif %}
