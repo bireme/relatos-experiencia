@@ -98,7 +98,9 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-image: url("{{ home_url }}/bundles/proethos2core/img/capa-relato.jpg");
-            /*background-image: url("{% for file in submission.attachments if file.uploadType.slug == 'cover' %}{{ absolute_url(asset(file.uri)) }}{% endfor %}");*/
+            {% for file in submission.attachments if file.uploadType.slug == 'featured-image' %}
+                background-image: url("{{ absolute_url(asset(file.uri)) }}") !important;
+            {% endfor %}
         }
 
         #hero h1 {
