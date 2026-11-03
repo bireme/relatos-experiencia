@@ -762,74 +762,107 @@
 
         <div class="clear"></div>
 
-        <h2>{% trans %}Images{% endtrans %}</h2>
-        <div class="image-gallery">
-            {% for file in submission.attachments if file.uploadType.slug == 'image' %}
-            <img src="{{ absolute_url(asset(file.uri)) }}" alt="">
-            {% endfor %}
-        </div>
+        {% set submission_images = [] %}
+        {% for file in submission.attachments if file.uploadType.slug == 'image' %}
+            {% set submission_images = submission_images|merge([file]) %}
+        {% endfor %}
 
-        <h2>{% trans %}Videos{% endtrans %}</h2>
-        <div class="video-grid">
-            {% for file in submission.attachments if file.uploadType.slug == 'video' %}
-            <div class="video-item video-flex">
-                <span class="video-flex">
-                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
-                    </svg>
-                </span>
-                <span class="video-flex"><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ file.filename }}</a></span>
+        {% if submission_images is not empty %}
+            <h2>{% trans %}Images{% endtrans %}</h2>
+            <div class="image-gallery">
+                {% for file in submission_images %}
+                    <img src="{{ absolute_url(asset(file.uri)) }}" alt="">
+                {% endfor %}
             </div>
-            {% endfor %}
-            {% for video in submission.otherVideosLinksList %}
-            <div class="video-item">
-                <a href="{{ video.url }}" target="_blank" class="video-link"><img src="{{ video.thumb_url }}" alt="thumbnail"></a>
-                <span class="video-flex"><a href="{{ video.url }}" target="_blank">{{ video.url }}</a></span>
-            </div>
-            {% endfor %}
-        </div>
+        {% endif %}
 
-        <h2>{% trans %}Files{% endtrans %}</h2>
-        <div class="file-grid">
-            {% for file in submission.attachments if file.uploadType.slug == 'document' %}
-            <div class="file-item">
-                <a href="{{ absolute_url(asset(file.uri)) }}" target="_blank" class="pdf-link">
-                    <span class="file-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 3v12"></path>
-                            <path d="m7 10 5 5 5-5"></path>
-                            <path d="M5 20h14"></path>
+        {% set submission_videos = [] %}
+        {% for file in submission.attachments if file.uploadType.slug == 'video' %}
+            {% set submission_videos = submission_videos|merge([file]) %}
+        {% endfor %}
+
+        {% set submission_other_videos = [] %}
+        {% for video in submission.otherVideosLinksList %}
+            {% set submission_other_videos = submission_other_videos|merge([video]) %}
+        {% endfor %}
+
+        {% if submission_videos is not empty or submission_other_videos is not empty %}
+            <h2>{% trans %}Videos{% endtrans %}</h2>
+            <div class="video-grid">
+                {% for file in submission_videos %}
+                <div class="video-item video-flex">
+                    <span class="video-flex">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
                         </svg>
                     </span>
-                </a>
-                <span class="file-title" style="display: inline-block; vertical-align: middle;">{{ file.filename }}</span>
-                <span class="file-url"><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ file.filename }}</a></span>
+                    <span class="video-flex"><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ file.filename }}</a></span>
+                </div>
+                {% endfor %}
+                {% for video in submission_other_videos %}
+                <div class="video-item">
+                    <a href="{{ video.url }}" target="_blank" class="video-link"><img src="{{ video.thumb_url }}" alt="thumbnail"></a>
+                    <span class="video-flex"><a href="{{ video.url }}" target="_blank">{{ video.url }}</a></span>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-            {% for file in submission.attachments if file.uploadType.slug == 'others' %}
-            <div class="file-item">
-                <a href="{{ absolute_url(asset(file.uri)) }}" target="_blank" class="pdf-link">
-                    <span class="file-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 3v12"></path>
-                            <path d="m7 10 5 5 5-5"></path>
-                            <path d="M5 20h14"></path>
-                        </svg>
-                    </span>
-                </a>
-                <span class="file-title" style="display: inline-block; vertical-align: middle;">{{ file.filename }}</span>
-                <span class="file-url"><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ file.filename }}</a></span>
-            </div>
-            {% endfor %}
-        </div>
+        {% endif %}
 
-        <h2>{% trans %}Related Links{% endtrans %}:</h2>
-        <ol class="related-links">
-            {% for url in submission.relatedLinksList %}
-            <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
-            {% endfor %}
-        </ol>
+        {% set submission_documents = [] %}
+        {% for file in submission.attachments if file.uploadType.slug == 'document' %}
+            {% set submission_documents = submission_documents|merge([file]) %}
+        {% endfor %}
+
+        {% set submission_other_documents = [] %}
+        {% for file in submission.attachments if file.uploadType.slug == 'others' %}
+            {% set submission_other_documents = submission_other_documents|merge([file]) %}
+        {% endfor %}
+
+        {% if submission_documents is not empty or submission_other_documents is not empty %}
+            <h2>{% trans %}Files{% endtrans %}</h2>
+            <div class="file-grid">
+                {% for file in submission_documents %}
+                <div class="file-item">
+                    <a href="{{ absolute_url(asset(file.uri)) }}" target="_blank" class="pdf-link">
+                        <span class="file-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3v12"></path>
+                                <path d="m7 10 5 5 5-5"></path>
+                                <path d="M5 20h14"></path>
+                            </svg>
+                        </span>
+                    </a>
+                    <span class="file-title" style="display: inline-block; vertical-align: middle;">{{ file.filename }}</span>
+                    <span class="file-url"><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ file.filename }}</a></span>
+                </div>
+                {% endfor %}
+                {% for file in submission_other_documents %}
+                <div class="file-item">
+                    <a href="{{ absolute_url(asset(file.uri)) }}" target="_blank" class="pdf-link">
+                        <span class="file-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3v12"></path>
+                                <path d="m7 10 5 5 5-5"></path>
+                                <path d="M5 20h14"></path>
+                            </svg>
+                        </span>
+                    </a>
+                    <span class="file-title" style="display: inline-block; vertical-align: middle;">{{ file.filename }}</span>
+                    <span class="file-url"><a href="{{ absolute_url(asset(file.uri)) }}" target="_blank">{{ file.filename }}</a></span>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if submission.relatedLinksList %}
+            <h2>{% trans %}Related Links{% endtrans %}:</h2>
+            <ol class="related-links">
+                {% for url in submission.relatedLinksList %}
+                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+                {% endfor %}
+            </ol>
+        {% endif %}
 
         {% if submission.members %}
             <h2 class="section-title">{% trans %}Members{% endtrans %}</h2>
