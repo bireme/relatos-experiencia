@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2026-08-24T05:13:20Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2026-11-03T03:16:42Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -506,6 +506,10 @@
         <source>Details</source>
         <target>Detalles</target>
       </trans-unit>
+      <trans-unit id="78080c35039fccdd19b87d35c4b5348e08bd5441" resname="Display a hero image in the header of the reported experience">
+        <source>Display a hero image in the header of the reported experience</source>
+        <target>Mostrar una imagen principal en el encabezado de la experiencia reportada</target>
+      </trans-unit>
       <trans-unit id="961f36de4c326fdd7cb4cc66ab04a5bd2188e0c3" resname="Do you confirm the exclusion of this attachment?">
         <source>Do you confirm the exclusion of this attachment?</source>
         <target>¿Confirma la exclusión de este archivo adjunto?</target>
@@ -826,6 +830,10 @@ Estado de la experiencia</target>
       <trans-unit id="7ea305782f9c411ea93b2689186299fdf991e42a" resname="Help updated with success.">
         <source>Help updated with success.</source>
         <target>Ayuda actualizada exitosamente</target>
+      </trans-unit>
+      <trans-unit id="2e301e2b716bf4f79c7bd1d622da7c2822eb89a5" resname="Hero image">
+        <source>Hero image</source>
+        <target>Imagen principal</target>
       </trans-unit>
       <trans-unit id="31ff40aa8dd072c159ba647eb25f4064828a8d90" resname="Hide fulltext">
         <source>Hide fulltext</source>
@@ -1456,10 +1464,6 @@ Otro estado</target>
         <source>Pan American Health Organization. All rights reserved.</source>
         <target>Organización Panamericana de la Salud. Reservados todos los derechos.</target>
       </trans-unit>
-      <trans-unit id="cd56e0839d06af74923cd6ad99d6fc9e7dab8e3a" resname="Participants">
-        <source>Participants</source>
-        <target>Participantes</target>
-      </trans-unit>
       <trans-unit id="e4d64aa6b64e302e5b6b2c82be0fd71cc0cc8624" resname="Password changed with success.">
         <source>Password changed with success.</source>
         <target>Contraseña cambiada exitosamente.</target>
@@ -1483,10 +1487,6 @@ Otro estado</target>
       <trans-unit id="2efabaa80d675c8cc6d86843ea5b32b62a33a239" resname="Please add one hyperlink per line">
         <source>Please add one hyperlink per line</source>
         <target>Agregue un hipervínculo por línea</target>
-      </trans-unit>
-      <trans-unit id="2ac66913f4e299fd22a2bc80c4cf1b32b4dde689" resname="Please add one per line">
-        <source>Please add one per line</source>
-        <target>Agregue un por línea</target>
       </trans-unit>
       <trans-unit id="bf3be005264fb0bfe4450542f82af8cc2c5a443e" resname="Please paste the embed code here">
         <source>Please paste the embed code here</source>
@@ -2324,10 +2324,6 @@ Otro estado</target>
       <trans-unit id="e40b940b1b7f020fa10c2ed70c729c7f23a8c035" resname="Who is the point of contact and responsible for the experience?">
         <source>Who is the point of contact and responsible for the experience?</source>
         <target>Who is the point of contact and responsible for the experience?</target>
-      </trans-unit>
-      <trans-unit id="e12bb3c34d222d16d68714db371b36f02036997d" resname="Who participates?">
-        <source>Who participates?</source>
-        <target>¿Quiénes participan?</target>
       </trans-unit>
       <trans-unit id="1613e0bd529d4ac55fed7a8adfd0f0ac72a13872" resname="Who were the people directly involved with the implementation of the reported experience? And what was their level of involvement?">
         <source>Who were the people directly involved with the implementation of the reported experience? And what was their level of involvement?</source>
