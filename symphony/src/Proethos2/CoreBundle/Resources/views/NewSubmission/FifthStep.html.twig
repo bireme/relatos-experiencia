@@ -103,7 +103,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% set submission_featured_image = false %}
                                         {% for file in submission.attachments if file.uploadType.slug == 'featured-image' %}
+                                            {% set submission_featured_image = true %}
                                             <tr>
                                                 <td>{% if file.uploadType.slug == 'protocol' %}{{ file.simpleFilename }}{% else %}{{ file }}{% endif %}</td>
                                                 <td>{{ file.created|date("d/m/Y H:i") }}</td>
@@ -118,7 +120,7 @@
                                     </tbody>
                                 </table>
                             </fieldset>
-                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-featured-image">{% trans %}Upload file{% endtrans %}</a>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-featured-image" {% if submission_featured_image %}disabled{% endif %}>{% trans %}Upload file{% endtrans %}</a>
                         </div>
                     </div>
                 </div>
