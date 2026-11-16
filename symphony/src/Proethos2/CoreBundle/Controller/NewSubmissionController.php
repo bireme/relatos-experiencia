@@ -484,7 +484,6 @@ class NewSubmissionController extends Controller
 
             // checking required files
             $required_fields = array(
-                'introduction',
                 'description',
                 'objectives',
             );
