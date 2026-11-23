@@ -22,6 +22,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Intl\Intl;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 use Proethos2\CoreBundle\Util\Util;
 use Proethos2\CoreBundle\Util\CSVResponse;
@@ -304,6 +305,9 @@ class CRUDController extends Controller
         $collection_query = intval($request->query->get('collection'));
         $collection_object = $collection_repository->find($collection_query);
 
+        $page = $request->query->getInt('page', 1);
+        $limit = 20;
+
         if(!empty($status_query))
             $status_array = array($status_query);
 
@@ -325,8 +329,18 @@ class CRUDController extends Controller
                ->setParameter('status', $status_array);
         }
 
+        $query->setFirstResult(($page - 1) * $limit)
+              ->setMaxResults($limit);
+        $paginator = new Paginator($query->getQuery(), $fetchJoinCollection = true);
+
+        $totalItems = count($paginator);
+        $pagesCount = ceil($totalItems / $limit);
+
         $protocols = $query->getQuery()->getResult();
-        $output['protocols'] = $protocols;
+        $output['protocols']   = $protocols;
+        $output['currentPage'] = $page;
+        $output['pagesCount']  = $pagesCount;
+        $output['totalItems']  = $totalItems;
 
         // output parameter
         $output_parameter = $request->query->get('output');
@@ -419,6 +433,9 @@ class CRUDController extends Controller
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');
 
+        $page = $request->query->getInt('page', 1);
+        $limit = 20;
+
         if(!empty($status_query))
             $status_array = array($status_query);
 
@@ -432,8 +449,18 @@ class CRUDController extends Controller
            ->setParameter('status', $status_array)
            ->setParameter('owner', $user);
 
+        $query->setFirstResult(($page - 1) * $limit)
+              ->setMaxResults($limit);
+        $paginator = new Paginator($query->getQuery(), $fetchJoinCollection = true);
+
+        $totalItems = count($paginator);
+        $pagesCount = ceil($totalItems / $limit);
+
         $protocols = $query->getQuery()->getResult();
-        $output['protocols'] = $protocols;
+        $output['protocols']   = $protocols;
+        $output['currentPage'] = $page;
+        $output['pagesCount']  = $pagesCount;
+        $output['totalItems']  = $totalItems;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {

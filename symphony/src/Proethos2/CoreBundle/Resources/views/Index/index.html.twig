@@ -78,6 +78,36 @@
                             {% endfor %}
                         </tbody>
                     </table>
+
+                    {% if pagesCount > 1 %}
+                        {% set currentParams = app.request.query.all %}
+                        {% set routeName = app.request.attributes.get('_route') %}
+
+                        <nav class="center">
+                            <ul class="pagination">
+                                <li class="page-item {{ currentPage <= 1 ? 'disabled' }}">
+                                    <a class="page-link" href="{{ path(routeName, currentParams|merge({'page': currentPage - 1})) }}">
+                                        {% trans %}Previous{% endtrans %}
+                                    </a>
+                                </li>
+
+                                {% for i in 1..pagesCount %}
+                                    <li class="page-item {{ currentPage == i ? 'active' }}">
+                                        <a class="page-link" href="{{ path(routeName, currentParams|merge({'page': i})) }}">
+                                            {{ i }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+
+                                <li class="page-item {{ currentPage >= pagesCount ? 'disabled' }}">
+                                    <a class="page-link" href="{{ path(routeName, currentParams|merge({'page': currentPage + 1})) }}">
+                                        {% trans %}Next{% endtrans %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    {% endif %}
+
                 </div>
             </div>
         </div>

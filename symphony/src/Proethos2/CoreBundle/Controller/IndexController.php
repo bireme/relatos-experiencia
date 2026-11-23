@@ -22,6 +22,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 use Proethos2\CoreBundle\Util\Util;
 
@@ -63,6 +64,9 @@ class IndexController extends Controller
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');
 
+        $page = $request->query->getInt('page', 1);
+        $limit = 20;
+
         if(!empty($status_query))
             $status_array = array($status_query);
 
@@ -70,14 +74,25 @@ class IndexController extends Controller
            ->join('p.main_submission', 's')
            ->leftJoin('s.team', 't')
            ->leftJoin('p.revision', 'r')
+           ->addSelect('s', 't', 'r')
            ->where("(s.title LIKE :query OR s.descriptors LIKE :query OR s.keywords LIKE :query) AND p.status IN (:status)")
            ->orderBy("p.created", 'DESC')
            ->setParameter('query', "%". $search_query ."%")
            ->setParameter('status', $status_array);
 
+        $query->setFirstResult(($page - 1) * $limit)
+              ->setMaxResults($limit);
+        $paginator = new Paginator($query->getQuery(), $fetchJoinCollection = true);
+
+        $totalItems = count($paginator);
+        $pagesCount = ceil($totalItems / $limit);
+
         // approved protocols
         $protocols = $query->getQuery()->getResult();
-        $output['protocols'] = $protocols;
+        $output['protocols']   = $protocols;
+        $output['currentPage'] = $page;
+        $output['pagesCount']  = $pagesCount;
+        $output['totalItems']  = $totalItems;
 
         $revisions = array();
         foreach($protocol_revision_repository->findBy(array("member" => $user)) as $revision) {

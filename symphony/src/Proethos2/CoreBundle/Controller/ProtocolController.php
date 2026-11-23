@@ -480,7 +480,7 @@ class ProtocolController extends Controller
         $output['finish_options'] = $finish_options;
 
         if (!$protocol or !in_array($protocol->getStatus(), array('S', 'V'))) {
-            throw $this->createNotFoundException($translator->trans('No best practice found'));
+            throw $this->createNotFoundException($translator->trans('No experience found'));
         }
 
         // checking if was a post request
@@ -665,7 +665,7 @@ class ProtocolController extends Controller
         // $translations = $trans_repository->findTranslations($help[0]);
 
         if (!$protocol or $protocol->getStatus() != "S") {
-            throw $this->createNotFoundException($translator->trans('No best practice found'));
+            throw $this->createNotFoundException($translator->trans('No experience found'));
         }
 
         // checking if was a post request
@@ -705,7 +705,7 @@ class ProtocolController extends Controller
                 }
 
                 $message = \Swift_Message::newInstance()
-                ->setSubject("[BP] " . $mail_translator->trans("Your best practice was rejected"))
+                ->setSubject("[BP] " . $mail_translator->trans("Your experience was rejected"))
                 ->setFrom($util->getConfiguration('committee.email'))
                 ->setTo($recipients)
                 ->setBody(
@@ -736,7 +736,7 @@ class ProtocolController extends Controller
                     $em->persist($protocol);
                     $em->flush();
 
-                    $session->getFlashBag()->add('success', $translator->trans("Best practice rejected with success!"));
+                    $session->getFlashBag()->add('success', $translator->trans("Experience rejected with success!"));
                     return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
                 }
 
@@ -767,8 +767,8 @@ class ProtocolController extends Controller
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
                 $protocol_history->setUser($user);
-                // $protocol_history->setMessage($translator->trans("Best practice was rejected by") ." ". $user . ".");
-                $protocol_history->setMessage($translator->trans('Best practice was rejected by %user% with this justification "%justify%".',
+                // $protocol_history->setMessage($translator->trans("Experience was rejected by") ." ". $user . ".");
+                $protocol_history->setMessage($translator->trans('Experience was rejected by %user% with this justification "%justify%".',
                     array(
                         '%user%' => $user->getUsername(),
                         '%justify%' => $post_data['reject-reason'],
@@ -783,7 +783,7 @@ class ProtocolController extends Controller
                 $em->persist($protocol);
                 $em->flush();
 
-                $session->getFlashBag()->add('success', $translator->trans("Best practice rejected with success!"));
+                $session->getFlashBag()->add('success', $translator->trans("Experience rejected with success!"));
                 return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
 
             } else {
@@ -803,7 +803,7 @@ class ProtocolController extends Controller
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
                     $protocol_history->setUser($user);
-                    $protocol_history->setMessage($translator->trans("Best practice was sent to comittee for initial analysis by %user%.", array("%user%" => $user->getUsername())));
+                    $protocol_history->setMessage($translator->trans("Experience was sent to comittee for initial analysis by %user%.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
 
@@ -825,7 +825,7 @@ class ProtocolController extends Controller
                             if(in_array($role, $member->getRolesSlug())) {
 
                                 $message = \Swift_Message::newInstance()
-                                ->setSubject("[BP] " . $mail_translator->trans("A new best practice needs your analysis."))
+                                ->setSubject("[BP] " . $mail_translator->trans("A new experience needs your analysis."))
                                 ->setFrom($util->getConfiguration('committee.email'))
                                 ->setTo($member->getEmail())
                                 ->setBody(
@@ -839,7 +839,7 @@ class ProtocolController extends Controller
                         }
                     }
 
-                    $session->getFlashBag()->add('success', $translator->trans("Best practice updated with success!"));
+                    $session->getFlashBag()->add('success', $translator->trans("Experience updated with success!"));
                     return $this->redirectToRoute('protocol_initial_committee_screening', array('protocol_id' => $protocol->getId()), 301);
                 }
 
@@ -852,7 +852,7 @@ class ProtocolController extends Controller
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
                     $protocol_history->setUser($user);
-                    $protocol_history->setMessage($translator->trans("Best practice accepted for review by %user% and investigators notified.", array("%user%" => $user->getUsername())));
+                    $protocol_history->setMessage($translator->trans("Experience accepted for review by %user% and investigators notified.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
 
@@ -886,7 +886,7 @@ class ProtocolController extends Controller
                         $body .= "<br /><br />";
 
                         $message = \Swift_Message::newInstance()
-                        ->setSubject("[BP] " . $mail_translator->trans("Your best practice was sent to review!"))
+                        ->setSubject("[BP] " . $mail_translator->trans("Your experience was sent to review!"))
                         ->setFrom($util->getConfiguration('committee.email'))
                         ->setTo($investigators)
                         ->setBody(
@@ -898,7 +898,7 @@ class ProtocolController extends Controller
                         $send = $this->get('mailer')->send($message);
                     }
 
-                    $session->getFlashBag()->add('success', $translator->trans("Best practice updated with success!"));
+                    $session->getFlashBag()->add('success', $translator->trans("Experience updated with success!"));
                     return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
                 }
 
@@ -918,7 +918,7 @@ class ProtocolController extends Controller
                     $em->persist($protocol);
                     $em->flush();
 
-                    $session->getFlashBag()->add('success', $translator->trans("Best practice updated with success!"));
+                    $session->getFlashBag()->add('success', $translator->trans("Experience updated with success!"));
                     return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
                 }
 
@@ -972,7 +972,7 @@ class ProtocolController extends Controller
         // $translations = $trans_repository->findTranslations($help[0]);
 
         if (!$protocol or $protocol->getStatus() != "I") {
-            throw $this->createNotFoundException($translator->trans('No best practice found'));
+            throw $this->createNotFoundException($translator->trans('No experience found'));
         }
 
         // checking if was a post request
@@ -999,7 +999,7 @@ class ProtocolController extends Controller
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
                 $protocol_history->setUser($user);
-                $protocol_history->setMessage($translator->trans("Your best practice has been accepted for ethics review. The committee's decision will be informed when the process is finalized."));
+                $protocol_history->setMessage($translator->trans("Your experience has been accepted for ethics review. The committee's decision will be informed when the process is finalized."));
                 $em->persist($protocol_history);
                 $em->flush();
 
@@ -1045,7 +1045,7 @@ class ProtocolController extends Controller
                     }
 
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("[BP] " . $mail_translator->trans("Your best practice was sent to review!"))
+                    ->setSubject("[BP] " . $mail_translator->trans("Your experience was sent to review!"))
                     ->setFrom($util->getConfiguration('committee.email'))
                     ->setTo($investigators)
                     ->setBody(
@@ -1057,7 +1057,7 @@ class ProtocolController extends Controller
                     $send = $this->get('mailer')->send($message);
                 }
 
-                $session->getFlashBag()->add('success', $translator->trans("Best practice updated with success!"));
+                $session->getFlashBag()->add('success', $translator->trans("Experience updated with success!"));
                 return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
             }
 
@@ -1103,7 +1103,7 @@ class ProtocolController extends Controller
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
                 $protocol_history->setUser($user);
-                $protocol_history->setMessage($translator->trans("Best practice was concluded as Exempt."));
+                $protocol_history->setMessage($translator->trans("Experience was concluded as Exempt."));
                 $em->persist($protocol_history);
                 $em->flush();
 
@@ -1131,7 +1131,7 @@ class ProtocolController extends Controller
                 $body .= "<br /><br />";
 
                 $message = \Swift_Message::newInstance()
-                ->setSubject("[BP] " . $mail_translator->trans("Your best practice was concluded as Exempt."))
+                ->setSubject("[BP] " . $mail_translator->trans("Your experience was concluded as Exempt."))
                 ->setFrom($util->getConfiguration('committee.email'))
                 ->setTo($investigators)
                 ->setBody(
@@ -1146,7 +1146,7 @@ class ProtocolController extends Controller
 
                 $send = $this->get('mailer')->send($message);
 
-                $session->getFlashBag()->add('success', $translator->trans("Best practice updated with success!"));
+                $session->getFlashBag()->add('success', $translator->trans("Experience updated with success!"));
                 return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
             }
 
@@ -1213,7 +1213,7 @@ class ProtocolController extends Controller
         // $translations = $trans_repository->findTranslations($help[0]);
 
         if (!$protocol or !in_array($protocol->getStatus(), array('E', 'H'))) {
-            throw $this->createNotFoundException($translator->trans('No best practice found'));
+            throw $this->createNotFoundException($translator->trans('No experience found'));
         }
 
         // checking if was a post request
@@ -1280,7 +1280,7 @@ class ProtocolController extends Controller
                             $body .= "<br /><br />";
 
                             $message = \Swift_Message::newInstance()
-                            ->setSubject("[BP] " . $mail_translator->trans("You were assigned to review a best practice"))
+                            ->setSubject("[BP] " . $mail_translator->trans("You were assigned to review a experience"))
                             ->setFrom($util->getConfiguration('committee.email'))
                             ->setTo($member->getEmail())
                             ->setBody(
@@ -1375,7 +1375,7 @@ class ProtocolController extends Controller
         // $translations = $trans_repository->findTranslations($help[0]);
 
         if (!$protocol or !in_array($protocol->getStatus(), array('E', 'H'))) {
-            throw $this->createNotFoundException($translator->trans('No best practice found'));
+            throw $this->createNotFoundException($translator->trans('No experience found'));
         }
 
         // getting the protocol_revisiion
@@ -1383,7 +1383,7 @@ class ProtocolController extends Controller
         $output['protocol_revision'] = $protocol_revision;
 
         if (!$protocol_revision) {
-            throw $this->createNotFoundException($translator->trans('You cannot edit this best practice'));
+            throw $this->createNotFoundException($translator->trans('You cannot edit this experience'));
         }
 
         // checking if was a post request
@@ -1444,7 +1444,7 @@ class ProtocolController extends Controller
                     }
 
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("[BP] " . $mail_translator->trans("A new best practice review was submitted"))
+                    ->setSubject("[BP] " . $mail_translator->trans("A new experience review was submitted"))
                     ->setFrom($util->getConfiguration('committee.email'))
                     ->setTo($secretaries_emails)
                     ->setBody(
@@ -1533,7 +1533,7 @@ class ProtocolController extends Controller
         // $translations = $trans_repository->findTranslations($help[0]);
 
         if (!$protocol or $protocol->getStatus() != "H") {
-            throw $this->createNotFoundException($translator->trans('No best practice found'));
+            throw $this->createNotFoundException($translator->trans('No experience found'));
         }
 
         // checking if was a post request
@@ -1623,7 +1623,7 @@ class ProtocolController extends Controller
             $protocol_history->setProtocol($protocol);
             $protocol_history->setUser($user);
             $protocol_history->setMessage($translator->trans(
-                'Best practice finalized by %user% under option "%option%".',
+                'Experience finalized by %user% under option "%option%".',
                 array(
                     '%user%' => $user->getUsername(),
                     '%option%' => $finish_options[$post_data['final-decision']],
@@ -1682,7 +1682,7 @@ class ProtocolController extends Controller
             $body .= "<br /><br />";
 
             $message = \Swift_Message::newInstance()
-            ->setSubject("[BP] " . $mail_translator->trans("The best practice review was finalized!"))
+            ->setSubject("[BP] " . $mail_translator->trans("The experience review was finalized!"))
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($investigators)
             ->setBody(
@@ -1697,7 +1697,7 @@ class ProtocolController extends Controller
 
             $send = $this->get('mailer')->send($message);
 
-            $session->getFlashBag()->add('success', $translator->trans("Best practice was finalized with success!"));
+            $session->getFlashBag()->add('success', $translator->trans("Experience was finalized with success!"));
             return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
         }
 
@@ -1726,7 +1726,7 @@ class ProtocolController extends Controller
         $output['protocol'] = $protocol;
 
         if (!$protocol or !(in_array('secretary', $user->getRolesSlug())) or !in_array($protocol->getStatus(), array('R', 'C'))) {
-            throw $this->createNotFoundException($translator->trans('No best practice found'));
+            throw $this->createNotFoundException($translator->trans('No experience found'));
         }
 
         // checking if was a post request
@@ -1767,7 +1767,7 @@ class ProtocolController extends Controller
                 $protocol_history->setProtocol($protocol);
                 $protocol_history->setUser($user);
                 $protocol_history->setMessage($translator->trans(
-                    'Best practice status modified by %user%.',
+                    'Experience status modified by %user%.',
                     array(
                         '%user%' => $user->getUsername(),
                     )
@@ -1775,7 +1775,7 @@ class ProtocolController extends Controller
                 $em->persist($protocol_history);
                 $em->flush();
 
-                $session->getFlashBag()->add('success', $translator->trans("Best practice status has been modified."));
+                $session->getFlashBag()->add('success', $translator->trans("Experience status has been modified."));
                 return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
             }
 
@@ -1806,7 +1806,7 @@ class ProtocolController extends Controller
         $output['protocol'] = $protocol;
 
         if (!$protocol or !(in_array('secretary', $user->getRolesSlug())) or !in_array($protocol->getStatus(), array('S', 'I', 'E', 'H'))) {
-            throw $this->createNotFoundException($translator->trans('No best practice found'));
+            throw $this->createNotFoundException($translator->trans('No experience found'));
         }
 
         // checking if was a post request
@@ -1848,7 +1848,7 @@ class ProtocolController extends Controller
                 $em->persist($protocol_history);
                 $em->flush();
 
-                $session->getFlashBag()->add('success', $translator->trans("Your best practice has been withdrawn"));
+                $session->getFlashBag()->add('success', $translator->trans("Your experience has been withdrawn"));
                 return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
             }
 
@@ -1880,7 +1880,7 @@ class ProtocolController extends Controller
         $output['protocol'] = $protocol;
 
         if (!$protocol or !(in_array('administrator', $user->getRolesSlug()) or $user == $protocol->getOwner())) {
-            throw $this->createNotFoundException($translator->trans('No best practice found'));
+            throw $this->createNotFoundException($translator->trans('No experience found'));
         }
 
         // checking if was a post request
@@ -1920,7 +1920,7 @@ class ProtocolController extends Controller
                 $em->remove($protocol);
                 $em->flush();
 
-                $session->getFlashBag()->add('success', $translator->trans("Best practice was removed with success!"));
+                $session->getFlashBag()->add('success', $translator->trans("Experience was removed with success!"));
                 if(in_array('administrator', $user->getRolesSlug())) {
                     return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
                 }

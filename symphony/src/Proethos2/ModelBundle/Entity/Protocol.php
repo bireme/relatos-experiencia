@@ -824,7 +824,6 @@ class Protocol extends Base
         return $contacts;
     }
 
-
     /**
      * Set notes
      *
